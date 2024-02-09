@@ -1,0 +1,36 @@
+﻿.recipe-summary {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: .5rem;
+    background-color: var(--info-box-border-color);
+    border-radius: 14px;
+}
+
+.image-wrapper {
+    width: 200px;
+    height: 150px;
+}
+
+.image {
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.text-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 0.6rem;
+}
+
+.text-badges-wrapper {
+    margin-top: .5rem;
+    gap: 1rem;
+}
+
+.text-description-wrapper {
+    width: 100%;
+}

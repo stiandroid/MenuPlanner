@@ -1,0 +1,105 @@
+﻿@page "/recipe/{Url}"
+@inject IRecipeService RecipeService
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+@if (recipe == null)
+{
+    <PageTitle>Henter oppskrift...</PageTitle>
+    <Loader />
+}
+else
+{
+    <PageTitle>@recipe.Name</PageTitle>
+    <h1>@recipe.Name</h1>
+    <div class="main-image-wrapper">
+        <img class="main-image" src="images/recipes/@(recipe.Url)1000x350.jpg" />
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <span class="badge rounded-pill text-bg-secondary p-2">Protein: @ProteinPercentage%</span>
+            <span class="badge rounded-pill text-bg-secondary p-2">Karbohydrater: @CarbPercentage%</span>
+            <span class="badge rounded-pill text-bg-secondary p-2">Fett: @FatPercentage%</span>
+        </div>
+        <div class="col-md-6 col-sm-12 text-end">
+            @if (allergens != null)
+            {
+                foreach (var allergen in allergens)
+                {
+                    <a href="/allergen/@allergen.Url"
+                       class="ms-2">
+                        <img src="/images/allergens/@(allergen.Url).png" height="48" title="@allergen.Name" alt="Inneholder allergenet @(allergen.Name.ToLower())" />
+                    </a>
+                }
+            }
+        </div>
+    </div>
+    <div class="main-description"><p>@recipe.Description</p></div>
+    @if (recipe.RecipeIngredients != null)
+    {
+        <div class="info-box">
+            <h4>Ingredienser</h4>
+            @foreach (var ri in recipe.RecipeIngredients)
+            {
+                <p>
+                    @ri.Amount
+                    @ri.Unit.GetDisplayName()
+                    <a href="/ingredient/@(ri.Ingredient.Url)">
+                        @ri.Ingredient.Name.ToLower()
+                    </a>
+                </p>
+            }
+        </div>
+    }
+    <div class="text-box">
+        <h4>Fremgangsmåte</h4>
+        @if (recipe.Steps!.Count > 0)
+        {
+            <ol>
+                @foreach (var step in recipe.Steps)
+                {
+                    <li>
+                        @if (step.Image != null)
+                        {
+                            <img src="/images/recipes/steps/@step.Image" />
+                        }
+                        @step.StepText
+                    </li>
+                }
+            </ol>
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Url { get; set; } = "";
+    private RecipeDetailsDisplayDTO? recipe;
+    private List<AllergenDisplayDTO>? allergens;
+    private double FatPercentage;
+    private double CarbPercentage;
+    private double ProteinPercentage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await RecipeService.GetByUrl(Url);
+        if (result.Success)
+        {
+            recipe = result.Data;
+            allergens = recipe.RecipeIngredients
+                .SelectMany(ia => ia.Ingredient.IngredientAllergens)
+                .Select(a => a.Allergen)
+                .ToList();
+
+            // TODO
+            FatPercentage = 10;// recipe.RecipeIngredients
+        //     .Where(n => n.)
+            //     .Select(i => i.Ingredient)
+            //     .SelectMany(i => i.IngredientNutrients)
+            //     .Sum(a => a.AmountPer100Grams);
+
+            CarbPercentage = 60;
+            ProteinPercentage = 30;
+        }
+    }
+}

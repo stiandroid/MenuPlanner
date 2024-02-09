@@ -1,0 +1,12 @@
+﻿@if (Country != null)
+{
+    <span class="badge info-badge text-black">
+        <img class="mr-3" height="16" src="images/flags/icon-24px/@(Country.ISO3166_2).png" />
+        @Country.Name
+    </span>
+}
+
+@code {
+    [Parameter]
+    public CountryDisplayDTO? Country { get; set; }
+}

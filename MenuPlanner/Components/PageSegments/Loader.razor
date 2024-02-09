@@ -1,0 +1,132 @@
+﻿<div class="loader">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 100 100"
+         preserveAspectRatio="xMidYMid"
+         class="lds-ring"
+         width="100px"
+         height="100px">
+
+        @for (var i = 0; i < circles; i++)
+        {
+            <circle cx="50" cy="50" r="@(radius![i])"
+                    fill="@($"#{color![i]}22")"
+                    stroke="@($"#{color![i]}77")"
+                    stroke-width="@(strokeWidth![i])"
+                    stroke-dasharray="@(strokeDashArray![i])">
+
+                <animate attributeName="r"
+                         begin="0s"
+                         calcMode="spline"
+                         keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
+                         values="@(radius[i]-(4*radiusAnimDir[i]));@(radius[i]+(4*radiusAnimDir[i]));@(radius[i]-(4*radiusAnimDir[i]))"
+                         keyTimes="0;0.5;1"
+                         dur="@($"{radiusAnimDur![i]}s")"
+                         repeatCount="indefinite" />
+
+                <animate attributeName="fill"
+                         begin="0s"
+                         calcMode="spline"
+                         keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
+                         values="@($"#{color[i]}22");@($"#{color[i]}00");@($"#{color[i]}22")"
+                         keyTimes="0;0.5;1"
+                         dur="@($"{radiusAnimDur![i]}s")"
+                         repeatCount="indefinite" />
+
+                <animate attributeName="stroke-width"
+                         begin="0s"
+                         calcMode="spline"
+                         keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
+                         values="@(1+Math.Round((decimal)strokeWidth[i]/2));@(Math.Round((decimal)(strokeWidth[i]*1.5)));@(1+Math.Round((decimal)strokeWidth[i]/2))"
+                         keyTimes="0;0.5;1"
+                         dur="@($"{strokeWidthAnimDur![i]}s")"
+                         repeatCount="indefinite" />
+
+                <animateTransform attributeName="transform"
+                                  attributeType="XML"
+                                  type="rotate"
+                                  calcMode="linear"
+                                  values="@(rotationDir![i]==1?"0 50 50;360 50 50":"360 50 50;0 50 50")"
+                                  keyTimes="0;1"
+                                  dur="@($"{duration![i]}s")"
+                                  begin="0s"
+                                  repeatCount="indefinite"
+                                  additive="sum" />
+
+            </circle>
+        }
+    </svg>
+</div>
+
+@code {
+    private const int circles = 5;
+    private string[]? color;
+    private int[]? strokeWidth;
+    private int[]? strokeWidthAnimDur;
+    private int[]? radius;
+    private int[]? radiusAnimDur;
+    private sbyte[]? radiusAnimDir;
+    private string[]? strokeDashArray;
+    private int[]? duration;
+    private sbyte[]? rotationDir;
+
+    protected override void OnInitialized()
+    {
+        color = new string[circles];
+        strokeWidth = new int[circles];
+        strokeWidthAnimDur = new int[circles];
+        radius = new int[circles];
+        radiusAnimDur = new int[circles];
+        radiusAnimDir = new sbyte[circles];
+        strokeDashArray = new string[circles];
+        duration = new int[circles];
+        rotationDir = new sbyte[circles];
+
+        long timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        Random seededRandom = new Random((int)timestamp);
+
+        for (var i = 0; i < circles; i++)
+        {
+            // Colors
+            color[i] =
+                (seededRandom.Next(2, 14) * 16).ToString("X2") +
+                (seededRandom.Next(2, 14) * 16).ToString("X2") +
+                (seededRandom.Next(2, 14) * 16).ToString("X2");
+
+            // Stroke width
+            strokeWidth[i] = seededRandom.Next(1, 13);
+
+            // Stroke width animation duration
+            strokeWidthAnimDur[i] = seededRandom.Next(2, 6);
+
+            // Radius
+            radius[i] = 20 + seededRandom.Next(6) * 2;
+
+            // Radius animation duration
+            radiusAnimDur[i] = seededRandom.Next(2, 6);
+
+            // Radius animation direction
+            do
+            {
+                radiusAnimDir[i] = seededRandom.Next(2) == 0
+                    ? (sbyte)-1
+                    : (sbyte)1;
+            } while (radiusAnimDir[i] == 0);
+
+            // Stroke dasharray
+            var line = 50 + seededRandom.Next(26);
+            var gap = 100 - line;
+            strokeDashArray[i] = $"{line} {gap}";
+
+            // Rotation animation duration
+            duration[i] = seededRandom.Next(1, 6);
+
+            // Rotation direction
+            do
+            {
+                rotationDir[i] = seededRandom.Next(2) == 0
+                    ? (sbyte)-1
+                    : (sbyte)1;
+            } while (rotationDir[i] == 0);
+        }
+    }
+}

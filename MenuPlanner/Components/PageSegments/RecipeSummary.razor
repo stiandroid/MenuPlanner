@@ -1,0 +1,35 @@
+﻿@inject NavigationManager Nav
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+@if (Recipe != null)
+{
+<div class="recipe-summary"
+     @onclick="(() => ViewRecipeDetails(Recipe.Url))">
+    <div class="image-wrapper">
+        <img class="image" src="images/recipes/@(Recipe.Url)200x150.jpg" />
+    </div>
+    <div class="text-wrapper">
+        <h2>@Recipe.Name</h2>
+        <div class="text-badges-wrapper">
+            <PrepTime Time="Recipe.PrepTime" />
+            <Difficulty Level="Recipe.DifficultyLevel" />
+            <RatingAverage Score="Recipe.RatingAverage" />
+            <CountryOfOrigin Country="Recipe.Country" />
+        </div>
+        <div class="text-description-wrapper">
+            @Recipe.Description
+        </div>
+    </div>
+</div>
+}
+
+@code {
+    [Parameter]
+    public RecipeSummaryDisplayDTO? Recipe { get; set; }
+
+    private void ViewRecipeDetails(string url)
+    {
+        Nav.NavigateTo($"/recipe/{url}");
+    }
+}

@@ -1,0 +1,128 @@
+﻿@page "/search/{SearchTerm?}"
+@inject ISearchService SearchService
+
+<h3>Søkeresultater</h3>
+
+@if (recipeCount > 0 || ingredientCount > 0)
+{
+    @if (searchTermContainsOneLetterWord)
+    {
+        <p>@oneLetterWordMessage</p>
+    }
+
+    <hr />
+    @if (nutrientCount > 0)
+    {
+        <div class="row">
+            <div class="col-12 mb-3">
+                @if (ingredientCount > 0 || recipeCount > 0)
+                {
+                    <h5>Næringsstoffer (@nutrientCount)</h5>
+                }
+                @foreach (var nutrient in nutrients)
+                {
+                    <a href="/nutrient/@(nutrient.Url)">
+                        <span class="badge rounded-pill text-bg-success p-2 me-2 mb-2">
+                            @nutrient.Name
+                        </span>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+
+    @if (ingredientCount > 0)
+    {
+        <div class="row">
+            <div class="col-12 mb-3">
+                @if (recipeCount > 0 || nutrientCount > 0)
+                {
+                    <h5>Ingredienser (@ingredientCount)</h5>
+                }
+                @foreach (var ingredient in ingredients)
+                {
+                    <a href="/ingredient/@(ingredient.Url)">
+                        <span class="badge rounded-pill text-bg-primary p-2 me-2 mb-2">
+                            @ingredient.Name
+                        </span>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+
+    @if (recipeCount > 0 && ingredientCount > 0)
+    {
+        <div class="row mt-3"></div>
+    }
+    @if (recipeCount > 0)
+    {
+        <div class="row">
+            <div class="col-12 mb-3">
+                @if (nutrientCount > 0 || ingredientCount > 0)
+                {
+                    <h5>Oppskrifter (@recipeCount)</h5>
+                }
+                @foreach (var recipe in recipes)
+                {
+                    <RecipeSummary Recipe="recipe" />
+                }
+            </div>
+        </div>
+    }
+}
+else if (!string.IsNullOrWhiteSpace(SearchTerm))
+{
+    @if (SearchTerm.Length > 1)
+    {
+        <p>Fant ingen oppskrifter, ingredienser eller næringsstoffer på søk etter "@SearchTerm!.Replace("+", " ")".</p>
+    }
+    @if (searchTermContainsOneLetterWord)
+    {
+        <p>@oneLetterWordMessage</p>
+    }
+}
+
+@code {
+    [Parameter]
+    public string? SearchTerm { get; set; }
+
+    private (List<RecipeSummaryDisplayDTO> recipes, 
+             List<IngredientDisplayDTO> ingredients,
+             List<NutrientDisplayDTO> nutrients) searchResults;
+
+    private List<RecipeSummaryDisplayDTO>? recipes;
+    private List<IngredientDisplayDTO>? ingredients;
+    private List<NutrientDisplayDTO>? nutrients;
+
+    private int recipeCount = 0;
+    private int ingredientCount = 0;
+    private int nutrientCount = 0;
+
+    private string oneLetterWordMessage = "Søkeord på kun én bokstav ble ignorert.";
+
+    private bool searchTermContainsOneLetterWord = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrWhiteSpace(SearchTerm))
+        {
+            var result = await SearchService.Search(SearchTerm);
+            if (result.Success)
+            {
+                searchResults = result.Data;
+
+                recipes = searchResults.recipes;
+                recipeCount = recipes?.Count ?? 0;
+                ingredients = searchResults.ingredients;
+                ingredientCount = ingredients?.Count ?? 0;
+                nutrients = searchResults.nutrients;
+                nutrientCount = nutrients?.Count ?? 0;
+
+                searchTermContainsOneLetterWord = SearchTerm
+                    .Split('+', StringSplitOptions.RemoveEmptyEntries)
+                    .Any(word => word.Length == 1);
+            }
+        }
+    }
+}

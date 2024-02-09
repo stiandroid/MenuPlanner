@@ -1,0 +1,26 @@
+﻿@inject IRecipeService RecipeService
+@attribute [StreamRendering]
+
+@if (recipes is null)
+{
+    <Loader />
+}
+else
+{
+    foreach (var recipe in recipes)
+    {
+        <RecipeSummary Recipe="recipe" />
+    }
+}
+
+@code {
+    private List<RecipeSummaryDisplayDTO>? recipes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await RecipeService.GetTop(10);
+        if (result.Success)
+        {
+            recipes = result.Data;        }
+    }
+}
