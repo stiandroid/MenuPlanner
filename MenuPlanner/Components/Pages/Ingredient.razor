@@ -1,4 +1,4 @@
-﻿@page "/ingredient/{Url}"
+﻿@page "/i/{Url}"
 @inject IIngredientService IngredientService
 @rendermode InteractiveServer
 @attribute [StreamRendering]
@@ -20,7 +20,7 @@ else
 
     <div class="row">
         <div class="col-lg-6 col-sm-12">
-            <h3>Næringsstoffer</h3>
+            <h4>Næringsstoffer</h4>
             @if (ingredient.IngredientNutrients.Count > 0)
             {
                 <div class="info-box">
@@ -39,7 +39,7 @@ else
                                     }
                                     else
                                     {
-                                        <a href="/nutrient/@item.Nutrient!.Url">
+                                        <a href="/n/@item.Nutrient!.Url">
                                             @item.Nutrient!.Name
                                         </a>
                                     }

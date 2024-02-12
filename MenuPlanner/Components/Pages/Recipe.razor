@@ -1,4 +1,4 @@
-﻿@page "/recipe/{Url}"
+﻿@page "/r/{Url}"
 @inject IRecipeService RecipeService
 @rendermode InteractiveServer
 @attribute [StreamRendering]
@@ -26,7 +26,7 @@ else
             {
                 foreach (var allergen in allergens)
                 {
-                    <a href="/allergen/@allergen.Url"
+                    <a href="/a/@allergen.Url"
                        class="ms-2">
                         <img src="/images/allergens/@(allergen.Url).png" height="48" title="@allergen.Name" alt="Inneholder allergenet @(allergen.Name.ToLower())" />
                     </a>
@@ -37,14 +37,14 @@ else
     <div class="main-description"><p>@recipe.Description</p></div>
     @if (recipe.RecipeIngredients != null)
     {
-        <div class="info-box">
+        <div class="info-box mb-3">
             <h4>Ingredienser</h4>
             @foreach (var ri in recipe.RecipeIngredients)
             {
                 <p>
                     @ri.Amount
                     @ri.Unit.GetDisplayName()
-                    <a href="/ingredient/@(ri.Ingredient.Url)">
+                    <a href="/i/@(ri.Ingredient.Url)">
                         @ri.Ingredient.Name.ToLower()
                     </a>
                 </p>

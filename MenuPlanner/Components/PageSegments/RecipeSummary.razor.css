@@ -1,36 +1,15 @@
-﻿.recipe-summary {
+﻿.card {
     cursor: pointer;
-    display: flex;
-    flex-flow: row nowrap;
-    padding: .5rem;
-    background-color: var(--info-box-border-color);
-    border-radius: 14px;
 }
 
-.image-wrapper {
-    width: 200px;
-    height: 150px;
+@media (min-width: 768px) {
+    .card {
+        max-width: 50%;
+    }
 }
 
-.image {
-    width: 200px;
-    height: 150px;
-    border-radius: 10px;
-}
-
-.text-wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    width: 100%;
-    padding-left: 0.6rem;
-}
-
-.text-badges-wrapper {
-    margin-top: .5rem;
-    gap: 1rem;
-}
-
-.text-description-wrapper {
-    width: 100%;
+@media (min-width: 614px) {
+    .card {
+        max-width: 33%;
+    }
 }

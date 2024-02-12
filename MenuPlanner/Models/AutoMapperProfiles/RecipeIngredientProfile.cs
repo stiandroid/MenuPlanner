@@ -12,7 +12,6 @@
 
             // View (Fra Entity til DisplayDTO)
             CreateMap<RecipeIngredient, RecipeIngredientDisplayDTO>();
-            CreateMap<RecipeIngredient, RecipeIngredientDisplayDTO>();
         }
     }
 }

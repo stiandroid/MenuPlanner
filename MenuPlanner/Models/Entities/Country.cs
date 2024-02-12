@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MenuPlanner.Models.Entities
+﻿namespace MenuPlanner.Models.Entities
 {
     public class Country
     {

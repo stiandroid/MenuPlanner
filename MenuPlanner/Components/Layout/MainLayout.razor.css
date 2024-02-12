@@ -16,6 +16,10 @@ main {
     color: var(--menu-txt-color);
 }
 
+.searchform-small-screens {
+    display: none;
+}
+
 .footer {
     background-color: var(--menu-bg-color);
     color: var(--menu-txt-color);
@@ -25,8 +29,12 @@ main {
     justify-content: center;
 }
 
-@media (max-width: 640.98px) {
-
+@media (max-width: 940px) {
+    .searchform-small-screens {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        display: block;
+    }
 }
 
 /* Større enn mobil i portrettmodus: */

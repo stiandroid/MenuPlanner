@@ -49,17 +49,19 @@ builder.Services.AddAuthentication(options =>
     })
     .AddIdentityCookies();
 
-// Connection string names:
-// Production DB: DefaultConnection
-// Test DB      : TestDBConnection
-string connStrName = "DefaultConnection";
+// Connection string navn:
+string productionDb = "DefaultConnection";
+string unitTestDb = "TestDBConnection";
+
+string connStrName = productionDb;
+
 var connectionString = builder.Configuration.GetConnectionString(connStrName)
         ?? throw new InvalidOperationException($"Connection string '{connStrName}' not found.");
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(connectionString);
-    options.EnableSensitiveDataLogging();
+    options.EnableSensitiveDataLogging(); // Fjern denne for production
 });
 
 

@@ -32,7 +32,7 @@
 .info-box {
     position: relative;
     float: left;
-    width: 350px;
+    /*width: 350px;*/
     background-color: var(--info-box-bg-color);
     padding: 1rem;
     margin-right: 1rem;
@@ -42,6 +42,7 @@
 
 .info-badge {
     font-weight: normal;
+    font-size: larger;
     padding-top: .5rem;
     padding-bottom: .5rem;
     padding-left: 1rem;
@@ -56,12 +57,20 @@
     text-align: justify;
 }
 
+.icon-2x {
+    font-size: 2em; /* Dobbel ikonstørrelse */
+}
+
+.icon-3x {
+    font-size: 3em; /* Trippel ikonstørrelse */
+}
+
 h1, h2, h3, h4 {
-    font-weight: 700;
+    margin-bottom: 1.75rem;
 }
 
 html, body {
-    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--main-bg-color);
     color: var(--main-txt-color);
 }

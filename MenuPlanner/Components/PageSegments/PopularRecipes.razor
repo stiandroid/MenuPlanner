@@ -1,16 +1,21 @@
 ﻿@inject IRecipeService RecipeService
 @attribute [StreamRendering]
 
+<h1>Populære oppskrifter</h1>
+<p>Dette er våre best likte oppskrifter. Hvilken vil du prøve i dag?</p>
+
 @if (recipes is null)
 {
     <Loader />
 }
 else
 {
-    foreach (var recipe in recipes)
-    {
-        <RecipeSummary Recipe="recipe" />
-    }
+    <div class="d-flex flex-column">
+        @foreach (var recipe in recipes)
+        {
+            <RecipeSummary Recipe="recipe" />
+        }
+    </div>
 }
 
 @code {
