@@ -11,7 +11,14 @@
 else
 {
     <PageTitle>@recipe.Name</PageTitle>
-    <h1>@recipe.Name</h1>
+    <h1>
+        <img class="mr-3"
+             src="images/flags/standardized-rectangle-120px/@(recipe.Country.ISO3166_2).png"
+             height="28"
+             alt="@(recipe.Country.Name)"
+             title="@(recipe.Country.Name)" />
+        @recipe.Name
+    </h1>
     <div class="main-image-wrapper">
         <img class="main-image" src="images/recipes/@(recipe.Url)1000x350.jpg" />
     </div>

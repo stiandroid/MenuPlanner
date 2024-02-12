@@ -1,30 +1,20 @@
 ﻿@if (Level != null)
 {
-    <span class="badge info-badge text-@bgCol">
-        <i class="bi bi-puzzle"></i>
-        @(Level switch
-        {
-            DifficultyLevel.Easy => "Lett",
-            DifficultyLevel.Intermediate => "Middels",
-            DifficultyLevel.Advanced => "Avansert",
-            _ => ""
-        })
-    </span>
+    <i class="bi bi-puzzle me-2"></i>
+    @(Level switch
+    {
+        DifficultyLevel.Easy => "Lett",
+        DifficultyLevel.Intermediate => "Middels",
+        DifficultyLevel.Advanced => "Avansert",
+        _ => ""
+    })
 }
 
 @code {
     [Parameter]
     public DifficultyLevel? Level { get; set; }
-    private string bgCol = "";
 
     protected override void OnInitialized()
     {
-        bgCol = Level switch
-        {
-            DifficultyLevel.Easy => "success",
-            DifficultyLevel.Intermediate => "warning",
-            DifficultyLevel.Advanced => "danger",
-            _ => "primary"
-        };
     }
 }

@@ -1,23 +1,14 @@
 ﻿@if (Score != null)
 {
-    <span class="badge info-badge text-@bgCol">
-        <i class="bi bi-star"></i>
-        @Score
-    </span>
+    <i class="bi bi-star me-2"></i>
+    @Score
 }
 
 @code {
     [Parameter]
     public double? Score { get; set; }
-    private string bgCol = "";
 
     protected override void OnInitialized()
     {
-        bgCol = Score switch
-        {
-            > 7 => "success",
-            > 4 => "warning",
-            _ => "danger"
-        };
     }
 }
