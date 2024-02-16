@@ -1,4 +1,4 @@
-namespace MenuPlanner.Components.Account
+namespace MenuPlanner.Components.Shared.Account
 {
     internal sealed class IdentityUserAccessor(UserManager<User> userManager, IdentityRedirectManager redirectManager)
     {

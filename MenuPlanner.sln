@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuPlanner", "MenuPlanner\MenuPlanner.csproj", "{01B5D955-37AC-4AFC-8007-E325A44511FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuPlanner.Tests", "MenuPlanner.Tests\MenuPlanner.Tests.csproj", "{D023DD1F-F3D5-42AA-8BE3-21BF30B359E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuPlanner.Tests", "MenuPlanner.Tests\MenuPlanner.Tests.csproj", "{D023DD1F-F3D5-42AA-8BE3-21BF30B359E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

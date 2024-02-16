@@ -1,8 +1,4 @@
-﻿using MenuPlanner.Components.Badges;
-using MenuPlanner.Models.Entities;
-using System;
-
-namespace MenuPlanner.Models.AutoMapperProfiles
+﻿namespace MenuPlanner.Models.AutoMapperProfiles
 {
     public class RecipeProfile : Profile
     {

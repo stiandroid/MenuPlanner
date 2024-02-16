@@ -1,7 +1,4 @@
-using Microsoft.AspNetCore.Components;
-using System.Diagnostics.CodeAnalysis;
-
-namespace MenuPlanner.Components.Account
+namespace MenuPlanner.Components.Shared.Account
 {
     internal sealed class IdentityRedirectManager(NavigationManager navigationManager)
     {

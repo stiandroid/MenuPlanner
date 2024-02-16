@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.Routing
+namespace MenuPlanner.Components.Shared.Account
 {
     internal static class IdentityComponentsEndpointRouteBuilderExtensions
     {

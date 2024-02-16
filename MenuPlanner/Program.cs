@@ -1,6 +1,8 @@
 global using AutoMapper;
-global using MenuPlanner.Components.Account.Pages;
-global using MenuPlanner.Components.Account.Pages.Manage;
+global using MenuPlanner.Components;
+global using MenuPlanner.Components.Shared.Account;
+global using MenuPlanner.Components.Shared.Account.Pages;
+global using MenuPlanner.Components.Shared.Account.Pages.Manage;
 global using MenuPlanner.Data;
 global using MenuPlanner.Enums;
 global using MenuPlanner.Models.AutoMapperProfiles;
@@ -15,20 +17,22 @@ global using MenuPlanner.Services.RecipeService;
 global using MenuPlanner.Services.SearchService;
 global using MenuPlanner.Services.UserService;
 global using Microsoft.AspNetCore.Authentication;
+global using Microsoft.AspNetCore.Authentication.Google;
+global using Microsoft.AspNetCore.Components;
 global using Microsoft.AspNetCore.Components.Authorization;
+global using Microsoft.AspNetCore.Components.Server;
 global using Microsoft.AspNetCore.Http.Extensions;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Options;
 global using Microsoft.Extensions.Primitives;
 global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Diagnostics.CodeAnalysis;
 global using System.Security.Claims;
 global using System.Text.Json;
-using MenuPlanner.Components;
-using MenuPlanner.Components.Account;
-using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +76,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<DataContext>()
+    //.AddRoles<IdentityRole>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
