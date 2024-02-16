@@ -28,12 +28,12 @@ global using System.Security.Claims;
 global using System.Text.Json;
 using MenuPlanner.Components;
 using MenuPlanner.Components.Account;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var config = builder.Configuration;
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
@@ -42,26 +42,29 @@ builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 
-builder.Services.AddAuthentication(options =>
+builder.Services
+    .AddAuthentication(options =>
     {
         options.DefaultScheme = IdentityConstants.ApplicationScheme;
         options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
     })
+    .AddGoogle(googleOptions =>
+    {
+        googleOptions.ClientId = config["Authentication:Google:ClientId"];
+        googleOptions.ClientSecret = config["Authentication:Google:ClientSecret"];
+    })
     .AddIdentityCookies();
 
-// Connection string navn:
-string productionDb = "DefaultConnection";
-string unitTestDb = "TestDBConnection";
+// ConnectionString-name:
+Connection connStrName = Connection.DefaultDb; // Production or test-database?
 
-string connStrName = productionDb;
-
-var connectionString = builder.Configuration.GetConnectionString(connStrName)
-        ?? throw new InvalidOperationException($"Connection string '{connStrName}' not found.");
+var connectionString = config.GetConnectionString(connStrName.ToString())
+        ?? throw new InvalidOperationException($"Connection string '{connStrName.ToString()}' not found.");
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(connectionString);
-    options.EnableSensitiveDataLogging(); // Fjern denne for production
+    options.EnableSensitiveDataLogging(); // Remove this when in production
 });
 
 

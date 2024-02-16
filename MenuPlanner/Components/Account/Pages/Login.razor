@@ -14,8 +14,7 @@
             <StatusMessage Message="@errorMessage" />
             <EditForm Model="Input" method="post" OnValidSubmit="LoginUser" FormName="login">
                 <DataAnnotationsValidator />
-                <h4>Logg inn med e-postadresse og passord</h4>
-                <hr />
+                <h4>... med e-postadresse og passord</h4>
                 <ValidationSummary class="text-danger" role="alert" />
                 <div class="form-floating mb-3">
                     <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -36,7 +35,7 @@
                 <div>
                     <button type="submit" class="w-100 btn btn-lg btn-primary">Logg inn</button>
                 </div>
-                <div>
+                <div class="d-flex flex-column align-content-center justify-content-center align-items-center mt-3">
                     <p>
                         <a href="Account/ForgotPassword">Jeg har glemt passordet mitt!</a>
                     </p>
@@ -52,8 +51,7 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h3>... eller logg inn med din Google- eller Facebook-bruker</h3>
-            <hr />
+            <h4>... eller bruk en av disse</h4>
             <ExternalLoginPicker />
         </section>
     </div>
@@ -121,3 +119,6 @@
         public bool RememberMe { get; set; }
     }
 }
+
+@* Skal dette være her eller i App.razor?
+<script src="https://apis.google.com/js/platform.js" async defer></script> *@

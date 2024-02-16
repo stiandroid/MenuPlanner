@@ -1,5 +1,3 @@
-using MenuPlanner.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace MenuPlanner.Components.Account

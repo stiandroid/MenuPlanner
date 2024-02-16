@@ -105,6 +105,19 @@ namespace MenuPlanner.Data
             modelBuilder.Entity<RecipeIngredient>()
                 .HasData(DataSeeding.recipeIngredients);
 
+            // Roller
+            modelBuilder.Entity<IdentityRole>()
+                .HasData(DataSeeding.roles);
+
+            // Brukere
+            modelBuilder.Entity<User>()
+            .HasData(DataSeeding.users);
+
+            // Brukeres roller
+            modelBuilder.Entity<IdentityUserRole<string>>()
+                .HasData(DataSeeding.userRoles);
+
+
             // SearchIndex
             // Kombinasjonstabell for Recipe, Ingredient, Nutrient og Allergen for mer effektivt søk
             List<SearchIndex> searchIndex = [];

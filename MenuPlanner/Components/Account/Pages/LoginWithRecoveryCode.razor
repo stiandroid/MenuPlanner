@@ -4,15 +4,16 @@
 @inject UserManager<User> UserManager
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<LoginWithRecoveryCode> Logger
+@inject NavigationManager Nav
 
-<PageTitle>Recovery code verification</PageTitle>
+<PageTitle>Verifisering av gjenopprettingskode</PageTitle>
 
-<h1>Recovery code verification</h1>
+<h1>Verifisering av gjenopprettingskode</h1>
 <hr />
 <StatusMessage Message="@message" />
 <p>
-    You have requested to log in with a recovery code. This login will not be remembered until you provide
-    an authenticator app code at log in or disable 2FA and log in again.
+    Du har bedt om å logge inn med en gjenopprettingskode. Denne innloggingen vil ikke bli husket
+    inntil du angir en autentikator-app-kode ved innlogging eller deaktiverer 2FA og logger inn igjen.
 </p>
 <div class="row">
     <div class="col-md-4">
@@ -21,10 +22,13 @@
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.RecoveryCode" class="form-control" autocomplete="off" placeholder="RecoveryCode" />
-                <label for="recovery-code" class="form-label">Recovery Code</label>
+                <label for="recovery-code" class="form-label"><i class="bi bi-key"></i> Gjenopprettingskode</label>
                 <ValidationMessage For="() => Input.RecoveryCode" class="text-danger" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">
+                <i class="bi bi-box-arrow-in-right"></i>
+                Logg inn
+            </button>
         </EditForm>
     </div>
 </div>
@@ -32,6 +36,7 @@
 @code {
     private string? message;
     private User user = default!;
+    private User? nullUser;
 
     [SupplyParameterFromForm]
     private InputModel Input { get; set; } = new();
@@ -42,8 +47,21 @@
     protected override async Task OnInitializedAsync()
     {
         // Ensure the user has gone through the username & password screen first
-        user = await SignInManager.GetTwoFactorAuthenticationUserAsync() ??
-            throw new InvalidOperationException("Unable to load two-factor authentication user.");
+        //user = await SignInManager.GetTwoFactorAuthenticationUserAsync()
+        //?? throw new InvalidOperationException("Unable to load two-factor authentication user.");
+
+
+        // Alternativ strategi:
+        nullUser = await SignInManager.GetTwoFactorAuthenticationUserAsync();
+        if (nullUser != null)
+        {
+            user = nullUser;
+        }
+        else
+        {
+            // Istedenfor å kaste en exception:
+            Nav.NavigateTo("/Account/Login");
+        }
     }
 
     private async Task OnValidSubmitAsync()
@@ -67,7 +85,7 @@
         else
         {
             Logger.LogWarning("Invalid recovery code entered for user with ID '{UserId}' ", userId);
-            message = "Error: Invalid recovery code entered.";
+            message = "Feil: Ugyldig gjenopprettingskode angitt.";
         }
     }
 
@@ -75,7 +93,7 @@
     {
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Recovery Code")]
+        [Display(Name = "Gjenopprettingskode")]
         public string RecoveryCode { get; set; } = "";
     }
 }

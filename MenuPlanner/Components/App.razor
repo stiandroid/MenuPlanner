@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-signin-client_id" content="466591444940-ctai74lb3qfv6kd9pm9aii4bg5bf1bhm.apps.googleusercontent.com">
     <base href="/" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bootstrap-icons-1.11.3/font/bootstrap-icons.min.css" />
@@ -16,6 +17,9 @@
 <body>
     <Routes />
     <script src="_framework/blazor.web.js"></script>
+
+    @* Skal dette være her, eller bare på enkelte sider under /Accounts? *@
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>

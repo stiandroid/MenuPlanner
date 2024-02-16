@@ -6,24 +6,27 @@
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<ResetAuthenticator> Logger
 
-<PageTitle>Reset authenticator key</PageTitle>
+<PageTitle>Nullstill autentiseringsnøkkel</PageTitle>
 
 <StatusMessage />
-<h3>Reset authenticator key</h3>
+<h3>Nullstill autentiseringsnøkkel</h3>
 <div class="alert alert-warning" role="alert">
     <p>
-        <span class="glyphicon glyphicon-warning-sign"></span>
-        <strong>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</strong>
+        <i class="bi bi-exclamation-triangle"></i>
+        <strong>Hvis du nullstiller autentiseringsnøkkelen vil ikke autentiserings-appen fungere før du konfigurerer den på nytt.</strong>
     </p>
     <p>
-        This process disables 2FA until you verify your authenticator app.
-        If you do not complete your authenticator app configuration you may lose access to your account.
+        Denne prosessen deaktiverer 2FA fram til du verifiserer din autentiserings-app.
+        Dersom du ikke fullfører konfigurasjonen av din autentiserings-app kan du miste tilgang til brukerkontoen din.
     </p>
 </div>
 <div>
     <form @formname="reset-authenticator" @onsubmit="OnSubmitAsync" method="post">
         <AntiforgeryToken />
-        <button class="btn btn-danger" type="submit">Reset authenticator key</button>
+        <button class="btn btn-danger" type="submit">
+            <i class="bi bi-stars"></i>
+            Nullstill autentiseringsnøkkel
+        </button>
     </form>
 </div>
 
@@ -43,7 +46,7 @@
 
         RedirectManager.RedirectToWithStatus(
             "Account/Manage/EnableAuthenticator",
-            "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.",
+            "Din autentikator-app-nøkkel har blitt nullstilt. For å konfigurere en autentikator-app på nytt, må du bruke den nye nøkkelen nedenfor.",
             HttpContext);
     }
 }

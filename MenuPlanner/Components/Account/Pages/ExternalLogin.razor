@@ -19,14 +19,14 @@
 <PageTitle>Register</PageTitle>
 
 <StatusMessage Message="@message" />
-<h1>Register</h1>
-<h2>Associate your @ProviderDisplayName account.</h2>
+<h1>Registrer brukerkonto</h1>
+<h2>Assosier @(ProviderDisplayName)-kontoen din med din MenuPlanner brukerkonto.</h2>
 <hr />
 
 <div  class="alert alert-info">
-    You've successfully authenticated with <strong>@ProviderDisplayName</strong>.
-    Please enter an email address for this site below and click the Register button to finish
-    logging in.
+    Du har blitt autentisert med <strong>@ProviderDisplayName</strong>.
+    Vennligst skriv inn en e-postadresse for dette nettstedet nedenfor, og klikk på Registrer-knappen
+    for å fullføre påloggingen.
 </div>
 
 <div class="row">
@@ -36,10 +36,13 @@
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.Email" class="form-control" autocomplete="email" placeholder="Please enter your email." />
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label"><i class="bi bi-envelope-at"></i> E-postadresse</label>
                 <ValidationMessage For="() => Input.Email" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button type="submit" class="w-100 btn btn-lg btn-success">
+                <i class="bi bi-person-plus"></i>
+                Registrer
+            </button>
         </EditForm>
     </div>
 </div>

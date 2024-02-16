@@ -19,7 +19,15 @@ else
             <p>
                 @foreach (var provider in externalLogins)
                 {
-                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    <button
+                        type="submit" 
+                        class="btn btn-light btn-lg" 
+                        name="provider" 
+                        value="@provider.Name" 
+                        title="Logg inn med din @provider.DisplayName konto">
+                        <i class="bi bi-@(VisualUtilities.GetLoginProviderIcon(provider.DisplayName!))"></i>
+                        @provider.DisplayName
+                    </button>
                 }
             </p>
         </div>
@@ -28,6 +36,11 @@ else
 
 @code {
     private AuthenticationScheme[] externalLogins = [];
+
+    // Google OAuth client ID:
+    // 466591444940-ctai74lb3qfv6kd9pm9aii4bg5bf1bhm.apps.googleusercontent.com
+    // Google client secret:
+    // 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
 
     [SupplyParameterFromQuery]
     private string? ReturnUrl { get; set; }

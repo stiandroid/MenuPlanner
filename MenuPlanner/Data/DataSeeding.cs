@@ -1,9 +1,47 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
-
-namespace MenuPlanner.Data
+﻿namespace MenuPlanner.Data
 {
     public static class DataSeeding
     {
+        public static List<IdentityRole> roles = new() { 
+            new IdentityRole{ Name = "SysAdmin",        NormalizedName = "SYSADMIN",        Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "UserAdmin",       NormalizedName = "USERADMIN",       Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "RecipeEditor",    NormalizedName = "RECIPEEDITOR",    Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "RecipeMod",       NormalizedName = "RECIPEMOD",       Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "IngredientEditor",NormalizedName = "INGREDIENTEDITOR",Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "IngredientMod",   NormalizedName = "INGREDIENTMOD",   Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "NutrientAdmin",   NormalizedName = "NUTRIENTADMIN",   Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "AllergenAdmin",   NormalizedName = "ALLERGENADMIN",   Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "ArticleEditor",   NormalizedName = "ARTICLEEDITOR",   Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "ArticleMod",      NormalizedName = "ARTICLEMOD",      Id = Guid.NewGuid().ToString() },
+            new IdentityRole{ Name = "CommunityMod",    NormalizedName = "COMMUNITYMOD",    Id = Guid.NewGuid().ToString() }
+        };
+
+        private static string? GetRoleId(string roleName)
+            => roles.Where(r => r.Name == roleName).Select(i => i.Id).FirstOrDefault();
+
+        private static string adminEmail = "stian.saether@gmail.com";
+        private static string adminPhone = "90794163";
+        public static List<User> users = new() {
+            new User{
+                Id = Guid.NewGuid().ToString(),
+                FirstName = "Stian",
+                LastName = "Sæther",
+                Email = adminEmail,
+                NormalizedEmail = adminEmail.ToUpper(),
+                UserName = adminEmail,
+                NormalizedUserName = adminEmail.ToUpper(),
+                PhoneNumber = adminPhone,
+                LockoutEnabled = false
+            }
+        };
+
+        private static string? GetUserId(string userName)
+            => users.Where(r => r.UserName == userName).Select(i => i.Id).FirstOrDefault();
+
+        public static List<IdentityUserRole<string>> userRoles = new() { 
+            new IdentityUserRole<string>{ UserId = GetUserId("stian.saether@gmail.com")!, RoleId = GetRoleId("SysAdmin")! }
+        };
+
         public static List<Country> countries = [
             new Country { ISO3166_2 = "DE", Name = "Tyskland" },
             new Country { ISO3166_2 = "DK", Name = "Danmark" },

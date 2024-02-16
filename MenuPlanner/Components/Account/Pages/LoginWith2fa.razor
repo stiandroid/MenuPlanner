@@ -5,12 +5,12 @@
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<LoginWith2fa> Logger
 
-<PageTitle>Two-factor authentication</PageTitle>
+<PageTitle>To-faktor-autentisering</PageTitle>
 
-<h1>Two-factor authentication</h1>
+<h1>To-faktor-autentisering</h1>
 <hr />
 <StatusMessage Message="@message" />
-<p>Your login is protected with an authenticator app. Enter your authenticator code below.</p>
+<p>Din innlogging er beskyttet med en autentikator-app. Skriv inn engangskoden fra appen.</p>
 <div class="row">
     <div class="col-md-4">
         <EditForm Model="Input" FormName="login-with-2fa" OnValidSubmit="OnValidSubmitAsync" method="post">
@@ -20,24 +20,27 @@
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.TwoFactorCode" class="form-control" autocomplete="off" />
-                <label for="two-factor-code" class="form-label">Authenticator code</label>
+                <label for="two-factor-code" class="form-label"><i class="bi bi-key"></i> Engangskode</label>
                 <ValidationMessage For="() => Input.TwoFactorCode" class="text-danger" />
             </div>
             <div class="checkbox mb-3">
                 <label for="remember-machine" class="form-label">
                     <InputCheckbox @bind-Value="Input.RememberMachine" />
-                    Remember this machine
+                    Husk denne enheten
                 </label>
             </div>
             <div>
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Logg inn
+                </button>
             </div>
         </EditForm>
     </div>
 </div>
 <p>
-    Don't have access to your authenticator device? You can
-    <a href="Account/LoginWithRecoveryCode?ReturnUrl=@ReturnUrl">log in with a recovery code</a>.
+    Har du ikke tilgang til din autentikator-enhet? Du kan
+    <a href="Account/LoginWithRecoveryCode?ReturnUrl=@ReturnUrl">logge inn med en gjenopprettingskode</a>.
 </p>
 
 @code {

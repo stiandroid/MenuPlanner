@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.Extensions.Options;
-using System.Security.Claims;
 
 namespace MenuPlanner.Components.Account
 {

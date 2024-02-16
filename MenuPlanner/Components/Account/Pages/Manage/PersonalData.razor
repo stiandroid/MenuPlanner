@@ -5,21 +5,32 @@
 <PageTitle>Personal Data</PageTitle>
 
 <StatusMessage />
-<h3>Personal Data</h3>
+<h3>
+    <i class="bi bi-clipboard"></i>
+    Personopplysninger
+</h3>
 
 <div class="row">
     <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+        <p>Din brukerkonto inneholder personopplysninger som du har gitt oss. På denne siden kan du laste ned eller slette disse opplysningene.</p>
         <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+            <strong>Dersom du velger å slette personopplysningene vil du miste din brukerkonto. Operasjonen kan ikke angres.</strong>
         </p>
-        <form action="Account/Manage/DownloadPersonalData" method="post">
-            <AntiforgeryToken />
-            <button class="btn btn-primary" type="submit">Download</button>
-        </form>
-        <p>
-            <a href="Account/Manage/DeletePersonalData" class="btn btn-danger">Delete</a>
-        </p>
+        <div class="d-flex flex-row gap-3">
+            <form action="Account/Manage/DownloadPersonalData" method="post">
+                <AntiforgeryToken />
+                <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-box-arrow-down"></i>
+                    Last ned
+                </button>
+            </form>
+            <p>
+                <a href="Account/Manage/DeletePersonalData" class="btn btn-danger">
+                    <i class="bi bi-person-x"></i>
+                    Slett
+                </a>
+            </p>
+        </div>
     </div>
 </div>
 

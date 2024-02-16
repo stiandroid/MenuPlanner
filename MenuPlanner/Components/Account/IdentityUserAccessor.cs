@@ -1,6 +1,3 @@
-using MenuPlanner.Data;
-using Microsoft.AspNetCore.Identity;
-
 namespace MenuPlanner.Components.Account
 {
     internal sealed class IdentityUserAccessor(UserManager<User> userManager, IdentityRedirectManager redirectManager)

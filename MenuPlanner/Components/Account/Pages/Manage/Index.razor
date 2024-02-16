@@ -1,13 +1,17 @@
 ﻿@page "/Account/Manage"
 
 @inject UserManager<User> UserManager
+@inject IUserService UserService
 @inject SignInManager<User> SignInManager
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Profile</PageTitle>
+<PageTitle>Brukerprofil</PageTitle>
 
-<h3>Profile</h3>
+<h3>
+    <i class="bi bi-person"></i>
+    Brukerprofil
+</h3>
 <StatusMessage />
 
 <div class="row">
@@ -16,15 +20,40 @@
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
             <div class="form-floating mb-3">
-                <input type="text" value="@username" class="form-control" placeholder="Please choose your username." disabled />
-                <label for="username" class="form-label">Username</label>
+                <input type="text" value="@username" class="form-control" placeholder="Velg brukernavn" disabled />
+                <label for="username" class="form-label"><i class="bi bi-envelope-check"></i> Brukernavn</label>
             </div>
             <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
-                <label for="phone-number" class="form-label">Phone number</label>
+                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="Telefonnummer" />
+                <label for="phone-number" class="form-label"><i class="bi bi-phone"></i> Telefonnummer</label>
                 <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.Introduction" class="form-control" placeholder="Introduksjonstekst" />
+                <label for="introduction" class="form-label"><i class="bi bi-blockquote-left"></i> Introduksjonstekst</label>
+            </div>
+            <div class="d-flex flex-row row row-cols-2">
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.Website" class="form-control" placeholder="Nettside" />
+                    <label for="website" class="form-label ms-3"><i class="bi bi-globe"></i> Nettside</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.Instagram" class="form-control" placeholder="Instagram" />
+                    <label for="instagram" class="form-label ms-3"><i class="bi bi-instagram"></i> Instagram</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.TwitterX" class="form-control" placeholder="Twitter/X" />
+                    <label for="twitterX" class="form-label ms-3"><i class="bi bi-twitter-x"></i> Twitter/X</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.Facebook" class="form-control" placeholder="Facebook" />
+                    <label for="facebook" class="form-label ms-3"><i class="bi bi-facebook"></i> Facebook</label>
+                </div>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-success">
+                <i class="bi bi-save"></i>
+                Oppdater
+            </button>
         </EditForm>
     </div>
 </div>
@@ -33,6 +62,11 @@
     private User user = default!;
     private string? username;
     private string? phoneNumber;
+    private string? introduction;
+    private string? website;
+    private string? instagram;
+    private string? twitterX;
+    private string? facebook;
 
     [CascadingParameter]
     private HttpContext HttpContext { get; set; } = default!;
@@ -47,6 +81,11 @@
         phoneNumber = await UserManager.GetPhoneNumberAsync(user);
 
         Input.PhoneNumber ??= phoneNumber;
+        Input.Introduction = user.Introduction;
+        Input.Website = user.Website;
+        Input.Instagram = user.Instagram;
+        Input.TwitterX = user.TwitterX;
+        Input.Facebook = user.Facebook;
     }
 
     private async Task OnValidSubmitAsync()
@@ -56,18 +95,32 @@
             var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
             if (!setPhoneResult.Succeeded)
             {
-                RedirectManager.RedirectToCurrentPageWithStatus("Error: Failed to set phone number.", HttpContext);
+                RedirectManager.RedirectToCurrentPageWithStatus("Feil: Kunne ikke angi telefonnummer.", HttpContext);
             }
         }
 
+        user.Introduction = Input.Introduction!;
+        user.Website = Input.Website;
+        user.Instagram = Input.Instagram;
+        user.TwitterX = Input.TwitterX;
+        user.Facebook = Input.Facebook;
+        await UserManager.UpdateAsync(user);
+
         await SignInManager.RefreshSignInAsync(user);
-        RedirectManager.RedirectToCurrentPageWithStatus("Your profile has been updated", HttpContext);
+        RedirectManager.RedirectToCurrentPageWithStatus($"Profilen din ble oppdatert", HttpContext);
     }
 
     private sealed class InputModel
     {
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Telefonnummer")]
         public string? PhoneNumber { get; set; }
+
+        // Utvidede felter
+        public string? Introduction { get; set; }
+        public string? Website { get; set; }
+        public string? Instagram { get; set; }
+        public string? TwitterX { get; set; }
+        public string? Facebook { get; set; }
     }
 }
