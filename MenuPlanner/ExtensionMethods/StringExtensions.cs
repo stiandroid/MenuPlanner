@@ -12,6 +12,6 @@
         }
 
         public static string GenerateVanityUrl(this string input)
-            => input.Normalize().Trim().Replace(" ", "-");
+            => input.SearchIndexNormalize().Trim().Replace(" ", "-");
     }
 }
