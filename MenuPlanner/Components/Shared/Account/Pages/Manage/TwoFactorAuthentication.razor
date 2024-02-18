@@ -104,6 +104,7 @@ else
 
         RedirectManager.RedirectToCurrentPageWithStatus(
             "Nettleseren har blitt glemt. Neste gang du logger inn fra denne nettleseren må du oppgi din 2fa-kode.",
-            HttpContext);
+            HttpContext,
+            MessageType.Info);
     }
 }

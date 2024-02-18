@@ -47,6 +47,7 @@
         RedirectManager.RedirectToWithStatus(
             "Account/Manage/EnableAuthenticator",
             "Din autentikator-app-nøkkel har blitt nullstilt. For å konfigurere en autentikator-app på nytt, må du bruke den nye nøkkelen nedenfor.",
-            HttpContext);
+            HttpContext,
+            MessageType.Success);
     }
 }

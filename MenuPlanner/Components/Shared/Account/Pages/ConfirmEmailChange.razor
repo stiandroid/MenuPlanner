@@ -9,11 +9,11 @@
 @inject SignInManager<User> SignInManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Confirm email change</PageTitle>
+<PageTitle>Bekreft endring av e-postadresse</PageTitle>
 
-<h1>Confirm email change</h1>
+<h1>Bekreft endring av e-postadresse</h1>
 
-<StatusMessage Message="@message" />
+<StatusMessage Message="@message" Type=messageType />
 
 @code {
     private string? message;
@@ -30,18 +30,24 @@
     [SupplyParameterFromQuery]
     private string? Code { get; set; }
 
+    MessageType? messageType;
+
     protected override async Task OnInitializedAsync()
     {
         if (UserId is null || Email is null || Code is null)
         {
             RedirectManager.RedirectToWithStatus(
-                "Account/Login", "Error: Invalid email change confirmation link.", HttpContext);
+                "Account/Login",
+                "Ugyldig lenke for bekreftelse av endring av e-postadresse.", 
+                HttpContext,
+                MessageType.Danger);
         }
 
         var user = await UserManager.FindByIdAsync(UserId);
         if (user is null)
         {
-            message = "Unable to find user with Id '{userId}'";
+            messageType = MessageType.Danger;
+            message = "Finner ikke bruker med Id '{userId}'";
             return;
         }
 
@@ -49,7 +55,8 @@
         var result = await UserManager.ChangeEmailAsync(user, Email, code);
         if (!result.Succeeded)
         {
-            message = "Error changing email.";
+            messageType = MessageType.Danger;
+            message = "En feil oppstod under endring av e-postadresse.";
             return;
         }
 
@@ -58,11 +65,13 @@
         var setUserNameResult = await UserManager.SetUserNameAsync(user, Email);
         if (!setUserNameResult.Succeeded)
         {
-            message = "Error changing user name.";
+            messageType = MessageType.Danger;
+            message = "En feil oppstod under endring av brukernavn.";
             return;
         }
 
         await SignInManager.RefreshSignInAsync(user);
-        message = "Thank you for confirming your email change.";
+        messageType = MessageType.Success;
+        message = "Takk for at du bekreftet endring av e-postadressen din.";
     }
 }

@@ -75,6 +75,7 @@ else
     private string svgMarkup = "";
 
     private string? message;
+    private MessageType? messageType;
     private User user = default!;
     private string? sharedKey;
     private string? authenticatorUri;
@@ -103,7 +104,8 @@ else
 
         if (!is2faTokenValid)
         {
-            message = "Feil: Bekreftelseskode er ugyldig.";
+            messageType = MessageType.Danger;
+            message = "Bekreftelseskode er ugyldig.";
             return;
         }
 
@@ -111,6 +113,7 @@ else
         var userId = await UserManager.GetUserIdAsync(user);
         Logger.LogInformation("Bruker med ID '{UserId}' har aktivert 2FA med en autentikator-app.", userId);
 
+        messageType = MessageType.Success;
         message = "Din autentikator-app er verifisert.";
 
         if (await UserManager.CountRecoveryCodesAsync(user) == 0)
@@ -119,7 +122,11 @@ else
         }
         else
         {
-            RedirectManager.RedirectToWithStatus("Account/Manage/TwoFactorAuthentication", message, HttpContext);
+            RedirectManager.RedirectToWithStatus(
+                "Account/Manage/TwoFactorAuthentication", 
+                message, 
+                HttpContext,
+                (MessageType)messageType);
         }
     }
 
@@ -179,6 +186,3 @@ else
         public string Code { get; set; } = "";
     }
 }
-
-<script defer type="text/javascript" src="/lib/qrcodejs/qrcode.js"></script>
-<script defer type="text/javascript" src="/js/qr.js"></script>

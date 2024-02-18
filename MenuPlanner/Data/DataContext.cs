@@ -1,4 +1,5 @@
 using MenuPlanner.ExtensionMethods;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MenuPlanner.Data
 {
@@ -104,19 +105,6 @@ namespace MenuPlanner.Data
             // Mange-til-mange-linke-tabell for ingredienser i oppskrifter
             modelBuilder.Entity<RecipeIngredient>()
                 .HasData(DataSeeding.recipeIngredients);
-
-            // Roller
-            modelBuilder.Entity<IdentityRole>()
-                .HasData(DataSeeding.roles);
-
-            // Brukere
-            modelBuilder.Entity<User>()
-            .HasData(DataSeeding.users);
-
-            // Brukeres roller
-            modelBuilder.Entity<IdentityUserRole<string>>()
-                .HasData(DataSeeding.userRoles);
-
 
             // SearchIndex
             // Kombinasjonstabell for Recipe, Ingredient, Nutrient og Allergen for mer effektivt søk

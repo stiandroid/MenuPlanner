@@ -4,6 +4,7 @@ using MenuPlanner.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MenuPlanner.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240217204117_User_Added_EmailConfirmationExpiryDate")]
+    partial class User_Added_EmailConfirmationExpiryDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,8 +70,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 691, DateTimeKind.Local).AddTicks(3435),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(8608),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 472, DateTimeKind.Local).AddTicks(6995),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(2597),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "crustacean.png",
@@ -79,8 +82,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9929),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9941),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5474),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5498),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "sesame.png",
@@ -91,8 +94,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9948),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9950),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5512),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5518),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "nuts.png",
@@ -103,8 +106,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 4,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9958),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9961),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5530),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5535),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "gluten.png",
@@ -115,8 +118,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 5,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9969),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9972),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5547),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5552),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "egg.png",
@@ -127,8 +130,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 6,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9991),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 693, DateTimeKind.Local).AddTicks(9994),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5583),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5589),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "fish.png",
@@ -139,8 +142,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 7,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(1),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(4),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5600),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5669),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "shellfish.png",
@@ -151,8 +154,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 8,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(12),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(14),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5684),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5690),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "mustard.png",
@@ -163,8 +166,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 9,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(22),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(25),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5704),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5710),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "celery.png",
@@ -175,8 +178,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 10,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(71),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(73),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5732),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5737),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "peanuts.png",
@@ -187,8 +190,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 11,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(79),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(81),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5751),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5755),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "milk.png",
@@ -199,8 +202,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 12,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(87),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(89),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5769),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5774),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "sulphite.png",
@@ -211,8 +214,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 13,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(94),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(96),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5788),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5793),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "",
@@ -223,8 +226,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 14,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(102),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(104),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5805),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(5810),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "",
@@ -379,8 +382,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(2783),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(3458),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(9188),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 477, DateTimeKind.Local).AddTicks(9920),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -393,8 +396,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5945),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5958),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4114),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4139),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -407,8 +410,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5966),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5968),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4155),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4160),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -421,8 +424,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 4,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5974),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5976),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4176),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4181),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -435,8 +438,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 5,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5981),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(5984),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4197),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4202),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -449,8 +452,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 6,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6005),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6007),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4222),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4228),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -463,8 +466,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 7,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6013),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6015),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4294),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4301),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -477,8 +480,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 8,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6020),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6023),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4315),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4321),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -491,8 +494,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 9,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6031),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6033),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4334),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4340),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -505,8 +508,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 10,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6061),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6064),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4359),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4364),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -519,8 +522,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 11,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6071),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6074),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4377),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4381),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -533,8 +536,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 12,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6081),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6084),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4395),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4399),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -547,8 +550,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 13,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6091),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6093),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4411),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4416),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -561,8 +564,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 14,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6150),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6152),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4435),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4440),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -575,8 +578,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 15,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6160),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6163),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4454),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(4459),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 41.0,
                             HasImage = false,
@@ -589,8 +592,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 16,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6557),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6565),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5314),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5332),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -603,8 +606,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 17,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6571),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6573),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5347),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5352),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -617,8 +620,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 18,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6583),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6585),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5372),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5377),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -631,8 +634,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 19,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6753),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6756),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5391),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5396),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -645,8 +648,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 20,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6763),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6765),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5410),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5415),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -659,8 +662,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 21,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6771),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6773),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5453),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5458),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -673,8 +676,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 22,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6779),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6781),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5472),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5476),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -687,8 +690,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 23,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6786),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6788),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5489),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5494),
                             Description = "Egg fra høne. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -701,8 +704,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 24,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6816),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6818),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5507),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5512),
                             Description = "Eggeplomme fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggeplommer i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -715,8 +718,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 25,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6823),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6825),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5525),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5530),
                             Description = "Eggehvite fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggehviter i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -729,8 +732,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 26,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6831),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6833),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5543),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5548),
                             Description = "Egg fra vaktel.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -743,8 +746,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 27,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6838),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6840),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5561),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5565),
                             Description = "Egg fra måke (måse).",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -757,8 +760,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 28,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6845),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6847),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5579),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5583),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -771,8 +774,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 29,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6853),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6855),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5596),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5601),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -785,8 +788,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 30,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6860),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6863),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5614),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5619),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -799,8 +802,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 31,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6868),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6870),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5632),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5637),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -813,8 +816,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 32,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6875),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6877),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5650),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5655),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -827,8 +830,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 33,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6883),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6885),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5669),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5674),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -841,8 +844,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 34,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6893),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6896),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5690),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5695),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -855,8 +858,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 35,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6901),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6903),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5709),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5714),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -869,8 +872,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 36,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6911),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6913),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5748),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5754),
                             Description = "35%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -883,8 +886,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 37,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6918),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6920),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5767),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5772),
                             Description = "7%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -897,8 +900,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 38,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6941),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6944),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5784),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5789),
                             Description = "7%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -911,8 +914,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 39,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6952),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6955),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5802),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5808),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -925,8 +928,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 40,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6961),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6963),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5821),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5826),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -939,8 +942,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 41,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6968),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6971),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5839),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5844),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -953,8 +956,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 42,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6979),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6981),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5860),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5865),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -967,8 +970,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 43,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6989),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6991),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5878),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5885),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -981,8 +984,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 44,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(6999),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7001),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5901),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5906),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -995,8 +998,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 45,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7091),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7094),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5920),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(5925),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1009,8 +1012,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 46,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7100),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7102),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6056),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6063),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1023,8 +1026,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 47,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7108),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7110),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6077),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6082),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1037,8 +1040,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 48,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7116),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7118),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6095),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6100),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1051,8 +1054,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 49,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7124),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7126),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6112),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6117),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1065,8 +1068,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 50,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7132),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7135),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6154),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6159),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1079,8 +1082,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 51,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7142),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7144),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6173),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6178),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1093,8 +1096,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 52,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7150),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7166),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6191),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6196),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1107,8 +1110,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 53,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7172),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7174),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6209),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6214),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1121,8 +1124,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 54,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7179),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7181),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6227),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6232),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1135,8 +1138,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 55,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7187),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7189),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6245),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6250),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1149,8 +1152,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 56,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7195),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7197),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6263),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6267),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1163,8 +1166,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 57,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7203),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7205),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6281),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6285),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1177,8 +1180,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 58,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7211),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7213),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6299),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6303),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1191,8 +1194,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 59,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7218),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7220),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6316),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6321),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1205,8 +1208,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 60,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7226),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7228),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6334),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6339),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1219,8 +1222,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 61,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7233),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7235),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6352),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6357),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1233,8 +1236,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 62,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7241),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7243),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6371),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6376),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1247,8 +1250,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 63,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7249),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7251),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6390),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6394),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1261,8 +1264,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 64,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7256),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7259),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6431),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6439),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1275,8 +1278,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 65,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7264),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7266),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6452),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6457),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1289,8 +1292,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 66,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7273),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7276),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6476),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6481),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1303,8 +1306,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 67,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7294),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7297),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6494),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6499),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1317,8 +1320,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 68,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7303),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7305),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6512),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6517),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1331,8 +1334,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 69,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7310),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7312),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6530),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6535),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1345,8 +1348,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 70,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7318),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7320),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6548),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6552),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1359,8 +1362,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 71,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7325),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7327),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6566),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6570),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1373,8 +1376,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 72,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7333),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7335),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6583),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6588),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1387,8 +1390,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 73,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7342),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7345),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6601),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6605),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1401,8 +1404,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 74,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7352),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7355),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6618),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6623),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1415,8 +1418,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 75,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7363),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7365),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6635),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6640),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1429,8 +1432,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 76,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7420),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7424),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6654),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6659),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1443,8 +1446,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 77,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7431),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7433),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6758),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6764),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1457,8 +1460,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 78,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7439),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7441),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6777),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6783),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1471,8 +1474,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 79,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7446),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7448),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6817),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6822),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1485,8 +1488,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 80,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7456),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7458),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6835),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6840),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1499,8 +1502,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 81,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7474),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7476),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6854),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6858),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1513,8 +1516,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 82,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7482),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7483),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6872),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6876),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1527,8 +1530,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 83,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7489),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7491),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6890),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6894),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1541,8 +1544,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 84,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7496),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7498),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6907),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6912),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1555,8 +1558,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 85,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7504),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7506),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6925),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6930),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1569,8 +1572,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 86,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7511),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7513),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6943),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6948),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1583,8 +1586,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 87,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7519),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7521),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6961),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6966),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1597,8 +1600,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 88,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7526),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7528),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6978),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6983),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1611,8 +1614,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 89,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7534),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7536),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(6995),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7000),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1625,8 +1628,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 90,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7542),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7544),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7014),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7018),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1639,8 +1642,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 91,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7549),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7551),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7032),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7037),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1653,8 +1656,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 92,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7557),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7559),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7050),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7055),
                             Description = "Den vanlige, røde chilien du kjenner fra dagligvarebutikken din.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1667,8 +1670,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 93,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7565),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7567),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7088),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7093),
                             Description = "En sterkere chili.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1681,8 +1684,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 94,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7573),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7575),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7106),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7111),
                             Description = "Også kalt thai-chili. Sterkere enn serrano.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1695,8 +1698,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 95,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7580),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7595),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7124),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7128),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1709,8 +1712,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 96,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7601),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7604),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7141),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7146),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1723,8 +1726,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 97,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7610),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7612),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7159),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7164),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1737,8 +1740,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 98,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7617),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7620),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7177),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7182),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1751,8 +1754,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 99,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7627),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7629),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7195),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7199),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1765,8 +1768,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 100,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7635),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7638),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7212),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7217),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1779,8 +1782,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 101,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7645),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7647),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7230),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7235),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1793,8 +1796,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 102,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7655),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7657),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7248),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7252),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1807,8 +1810,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 103,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7665),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7667),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7266),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7270),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1821,8 +1824,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 104,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7674),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7676),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7283),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7288),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1835,8 +1838,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 105,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7682),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7685),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7301),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7306),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1849,8 +1852,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 106,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7691),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7693),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7319),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7324),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1863,8 +1866,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 107,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7701),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7703),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7356),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7361),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1877,8 +1880,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 108,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7709),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7711),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7375),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7381),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1891,8 +1894,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 109,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7716),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7718),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7393),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7398),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1905,8 +1908,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 110,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7737),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7739),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7410),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7415),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1919,8 +1922,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 111,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7787),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7789),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7428),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7433),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1933,8 +1936,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 112,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7795),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7797),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7446),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7451),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1947,8 +1950,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 113,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7803),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7805),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7522),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7528),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1961,8 +1964,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 114,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7811),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7813),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7542),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7547),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1975,8 +1978,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 115,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7819),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7821),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7560),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7566),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1989,8 +1992,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 116,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7828),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7829),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7579),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7583),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2003,8 +2006,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 117,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7835),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7838),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7596),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7601),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2017,8 +2020,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 118,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7845),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7847),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7616),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7623),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2031,8 +2034,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 119,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7852),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7854),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7638),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7643),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2045,8 +2048,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 120,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7860),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7862),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7657),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7662),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2059,8 +2062,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 121,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7868),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7870),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7675),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7680),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2073,8 +2076,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 122,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7876),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7878),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7719),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7724),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2087,8 +2090,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 123,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7883),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7885),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7737),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7742),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2101,8 +2104,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 124,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7904),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7906),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7755),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7760),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2115,8 +2118,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 125,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7912),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7914),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7774),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7779),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2129,8 +2132,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 126,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7920),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7922),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7792),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7797),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2143,8 +2146,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 127,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7928),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7931),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7810),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7815),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2157,8 +2160,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 128,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7937),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7939),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7827),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7832),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2171,8 +2174,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 129,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7944),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7946),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7845),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7850),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2185,8 +2188,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 130,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7954),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7956),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7868),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7873),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2199,8 +2202,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 131,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7963),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7966),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7887),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7891),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2213,8 +2216,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 132,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7973),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7977),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7904),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7909),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2227,8 +2230,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 133,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7983),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7986),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7923),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7928),
                             Description = "Latin: Cuminum cyminum. Engelsk: Cumin eller Roman caraway. Spisskum kan også kalles spisskummen eller spisskarve, og er ikke det samme som karve.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2241,8 +2244,8 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 134,
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7994),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 694, DateTimeKind.Local).AddTicks(7996),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7942),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 478, DateTimeKind.Local).AddTicks(7947),
                             Description = "Karve er ikke det samme som spisskum/spisskummen/spisskarve.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2985,8 +2988,8 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 1,
                             CountryCode = "NO",
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(737),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(1061),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(3505),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(4112),
                             Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy eller sukker og sitrondråper.",
                             DifficultyLevel = 0,
                             IsPublished = true,
@@ -2999,8 +3002,8 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 2,
                             CountryCode = "TH",
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2216),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2227),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6370),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6388),
                             Description = "En fantastisk smakfull kyllingsuppe.",
                             DifficultyLevel = 1,
                             IsPublished = true,
@@ -3013,8 +3016,8 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 3,
                             CountryCode = "IT",
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2261),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2263),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6403),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6407),
                             Description = "En enkel men utrolig god, klassisk pastarett.",
                             DifficultyLevel = 1,
                             IsPublished = true,
@@ -3027,8 +3030,8 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 4,
                             CountryCode = "NO",
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2314),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2316),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6421),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6425),
                             Description = "Den kjente og kjære norske klassikeren, akkurat som mamma lagde den.",
                             DifficultyLevel = 0,
                             IsPublished = true,
@@ -3041,8 +3044,8 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 5,
                             CountryCode = "US",
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2325),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2327),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6439),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6443),
                             Description = "Disse buffalo kyllingnachoene er fulle av smak! Du vil elske kombinasjonen av sprø tortillachips, krydret buffalo-kylling og kjølig dressing av blåmuggost.",
                             DifficultyLevel = 1,
                             IsPublished = true,
@@ -3055,8 +3058,8 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 6,
                             CountryCode = "NO",
-                            DateCreated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2333),
-                            DateUpdated = new DateTime(2024, 2, 18, 0, 45, 21, 695, DateTimeKind.Local).AddTicks(2335),
+                            DateCreated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6535),
+                            DateUpdated = new DateTime(2024, 2, 17, 21, 41, 15, 479, DateTimeKind.Local).AddTicks(6540),
                             Description = "Saftig og smaksrik.",
                             DifficultyLevel = 1,
                             IsPublished = true,
@@ -5033,6 +5036,30 @@ namespace MenuPlanner.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "bcfc8991-12c0-49a6-a9d6-58c1b38f3811",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5d52c286-7c29-47e4-b10a-f691a51983ad",
+                            DateRegistered = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "stian.saether@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Stian",
+                            HasBackgropImage = false,
+                            HasProfileImage = false,
+                            Introduction = "",
+                            LastName = "Sæther",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STIAN.SAETHER@GMAIL.COM",
+                            NormalizedUserName = "STIAN.SAETHER@GMAIL.COM",
+                            PhoneNumber = "90794163",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e7832d33-d388-498c-b05f-d34278d0acc7",
+                            TwoFactorEnabled = false,
+                            UserName = "stian.saether@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -5064,67 +5091,67 @@ namespace MenuPlanner.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0993cc48-9285-46de-a41a-9b83d6b2dedc",
+                            Id = "15764c03-647f-454a-b718-81fec69dea1d",
                             Name = "SysAdmin",
                             NormalizedName = "SYSADMIN"
                         },
                         new
                         {
-                            Id = "3b78512b-a418-41f4-abc5-20d3c2c13742",
+                            Id = "454c0450-6f52-433c-b74b-2f4f01268797",
                             Name = "UserAdmin",
                             NormalizedName = "USERADMIN"
                         },
                         new
                         {
-                            Id = "4cc74d2a-2abd-461f-9418-edbd6f56cd97",
+                            Id = "6aefc702-e0f5-4a12-9241-28bac89f89ac",
                             Name = "RecipeEditor",
                             NormalizedName = "RECIPEEDITOR"
                         },
                         new
                         {
-                            Id = "f66d106a-d729-4e84-a71c-99402cbe1fcb",
+                            Id = "be25a244-cba8-411e-8148-da345c8beec6",
                             Name = "RecipeMod",
                             NormalizedName = "RECIPEMOD"
                         },
                         new
                         {
-                            Id = "a17f83ae-0cd9-4549-86cf-0c40c53f2c9b",
+                            Id = "9e1f91fc-1733-4dde-9527-9490f45555bf",
                             Name = "IngredientEditor",
                             NormalizedName = "INGREDIENTEDITOR"
                         },
                         new
                         {
-                            Id = "2c29b0dd-a4cd-40f9-9251-02ed4fefe6bb",
+                            Id = "ba4c5a9b-d8b3-4b0b-984f-3c303d42ec02",
                             Name = "IngredientMod",
                             NormalizedName = "INGREDIENTMOD"
                         },
                         new
                         {
-                            Id = "cb61637a-2b7d-444b-a7cf-039d810bb341",
+                            Id = "c8856ff2-7643-48c7-b9fa-1f474b05ec56",
                             Name = "NutrientAdmin",
                             NormalizedName = "NUTRIENTADMIN"
                         },
                         new
                         {
-                            Id = "2d06d13f-da1f-424f-bdd3-18b7e0e7ac03",
+                            Id = "711384f1-9c1f-4a9f-b269-1d13076d3b3f",
                             Name = "AllergenAdmin",
                             NormalizedName = "ALLERGENADMIN"
                         },
                         new
                         {
-                            Id = "c78dc326-2771-458d-9ebd-bf8e030abb5e",
+                            Id = "4b348c33-a260-4f6a-9f42-01d0c3a61976",
                             Name = "ArticleEditor",
                             NormalizedName = "ARTICLEEDITOR"
                         },
                         new
                         {
-                            Id = "228aa0bf-f99c-4410-931f-3c8021234e6d",
+                            Id = "9e5414e6-75f4-40f5-bd89-5104480758df",
                             Name = "ArticleMod",
                             NormalizedName = "ARTICLEMOD"
                         },
                         new
                         {
-                            Id = "624d12e0-4722-4d41-ae83-0778edad0e86",
+                            Id = "96b4e3f5-0abf-409a-b527-5ce144ff9d09",
                             Name = "CommunityMod",
                             NormalizedName = "COMMUNITYMOD"
                         });
@@ -5215,6 +5242,13 @@ namespace MenuPlanner.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "bcfc8991-12c0-49a6-a9d6-58c1b38f3811",
+                            RoleId = "15764c03-647f-454a-b718-81fec69dea1d"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

@@ -38,9 +38,9 @@ namespace MenuPlanner.Components.Shared.Account
         }
 
         [DoesNotReturn]
-        public void RedirectToWithStatus(string uri, string message, HttpContext context)
+        public void RedirectToWithStatus(string uri, string message, HttpContext context, MessageType messageType)
         {
-            context.Response.Cookies.Append(StatusCookieName, message, StatusCookieBuilder.Build(context));
+            context.Response.Cookies.Append(StatusCookieName, (int)messageType + message, StatusCookieBuilder.Build(context));
             RedirectTo(uri);
         }
 
@@ -50,7 +50,7 @@ namespace MenuPlanner.Components.Shared.Account
         public void RedirectToCurrentPage() => RedirectTo(CurrentPath);
 
         [DoesNotReturn]
-        public void RedirectToCurrentPageWithStatus(string message, HttpContext context)
-            => RedirectToWithStatus(CurrentPath, message, context);
+        public void RedirectToCurrentPageWithStatus(string message, HttpContext context, MessageType messageType)
+            => RedirectToWithStatus(CurrentPath, message, context, messageType);
     }
 }

@@ -1,21 +1,36 @@
-﻿@if (!string.IsNullOrEmpty(DisplayMessage))
+﻿@if (!string.IsNullOrEmpty(DisplayMessage) && !dismissed)
 {
-    var statusMessageClass = DisplayMessage.StartsWith("Error") ? "danger" : "success";
-    <div class="alert alert-@statusMessageClass" role="alert">
-        @DisplayMessage
+    <div class="alert alert-@(Type.ToString().ToLower()) border pt-2 pb-1 d-flex justify-content-between align-items-start">
+        <p>
+            <i class="bi bi-@icon icon-2x"></i>
+            @((MarkupString)DisplayMessage)
+        </p>
+        @if (IsDismissible)
+        {
+            <button class="btn btn-sm btn-outline-danger" @onclick="()=>dismissed=true">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        }
     </div>
 }
 
 @code {
-    private string? messageFromCookie;
-
     [Parameter]
     public string? Message { get; set; }
+
+    [Parameter]
+    public MessageType? Type { get; set; } = MessageType.Info;
+
+    [Parameter]
+    public bool IsDismissible { get; set; } = false;
 
     [CascadingParameter]
     private HttpContext HttpContext { get; set; } = default!;
 
     private string? DisplayMessage => Message ?? messageFromCookie;
+    bool dismissed;
+    string? icon;
+    private string? messageFromCookie;
 
     protected override void OnInitialized()
     {
@@ -24,6 +39,17 @@
         if (messageFromCookie is not null)
         {
             HttpContext.Response.Cookies.Delete(IdentityRedirectManager.StatusCookieName);
+            Type = (MessageType)int.Parse(messageFromCookie[0].ToString()); // Første tegn er et tall som indikerer meldingstype (MessageType enum)
+            messageFromCookie = messageFromCookie.Substring(1); // Ikke skrive ut det første tegnet (tallet)
         }
+
+        icon = Type switch
+        {
+            MessageType.Info => "info-circle",
+            MessageType.Success => "hand-thumbs-up",
+            MessageType.Warning => "exclamation-circle",
+            MessageType.Danger => "exclamation-octagon",
+            _ => "info-circle"
+        };
     }
 }

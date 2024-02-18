@@ -2,6 +2,8 @@
 {
     public class User : IdentityUser // : ISearchableEntity - kanskje i versjon 2?
     {
+        public DateTime DateRegistered { get; set; }
+        public DateTime? EmailConfirmationExpiryDate { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public bool HasProfileImage { get; set; } // Bruke user-id som filnavn?

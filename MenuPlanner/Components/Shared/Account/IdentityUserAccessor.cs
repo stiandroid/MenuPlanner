@@ -8,7 +8,12 @@ namespace MenuPlanner.Components.Shared.Account
 
             if (user is null)
             {
-                redirectManager.RedirectToWithStatus("Account/InvalidUser", $"Error: Unable to load user with ID '{userManager.GetUserId(context.User)}'.", context);
+                redirectManager
+                    .RedirectToWithStatus(
+                        "Account/InvalidUser", 
+                        $"Finner ikke bruker med ID '{userManager.GetUserId(context.User)}'.", 
+                        context, 
+                        MessageType.Danger);
             }
 
             return user;

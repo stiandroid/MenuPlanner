@@ -18,7 +18,7 @@
 
 <PageTitle>Register</PageTitle>
 
-<StatusMessage Message="@message" />
+<StatusMessage Message="@message" Type=messageType />
 <h1>Registrer brukerkonto</h1>
 <h2>Assosier @(ProviderDisplayName)-kontoen din med din MenuPlanner brukerkonto.</h2>
 <hr />
@@ -51,6 +51,7 @@
     public const string LoginCallbackAction = "LoginCallback";
 
     private string? message;
+    private MessageType? messageType;
     private ExternalLoginInfo externalLoginInfo = default!;
 
     [CascadingParameter]
@@ -74,13 +75,21 @@
     {
         if (RemoteError is not null)
         {
-            RedirectManager.RedirectToWithStatus("Account/Login", $"Error from external provider: {RemoteError}", HttpContext);
+            RedirectManager.RedirectToWithStatus(
+                "Account/Login", 
+                $"Feil hos ekstern innloggingstjeneste: {RemoteError}", 
+                HttpContext,
+                MessageType.Danger);
         }
 
         var info = await SignInManager.GetExternalLoginInfoAsync();
         if (info is null)
         {
-            RedirectManager.RedirectToWithStatus("Account/Login", "Error loading external login information.", HttpContext);
+            RedirectManager.RedirectToWithStatus(
+                "Account/Login", 
+                "En feil oppstod under lesing av ekstern innloggingsinformasjon.", 
+                HttpContext,
+                MessageType.Danger);
         }
 
         externalLoginInfo = info;
@@ -164,7 +173,8 @@
             }
         }
 
-        message = $"Error: {string.Join(",", result.Errors.Select(error => error.Description))}";
+        messageType = MessageType.Danger;
+        message = string.Join(",", result.Errors.Select(error => error.Description));
     }
 
     private User CreateUser()

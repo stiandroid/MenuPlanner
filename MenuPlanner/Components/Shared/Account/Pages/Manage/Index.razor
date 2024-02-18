@@ -95,7 +95,7 @@
             var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
             if (!setPhoneResult.Succeeded)
             {
-                RedirectManager.RedirectToCurrentPageWithStatus("Feil: Kunne ikke angi telefonnummer.", HttpContext);
+                RedirectManager.RedirectToCurrentPageWithStatus("Kunne ikke angi telefonnummer.", HttpContext, MessageType.Danger);
             }
         }
 
@@ -107,7 +107,7 @@
         await UserManager.UpdateAsync(user);
 
         await SignInManager.RefreshSignInAsync(user);
-        RedirectManager.RedirectToCurrentPageWithStatus($"Profilen din ble oppdatert", HttpContext);
+        RedirectManager.RedirectToCurrentPageWithStatus($"Profilen din ble oppdatert", HttpContext, MessageType.Success);
     }
 
     private sealed class InputModel

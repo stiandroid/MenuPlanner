@@ -2,45 +2,50 @@
 {
     public static class DataSeeding
     {
-        public static List<IdentityRole> roles = new() { 
-            new IdentityRole{ Name = "SysAdmin",        NormalizedName = "SYSADMIN",        Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "UserAdmin",       NormalizedName = "USERADMIN",       Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "RecipeEditor",    NormalizedName = "RECIPEEDITOR",    Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "RecipeMod",       NormalizedName = "RECIPEMOD",       Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "IngredientEditor",NormalizedName = "INGREDIENTEDITOR",Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "IngredientMod",   NormalizedName = "INGREDIENTMOD",   Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "NutrientAdmin",   NormalizedName = "NUTRIENTADMIN",   Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "AllergenAdmin",   NormalizedName = "ALLERGENADMIN",   Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "ArticleEditor",   NormalizedName = "ARTICLEEDITOR",   Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "ArticleMod",      NormalizedName = "ARTICLEMOD",      Id = Guid.NewGuid().ToString() },
-            new IdentityRole{ Name = "CommunityMod",    NormalizedName = "COMMUNITYMOD",    Id = Guid.NewGuid().ToString() }
-        };
+        public static async Task SeedAdminUser(IServiceProvider services)
+        {
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-        private static string? GetRoleId(string roleName)
-            => roles.Where(r => r.Name == roleName).Select(i => i.Id).FirstOrDefault();
-
-        private static string adminEmail = "stian.saether@gmail.com";
-        private static string adminPhone = "90794163";
-        public static List<User> users = new() {
-            new User{
-                Id = Guid.NewGuid().ToString(),
-                FirstName = "Stian",
-                LastName = "Sæther",
-                Email = adminEmail,
-                NormalizedEmail = adminEmail.ToUpper(),
-                UserName = adminEmail,
-                NormalizedUserName = adminEmail.ToUpper(),
-                PhoneNumber = adminPhone,
-                LockoutEnabled = false
+            var roles = new List<string> {
+                "SysAdmin", "UserAdmin", "RecipeEditor", "RecipeMod", "IngredientEditor", "IngredientMod",
+                "NutrientAdmin", "AllergenAdmin", "ArticleEditor", "ArticleMod", "CommunityMod", "RegularUser"
+            };
+            foreach (var roleName in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(roleName))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                }
             }
-        };
 
-        private static string? GetUserId(string userName)
-            => users.Where(r => r.UserName == userName).Select(i => i.Id).FirstOrDefault();
+            var userManager = services.GetRequiredService<UserManager<User>>();
+            string adminEmail = "admin@menuplanner.app";
+            var existingUser = userManager.FindByEmailAsync(adminEmail).Result;
 
-        public static List<IdentityUserRole<string>> userRoles = new() { 
-            new IdentityUserRole<string>{ UserId = GetUserId("stian.saether@gmail.com")!, RoleId = GetRoleId("SysAdmin")! }
-        };
+            if (existingUser == null)
+            {
+                var adminUser = new User
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    FirstName = "Admin",
+                    LastName = "MenuPlanner",
+                    Email = adminEmail,
+                    NormalizedEmail = adminEmail.ToUpper(),
+                    UserName = adminEmail,
+                    NormalizedUserName = adminEmail.ToUpper(),
+                    EmailConfirmed = true,
+                    PhoneNumber = "00000000",
+                    LockoutEnabled = false,
+                    DateRegistered = DateTime.Now
+                };
+
+                IdentityResult result = userManager.CreateAsync(adminUser, "Abcd!234").Result;
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(adminUser, "SYSADMIN").Wait();
+                }
+            }
+        }
 
         public static List<Country> countries = [
             new Country { ISO3166_2 = "DE", Name = "Tyskland" },

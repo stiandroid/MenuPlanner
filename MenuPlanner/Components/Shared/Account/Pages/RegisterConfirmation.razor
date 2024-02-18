@@ -5,9 +5,9 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register confirmation</PageTitle>
+<PageTitle>Du er registrert!</PageTitle>
 
-<h1>Register confirmation</h1>
+<h1>Du er registrert!</h1>
 
 <StatusMessage Message="@statusMessage" />
 
@@ -20,7 +20,7 @@
 }
 else
 {
-    <p>Please check your email to confirm your account.</p>
+    <p>Du må bekrefte e-postadressen din innen det har gått 48 timer. Vi har sendt deg en e-post til adressen du har oppgitt. Denne inneholder en lenke som du må klikke på for å fullføre registreringen. Når dette er gjort kan du logge inn.</p>
 }
 
 @code {
@@ -47,7 +47,7 @@ else
         if (user is null)
         {
             HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            statusMessage = "Error finding user for unspecified email";
+            statusMessage = "Feil: Fant ikke brukeren.";
         }
         else if (EmailSender is IdentityNoOpEmailSender)
         {

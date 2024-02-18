@@ -5,8 +5,8 @@
 @inject IdentityUserAccessor UserAccessor
 @inject IdentityRedirectManager RedirectManager
 @inject ILogger<DeletePersonalData> Logger
-
-<PageTitle>Delete Personal Data</PageTitle>
+@attribute [Authorize(Roles = "RegularUser")]
+<PageTitle>Slette personopplysninger</PageTitle>
 
 <StatusMessage Message="@message" />
 

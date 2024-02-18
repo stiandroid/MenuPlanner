@@ -33,6 +33,10 @@ global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Security.Claims;
 global using System.Text.Json;
+global using MenuPlanner.BackgroundJobs;
+global using Quartz;
+global using Quartz.Impl;
+global using Quartz.Spi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,12 +75,11 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.EnableSensitiveDataLogging(); // Remove this when in production
 });
 
-
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
-    //.AddRoles<IdentityRole>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
@@ -92,7 +95,40 @@ builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
 
+// Bakgrunnsjobber:
+builder.Services.AddSingleton<IJob, IncompleteUserRegistrationCleanupJob>();
+builder.Services.AddSingleton<IJobFactory, JobFactory>();
+builder.Services.AddSingleton(provider =>
+{
+    var schedulerFactory = new StdSchedulerFactory();
+    var scheduler = schedulerFactory.GetScheduler().Result;
+
+    scheduler.JobFactory = new JobFactory(provider);
+    scheduler.Start().Wait();
+
+    // Define the job with 'Cron' expression
+    var jobDetail = JobBuilder.Create<IncompleteUserRegistrationCleanupJob>()
+        .WithIdentity("cleanupJob")
+        .Build();
+
+    // Trigger the job with 'Cron' expression (every day at midnight)
+    var trigger = TriggerBuilder.Create()
+        .WithIdentity("cleanupTrigger")
+        .WithCronSchedule("0 0,12 * * *") // “At minute 0 past hour 0 and 12.” (https://crontab.guru/#0_0,12_*_*_*)
+        .Build();
+
+    scheduler.ScheduleJob(jobDetail, trigger).Wait();
+
+    return scheduler;
+});
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await DataSeeding.SeedAdminUser(services);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -118,3 +154,4 @@ app.MapRazorComponents<App>()
 app.MapAdditionalIdentityEndpoints();
 
 app.Run();
+
