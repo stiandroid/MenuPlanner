@@ -1,6 +1,4 @@
-﻿using Quartz;
-
-namespace MenuPlanner.BackgroundJobs
+﻿namespace MenuPlanner.BackgroundJobs
 {
     public class IncompleteUserRegistrationCleanupJob(
         IServiceProvider serviceProvider, 
