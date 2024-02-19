@@ -2,47 +2,79 @@
 {
     public static class DataSeeding
     {
-        public static async Task SeedAdminUser(IServiceProvider services)
+        public static async Task SeedRolesAndInitialAdminUsers(IServiceProvider services)
         {
-            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            var roleManager = services.GetRequiredService<RoleManager<Role>>();
 
-            var roles = new List<string> {
-                "SysAdmin", "UserAdmin", "RecipeEditor", "RecipeMod", "IngredientEditor", "IngredientMod",
-                "NutrientAdmin", "AllergenAdmin", "ArticleEditor", "ArticleMod", "CommunityMod", "RegularUser"
+            var roles = new List<Role> {
+                // Access to the control panel (/admin):
+                new() { Name = "SysAdmin", DisplayName = "Systemadministrator", Description = "Hovedadministrator med alle rettigheter. Kan ikke endres eller slettes. Kan ikke miste rettighetene." },
+                new() { Name = "UserAdmin", DisplayName = "Brukeradministrator", Description = "Administatorbruker som kan tildele og fjerne roller på brukere, tildele advarsler for dårlig oppførsel, og utestenge problembrukere." },
+                new() { Name = "NutrientAdmin", DisplayName = "Næringsstoffadministrator", Description = "Administratorbruker som kan redigere og publisere næringsstoffer." },
+                new() { Name = "AllergenAdmin", DisplayName = "Allergenadministrator", Description = "Administratorbruker som kan redigere og publisere allergener." },
+
+                // Access to public facing content edit-mode
+                new() { Name = "RecipeEditor", DisplayName = "Oppskriftsforfatter", Description = "Bruker som kan skrive, men ikke publisere oppskrifter." },
+                new() { Name = "IngredientEditor", DisplayName = "Ingrediensforfatter", Description = "Bruker som kan opprette, men ikke publisere ingredienser." },
+                new() { Name = "ArticleEditor", DisplayName = "Artikkelforfatter", Description = "Bruker som kan skrive, men ikke publisere artikler." },
+                new() { Name = "RecipeModerator", DisplayName = "Oppskriftsmoderator", Description = "Bruker som kan publisere oppskrifter skrevet av oppskriftsforfattere. Oppskriftsmoderator kan ikke selv skrive oppskrifter." },
+                new() { Name = "IngredientModerator", DisplayName = "Ingrediensmoderator", Description = "Bruker som kan publisere ingredienser opprettet av ingrediensforfattere. Ingrediensmoderatoren kan ikke selv opprette ingredienser." },
+                new() { Name = "ArticleModerator", DisplayName = "Artikkelmoderator", Description = "Bruker som kan publisere artikler skrevet av artikkelforfattere. Artikkelmoderator kan ikke selv skrive artikler." },
+                new() { Name = "CommunityModerator", DisplayName = "Samfunnsmoderator", Description = "Bruker som kan endre og slette kommentarer, og gi advarsler til brukere." },
+
+                // Only access to view the public facing pages
+                new() { Name = "RegularUser", DisplayName = "Bruker", Description = "Vanlig bruker uten utvidede rettigheter." }
             };
-            foreach (var roleName in roles)
+            foreach (var role in roles)
             {
-                if (!await roleManager.RoleExistsAsync(roleName))
+                if (!await roleManager.RoleExistsAsync(role.Name!))
                 {
-                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                    await roleManager.CreateAsync(role);
                 }
             }
 
-            var userManager = services.GetRequiredService<UserManager<User>>();
-            string adminEmail = "admin@menuplanner.app";
-            var existingUser = userManager.FindByEmailAsync(adminEmail).Result;
+            SeedUser(firstName: "Admin", lastName: "MenuPlanner", 
+                email: "admin@menuplanner.app", password: "Abcd!234", 
+                phone: "00000000", role: "SysAdmin", canBeLockedOut: false, services);
 
+            SeedUser(firstName: "UserAdmin", lastName: "MenuPlanner",
+                email: "useradmin@menuplanner.app", password: "Abcd!234",
+                phone: "00000000", role: "UserAdmin", canBeLockedOut: false, services);
+
+            SeedUser(firstName: "Nutritionist", lastName: "MenuPlanner",
+                email: "nutritionist@menuplanner.app", password: "Abcd!234",
+                phone: "00000000", role: "NutrientAdmin", canBeLockedOut: false, services);
+
+            SeedUser(firstName: "Allergenist", lastName: "MenuPlanner",
+                email: "allergenist@menuplanner.app", password: "Abcd!234",
+                phone: "00000000", role: "AllergenAdmin", canBeLockedOut: false, services);
+        }
+
+        private static void SeedUser(string firstName, string lastName, string email, string password, string phone, string role, bool canBeLockedOut, IServiceProvider services)
+        { 
+            var userManager = services.GetRequiredService<UserManager<User>>();
+            var existingUser = userManager.FindByEmailAsync(email).Result;
             if (existingUser == null)
             {
-                var adminUser = new User
+                var user = new User
                 {
                     Id = Guid.NewGuid().ToString(),
-                    FirstName = "Admin",
-                    LastName = "MenuPlanner",
-                    Email = adminEmail,
-                    NormalizedEmail = adminEmail.ToUpper(),
-                    UserName = adminEmail,
-                    NormalizedUserName = adminEmail.ToUpper(),
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    NormalizedEmail = email.ToUpper(),
+                    UserName = email,
+                    NormalizedUserName = email.ToUpper(),
                     EmailConfirmed = true,
-                    PhoneNumber = "00000000",
-                    LockoutEnabled = false,
+                    PhoneNumber = phone,
+                    LockoutEnabled = canBeLockedOut,
                     DateRegistered = DateTime.Now
                 };
 
-                IdentityResult result = userManager.CreateAsync(adminUser, "Abcd!234").Result;
+                IdentityResult result = userManager.CreateAsync(user, password).Result;
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(adminUser, "SYSADMIN").Wait();
+                    userManager.AddToRoleAsync(user, role).Wait();
                 }
             }
         }

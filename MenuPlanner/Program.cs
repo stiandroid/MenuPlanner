@@ -78,7 +78,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
+    .AddRoles<Role>()
     .AddEntityFrameworkStores<DataContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
@@ -106,15 +106,15 @@ builder.Services.AddSingleton(provider =>
     scheduler.JobFactory = new JobFactory(provider);
     scheduler.Start().Wait();
 
-    // Define the job with 'Cron' expression
+    // Definer jobben som fjerner ufullstendige brukerregistreringer etter to dager:
     var jobDetail = JobBuilder.Create<IncompleteUserRegistrationCleanupJob>()
         .WithIdentity("cleanupJob")
         .Build();
 
-    // Trigger the job with 'Cron' expression (every day at midnight)
+    // Kjør jobben med 'Cron'-expression
     var trigger = TriggerBuilder.Create()
         .WithIdentity("cleanupTrigger")
-        .WithCronSchedule("0 0,12 * * *") // “At minute 0 past hour 0 and 12.” (https://crontab.guru/#0_0,12_*_*_*)
+        .WithCronSchedule("0 4,16 * * *") // “At minute 0 past hour 4 and 16.” (https://crontab.guru/#0_4,16_*_*_*)
         .Build();
 
     scheduler.ScheduleJob(jobDetail, trigger).Wait();
@@ -127,7 +127,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    await DataSeeding.SeedAdminUser(services);
+    await DataSeeding.SeedRolesAndInitialAdminUsers(services);
 }
 
 // Configure the HTTP request pipeline.

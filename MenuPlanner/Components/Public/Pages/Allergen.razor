@@ -1,11 +1,12 @@
 ﻿@page "/a/{Url}"
 @inject IAllergenService AllergenService
+@inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
 @attribute [StreamRendering]
 
 @if (allergen == null)
 {
-    <PageTitle>Henter allergen...</PageTitle>
+    <PageTitle>Laster allergen...</PageTitle>
     <Loader />
 }
 else
@@ -29,6 +30,7 @@ else
         if (result.Success)
         {
             allergen = result.Data;
+            JSRuntime.InvokeVoidAsync("setTitle", allergen.Name);
         }
     }
 }

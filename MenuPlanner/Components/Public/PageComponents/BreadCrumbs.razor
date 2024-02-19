@@ -1,0 +1,14 @@
+﻿@inject NavigationManager Nav
+@rendermode InteractiveServer
+
+<i class="bi bi-house link" @onclick='(() => GoTo("/"))'></i>
+<a href="/">
+    Forsiden
+</a>
+
+@code {
+    private void GoTo(string route)
+    {
+        Nav.NavigateTo(route);
+    }
+}

@@ -166,6 +166,7 @@ namespace MenuPlanner.Data
         public DbSet<Allergen> Allergens { get; set; }
         public DbSet<SearchIndex> SearchIndex { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Country> Countries { get; set; }
     }
 }

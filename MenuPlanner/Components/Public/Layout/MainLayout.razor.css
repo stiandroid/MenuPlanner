@@ -16,6 +16,29 @@ main {
     color: var(--menu-txt-color);
 }
 
+.breadcrumbs {
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+    .breadcrumbs a {
+        text-decoration: none;
+    }
+
+
+.admin-nav-menu-wrapper {
+    background-color: rgb(226, 180, 0, .75);
+}
+
+.admin-nav-menu {
+    display: flex;
+    flex-direction: row;
+    color: rgba(127, 0, 0, .75);
+    justify-items: center;
+    align-items: center;
+}
+
 .searchform-small-screens {
     display: none;
 }
@@ -30,6 +53,10 @@ main {
 }
 
 @media (max-width: 940px) {
+    .breadcrumbs {
+        display: none;
+    }
+
     .searchform-small-screens {
         padding-top: 2rem;
         padding-bottom: 2rem;

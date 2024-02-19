@@ -1,6 +1,14 @@
 ﻿@page "/admin"
+@attribute [Authorize(Roles = "SysAdmin,UserAdmin,NutrientAdmin,AllergenAdmin")]
 
-<h1>Admin kontrollpanel</h1>
+<PageTitle>Admin - oversikt</PageTitle>
+<h1>Oversikt</h1>
+
+<h4>Registrerte brukere (uten administratorer)</h4>
+<h4>Oppskrifter</h4>
+<h4>Ingredienser</h4>
+<h4>Næringsstoffer</h4>
+<h4>Allergener</h4>
 
 @code {
 

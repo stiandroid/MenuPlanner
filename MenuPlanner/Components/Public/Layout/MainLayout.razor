@@ -5,10 +5,22 @@
         <header class="topbar">
             <TopBar />
         </header>
+        <AuthorizeView Roles="SysAdmin,UserAdmin,NutrientAdmin,AllergenAdmin">
+            <Authorized>
+                <div class="container-fluid admin-nav-menu-wrapper">
+                    <div class="container admin-nav-menu">
+                        <AdminNavMenu />
+                    </div>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+        <div class="container breadcrumbs">
+            <BreadCrumbs />
+        </div>
         <div class="container searchform-small-screens">
             <SearchForm />
         </div>
-        <article class="container pt-md-5 pt-sm-2 pb-md-5 pb-sm-2">
+        <article class="container pt-md-3 pt-sm-2 pb-md-5 pb-sm-2">
             @Body
         </article>
         <footer class="footer">

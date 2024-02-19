@@ -1,16 +1,16 @@
 ﻿@page "/i/{Url}"
 @inject IIngredientService IngredientService
+@inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
 @attribute [StreamRendering]
 
 @if (ingredient == null)
 {
-    <PageTitle>Henter ingrediens...</PageTitle>
     <Loader />
+    <PageTitle>Laster ingrediens ...</PageTitle>
 }
 else
 {
-    <PageTitle>@ingredient.Name</PageTitle>
     <h1>@ingredient.Name</h1>
     <div class="main-image-wrapper">
         <img class="main-image" src="images/ingredients/@(ingredient.Url)1000x350.jpg" />
@@ -103,6 +103,7 @@ else
         if (result.Success)
         {
             ingredient = result.Data;
+            JSRuntime.InvokeVoidAsync("setTitle", ingredient.Name);
         }
     }
 }

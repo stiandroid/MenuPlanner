@@ -1,16 +1,16 @@
 ﻿@page "/r/{Url}"
 @inject IRecipeService RecipeService
+@inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
 @attribute [StreamRendering]
 
 @if (recipe == null)
 {
-    <PageTitle>Henter oppskrift...</PageTitle>
     <Loader />
+    <PageTitle>Loading recipe ...</PageTitle>
 }
 else
 {
-    <PageTitle>@recipe.Name</PageTitle>
     <h1>
         <img class="mr-3"
              src="images/flags/standardized-rectangle-120px/@(recipe.Country.ISO3166_2).png"
@@ -93,6 +93,7 @@ else
         if (result.Success)
         {
             recipe = result.Data;
+            JSRuntime.InvokeVoidAsync("setTitle", recipe.Name);
             allergens = recipe.RecipeIngredients
                 .SelectMany(ia => ia.Ingredient.IngredientAllergens)
                 .Select(a => a.Allergen)

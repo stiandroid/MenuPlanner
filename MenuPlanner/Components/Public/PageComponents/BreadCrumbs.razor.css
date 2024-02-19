@@ -1,0 +1,4 @@
+﻿.link {
+    cursor: pointer;
+    color: var(--link-txt-color);
+}

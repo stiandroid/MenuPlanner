@@ -2,10 +2,16 @@
 
 <PageTitle>Tilgang nektet</PageTitle>
 
-<h1 class="text-danger">Tilgang nektet</h1>
-<p class="text-danger">Du har ikke tilgang til siden du etterspurte.</p>
+<h1>Tilgang nektet</h1>
+<StatusMessage Message="Du har ikke tilgang til siden du etterspurte." Type=MessageType.Danger />
 <h4>Hvorfor ikke?</h4>
-<h5>Du er ikke logget inn</h5>
-<p>Kanskje du forsøkte å vise en side som krever innlogging? Dersom du ikke har en brukerkonto, kan du <a href="/Account/Register">registrere deg gratis her</a>.</p>
-<h5>Du er logget inn, og brukerrollen din forhindrer deg å utføre visse handlinger</h5>
-<p>Noen brukerroller forhindrer bruk av enkelte deler av applikasjonen. Ta kontakt med administrator hvis du har spørsmål om dine brukerroller.</p>
+<AuthorizeView>
+    <Authorized>
+        <h5>Du er logget inn, men brukerrollen din forhindrer deg i å utføre visse handlinger</h5>
+        <p>Noen brukerroller legger begrensninger på bruken av enkelte deler av applikasjonen. Ta kontakt med en administrator hvis du har spørsmål om dine brukerroller.</p>
+    </Authorized>
+    <NotAuthorized>
+        <h5>Du er ikke logget inn</h5>
+        <p>Du forsøkte å vise en side som krever innlogging. <a href="/Account/Login">Logg inn</a> eller <a href="/Account/Register">registrer deg gratis</a>.</p>
+    </NotAuthorized>
+</AuthorizeView>
