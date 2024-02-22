@@ -5,8 +5,15 @@
 <a href="/">
     Forsiden
 </a>
+@if (!string.IsNullOrWhiteSpace(PageTitle))
+{
+    <span> > @PageTitle</span>
+}
 
 @code {
+    [Parameter]
+    public string? PageTitle { get; set; }
+
     private void GoTo(string route)
     {
         Nav.NavigateTo(route);

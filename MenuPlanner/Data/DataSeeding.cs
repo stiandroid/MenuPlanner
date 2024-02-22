@@ -8,22 +8,20 @@
 
             var roles = new List<Role> {
                 // Access to the control panel (/admin):
-                new() { Name = "SysAdmin", DisplayName = "Systemadministrator", Description = "Hovedadministrator med alle rettigheter. Kan ikke endres eller slettes. Kan ikke miste rettighetene." },
-                new() { Name = "UserAdmin", DisplayName = "Brukeradministrator", Description = "Administatorbruker som kan tildele og fjerne roller på brukere, tildele advarsler for dårlig oppførsel, og utestenge problembrukere." },
-                new() { Name = "NutrientAdmin", DisplayName = "Næringsstoffadministrator", Description = "Administratorbruker som kan redigere og publisere næringsstoffer." },
-                new() { Name = "AllergenAdmin", DisplayName = "Allergenadministrator", Description = "Administratorbruker som kan redigere og publisere allergener." },
+                new() { Group = RoleGroup.Administrators, Name = "SysAdmin", SortOrder = 1, DisplayName = "Systemadministrator", Description = "Brukeren har alle rettigheter." },
+                new() { Group = RoleGroup.Administrators, Name = "UserAdmin", SortOrder = 2, DisplayName = "Brukeradministrator", Description = "Brukeren kan opprette nye brukere, endre brukeres personopplysninger, tildele og fjerne brukeres roller, tildele advarsler for dårlig oppførsel, og utestenge problembrukere." },
+                new() { Group = RoleGroup.Administrators, Name = "NutrientAdmin", SortOrder = 3, DisplayName = "Næringsstoffadministrator", Description = "Brukeren kan opprette, redigere og publisere alle næringsstoffer." },
+                new() { Group = RoleGroup.Administrators, Name = "AllergenAdmin", SortOrder = 4, DisplayName = "Allergenadministrator", Description = "Brukeren kan opprette, redigere og publisere alle allergener." },
 
                 // Access to public facing content edit-mode
-                new() { Name = "RecipeEditor", DisplayName = "Oppskriftsforfatter", Description = "Bruker som kan skrive, men ikke publisere oppskrifter." },
-                new() { Name = "IngredientEditor", DisplayName = "Ingrediensforfatter", Description = "Bruker som kan opprette, men ikke publisere ingredienser." },
-                new() { Name = "ArticleEditor", DisplayName = "Artikkelforfatter", Description = "Bruker som kan skrive, men ikke publisere artikler." },
-                new() { Name = "RecipeModerator", DisplayName = "Oppskriftsmoderator", Description = "Bruker som kan publisere oppskrifter skrevet av oppskriftsforfattere. Oppskriftsmoderator kan ikke selv skrive oppskrifter." },
-                new() { Name = "IngredientModerator", DisplayName = "Ingrediensmoderator", Description = "Bruker som kan publisere ingredienser opprettet av ingrediensforfattere. Ingrediensmoderatoren kan ikke selv opprette ingredienser." },
-                new() { Name = "ArticleModerator", DisplayName = "Artikkelmoderator", Description = "Bruker som kan publisere artikler skrevet av artikkelforfattere. Artikkelmoderator kan ikke selv skrive artikler." },
-                new() { Name = "CommunityModerator", DisplayName = "Samfunnsmoderator", Description = "Bruker som kan endre og slette kommentarer, og gi advarsler til brukere." },
+                new() { Group = RoleGroup.Editors, Name = "RecipeEditor", SortOrder = 5, DisplayName = "Oppskriftsforfatter", Description = "Brukeren kan opprette og redigere egne upubliserte oppskrifter, men ikke publisere." },
+                new() { Group = RoleGroup.Editors, Name = "IngredientEditor", SortOrder = 6, DisplayName = "Ingrediensforfatter", Description = "Brukeren kan opprette og redigere egne upubliserte ingredienser, men ikke publisere." },
+                new() { Group = RoleGroup.Editors, Name = "ArticleEditor", SortOrder = 7, DisplayName = "Artikkelforfatter", Description = "Brukeren kan opprette og redigere egne upubliserte artikler, men ikke publisere." },
 
-                // Only access to view the public facing pages
-                new() { Name = "RegularUser", DisplayName = "Bruker", Description = "Vanlig bruker uten utvidede rettigheter." }
+                new() { Group = RoleGroup.Moderators, Name = "RecipeModerator", SortOrder = 8, DisplayName = "Oppskriftsmoderator", Description = "Brukeren kan publisere oppskrifter skrevet av oppskriftsforfattere. Oppskriftsmoderator kan ikke selv skrive oppskrifter." },
+                new() { Group = RoleGroup.Moderators, Name = "IngredientModerator", SortOrder = 9, DisplayName = "Ingrediensmoderator", Description = "Brukeren kan publisere ingredienser opprettet av ingrediensforfattere. Ingrediensmoderator kan ikke selv opprette ingredienser." },
+                new() { Group = RoleGroup.Moderators, Name = "ArticleModerator", SortOrder = 10, DisplayName = "Artikkelmoderator", Description = "Brukeren kan publisere artikler skrevet av artikkelforfattere. Artikkelmoderator kan ikke selv skrive artikler." },
+                new() { Group = RoleGroup.Moderators, Name = "CommunityModerator", SortOrder = 11, DisplayName = "Samfunnsmoderator", Description = "Brukeren kan endre og slette kommentarer, og gi advarsler til brukere." },
             };
             foreach (var role in roles)
             {
@@ -37,17 +35,17 @@
                 email: "admin@menuplanner.app", password: "Abcd!234", 
                 phone: "00000000", role: "SysAdmin", canBeLockedOut: false, services);
 
-            SeedUser(firstName: "UserAdmin", lastName: "MenuPlanner",
-                email: "useradmin@menuplanner.app", password: "Abcd!234",
-                phone: "00000000", role: "UserAdmin", canBeLockedOut: false, services);
+            SeedUser(firstName: "Jeanette", lastName: "Tvedt",
+                email: "jt@menuplanner.app", password: "Abcd!234",
+                phone: "00000001", role: "UserAdmin", canBeLockedOut: false, services);
 
-            SeedUser(firstName: "Nutritionist", lastName: "MenuPlanner",
-                email: "nutritionist@menuplanner.app", password: "Abcd!234",
-                phone: "00000000", role: "NutrientAdmin", canBeLockedOut: false, services);
+            SeedUser(firstName: "Caroline", lastName: "Åsheim",
+                email: "ca@menuplanner.app", password: "Abcd!234",
+                phone: "00000002", role: "NutrientAdmin", canBeLockedOut: false, services);
 
-            SeedUser(firstName: "Allergenist", lastName: "MenuPlanner",
-                email: "allergenist@menuplanner.app", password: "Abcd!234",
-                phone: "00000000", role: "AllergenAdmin", canBeLockedOut: false, services);
+            SeedUser(firstName: "Martin", lastName: "Sylte",
+                email: "ms@menuplanner.app", password: "Abcd!234",
+                phone: "00000003", role: "AllergenAdmin", canBeLockedOut: false, services);
         }
 
         private static void SeedUser(string firstName, string lastName, string email, string password, string phone, string role, bool canBeLockedOut, IServiceProvider services)

@@ -7,10 +7,11 @@
 @if (recipe == null)
 {
     <Loader />
-    <PageTitle>Loading recipe ...</PageTitle>
+    <PageTitle>Laster oppskrift ...</PageTitle>
 }
 else
 {
+    <BreadCrumbs PageTitle="@recipe.Name" />
     <h1>
         <img class="mr-3"
              src="images/flags/standardized-rectangle-120px/@(recipe.Country.ISO3166_2).png"

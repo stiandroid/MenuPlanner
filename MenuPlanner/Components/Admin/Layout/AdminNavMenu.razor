@@ -1,9 +1,15 @@
-﻿<AuthorizeView>
+﻿@inject NavigationManager Nav
+
+<AuthorizeView>
     <Authorized>
         <span class="fw-bold me-3" title="Administrator-meny">
             <i class="bi bi-gear icon-2x"></i>
         </span>
-        <NavLink href="/admin" class="text-black" style="margin-right: 1rem; text-decoration: none;">
+        <NavLink 
+            href="/admin" 
+            class="admin-nav-link text-black" 
+            ActiveClass="admin-active-link"
+            Match="NavLinkMatch.All">
             <i class="bi bi-speedometer"></i>
             Oversikt
         </NavLink>
@@ -11,7 +17,9 @@
 </AuthorizeView>
 <AuthorizeView Roles="SysAdmin,UserAdmin">
     <Authorized>
-        <NavLink href="/admin/users" class="text-black" style="margin-right: 1rem; text-decoration: none;">
+        <NavLink 
+            href="/admin/users"
+            class="@userClasses">
             <i class="bi bi-people"></i>
             Brukere
         </NavLink>
@@ -19,7 +27,9 @@
 </AuthorizeView>
 <AuthorizeView Roles="SysAdmin,NutrientAdmin">
     <Authorized>
-        <NavLink href="/admin/nutrients" class="text-black" style="margin-right: 1rem; text-decoration: none;">
+        <NavLink 
+            href="/admin/nutrients"
+            class="@nutrientClasses">
             <i class="bi bi-heart-pulse"></i>
             Næringsstoffer
         </NavLink>
@@ -27,7 +37,9 @@
 </AuthorizeView>
 <AuthorizeView Roles="SysAdmin,AllergenAdmin">
     <Authorized>
-        <NavLink href="/admin/allergens" class="text-black" style="margin-right: 1rem; text-decoration: none;">
+        <NavLink 
+            href="/admin/allergens" 
+            class="@allergenClasses">
             <i class="bi bi-emoji-dizzy"></i>
             Allergener
         </NavLink>
@@ -35,5 +47,19 @@
 </AuthorizeView>
 
 @code {
+    string pageRoute = string.Empty;
+    string? userClasses;
+    string? nutrientClasses;
+    string? allergenClasses;
 
+    protected override void OnInitialized()
+    {
+        pageRoute = Nav.ToBaseRelativePath(Nav.Uri);
+        userClasses = $"admin-nav-link text-black{(ActiveClass("admin/users"))}";
+        nutrientClasses = $"admin-nav-link text-black{(ActiveClass("admin/nutrients"))}";
+        allergenClasses = $"admin-nav-link text-black{(ActiveClass("admin/allergens"))}";
+    }
+
+    private string ActiveClass(string route)
+        => pageRoute.Contains(route) ? " admin-active-link" : "";
 }

@@ -1,0 +1,231 @@
+﻿@page "/admin/users/edit/{Id}"
+@inject UserManager<User> UserManager
+@inject RoleManager<Role> RoleManager
+@inject IMapper Mapper
+@inject NavigationManager Nav
+@attribute [Authorize(Roles = "SysAdmin,UserAdmin")]
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Bruker</PageTitle>
+@if (userDTO == null)
+{
+    <Loader />
+}
+else
+{ 
+    <h1>@fullName</h1>
+    <EditForm Model="userDTO" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator />
+        <MudGrid>
+            <MudItem xs="12" sm="10" md="8">
+                <MudCard>
+                    <MudCardContent>
+                        <div class="d-flex align-content-between">
+                            <MudTextField Label="Fornavn" HelperText=""
+                                @bind-Value="userDTO.FirstName" For="(() => userDTO.FirstName)"/>
+                            <MudTextField Label="Etternavn" HelperText=""
+                                @bind-Value="userDTO.LastName" For="(() => userDTO.LastName)"/>
+                        </div>
+                        <MudTextField Label="E-postadresse" HelperText=""
+                            @bind-Value="userDTO.Email" For="(() => userDTO.Email)" />
+                        @if (allRoles != null)
+                        {
+                            <h4 class="mt-2 mb-1">Roller</h4>
+                            <span>userRoleNames: @(string.Join(", ", userRoleNames))</span>
+                            var rolesIdentifier = new FieldIdentifier(userDTO, "Roles");
+                            var messages = Validation.GetValidationMessages(rolesIdentifier);
+                            
+                            if (messages?.Any() == true)
+                            {
+                                <div class="text-danger">
+                                    @Validation.GetValidationMessages(new FieldIdentifier(userDTO, "Roles")).First()
+                                </div>
+                            }
+                            if (groupedRolesAdmins != null)
+                            {
+                                <div class="role-group-wrapper">
+                                    <h5 class="role-group-header">
+                                        Administratorroller
+                                        (@GetCheckedRoles(groupedRolesAdmins) av @groupedRolesAdmins.Count valgt)
+                                    </h5>
+                                    @foreach (var role in groupedRolesAdmins)
+                                    {
+                                        <div class="role-wrapper">
+                                            <MudCheckBox 
+                                                T="bool"
+                                                checked="@IsRoleSelected(role.Name)"
+                                                @onclick="@(() => ToggleRole(role.Name))"
+                                                Label="@role.DisplayName"
+                                                Color="Color.Primary"></MudCheckBox>
+                                            <span>@role.Description</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            if (groupedRolesEditors != null)
+                            {
+                                <div class="role-group-wrapper">
+                                    <h5 class="role-group-header">
+                                        Forfatterroller
+                                        (@GetCheckedRoles(groupedRolesEditors) av @groupedRolesEditors.Count valgt)
+                                    </h5>
+                                    @foreach (var role in groupedRolesEditors)
+                                    {
+                                        <div class="role-wrapper">
+                                            <MudCheckBox 
+                                                T="bool"
+                                                checked="@IsRoleSelected(role.Name)"
+                                                @onclick="@(() => ToggleRole(role.Name))"
+                                                Label="@role.DisplayName"
+                                                Color="Color.Warning"></MudCheckBox>
+                                            <span>@role.Description</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            if (groupedRolesModerators != null)
+                            {
+                                <div class="role-group-wrapper">
+                                    <h5 class="role-group-header">
+                                        Moderatorroller 
+                                        (@GetCheckedRoles(groupedRolesModerators) av @groupedRolesModerators.Count valgt)
+                                    </h5>
+                                    @foreach (var role in groupedRolesModerators)
+                                    {
+                                        <div class="role-wrapper">
+                                            <MudCheckBox T="bool"
+                                                checked="@IsRoleSelected(role.Name)"
+                                                @onclick="@(() => ToggleRole(role.Name))"
+                                                Label="@role.DisplayName"
+                                                Color="Color.Tertiary"></MudCheckBox>
+                                            <span>@role.Description</span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton
+                            ButtonType="ButtonType.Button"
+                            @onclick="GoBack"
+                            StartIcon="@Icons.Material.Rounded.ChevronLeft"
+                            Variant="Variant.Filled"
+                            Color="Color.Primary">
+                            Avbryt
+                        </MudButton>
+                        <MudButton 
+                            ButtonType="ButtonType.Submit" 
+                            StartIcon="@Icons.Material.Rounded.Save"
+                            Variant="Variant.Filled"
+                            Color="Color.Success"
+                            Class="ml-auto">
+                            Lagre
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    User? userEntity;
+    UserEditDTO? userDTO;
+
+    string? fullName;
+
+    List<RoleDisplayDTO>? allRoles;
+    List<RoleDisplayDTO>? groupedRolesAdmins;
+    List<RoleDisplayDTO>? groupedRolesEditors;
+    List<RoleDisplayDTO>? groupedRolesModerators;
+    IList<string>? userRoleNames;
+
+    EditContext? Validation;
+
+    bool _expandedAdminRoles;
+    bool _expandedEditorRoles;
+    bool _expandedModeratorRoles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        userEntity = await UserManager.FindByIdAsync(Id);
+        userDTO = Mapper.Map<UserEditDTO>(userEntity);
+        if (userDTO != null)
+        {
+            fullName = $"{userDTO.LastName}, {userDTO.FirstName}";
+
+            allRoles = Mapper.Map<List<RoleDisplayDTO>>(await RoleManager.Roles.ToListAsync())
+                .OrderBy(o => o.SortOrder).ToList();
+            groupedRolesAdmins = allRoles.Where(g => g.Group == RoleGroup.Administrators).ToList();
+            groupedRolesEditors = allRoles.Where(g => g.Group == RoleGroup.Editors).ToList();
+            groupedRolesModerators = allRoles.Where(g => g.Group == RoleGroup.Moderators).ToList();
+
+            userRoleNames = await UserManager.GetRolesAsync(userEntity);
+
+            userDTO.Roles = allRoles
+                .Where(role => userRoleNames.Contains(role.Name))
+                .ToList();
+
+            Validation = new EditContext(userDTO);
+        }
+    }
+
+    bool IsRoleSelected(string roleName) => userRoleNames.Contains(roleName);
+
+    void ToggleRole(string roleName)
+    {
+        bool isChecked = userRoleNames.Contains(roleName);
+
+        if (!isChecked)
+        {
+            userRoleNames.Add(roleName);
+        }
+        else
+        {
+            userRoleNames.Remove(roleName);
+        }
+    }
+
+    int GetCheckedRoles(List<RoleDisplayDTO> roleGroup)
+        => roleGroup.Where(c => userRoleNames.Contains(c.Name)).Count();
+
+
+    async Task HandleSubmit()
+    {
+        // Manually trigger validation check before submitting the form
+        Validation.Validate();
+
+        // Check if the form is valid
+        if (!Validation.GetValidationMessages(new FieldIdentifier(userDTO, "Roles")).Any())
+        {
+            // Fjerne alle brukerroller
+            var userRoles = await UserManager.GetRolesAsync(userEntity);
+            foreach (var role in userRoles)
+            {
+                await UserManager.RemoveFromRoleAsync(userEntity, role);
+            }
+
+            // Legge til de valgte brukerrollene
+            foreach (var role in userRoleNames!)
+            {
+                await UserManager.AddToRoleAsync(userEntity, role);
+            }
+
+            // Overføre de andre feltverdiene fra DTO til entity
+            Mapper.Map(userDTO, userEntity);
+
+            await UserManager.UpdateAsync(userEntity);
+            GoBack();
+        }
+    }
+
+    void GoBack()
+    {
+        Nav.NavigateTo($"/admin/users/{userEntity!.Id}");
+    }
+}

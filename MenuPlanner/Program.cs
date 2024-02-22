@@ -37,6 +37,7 @@ global using MenuPlanner.BackgroundJobs;
 global using Quartz;
 global using Quartz.Impl;
 global using Quartz.Spi;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -94,6 +95,8 @@ builder.Services.AddScoped<IRecipeService, RecipeService>();
 builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
+
+builder.Services.AddMudServices();
 
 // Bakgrunnsjobber:
 builder.Services.AddSingleton<IJob, IncompleteUserRegistrationCleanupJob>();

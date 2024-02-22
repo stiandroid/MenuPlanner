@@ -1,0 +1,63 @@
+﻿@page "/admin/users/{Id}"
+@inject UserManager<User> UserManager
+@inject RoleManager<Role> RoleManager
+@inject NavigationManager Nav
+@attribute [Authorize(Roles = "SysAdmin,UserAdmin")]
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Bruker</PageTitle>
+@if (user == null)
+{
+    <Loader />
+}
+else
+{
+    <h1 class="d-flex justify-content-between align-items-center">
+        @user.LastName, @user.FirstName
+        <MudFab Color="Color.Warning" StartIcon="@Icons.Material.Filled.Edit" OnClick="EditUser" />
+    </h1>
+    @if (roles != null)
+    {
+        <p>
+            Rolle(r):
+            @foreach (var role in roles)
+            {
+                <span class="badge info-badge me-2">@role</span>
+            }
+        </p>
+    }
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    User? user;
+    IList<string>? roles;
+    List<Role>? allRoles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await UserManager.FindByIdAsync(Id);
+        if (user != null)
+        {
+            allRoles = await RoleManager.Roles.ToListAsync();
+            var roleDisplayNames = new List<string>();
+
+            roles = await UserManager.GetRolesAsync(user);
+            foreach (var role in roles)
+            {
+                var displayName = allRoles.Where(r => r.Name == role)
+                    .Select(d => d.DisplayName).FirstOrDefault();
+                if (displayName != null) roleDisplayNames.Add(displayName);
+            }
+            roles = roleDisplayNames;
+        }
+    }
+
+    void EditUser()
+    {
+        Nav.NavigateTo($"/admin/users/edit/{user!.Id}");
+    }
+}

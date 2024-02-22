@@ -4,26 +4,6 @@
 
 @if (Recipe != null)
 {
-@*     <div class="card" @onclick="(() => GoToRecipe(Recipe.Url))">
-        <img class="card-img-top" src="images/recipes/@(Recipe.Url)200x150.jpg" />
-        <div class="card-body">
-            <h5 class="card-title">
-                <img
-                     class="mr-3"
-                     src="images/flags/icon-24px/@(Recipe.Country.ISO3166_2).png"
-                     alt="@(Recipe.Country.Name)"
-                     title="@(Recipe.Country.Name)" />
-                @Recipe.Name
-            </h5>
-            <p class="card-text">
-                <PrepTime Time="Recipe.PrepTime" />
-                <Difficulty Level="Recipe.DifficultyLevel" />
-                <RatingAverage Score="Recipe.RatingAverage" />
-            </p>
-        </div>
-    </div>
- *@
-
     <div class="card" @onclick="(() => GoToRecipe(Recipe.Url))">
         <img class="card-img" src="images/recipes/@(Recipe.Url)200x150.jpg" />
         <div class="card-img-overlay">

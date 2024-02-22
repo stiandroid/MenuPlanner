@@ -1,0 +1,95 @@
+﻿@page "/admin/users"
+@inject UserManager<User> UserManager
+@inject RoleManager<Role> RoleManager
+@inject NavigationManager Nav
+@attribute [Authorize(Roles = "SysAdmin,UserAdmin")]
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Brukere</PageTitle>
+<h1 class="d-flex justify-content-between align-items-center">
+    Brukere
+    <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.Add" OnClick="AddUser" />
+</h1>
+
+
+@if (usersEntity == null)
+{
+    <Loader />
+}
+else
+{
+    <MudDataGrid 
+        Items="usersWithRoles" 
+        Filterable=true 
+        FilterCaseSensitivity=DataGridFilterCaseSensitivity.CaseInsensitive
+        T="UserWithRoles" 
+        RowClick="(item) => GoToUser(item)">
+
+        <Columns>
+            <PropertyColumn Property="x => x.User.DateRegistered" Title="Registrert" Filterable=false CellClass="pointer">
+                <CellTemplate>
+                    @context.Item.User.DateRegistered.ToString("d")
+                </CellTemplate>
+            </PropertyColumn>
+            <PropertyColumn Property="x => x.User.LastName" Title="Etternavn" CellClass="pointer" />
+            <PropertyColumn Property="x => x.User.FirstName" Title="Fornavn" CellClass="pointer" />
+            <PropertyColumn Property="x => x.User.UserName" Title="Brukernavn" Sortable=false CellClass="pointer" />
+            <TemplateColumn Title="Rolle(r)" Sortable=false CellClass="pointer">
+                <CellTemplate>
+                    @string.Join(", ", context.Item.Roles)
+                </CellTemplate>
+            </TemplateColumn>
+        </Columns>
+
+    </MudDataGrid>
+}
+
+@code {
+    List<User>? usersEntity;
+    List<UserDisplayDTO>? usersDTO;
+    List<UserWithRoles> usersWithRoles = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        usersEntity = await UserManager.Users.ToListAsync();
+        usersWithRoles = new List<UserWithRoles>();
+        List<Role> allRoles = await RoleManager.Roles.ToListAsync();
+
+        foreach (var user in usersEntity)
+        {
+            var roleNames = await UserManager.GetRolesAsync(user);
+            var roleDisplayNames = new List<string>();
+
+            foreach (var roleName in roleNames)
+            {
+                var role = allRoles.Where(r => r.Name == roleName)
+                    .Select(d => d.DisplayName).FirstOrDefault();
+                if (role != null) roleDisplayNames.Add(role);
+            }
+            usersWithRoles.Add(new UserWithRoles
+            {
+                User = user,
+                Roles = roleDisplayNames
+            });
+        }
+        // users = UserManager.Users.AsQueryable();
+    }
+
+    private void GoToUser(DataGridRowClickEventArgs<UserWithRoles> args)
+    {
+        string id = args.Item.User.Id;
+        Nav.NavigateTo($"/admin/users/{id}");
+    }
+
+    private void AddUser()
+    {
+        Nav.NavigateTo("/admin/users/new");
+    }
+
+    private class UserWithRoles
+    {
+        public User User { get; set; } = new();
+        public List<string>? Roles { get; set; }
+    }
+}

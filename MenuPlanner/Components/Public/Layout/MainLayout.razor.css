@@ -28,7 +28,10 @@ main {
 
 
 .admin-nav-menu-wrapper {
-    background-color: rgb(226, 180, 0, .75);
+    position: sticky;
+    top: 0px;
+    background-color: rgb(226, 180, 0);
+    z-index: 999;
 }
 
 .admin-nav-menu {

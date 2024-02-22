@@ -3,9 +3,22 @@
     --main-txt-color: #221a17;
     --menu-bg-color: rgba(255, 255, 255, .4);
     --menu-txt-color: rgba(0, 0, 0, .75);
-    --info-box-bg-color: rgba(255, 255, 255, .5);
+    --info-box-bg-color: rgba(192, 192, 192, .5);
     --info-box-border-color: #1861ac47;
+    --info-badge-bg-color: rgba(0, 26, 66, .4);
+    --info-badge-txt-color: rgba(0, 20, 98, .75);
     --link-txt-color: #006bb7;
+}
+
+.admin-nav-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+.admin-active-link {
+    background-color: rgba(0, 0, 0, .1);
 }
 
 .loader {
@@ -29,6 +42,29 @@
     font-size: larger;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.role-group-wrapper {
+    padding: 0rem;
+    background-color: var(--info-box-bg-color);
+    border: solid 1px var(--info-box-border-color);
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+}
+
+.role-group-header {
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+}
+
+.role-wrapper {
+    padding: .75rem;
+    border-top: solid 1px var(--info-box-border-color)
+}
+
 .info-box {
     position: relative;
     float: left;
@@ -37,18 +73,19 @@
     padding: 1rem;
     margin-right: 1rem;
     border: solid 1px var(--info-box-border-color);
-    border-radius: 1rem;
+    border-radius: .5rem;
 }
 
 .info-badge {
     font-weight: normal;
     font-size: larger;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
     border-radius: 15px;
-    background-color: var(--info-box-bg-color);
+    background-color: var(--info-badge-bg-color);
+    color: var(--info-badge-txt-color);
 }
 
 .text-box {
