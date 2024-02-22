@@ -32,16 +32,7 @@ else
                         @if (allRoles != null)
                         {
                             <h4 class="mt-2 mb-1">Roller</h4>
-                            <span>userRoleNames: @(string.Join(", ", userRoleNames))</span>
-                            var rolesIdentifier = new FieldIdentifier(userDTO, "Roles");
-                            var messages = Validation.GetValidationMessages(rolesIdentifier);
-                            
-                            if (messages?.Any() == true)
-                            {
-                                <div class="text-danger">
-                                    @Validation.GetValidationMessages(new FieldIdentifier(userDTO, "Roles")).First()
-                                </div>
-                            }
+
                             if (groupedRolesAdmins != null)
                             {
                                 <div class="role-group-wrapper">
@@ -145,8 +136,6 @@ else
     List<RoleDisplayDTO>? groupedRolesModerators;
     IList<string>? userRoleNames;
 
-    EditContext? Validation;
-
     bool _expandedAdminRoles;
     bool _expandedEditorRoles;
     bool _expandedModeratorRoles;
@@ -170,8 +159,6 @@ else
             userDTO.Roles = allRoles
                 .Where(role => userRoleNames.Contains(role.Name))
                 .ToList();
-
-            Validation = new EditContext(userDTO);
         }
     }
 
@@ -197,31 +184,24 @@ else
 
     async Task HandleSubmit()
     {
-        // Manually trigger validation check before submitting the form
-        Validation.Validate();
-
-        // Check if the form is valid
-        if (!Validation.GetValidationMessages(new FieldIdentifier(userDTO, "Roles")).Any())
+        // Fjerne alle brukerroller
+        var userRoles = await UserManager.GetRolesAsync(userEntity);
+        foreach (var role in userRoles)
         {
-            // Fjerne alle brukerroller
-            var userRoles = await UserManager.GetRolesAsync(userEntity);
-            foreach (var role in userRoles)
-            {
-                await UserManager.RemoveFromRoleAsync(userEntity, role);
-            }
-
-            // Legge til de valgte brukerrollene
-            foreach (var role in userRoleNames!)
-            {
-                await UserManager.AddToRoleAsync(userEntity, role);
-            }
-
-            // Overføre de andre feltverdiene fra DTO til entity
-            Mapper.Map(userDTO, userEntity);
-
-            await UserManager.UpdateAsync(userEntity);
-            GoBack();
+            await UserManager.RemoveFromRoleAsync(userEntity, role);
         }
+
+        // Legge til de valgte brukerrollene
+        foreach (var role in userRoleNames!)
+        {
+            await UserManager.AddToRoleAsync(userEntity, role);
+        }
+
+        // Overføre de andre feltverdiene fra DTO til entity
+        Mapper.Map(userDTO, userEntity);
+
+        await UserManager.UpdateAsync(userEntity);
+        GoBack();
     }
 
     void GoBack()
