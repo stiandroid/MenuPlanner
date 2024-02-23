@@ -1,6 +1,4 @@
-﻿using MenuPlanner.Utilities.CustomDataValidation;
-
-namespace MenuPlanner.Models.DTOs.Manage
+﻿namespace MenuPlanner.Models.DTOs.Manage
 {
     public class UserEditDTO
     {
@@ -12,7 +10,6 @@ namespace MenuPlanner.Models.DTOs.Manage
         [StringLength(30, MinimumLength = 2, ErrorMessage = "Etternavn må være minst to og maks 30 tegn langt")]
         public string LastName { get; set; } = string.Empty;
         
-        [ListNotEmpty(ErrorMessage = "Du må velge minst én rolle")]
         public List<RoleDisplayDTO>? Roles { get; set; }
 
         public bool HasProfileImage { get; set; }

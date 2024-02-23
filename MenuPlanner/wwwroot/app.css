@@ -58,6 +58,13 @@
     padding-left: 1rem;
     padding-top: 1rem;
     padding-bottom: .5rem;
+    user-select: none;
+}
+
+.roles-in-group-wrapper {
+/*    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;*/
 }
 
 .role-wrapper {
