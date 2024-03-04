@@ -4,6 +4,9 @@
     {
         private readonly DataContext _context = context;
 
+        public async Task<int> CountTotal()
+            => await _context.Users.CountAsync();
+
         public async Task<User?> GetByIdAsync(string id)
             => await _context.Users.FindAsync(id);
 

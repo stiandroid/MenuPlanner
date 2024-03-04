@@ -6,8 +6,8 @@
         {
             // Create (Fra EditDTO til Entity)
             CreateMap<AllergenEditDTO, Allergen>()
-                .ForMember(dest => dest.DateCreated, opt => opt.Ignore())
-                .ForMember(dest => dest.DateUpdated, opt => opt.Ignore());
+                .ForMember(dest => dest.Created, opt => opt.Ignore())
+                .ForMember(dest => dest.Updated, opt => opt.Ignore());
 
             // Edit (Fra Entity til EditDTO)
             CreateMap<Allergen, AllergenEditDTO>();

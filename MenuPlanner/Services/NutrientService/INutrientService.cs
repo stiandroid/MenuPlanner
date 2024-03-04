@@ -2,6 +2,8 @@
 {
     public interface INutrientService
     {
+        Task<int> CountTotal();
+        Task<int> CountPublished();
         Task<ServiceResponse<List<NutrientDisplayDTO>>> GetAll();
         Task<ServiceResponse<NutrientDisplayDTO>> GetByUrl(string url);
         Task<ServiceResponse<NutrientEditDTO>> Edit(NutrientEditDTO nutrient);

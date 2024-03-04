@@ -5,6 +5,12 @@
         private readonly DataContext _context = context;
         private readonly IMapper _mapper = mapper;
 
+        public async Task<int> CountTotal()
+            => await _context.Nutrients.CountAsync();
+
+        public async Task<int> CountPublished()
+            => await _context.Nutrients.Where(n => n.IsPublished).CountAsync();
+
         public async Task<ServiceResponse<List<NutrientDisplayDTO>>> GetAll()
         {
             List<Nutrient>? nutrients = await _context.Nutrients.ToListAsync();
@@ -102,6 +108,5 @@
             await _context.SaveChangesAsync();
             return dbNutrient;
         }
-
     }
 }

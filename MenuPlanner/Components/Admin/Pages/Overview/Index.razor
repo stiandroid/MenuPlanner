@@ -1,0 +1,62 @@
+﻿@page "/admin"
+@attribute [Authorize(Roles = "SysAdmin,UserAdmin,RecipeEditor,RecipePublisher,IngredientEditor,IngredientPublisher,NutrientEditor,NutrientPublisher,AllergenEditor,AllergenPublisher")]
+@inject IUserService UserService
+@inject IRecipeService RecipeService
+@inject IIngredientService IngredientService
+@inject INutrientService NutrientService
+@inject IAllergenService AllergenService
+
+<PageTitle>Admin - oversikt</PageTitle>
+<h1>Oversikt</h1>
+
+<div class="d-flex flex-row flex-wrap gap-3">
+    <div class="alert alert-primary p-2 rounded">
+        <UsersOverview Total="@totalUsers" />
+    </div>
+    <div class="alert alert-primary p-2 rounded">
+        <RecipesOverview Total="@totalRecipes" Published="@publishedRecipes" />
+    </div>
+    <div class="alert alert-primary p-2 rounded">
+        <IngredientsOverview Total="@totalIngredients" Published="@publishedIngredients" />
+    </div>
+    <div class="alert alert-primary p-2 rounded">
+        <NutrientsOverview Total="@totalNutrients" Published="@publishedNutrients" />
+    </div>
+    <div class="alert alert-primary p-2 rounded">
+        <AllergensOverview Total="@totalAllergens" Published="@publishedAllergens" />
+    </div>
+</div>
+
+@code {
+    // USERS
+    int totalUsers;
+
+    // RECIPES
+    int totalRecipes;
+    int publishedRecipes;
+
+    // INGREDIENTS
+    int totalIngredients;
+    int publishedIngredients;
+
+    // NUTRIENTS
+    int totalNutrients;
+    int publishedNutrients;
+
+    // ALLERGENS
+    int totalAllergens;
+    int publishedAllergens;
+
+    protected override async Task OnInitializedAsync()
+    {
+        totalUsers = await UserService.CountTotal();
+        totalRecipes = await RecipeService.CountTotal();
+        publishedRecipes = await RecipeService.CountPublished();
+        totalIngredients = await IngredientService.CountTotal();
+        publishedIngredients = await IngredientService.CountPublished();
+        totalNutrients = await NutrientService.CountTotal();
+        publishedNutrients = await NutrientService.CountPublished();
+        totalAllergens = await AllergenService.CountTotal();
+        publishedAllergens = await AllergenService.CountPublished();
+    }
+}

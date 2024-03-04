@@ -5,53 +5,44 @@
         <span class="fw-bold me-3" title="Administrator-meny">
             <i class="bi bi-gear icon-2x"></i>
         </span>
-        <NavLink 
-            href="/admin" 
-            class="admin-nav-link text-black" 
-            ActiveClass="admin-active-link"
-            Match="NavLinkMatch.All">
-            <i class="bi bi-speedometer"></i>
-            Oversikt
+        <NavLink href="/admin" class="admin-nav-link text-black" 
+            ActiveClass="admin-active-link" Match="NavLinkMatch.All">
+            <i class="bi bi-speedometer"></i> Oversikt
         </NavLink>
     </Authorized>
 </AuthorizeView>
 <AuthorizeView Roles="SysAdmin,UserAdmin">
     <Authorized>
-        <NavLink 
-            href="/admin/users"
-            class="@userClasses">
-            <i class="bi bi-people"></i>
-            Brukere
+        <NavLink href="/admin/users" class="@userClasses">
+            <i class="bi bi-people"></i> Brukere
         </NavLink>
     </Authorized>
 </AuthorizeView>
-<AuthorizeView Roles="SysAdmin,NutrientAdmin">
+<AuthorizeView Roles="SysAdmin,RecipeEditor,RecipePublisher">
     <Authorized>
-        <NavLink 
-            href="/admin/recipes"
-            class="@recipeClasses">
-            <i class="bi bi-list-columns-reverse"></i>
-            Oppskrifter
+        <NavLink href="/admin/recipes" class="@recipeClasses">
+            <i class="bi bi-list-columns-reverse"></i> Oppskrifter
         </NavLink>
     </Authorized>
 </AuthorizeView>
-<AuthorizeView Roles="SysAdmin,NutrientAdmin">
+<AuthorizeView Roles="SysAdmin,IngredientEditor,IngredientPublisher">
     <Authorized>
-        <NavLink 
-            href="/admin/nutrients"
-            class="@nutrientClasses">
-            <i class="bi bi-heart-pulse"></i>
-            Næringsstoffer
+        <NavLink href="/admin/ingredients" class="@ingredientClasses">
+            <i class="bi bi-egg"></i> Ingredienser
         </NavLink>
     </Authorized>
 </AuthorizeView>
-<AuthorizeView Roles="SysAdmin,AllergenAdmin">
+<AuthorizeView Roles="SysAdmin,NutrientEditor,NutrientPublisher">
     <Authorized>
-        <NavLink 
-            href="/admin/allergens" 
-            class="@allergenClasses">
-            <i class="bi bi-emoji-dizzy"></i>
-            Allergener
+        <NavLink href="/admin/nutrients" class="@nutrientClasses">
+            <i class="bi bi-heart-pulse"></i> Næringsstoffer
+        </NavLink>
+    </Authorized>
+</AuthorizeView>
+<AuthorizeView Roles="SysAdmin,AllergenEditor,AllergenPublisher">
+    <Authorized>
+        <NavLink href="/admin/allergens" class="@allergenClasses">
+            <i class="bi bi-emoji-dizzy"></i> Allergener
         </NavLink>
     </Authorized>
 </AuthorizeView>

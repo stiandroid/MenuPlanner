@@ -1,0 +1,127 @@
+﻿@page "/admin/recipes"
+@attribute [Authorize(Roles="SysAdmin,RecipeEditor,RecipePublisher")]
+@inject IRecipeService RecipeService
+@inject IMapper Mapper
+@inject NavigationManager Nav
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Oppskrifter</PageTitle>
+<h1 class="d-flex justify-content-between align-items-center">
+    Oppskrifter
+    <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.Add" OnClick="AddRecipe" />
+</h1>
+
+<MudTable
+    ServerData="@(new Func<TableState, Task<TableData<RecipeSummaryDisplayDTO>>>(ServerReload))"
+    T="RecipeSummaryDisplayDTO"
+    OnRowClick="@GoToRecipe">
+    <ToolBarContent>
+        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Søk etter oppskrifter"
+            Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+            IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh></MudTh>
+        <MudTh>Navn og beskrivelse</MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<RecipeSummaryDisplayDTO, object>(x => x.Country.Name)">
+                Opprinnelsesland
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<RecipeSummaryDisplayDTO, object>(x => x.RatingAverage)">
+                Brukervurering
+            </MudTableSortLabel>
+        </MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd Class="pointer">
+            <img src="/images/recipes/@(context.Url)200x150.jpg"
+                 class="recipe-index-img" />
+        </MudTd>
+        <MudTd DataLabel="Navn og beskrivlse" Class="pointer">
+            <h5>
+                @context.Name
+            </h5>
+            <p>@context.Description</p>
+        </MudTd>
+        <MudTd DataLabel="Opprinnelsesland" Class="pointer">
+            <img src="/images/flags/icon-24px/@(context.Country.ISO3166_2).png" />
+            @context.Country.Name
+        </MudTd>
+        <MudTd DataLabel="Brukervurdering" Class="pointer">
+            @context.RatingAverage
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>Fant ingen oppskrifter</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <Loader />
+        @* <MudText>Laster data...</MudText> *@
+    </LoadingContent>
+    <PagerContent>
+        <MudTablePager HideRowsPerPage=true PageSizeOptions="new int[]{5}" />
+    </PagerContent>
+</MudTable>
+
+
+@code {
+    private IEnumerable<RecipeSummaryDisplayDTO> pagedData;
+    private MudTable<RecipeSummaryDisplayDTO> table = new();
+
+    private string searchString = string.Empty;
+    private int totalItems;
+
+    private void GoToRecipe(TableRowClickEventArgs<RecipeSummaryDisplayDTO> e)
+    {
+        string url = e.Item.Url;
+        Nav.NavigateTo($"/admin/recipes/{url}");
+    }
+
+    private void AddRecipe()
+    {
+        Nav.NavigateTo("/admin/recipes/new");
+    }
+
+    private async Task<TableData<RecipeSummaryDisplayDTO>> ServerReload(TableState state)
+    {
+        var result = await RecipeService.GetAll();
+        IEnumerable<RecipeSummaryDisplayDTO> data = Mapper.Map<List<RecipeSummaryDisplayDTO>>(result.Data);
+
+        data = data.Where(element =>
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+                return true;
+            if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (element.User != null)
+            {
+                if ($"{element.User.FirstName} {element.User.LastName}"
+                    .Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            if (element.Country != null)
+            {
+                if ($"{element.Country.Name}".Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            return false;
+
+        }).ToArray();
+        totalItems = data.Count();
+        data = data.OrderByDirection(state.SortDirection, o => o.RatingAverage);
+
+        pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+        return new TableData<RecipeSummaryDisplayDTO>() { TotalItems = totalItems, Items = pagedData };
+    }
+
+    private void OnSearch(string text)
+    {
+        searchString = text;
+        table.ReloadServerData();
+    }
+}

@@ -7,6 +7,12 @@ namespace MenuPlanner.Services.RecipeService
         private readonly DataContext _context = context;
         private readonly IMapper _mapper = mapper;
 
+        public async Task<int> CountTotal()
+            => await _context.Recipes.CountAsync();
+
+        public async Task<int> CountPublished()
+            => await _context.Recipes.Where(r => r.IsPublished).CountAsync();
+
         public async Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetAll()
         {
             List<Recipe>? recipes = await _context.Recipes

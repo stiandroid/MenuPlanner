@@ -2,6 +2,8 @@
 {
     public interface IIngredientService
     {
+        Task<int> CountTotal();
+        Task<int> CountPublished();
         Task<ServiceResponse<List<IngredientDisplayDTO>>> GetAll();
         Task<ServiceResponse<IngredientDisplayDTO>> GetByUrl(string url);
         Task<ServiceResponse<IngredientEditDTO>> Edit(IngredientEditDTO ingredient);

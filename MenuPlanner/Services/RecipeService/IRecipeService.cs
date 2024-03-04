@@ -2,6 +2,8 @@
 {
     public interface IRecipeService
     {
+        Task<int> CountTotal();
+        Task<int> CountPublished();
         Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetAll();
         Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetTop(int numberOfRecipes);
         Task<ServiceResponse<RecipeDetailsDisplayDTO>> GetByUrl(string url); // Url er autogenerert: "Svenske kjøttboller" => "svenske-kjottboller"

@@ -12,7 +12,6 @@
     <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.Add" OnClick="AddUser" />
 </h1>
 
-
 @if (usersEntity == null)
 {
     <Loader />
@@ -27,11 +26,6 @@ else
         RowClick="(item) => GoToUser(item)">
 
         <Columns>
-@*             <PropertyColumn Property="x => x.User.DateRegistered" Title="Registrert" Filterable=false CellClass="pointer">
-                <CellTemplate>
-                    @context.Item.User.DateRegistered.ToString("d")
-                </CellTemplate>
-            </PropertyColumn> *@
             <PropertyColumn Property="x => x.User" Title="" CellClass="pointer" Sortable=false Filterable=false>
                 <CellTemplate>
                     <img src="/images/users/profile/@(context.Item.User.HasProfileImage ? context.Item.User.Id : "_noimg").jpg"
@@ -43,7 +37,15 @@ else
             <PropertyColumn Property="x => x.User.UserName" Title="Brukernavn" Sortable=false CellClass="pointer" />
             <TemplateColumn Title="Rolle(r)" Sortable=false CellClass="pointer">
                 <CellTemplate>
-                    @string.Join(", ", context.Item.Roles)
+                    @if (context.Item.Roles != null && context.Item.Roles.Count > 0)
+                    {
+                        foreach (var role in context.Item.Roles)
+                        {
+                            <span class="badge info-badge me-2 mb-2">
+                                @role
+                            </span>
+                        }
+                    }
                 </CellTemplate>
             </TemplateColumn>
         </Columns>

@@ -1,0 +1,30 @@
+﻿<h4>Oppskrifter</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td></td>
+            <td>Antall</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Publiserte</td>
+            <td>@Published</td>
+        </tr>
+        <tr>
+            <td>Ikke publiserte</td>
+            <td>@(Total - Published)</td>
+        </tr>
+        <tr>
+            <td>Totalt</td>
+            <td>@Total</td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public int Total { get; set; }
+    [Parameter]
+    public int Published { get; set; }
+}

@@ -3,6 +3,8 @@
     public class Recipe : ISearchableEntity
     {
         public int Id { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime? Updated { get; set; }
         public int ParentRecipeId { get; set; } // For hovedoppskrifter er ParentRecipeId = Id.
         public string? UserId { get; set; } // Id fra IdentityUser er string
         public User? User { get; set; }
@@ -22,7 +24,5 @@
         // Verdiene i disse feltene settes programmatisk, og er ikke med i RecipeEditDTO:
         public double? RatingAverage { get; set; }
         public string Url { get; set; } = string.Empty; // Autogenerert: "Svenske kjøttboller" => "svenske-kjottboller"
-        public DateTime DateCreated { get; set; }
-        public DateTime DateUpdated { get; set; }
     }
 }
