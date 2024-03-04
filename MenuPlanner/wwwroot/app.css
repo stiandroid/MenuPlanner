@@ -1,13 +1,20 @@
 :root {
-    --main-bg-color: #f0f0f0;
+    --main-bg-color: #e0e0e0;
     --main-txt-color: #221a17;
     --menu-bg-color: rgba(255, 255, 255, .4);
     --menu-txt-color: rgba(0, 0, 0, .75);
     --info-box-bg-color: rgba(192, 192, 192, .5);
     --info-box-border-color: #1861ac47;
-    --info-badge-bg-color: rgba(0, 26, 66, .4);
+    --info-badge-bg-color: rgb(88, 158, 255);
     --info-badge-txt-color: rgba(0, 20, 98, .75);
     --link-txt-color: #006bb7;
+
+    --transparant-image-overlay: rgba(255, 255, 255, .5);
+    --overlay-blur: blur(6px);
+
+    --macro-nutrient-fat: rgb(226, 216, 152);
+    --macro-nutrient-carb: rgb(45, 125, 33);
+    --macro-nutrient-prot: rgb(170 70 70);
 }
 
 .admin-nav-link {
@@ -23,23 +30,6 @@
 
 .loader {
     min-height: 75vh;
-}
-
-.main-image-wrapper {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.main-image {
-    width: 100%;
-    border-radius: 1rem;
-}
-
-.main-description {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-style: italic;
-    font-size: larger;
 }
 
 .pointer {
@@ -62,9 +52,38 @@
 }
 
 .roles-in-group-wrapper {
-/*    max-height: 1000px;
+    user-select: none;
+    /*    max-height: 1000px;
     overflow: hidden;
     transition: max-height 0.3s ease-out;*/
+}
+
+.user-header-profile-img {
+    margin-top: .5rem;
+    margin-left: .5rem;
+    margin-bottom: .5rem;
+    margin-right: 1.5rem;
+    height: 175px;
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, .3);
+    border-radius: .3rem;
+}
+
+.user-header-profile-name {
+    display: flex;
+    flex-direction: column;
+    height: 175px;
+    width: 100%;
+    background-color: var(--info-box-bg-color);
+    backdrop-filter: blur(8px);
+/*    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, .3);*/
+    border-radius: .3rem;
+    padding: 1.2rem;
+    justify-content: center;
+}
+
+.user-index-profile-img {
+    margin: 2px;
+    height: 64px;
 }
 
 .role-wrapper {
@@ -73,9 +92,6 @@
 }
 
 .info-box {
-    position: relative;
-    float: left;
-    /*width: 350px;*/
     background-color: var(--info-box-bg-color);
     padding: 1rem;
     margin-right: 1rem;
@@ -95,18 +111,20 @@
     color: var(--info-badge-txt-color);
 }
 
-.text-box {
-    display: flow;
-    width: auto;
-    text-align: justify;
-}
-
 .icon-2x {
     font-size: 2em; /* Dobbel ikonstørrelse */
 }
 
 .icon-3x {
     font-size: 3em; /* Trippel ikonstørrelse */
+}
+
+.icon-4x {
+    font-size: 4em; /* Firedobbel ikonstørrelse */
+}
+
+.icon-5x {
+    font-size: 5em; /* Femdobbel ikonstørrelse */
 }
 
 h1, h2, h3, h4 {
@@ -120,17 +138,17 @@ html, body {
 }
 
 a, .btn-link {
-    color: var(--link-txt-color);
+    color: var(--link-txt-color) !important;
+}
+
+a:hover, .btn-link:hover {
+    color: var(--main-txt-color) !important;
 }
 
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 .content {

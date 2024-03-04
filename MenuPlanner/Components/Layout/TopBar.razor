@@ -1,0 +1,26 @@
+﻿@inject NavigationManager Nav
+@rendermode InteractiveServer
+
+<div class="topbar-container">
+    <div class="d-flex flex-row">
+        <div class="logo-illustration-wrapper">
+            <img src="images/branding/logo_v2_illustration_only_164x150.png" @onclick="GoHome" class="pointer" alt="Menu planner logo" />
+        </div>
+        <div class="logo-text-wrapper">
+            <img src="images/branding/logo_v2_text_only_164x150.png" @onclick="GoHome" class="pointer" alt="Menu planner logo" />
+        </div>
+    </div>
+    <div class="searchform-wrapper">
+        <SearchForm />
+    </div>
+    <div class="userbutton-wrapper">
+        <UserButtons />
+    </div>
+</div>
+
+@code{
+    public void GoHome()
+    {
+        Nav.NavigateTo("/");
+    }
+}

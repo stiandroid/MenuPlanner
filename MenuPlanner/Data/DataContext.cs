@@ -1,5 +1,4 @@
 using MenuPlanner.ExtensionMethods;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MenuPlanner.Data
 {
@@ -72,44 +71,50 @@ namespace MenuPlanner.Data
 
             // Land
             modelBuilder.Entity<Country>()
-                .HasData(DataSeeding.countries);
+                .HasData(DataSeeding.Countries);
 
             // Næringsstoffer
             modelBuilder.Entity<Nutrient>()
-                .HasData(DataSeeding.nutrients);
+                .HasData(DataSeeding.Nutrients);
 
             // Allergener
             modelBuilder.Entity<Allergen>()
-                .HasData(DataSeeding.allergens);
+                .HasData(DataSeeding.Allergens);
 
             // Oppskrifter
             modelBuilder.Entity<Recipe>()
-                .HasData(DataSeeding.recipes);
+                .HasData(DataSeeding.ParentRecipes);
+            modelBuilder.Entity<Recipe>()
+                .HasData(DataSeeding.ChildRecipes);
 
             // Steg for oppskrifter
             modelBuilder.Entity<RecipeStep>()
-                .HasData(DataSeeding.recipeSteps);
+                .HasData(DataSeeding.RecipeSteps);
+
+            // Merknader for oppskrifter
+            modelBuilder.Entity<RecipeNote>()
+                .HasData(DataSeeding.RecipeNotes);
 
             // Ingredienser
             modelBuilder.Entity<Ingredient>()
-                .HasData(DataSeeding.ingredients);
+                .HasData(DataSeeding.Ingredients);
 
             // Mange-til-mange-linke-tabell for næringsstoffer i ingredienser
             modelBuilder.Entity<IngredientNutrient>()
-                .HasData(DataSeeding.ingredientNutrients);
+                .HasData(DataSeeding.IngredientNutrients);
 
             // Mange-til-mange-linke-tabell for allergener i ingredienser
             modelBuilder.Entity<IngredientAllergen>()
-                .HasData(DataSeeding.ingredientAllergens);
+                .HasData(DataSeeding.IngredientAllergens);
 
             // Mange-til-mange-linke-tabell for ingredienser i oppskrifter
             modelBuilder.Entity<RecipeIngredient>()
-                .HasData(DataSeeding.recipeIngredients);
+                .HasData(DataSeeding.RecipeIngredients);
 
             // SearchIndex
             // Kombinasjonstabell for Recipe, Ingredient, Nutrient og Allergen for mer effektivt søk
             List<SearchIndex> searchIndex = [];
-            foreach (var recipe in DataSeeding.recipes)
+            foreach (var recipe in DataSeeding.ParentRecipes)
             {
                 searchIndex.Add(new SearchIndex() { 
                     Id = NextIndex(),
@@ -119,7 +124,7 @@ namespace MenuPlanner.Data
                     Url = recipe.Url
                 });
             }
-            foreach (var ingredient in DataSeeding.ingredients)
+            foreach (var ingredient in DataSeeding.Ingredients)
             {
                 searchIndex.Add(new SearchIndex()
                 {
@@ -130,7 +135,7 @@ namespace MenuPlanner.Data
                     Url = ingredient.Url
                 });
             }
-            foreach (var nutrient in DataSeeding.nutrients)
+            foreach (var nutrient in DataSeeding.Nutrients)
             {
                 searchIndex.Add(new SearchIndex()
                 {
@@ -141,7 +146,7 @@ namespace MenuPlanner.Data
                     Url = nutrient.Url
                 });
             }
-            foreach (var allergen in DataSeeding.allergens)
+            foreach (var allergen in DataSeeding.Allergens)
             {
                 searchIndex.Add(new SearchIndex()
                 {
@@ -158,6 +163,7 @@ namespace MenuPlanner.Data
 
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<RecipeStep> RecipeSteps { get; set; }
+        public DbSet<RecipeNote> RecipeNotes { get; set; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<IngredientNutrient> IngredientNutrients { get; set; }

@@ -1,0 +1,110 @@
+﻿@page "/ingredient/{Url}"
+@inject IIngredientService IngredientService
+@inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+@if (ingredient == null)
+{
+    <Loader />
+    <PageTitle>Laster ingrediens ...</PageTitle>
+}
+else
+{
+    <BreadCrumbs PageTitle="@ingredient.Name" />
+    <h1>@ingredient.Name</h1>
+    <div class="main-image-wrapper">
+        <img class="main-image" src="images/ingredients/@(ingredient.Url)1000x350.jpg" />
+    </div>
+    <p class="main-description">@ingredient.Description</p>
+    <p>Kort-liste over oppskrifter som inneholder denne ingrediensen, f.eks. de 10 høyest rangerte oppskriftene, vist i kompakt format (cards).</p>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <h4>Næringsstoffer</h4>
+            @if (ingredient.IngredientNutrients.Count > 0)
+            {
+                <div class="info-box">
+                    <p>Innhold per 100 gram vare:</p>
+                    <table width="100%">
+                        @foreach (var item in ingredient.IngredientNutrients)
+                        {
+                            <tr>
+                                <td>
+                                    @if (item.Nutrient!.SubTypeOf != null)
+                                    {
+                                        <span>&nbsp;&nbsp;hvorav </span>
+                                        <a href="/nutrient/@item.Nutrient!.Url">
+                                            @item.Nutrient!.Name.ToLower()
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/nutrient/@item.Nutrient!.Url">
+                                            @item.Nutrient!.Name
+                                        </a>
+                                    }
+                                </td>
+                                <td align="right">
+                                    @{
+                                        string outputValue = "";
+                                        if (item.AmountPer100Grams >= 0.1m)
+                                        {
+                                            // Gram (g)
+                                            outputValue = $"{item.AmountPer100Grams:0.0##} g";
+                                        }
+                                        else if (item.AmountPer100Grams >= 0.0001m)
+                                        {
+                                            // Milligram (mg)
+                                            outputValue = $"{(item.AmountPer100Grams * 1000):0.0###} mg";
+                                        }
+                                        else
+                                        {
+                                            // Mikrogram (µg)
+                                            outputValue = $"{(item.AmountPer100Grams * 1000000):0.0######} &micro;g";
+                                        }
+                                    }
+                                    @((MarkupString)outputValue)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <h3>Allergener</h3>
+            <div class="info-box">
+                @if (ingredient.IngredientAllergens.Count > 0)
+                {
+                    foreach (var item in ingredient.IngredientAllergens)
+                    {
+                        <a href="/allergen/@item.Allergen!.Url">
+                            <span class="p-2 me-2 mb-2 text-center">
+                                <img src="/images/allergens/@(item.Allergen!.Url).png" height="64" class="mb-1" /><br />
+                                @item.Allergen!.Name
+                            </span>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+}
+
+@code {
+    [Parameter]
+    public string Url { get; set; } = "";
+    private IngredientDisplayDTO? ingredient;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await IngredientService.GetByUrl(Url);
+        if (result.Success)
+        {
+            ingredient = result.Data;
+            JSRuntime.InvokeVoidAsync("setTitle", ingredient.Name);
+        }
+    }
+}

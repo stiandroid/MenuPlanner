@@ -4,6 +4,7 @@
     {
         Administrators,
         Editors,
+        Publishers,
         Moderators
     }
 }

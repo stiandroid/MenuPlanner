@@ -27,9 +27,15 @@ else
         RowClick="(item) => GoToUser(item)">
 
         <Columns>
-            <PropertyColumn Property="x => x.User.DateRegistered" Title="Registrert" Filterable=false CellClass="pointer">
+@*             <PropertyColumn Property="x => x.User.DateRegistered" Title="Registrert" Filterable=false CellClass="pointer">
                 <CellTemplate>
                     @context.Item.User.DateRegistered.ToString("d")
+                </CellTemplate>
+            </PropertyColumn> *@
+            <PropertyColumn Property="x => x.User" Title="" CellClass="pointer" Sortable=false Filterable=false>
+                <CellTemplate>
+                    <img src="/images/users/profile/@(context.Item.User.HasProfileImage ? context.Item.User.Id : "_noimg").jpg"
+                         class="user-index-profile-img" />
                 </CellTemplate>
             </PropertyColumn>
             <PropertyColumn Property="x => x.User.LastName" Title="Etternavn" CellClass="pointer" />

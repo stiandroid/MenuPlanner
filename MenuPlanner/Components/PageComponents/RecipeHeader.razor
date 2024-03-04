@@ -1,0 +1,120 @@
+﻿@if (DisplayAsSubRecipe)
+{   
+    @* Underoppskrift *@
+    <h4 class="d-flex flex-row mb-2 align-content-between"
+        id="@Recipe.Url"> @* id brukes for å kunne linke direkte til stedet på siden hvor underoppskriftens står *@
+        <img class="mr-3"
+             src="images/flags/standardized-rectangle-120px/@(Recipe.Country.ISO3166_2).png"
+             height="20"
+             alt="@(Recipe.Country.Name)"
+             title="@(Recipe.Country.Name)" />
+        @Recipe.Name
+    </h4>
+
+    <div class="d-flex flex-row w-100">
+        <img src="images/recipes/@(Recipe.Url)200x150.jpg"
+             class="sub-image"/>
+        <div class="d-flex flex-column w-100 ps-2">
+            <div class="sub-description w-100">@Recipe.Description</div>
+            <div class="d-flex flex-row flex-wrap ps-2 align-items-start justify-content-between">
+                <MudChart ChartType="ChartType.Donut"
+                          ChartOptions="@(new() { ChartPalette = new[] { "var(--macro-nutrient-prot)", "var(--macro-nutrient-carb)", "var(--macro-nutrient-fat)" } })"
+                          InputData="@macroData" 
+                          InputLabels="@macroLabels" 
+                          LegendPosition="Position.Left"
+                          Width="50px"
+                          Height="50px" />
+
+                @if (allergens != null && allergens.Count > 0)
+                {
+                    <div class="d-flex flex-row flex-wrap">
+                        @foreach (var allergen in allergens)
+                        {
+                            <a href="/allergen/@allergen.Url">
+                                <img src="/images/allergens/@(allergen.Url).png" 
+                                     height="48"
+                                     title="@Recipe.Name inneholder @(allergen.Name.ToLower())"
+                                     alt="@Recipe.Name inneholder @(allergen.Name.ToLower())" />
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{   
+    @* Hovedoppskrift *@
+    <h1>
+        <img class="mr-3"
+             src="images/flags/standardized-rectangle-120px/@(Recipe.Country.ISO3166_2).png"
+             height="28"
+             alt="@(Recipe.Country.Name)"
+             title="@(Recipe.Country.Name)" />
+        @Recipe.Name
+    </h1>
+    <div class="main-image-wrapper">
+        <div class="d-flex flex-column justify-content-between main-image-information-overlay">
+            <div class="main-description"><p>@Recipe.Description</p></div>
+            <MudChart ChartType="ChartType.Donut"
+                      ChartOptions="@(new() { ChartPalette = new[] { "var(--macro-nutrient-prot)", "var(--macro-nutrient-carb)", "var(--macro-nutrient-fat)" } })"
+                      InputData="@macroData"
+                      InputLabels="@macroLabels"
+                      LegendPosition="Position.Left"
+                      Width="75px"
+                      Height="75px" />
+            @if (allergens != null && allergens.Count > 0)
+            {
+                <div class="d-flex flex-row flex-wrap w-100 gap-2">
+                    @foreach (var allergen in allergens)
+                    {
+                        <a href="/allergen/@allergen.Url">
+                            <img src="/images/allergens/@(allergen.Url).png" 
+                                    height="48"
+                                    title="@Recipe.Name inneholder @(allergen.Name.ToLower())"
+                                    alt="@Recipe.Name inneholder @(allergen.Name.ToLower())" />
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+        <img class="main-image" src="images/recipes/@(Recipe.Url)1000x350.jpg" />
+    </div>
+}
+
+@code {
+    [Parameter]
+    public required RecipeDetailsDisplayDTO Recipe { get; set; }
+
+    [Parameter]
+    public bool DisplayAsSubRecipe { get; set; }
+
+    private List<AllergenDisplayDTO>? allergens;
+
+    double[]? macroData;
+    string[] macroLabels = { "Protein", "Karbohydrater", "Fett" };
+
+    private double FatPercentage;
+    private double CarbPercentage;
+    private double ProteinPercentage;
+
+    protected override void OnInitialized()
+    { 
+        allergens = Recipe.RecipeIngredients
+            .SelectMany(ia => ia.Ingredient.IngredientAllergens)
+            .Select(a => a.Allergen)
+            .ToList();
+
+        // TODO
+        FatPercentage = 10;// recipe.RecipeIngredients
+                           //     .Where(n => n.)
+                           //     .Select(i => i.Ingredient)
+                           //     .SelectMany(i => i.IngredientNutrients)
+                           //     .Sum(a => a.AmountPer100Grams);
+
+        CarbPercentage = 60;
+        ProteinPercentage = 30;
+        macroData = new double[] { ProteinPercentage, CarbPercentage, FatPercentage };
+    }
+}

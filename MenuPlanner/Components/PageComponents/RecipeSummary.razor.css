@@ -1,0 +1,81 @@
+﻿.card {
+    cursor: pointer;
+    margin-bottom: .5rem;
+    min-width: 350px;
+    min-height: 150px;
+    background: no-repeat;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-title {
+    position: absolute;
+    padding-top: .5rem;
+    padding-bottom: .2rem;
+    padding-left: 1.5rem;
+    background-color: var(--transparant-image-overlay);
+    backdrop-filter: blur(6px);
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.card-img-overlay {
+    pointer-events: none; /* Lar hover-effekten til .card-img trigges gjennom overlayen */
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease;
+}
+
+    .card-img:hover {
+        transform: scale(1.04);
+    }
+
+.info-nuggets {
+    position: absolute;
+    background-color: var(--transparant-image-overlay);
+    backdrop-filter: blur(6px);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.info-nugget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border-top: solid 1px var(--info-box-border-color);
+}
+
+.info-nugget-left {
+    width: 33%;
+    border-top: solid 1px var(--info-box-border-color);
+}
+
+.info-nugget-middle {
+    width: 34%;
+    border-left: solid 1px var(--info-box-border-color);
+    border-right: solid 1px var(--info-box-border-color);
+}
+
+.info-nugget-right {
+    width: 33%;
+}
+
+@media (min-width: 768px) {
+    .card {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 614px) {
+    .card {
+        max-width: 33%;
+    }
+}

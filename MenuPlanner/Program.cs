@@ -1,8 +1,9 @@
 global using AutoMapper;
+global using MenuPlanner.BackgroundJobs;
 global using MenuPlanner.Components;
-global using MenuPlanner.Components.Shared.Account;
-global using MenuPlanner.Components.Shared.Account.Pages;
-global using MenuPlanner.Components.Shared.Account.Pages.Manage;
+global using MenuPlanner.Components.Account;
+global using MenuPlanner.Components.Account.Pages;
+global using MenuPlanner.Components.Account.Pages.Manage;
 global using MenuPlanner.Data;
 global using MenuPlanner.Enums;
 global using MenuPlanner.Models.AutoMapperProfiles;
@@ -24,6 +25,7 @@ global using Microsoft.AspNetCore.Components.Server;
 global using Microsoft.AspNetCore.Http.Extensions;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Identity.UI.Services;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Options;
@@ -33,7 +35,6 @@ global using System.ComponentModel.DataAnnotations.Schema;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Security.Claims;
 global using System.Text.Json;
-global using MenuPlanner.BackgroundJobs;
 global using Quartz;
 global using Quartz.Impl;
 global using Quartz.Spi;
@@ -130,7 +131,15 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    await DataSeeding.SeedRolesAndInitialAdminUsers(services);
+
+    // Seede roller og systemadministrator:
+    await DataSeeding.SeedRolesAndInitialAdminUser(services);
+
+    // Seede ytterligere test-data for utviklingsfasen:
+    if (app.Environment.IsDevelopment())
+    { 
+        await DataSeeding.SeedTestUsers(services);
+    }
 }
 
 // Configure the HTTP request pipeline.

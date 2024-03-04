@@ -1,0 +1,86 @@
+﻿@page "/r/{Url}"
+@inject IRecipeService RecipeService
+@inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+@if (recipe == null)
+{
+    <Loader />
+    <PageTitle>Laster oppskrift ...</PageTitle>
+}
+else
+{
+    <BreadCrumbs PageTitle="@recipe.Name" />
+    <div class="d-block">
+        <RecipeHeader Recipe="recipe" DisplayAsSubRecipe=false />
+        <h2>Hovedoppskrift</h2>
+        @if (recipe.Notes != null && recipe.Notes.Count > 0)
+        {
+            <div class="recipe-notes-wrapper">
+                <RecipeNotes Notes="recipe.Notes" />
+            </div>
+        }
+        <div class="recipe-ingredients-wrapper">
+            <RecipeIngredients IngredientList="recipe.RecipeIngredients" />
+        </div>
+        <RecipeSubRecipesList SubRecipes="subRecipes" />
+        <div class="recipe-steps-wrapper">
+            <RecipeSteps StepList="recipe.Steps" RecipeUrl="recipe.Url" />
+        </div>
+    </div>
+
+    @if (recipe.SubRecipes != null && recipe.SubRecipes.Count > 0)
+    {
+        <div class="d-flex flex-column w-100">
+            <h2>Deloppskrifter</h2>
+            @foreach (var subRecipe in recipe.SubRecipes.Where(sr => sr.Url != recipe.Url).ToList())
+            {
+                <div class="d-block">
+                    <RecipeHeader Recipe="subRecipe" DisplayAsSubRecipe=true />
+                    @if (subRecipe.Notes != null && subRecipe.Notes.Count > 0)
+                    {
+                        <div class="recipe-notes-wrapper">
+                            <RecipeNotes Notes="subRecipe.Notes" />
+                        </div>
+                    }
+                    <div class="d-flex flex-row">
+                        <div class="recipe-ingredients-wrapper">
+                            <RecipeIngredients IngredientList="subRecipe.RecipeIngredients" />
+                        </div>
+                        <div class="recipe-steps-wrapper">
+                            <RecipeSteps StepList="subRecipe.Steps" RecipeUrl="subRecipe.Url" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public string Url { get; set; } = "";
+
+    private RecipeDetailsDisplayDTO? recipe;
+
+    List<(string Url, string Name)>? subRecipes = new List<(string Url, string Name)>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await RecipeService.GetByUrl(Url);
+        if (result.Success)
+        {
+            recipe = result.Data;
+            if (recipe.SubRecipes != null)
+            {
+                foreach (var subRecipe in recipe.SubRecipes)
+                {
+                    subRecipes.Add(($"/r/{recipe.Url}#{subRecipe.Url}", subRecipe.Name));
+                }
+            }
+
+            JSRuntime.InvokeVoidAsync("setTitle", recipe!.Name);
+        }
+    }
+}

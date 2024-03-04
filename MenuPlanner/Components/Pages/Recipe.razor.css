@@ -1,0 +1,17 @@
+﻿.recipe-steps-wrapper {
+    display: flow;
+    width: auto;
+    text-align: justify;
+}
+
+.recipe-notes-wrapper {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    padding: 0;
+}
+
+.recipe-ingredients-wrapper {
+    position: relative;
+    float: left;
+    width: 250px;
+}

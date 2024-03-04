@@ -14,8 +14,11 @@
 }
 else
 { 
-    <h1>@fullName</h1>
     <EditForm Model="userDTO" OnValidSubmit="HandleSubmit">
+
+        @* Viktig at denne står inni EditForm, fordi den inneholder submit-knappen: *@
+        <UserHeader User="userEntity" EntityContext="EntityContext.Edit" />
+
         <DataAnnotationsValidator />
         <MudGrid>
             <MudItem xs="12" sm="12" md="10" lg="8">
@@ -43,13 +46,12 @@ else
                                     OnClick="ClearAllUserRoles"/>
                             </h4>
 
-                            @(string.Join(", ", userRoleNames))
-
                             if (groupedRolesAdmins != null)
                             {
                                 <div class="role-group-wrapper">
                                     <h5 class="role-group-header pointer" @onclick="(() => hideAdmins = !hideAdmins)">
                                         <i class="bi bi-chevron-@(hideAdmins?"expand":"contract") me-2"></i>
+                                        <i class="bi bi-gear mud-primary-text"></i>
                                         Administratorroller
                                         (@GetCheckedRoles(groupedRolesAdmins) av @groupedRolesAdmins.Count valgt)
                                     </h5>
@@ -57,12 +59,11 @@ else
                                         @foreach (var role in groupedRolesAdmins)
                                         {
                                             <div class="role-wrapper">
-                                                <MudCheckBox 
-                                                    T="bool"
-                                                    checked="@IsRoleChecked(role.Name)"
-                                                    @onclick="@(() => ToggleRole(role.Name))"
-                                                    Label="@role.DisplayName"
-                                                    Color="Color.Primary"></MudCheckBox>
+                                                <MudCheckBox T="bool"
+                                                             checked="@IsRoleChecked(role.Name)"
+                                                             @onclick="@(() => ToggleRole(role.Name))"
+                                                             Label="@role.DisplayName"
+                                                             Color="Color.Primary"></MudCheckBox>
                                                 <span>@role.Description</span>
                                             </div>
                                         }
@@ -74,6 +75,7 @@ else
                                 <div class="role-group-wrapper">
                                     <h5 class="role-group-header pointer" @onclick="(() => hideEditors = !hideEditors)">
                                         <i class="bi bi-chevron-@(hideEditors?"expand":"contract") me-2"></i>
+                                        <i class="bi bi-pencil-square mud-warning-text"></i>
                                         Forfatterroller
                                         (@GetCheckedRoles(groupedRolesEditors) av @groupedRolesEditors.Count valgt)
                                     </h5>
@@ -81,12 +83,35 @@ else
                                         @foreach (var role in groupedRolesEditors)
                                         {
                                             <div class="role-wrapper">
-                                                <MudCheckBox 
-                                                    T="bool"
-                                                    checked="@IsRoleChecked(role.Name)"
-                                                    @onclick="@(() => ToggleRole(role.Name))"
-                                                    Label="@role.DisplayName"
-                                                    Color="Color.Warning"></MudCheckBox>
+                                                <MudCheckBox T="bool"
+                                                             checked="@IsRoleChecked(role.Name)"
+                                                             @onclick="@(() => ToggleRole(role.Name))"
+                                                             Label="@role.DisplayName"
+                                                             Color="Color.Warning"></MudCheckBox>
+                                                <span>@role.Description</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            if (groupedRolesPublishers != null)
+                            {
+                                <div class="role-group-wrapper">
+                                    <h5 class="role-group-header pointer" @onclick="(() => hidePublishers = !hidePublishers)">
+                                        <i class="bi bi-chevron-@(hidePublishers?"expand":"contract") me-2"></i>
+                                        <i class="bi bi-check2-square mud-tertiary-text"></i>
+                                        Publiseringsroller
+                                        (@GetCheckedRoles(groupedRolesPublishers) av @groupedRolesPublishers.Count valgt)
+                                    </h5>
+                                    <div class="roles-in-group-wrapper@(hidePublishers?" collapse":"")">
+                                        @foreach (var role in groupedRolesPublishers)
+                                        {
+                                            <div class="role-wrapper">
+                                                <MudCheckBox T="bool"
+                                                             checked="@IsRoleChecked(role.Name)"
+                                                             @onclick="@(() => ToggleRole(role.Name))"
+                                                             Label="@role.DisplayName"
+                                                             Color="Color.Tertiary"></MudCheckBox>
                                                 <span>@role.Description</span>
                                             </div>
                                         }
@@ -98,6 +123,7 @@ else
                                 <div class="role-group-wrapper">
                                     <h5 class="role-group-header pointer" @onclick="(() => hideModerators = !hideModerators)">
                                         <i class="bi bi-chevron-@(hideModerators?"expand":"contract") me-2"></i>
+                                        <i class="bi bi-chat mud-error-text"></i>
                                         Moderatorroller
                                         (@GetCheckedRoles(groupedRolesModerators) av @groupedRolesModerators.Count valgt)
                                     </h5>
@@ -106,10 +132,11 @@ else
                                         {
                                             <div class="role-wrapper">
                                                 <MudCheckBox T="bool"
-                                                    checked="@IsRoleChecked(role.Name)"
-                                                    @onclick="@(() => ToggleRole(role.Name))"
-                                                    Label="@role.DisplayName"
-                                                    Color="Color.Tertiary"></MudCheckBox>
+                                                             Class=""
+                                                             checked="@IsRoleChecked(role.Name)"
+                                                             @onclick="@(() => ToggleRole(role.Name))"
+                                                             Label="@role.DisplayName"
+                                                             Color="Color.Error"></MudCheckBox>
                                                 <span>@role.Description</span>
                                             </div>
                                         }
@@ -118,7 +145,7 @@ else
                             }
                         }
                     </MudCardContent>
-                    <MudCardActions>
+@*                     <MudCardActions>
                         <MudButton
                             ButtonType="ButtonType.Button"
                             @onclick="GoBack"
@@ -135,7 +162,7 @@ else
                             Class="ml-auto">
                             Lagre
                         </MudButton>
-                    </MudCardActions>
+                    </MudCardActions> *@
                 </MudCard>
             </MudItem>
         </MudGrid>
@@ -154,16 +181,25 @@ else
     List<RoleDisplayDTO>? allRoles;
     List<RoleDisplayDTO>? groupedRolesAdmins;
     List<RoleDisplayDTO>? groupedRolesEditors;
+    List<RoleDisplayDTO>? groupedRolesPublishers;
     List<RoleDisplayDTO>? groupedRolesModerators;
     IList<string> userRoleNames = new List<string>();
 
     bool hideAdmins;
     bool hideEditors;
+    bool hidePublishers;
     bool hideModerators;
 
     protected override async Task OnInitializedAsync()
     {
         userEntity = await UserManager.FindByIdAsync(Id);
+
+        // Ikke tillate endring på beskyttede brukere:
+        if (userEntity != null && userEntity.IsProtectedSystemUser)
+        {
+            Nav.NavigateTo($"/admin/users/{userEntity.Id}");
+        }
+
         userDTO = Mapper.Map<UserEditDTO>(userEntity);
         if (userDTO != null)
         {
@@ -173,6 +209,7 @@ else
                 .OrderBy(o => o.SortOrder).ToList();
             groupedRolesAdmins = allRoles.Where(g => g.Group == RoleGroup.Administrators).ToList();
             groupedRolesEditors = allRoles.Where(g => g.Group == RoleGroup.Editors).ToList();
+            groupedRolesPublishers = allRoles.Where(g => g.Group == RoleGroup.Publishers).ToList();
             groupedRolesModerators = allRoles.Where(g => g.Group == RoleGroup.Moderators).ToList();
 
             userRoleNames = await UserManager.GetRolesAsync(userEntity);
@@ -183,6 +220,7 @@ else
 
             hideAdmins = true;
             hideEditors = true;
+            hidePublishers = true;
             hideModerators = true;
         }
     }

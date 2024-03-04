@@ -1,0 +1,21 @@
+﻿@if (IngredientList != null)
+{
+    <h4>Ingredienser</h4>
+    <div class="info-box mb-3">
+        @foreach (var ri in IngredientList)
+        {
+            <p>
+                @ri.Amount
+                @ri.Unit.GetDisplayName()
+                <a href="/ingredient/@(ri.Ingredient.Url)">
+                    @ri.Ingredient.Name.ToLower()
+                </a>
+            </p>
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public required List<RecipeIngredientDisplayDTO> IngredientList { get; set; }
+}

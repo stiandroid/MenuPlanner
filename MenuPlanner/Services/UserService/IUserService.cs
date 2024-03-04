@@ -3,6 +3,6 @@
     public interface IUserService
     {
         Task<User?> GetByIdAsync(string id);
-        Task<bool> UpdateUser(User user);
+        Task<bool> UpdateAsync(User user);
     }
 }

@@ -3,6 +3,8 @@
     public class UserEditDTO
     {
         public string? Id { get; set; }
+        public bool IsProtectedSystemUser { get; set; }
+
 
         [StringLength(30, MinimumLength = 2, ErrorMessage = "Fornavn må være minst to og maks 30 tegn langt")]
         public string FirstName { get; set; } = string.Empty;

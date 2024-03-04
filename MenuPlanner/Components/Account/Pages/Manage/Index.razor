@@ -1,0 +1,175 @@
+﻿@page "/Account/Manage"
+
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
+@inject IdentityUserAccessor UserAccessor
+@inject IdentityRedirectManager RedirectManager
+
+<PageTitle>Brukerprofil</PageTitle>
+
+<h3>
+    <i class="bi bi-person"></i>
+    Brukerprofil
+</h3>
+<StatusMessage />
+
+<div class="row">
+    <div class="col-md-9 col-lg-8">
+        <EditForm Model="Input" FormName="profile" OnSubmit="OnValidSubmitAsync" method="post">
+            <DataAnnotationsValidator />
+
+            <div class="form-floating mb-3">
+                <input type="text" value="@username" class="form-control" placeholder="Velg brukernavn" disabled />
+                <label for="username" class="form-label"><i class="bi bi-envelope-check"></i> Brukernavn</label>
+            </div>
+            <div class="d-flex flex-row row row-cols-2">
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.FirstName" class="form-control" placeholder="Fornavn" />
+                    <label for="first-name" class="form-label ms-3">
+                        <i class="bi bi-person-vcard"></i> Fornavn
+                    </label>
+                    <ValidationMessage For="() => Input.FirstName" class="text-danger" />
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.LastName" class="form-control" placeholder="Etternavn" />
+                    <label for="last-name" class="form-label ms-3">
+                        <i class="bi bi-person-vcard"></i> Etternavn
+                    </label>
+                    <ValidationMessage For="() => Input.LastName" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.PhoneNumber" class="form-control" placeholder="Telefonnummer" />
+                <label for="phone-number" class="form-label">
+                    <i class="bi bi-phone"></i> Telefonnummer
+                </label>
+                <ValidationMessage For="() => Input.PhoneNumber" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.Introduction" class="form-control" placeholder="Introduksjonstekst" />
+                <label for="introduction" class="form-label"><i class="bi bi-blockquote-left"></i> Introduksjonstekst</label>
+            </div>
+            <div class="d-flex flex-row row row-cols-2">
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.Website" class="form-control" placeholder="Nettside" />
+                    <label for="website" class="form-label ms-3">
+                        <i class="bi bi-globe"></i> Nettside
+                    </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.Instagram" class="form-control" placeholder="Instagram" />
+                    <label for="instagram" class="form-label ms-3">
+                        <i class="bi bi-instagram"></i> Instagram
+                    </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.TwitterX" class="form-control" placeholder="Twitter/X" />
+                    <label for="twitterX" class="form-label ms-3">
+                        <i class="bi bi-twitter-x"></i> Twitter/X
+                    </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Input.Facebook" class="form-control" placeholder="Facebook" />
+                    <label for="facebook" class="form-label ms-3">
+                        <i class="bi bi-facebook"></i> Facebook
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="w-100 btn btn-lg btn-success">
+                <i class="bi bi-save"></i>
+                Oppdater
+            </button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private User user = default!;
+    private string? username;
+    private string? phoneNumber;
+
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    [SupplyParameterFromForm]
+    private InputModel Input { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await UserAccessor.GetRequiredUserAsync(HttpContext);
+
+        username = await UserManager.GetUserNameAsync(user);
+        phoneNumber = await UserManager.GetPhoneNumberAsync(user);
+
+        Input.PhoneNumber ??= phoneNumber;
+        Input.FirstName = user.FirstName;
+        Input.LastName = user.LastName;
+        Input.Introduction = user.Introduction;
+        Input.Website = user.Website;
+        Input.Instagram = user.Instagram;
+        Input.TwitterX = user.TwitterX;
+        Input.Facebook = user.Facebook;
+    }
+
+    private async Task OnValidSubmitAsync()
+    {
+        if (Input.PhoneNumber != phoneNumber)
+        {
+            var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            if (!setPhoneResult.Succeeded)
+            {
+                RedirectManager.RedirectToCurrentPageWithStatus("Kunne ikke angi telefonnummer.", HttpContext, MessageType.Danger);
+            }
+        }
+
+        user.FirstName = Input.FirstName;
+        user.LastName = Input.LastName;
+        user.Introduction = Input.Introduction;
+        user.Website = Input.Website;
+        user.Instagram = Input.Instagram;
+        user.TwitterX = Input.TwitterX;
+        user.Facebook = Input.Facebook;
+
+        var result = await UserManager.UpdateAsync(user);
+        if (!result.Succeeded)
+        {
+            RedirectManager.RedirectToCurrentPageWithStatus($"Noe gikk galt under oppdatering av personopplysninger.", HttpContext, MessageType.Danger);
+        }
+
+        await SignInManager.RefreshSignInAsync(user);
+        RedirectManager.RedirectToCurrentPageWithStatus($"Profilen din ble oppdatert", HttpContext, MessageType.Success);
+    }
+
+    private sealed class InputModel
+    {
+        [Required(ErrorMessage = "Fornavn er påkrevet")]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "Fornavn må være fra to til 30 tegn.")]
+        [Display(Name = "Fornavn")]
+        public string FirstName { get; set; } = "";
+
+        [Required(ErrorMessage = "Etternavn er påkrevet")]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "Etternavn må være fra to til 30 tegn.")]
+        [Display(Name = "Etternavn")]
+        public string LastName { get; set; } = "";
+
+        [Phone]
+        [Display(Name = "Telefonnummer")]
+        public string? PhoneNumber { get; set; }
+
+        [Display(Name = "Introduksjonstekst")]
+        public string? Introduction { get; set; }
+
+        [Display(Name = "Nettside")]
+        public string? Website { get; set; }
+
+        [Display(Name = "Instagram")]
+        public string? Instagram { get; set; }
+
+        [Display(Name = "Twitter/X")]
+        public string? TwitterX { get; set; }
+
+        [Display(Name = "Facebook")]
+        public string? Facebook { get; set; }
+    }
+}

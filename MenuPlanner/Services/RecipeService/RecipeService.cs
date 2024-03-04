@@ -1,4 +1,6 @@
-﻿namespace MenuPlanner.Services.RecipeService
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace MenuPlanner.Services.RecipeService
 {
     public class RecipeService(DataContext context, IMapper mapper) : IRecipeService
     {
@@ -15,8 +17,8 @@
                 Data = _mapper.Map<List<RecipeSummaryDisplayDTO>>(recipes),
                 Success = recipes != null,
                 Message = recipes != null
-                    ? "A list of all ingredients was successfully retrieved."
-                    : "No ingredients were found."
+                    ? "A list of all recipes was successfully retrieved."
+                    : "No recipes were found."
             };
         }
 
@@ -32,29 +34,68 @@
                 Data = _mapper.Map<List<RecipeSummaryDisplayDTO>>(recipes),
                 Success = recipes != null,
                 Message = recipes != null
-                    ? "A list of all ingredients was successfully retrieved."
-                    : "No ingredients were found."
+                    ? $"A list of the {numberOfRecipes} highest rated recipes was successfully retrieved."
+                    : "No recipes were found."
             };
         }
 
         public async Task<ServiceResponse<RecipeDetailsDisplayDTO>> GetByUrl(string url)
         {
             Recipe? recipe = await _context.Recipes
-                .Include(ri => ri.RecipeIngredients)
-                    .ThenInclude(i => i.Ingredient)
-                        .ThenInclude(ia => ia.IngredientAllergens)
-                            .ThenInclude(a => a.Allergen)
-                .Include(s => s.Steps)
-                .Include(c => c.Country)
-                .Include(u => u.User)
-                .FirstOrDefaultAsync(r => r.Url == url);
-            if (recipe != null)
+                .Include(r => r.User)
+                .Include(r => r.Country)
+                .Include(r => r.RecipeIngredients.OrderBy(o => o.SortOrder))
+                    .ThenInclude(ri => ri.Ingredient)
+                .Include(r => r.Steps.OrderBy(o => o.SortOrder))
+                .Include(r => r.Notes.OrderBy(o => o.SortOrder))
+                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                    .ThenInclude(sub => sub.User)
+                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                    .ThenInclude(sub => sub.Country)
+                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                    .ThenInclude(sub => sub.RecipeIngredients.OrderBy(o => o.SortOrder))
+                        .ThenInclude(ri => ri.Ingredient)
+                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                    .ThenInclude(sub => sub.Steps.OrderBy(o => o.SortOrder))
+                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                    .ThenInclude(sub => sub.Notes.OrderBy(o => o.SortOrder))
+                .SingleOrDefaultAsync(r => r.Url == url);
+
+            // Hack: Fjerne parent-oppskriften fra sub-oppskriftene.
+            if (recipe != null && recipe.SubRecipes != null)
             { 
-                if (recipe.Steps != null)
-                { 
-                    recipe.Steps = recipe.Steps.OrderBy(s => s.StepNumber).ToList();
-                }
+                recipe.SubRecipes = recipe.SubRecipes.Where(r => r.Url != recipe.Url).ToList();
             }
+
+            // JEG TROR DETTE TRYGT KAN FJERNES. LA DET STÅ LITT TIL FOR SIKKERHETS SKYLD:
+            // Sortering av ingredienser og fremgangsmåte-steg
+            // for hovedoppskrift og eventuelle underoppskrifter
+            //if (recipe != null)
+            //{
+            //    if (recipe.RecipeIngredients != null)
+            //        recipe.RecipeIngredients = recipe.RecipeIngredients
+            //            .OrderBy(o => o.SortOrder).ToList();
+
+            //    if (recipe.Steps != null)
+            //        recipe.Steps = recipe.Steps
+            //            .OrderBy(s => s.SortOrder).ToList();
+
+            //    if (recipe.SubRecipes != null)
+            //    { 
+            //        recipe.SubRecipes = recipe.SubRecipes
+            //            .OrderBy(o => o.ChildRecipeSortOrder).ToList();
+            //        foreach (Recipe subRecipe in recipe.SubRecipes)
+            //        {
+            //            if (subRecipe.RecipeIngredients != null)
+            //                subRecipe.RecipeIngredients = subRecipe.RecipeIngredients
+            //                    .OrderBy(o => o.SortOrder).ToList();
+
+            //            if (subRecipe.Steps != null)
+            //                subRecipe.Steps = subRecipe.Steps
+            //                    .OrderBy(s => s.SortOrder).ToList();
+            //        }
+            //    }
+            //}
             return new ServiceResponse<RecipeDetailsDisplayDTO>
             {
                 Data = _mapper.Map<RecipeDetailsDisplayDTO>(recipe),

@@ -1,0 +1,39 @@
+﻿.main-image-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    align-items: end;
+}
+
+.main-image {
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.main-image-information-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    padding: 1rem;
+    align-items: center;
+    background-color: var(--transparant-image-overlay);
+    backdrop-filter: var(--overlay-blur);
+}
+
+.main-description {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.sub-description {
+    width: 200px;
+    font-style: italic;
+}
+
+.sub-image {
+    border-radius: .5rem;
+    width: 200px;
+    height: 150px;
+}

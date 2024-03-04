@@ -1,0 +1,36 @@
+﻿@page "/allergen/{Url}"
+@inject IAllergenService AllergenService
+@inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+@if (allergen == null)
+{
+    <PageTitle>Laster allergen...</PageTitle>
+    <Loader />
+}
+else
+{
+    <BreadCrumbs PageTitle="@allergen.Name" />
+    <h1>@allergen.Name</h1>
+    <div class="text-box">
+        <p>@allergen.Description</p>
+    </div>
+    <img class="image" src="images/allergens/@(allergen.Url).png" />
+}
+
+@code {
+    [Parameter]
+    public string Url { get; set; } = "";
+    private AllergenDisplayDTO? allergen;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await AllergenService.GetByUrl(Url);
+        if (result.Success)
+        {
+            allergen = result.Data;
+            JSRuntime.InvokeVoidAsync("setTitle", allergen.Name);
+        }
+    }
+}

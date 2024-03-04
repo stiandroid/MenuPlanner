@@ -1,0 +1,167 @@
+﻿@page "/Account/Register"
+
+@inject UserManager<User> UserManager
+@inject IUserStore<User> UserStore
+@inject SignInManager<User> SignInManager
+@inject IEmailSender<User> EmailSender
+@inject ILogger<Register> Logger
+@inject NavigationManager NavigationManager
+@inject IdentityRedirectManager RedirectManager
+
+<PageTitle>Registrere ny bruker</PageTitle>
+
+<h1>Registrere ny bruker</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <StatusMessage Message="@Message" />
+        <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
+            <DataAnnotationsValidator />
+            <h2>Opprett en ny brukerkonto</h2>
+            <hr />
+            <ValidationSummary class="text-danger" role="alert" />
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.FirstName" class="form-control" autocomplete="first-name" aria-required="true" placeholder="Fornavn" />
+                <label for="first-name"><i class="bi bi-person-vcard"></i> Fornavn</label>
+                <ValidationMessage For="() => Input.FirstName" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.LastName" class="form-control" autocomplete="last-name" aria-required="true" placeholder="Etternavn" />
+                <label for="last-name"><i class="bi bi-person-vcard"></i> Etternavn</label>
+                <ValidationMessage For="() => Input.LastName" class="text-danger" />
+            </div>
+
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label for="email"><i class="bi bi-envelope-at"></i> E-postadresse</label>
+                <ValidationMessage For="() => Input.Email" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Passord" />
+                <label for="password"><i class="bi bi-key"></i> Passord</label>
+                <ValidationMessage For="() => Input.Password" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Gjenta passord" />
+                <label for="confirm-password"><i class="bi bi-key"></i> Gjenta passord</label>
+                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">
+                <i class="bi bi-person-plus"></i>
+                Registrer meg!
+            </button>
+        </EditForm>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>... eller logg inn med en annen tjeneste</h3>
+            <hr />
+            <ExternalLoginPicker />
+        </section>
+    </div>
+</div>
+
+@code {
+    private IEnumerable<IdentityError>? identityErrors;
+
+    [SupplyParameterFromForm]
+    private InputModel Input { get; set; } = new();
+
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
+
+    private string? Message => identityErrors is null ? null : $"Error: {string.Join(", ", identityErrors.Select(error => error.Description))}";
+
+    public async Task RegisterUser(EditContext editContext)
+    {
+        var now = DateTime.Now;
+        var user = CreateUser();
+
+        await UserStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+        var emailStore = GetEmailStore();
+        await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+        user.DateRegistered = now;
+        user.EmailConfirmationExpiryDate = now.AddDays(2);
+        user.FirstName = Input.FirstName;
+        user.LastName = Input.LastName;
+        var result = await UserManager.CreateAsync(user, Input.Password);
+        if (!result.Succeeded)
+        {
+            identityErrors = result.Errors;
+            return;
+        }
+
+        Logger.LogInformation("User created a new account with password.");
+
+        var userId = await UserManager.GetUserIdAsync(user);
+        var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
+        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+        var callbackUrl = NavigationManager.GetUriWithQueryParameters(
+            NavigationManager.ToAbsoluteUri("Account/ConfirmEmail").AbsoluteUri,
+            new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code, ["returnUrl"] = ReturnUrl });
+
+        await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
+
+        if (UserManager.Options.SignIn.RequireConfirmedAccount)
+        {
+            RedirectManager.RedirectTo(
+                "Account/RegisterConfirmation",
+                new() { ["email"] = Input.Email, ["returnUrl"] = ReturnUrl });
+        }
+
+        await SignInManager.SignInAsync(user, isPersistent: false);
+        RedirectManager.RedirectTo(ReturnUrl);
+    }
+
+    private User CreateUser()
+    {
+        try
+        {
+            return Activator.CreateInstance<User>();
+        }
+        catch
+        {
+            throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
+                $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor.");
+        }
+    }
+
+    private IUserEmailStore<User> GetEmailStore()
+    {
+        if (!UserManager.SupportsUserEmail)
+        {
+            throw new NotSupportedException("The default UI requires a user store with email support.");
+        }
+        return (IUserEmailStore<User>)UserStore;
+    }
+
+    private sealed class InputModel
+    {
+        [Required]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "Fornavn må være fra to til 30 tegn.")]
+        [Display(Name = "Fornavn")]
+        public string FirstName { get; set; } = "";
+
+        [Required]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "Etternavn må være fra to til 30 tegn.")]
+        [Display(Name = "Etternavn")]
+        public string LastName { get; set; } = "";
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; } = "";
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} må være minst {2} og maksmalt {1} tegn langt.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Passord")]
+        public string Password { get; set; } = "";
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Gjenta passord")]
+        [Compare("Password", ErrorMessage = "Passordfeltene er ikke like.")]
+        public string ConfirmPassword { get; set; } = "";
+    }
+}

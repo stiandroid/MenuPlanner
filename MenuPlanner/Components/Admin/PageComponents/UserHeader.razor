@@ -1,0 +1,84 @@
+﻿@inject NavigationManager Nav
+@rendermode InteractiveServer
+
+<div class="p-3" style="@(User.HasBackgropImage 
+        ? @$"background-size: cover; background-image: url(""/images/users/backdrop/{User.Id}.jpg"")"
+        : "background-color: var(--info-badge-bg-color)")">
+    <div class="d-flex justify-content-between align-items-center mb-0">
+        <div class="d-flex justify-content-start align-items-center">
+            <img class="user-header-profile-img" 
+                 src="@(User.HasProfileImage ? $"/images/users/profile/{User.Id}.jpg" : "/images/users/profile/_noimg.jpg")" />
+
+            <div class="user-header-profile-name">
+                <h1 class="mb-2">
+                    @(User.IsProtectedSystemUser ? "Systemadministrator" : $"{User.LastName}, {User.FirstName}")
+                </h1>
+                <div class="mb-2">
+                    <i class="bi bi-envelope"></i> <a href="mailto:@User.Email">@User.Email</a>
+                </div>
+                <div class="d-flex flex-row flex-wrap">
+                    @if (Roles != null)
+                    {
+                        foreach (var role in Roles)
+                        {
+                            <span class="badge info-badge me-2 mb-2">
+                                @role.DisplayName
+                            </span>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+        @if (EntityContext == EntityContext.View)
+        {
+            <MudFab Color="Color.Warning" 
+                    StartIcon="@(User.IsProtectedSystemUser ? Icons.Material.Filled.LockPerson : Icons.Material.Filled.Edit)" 
+                    OnClick="EditUser" 
+                    Disabled="User.IsProtectedSystemUser" />
+        }
+        @if (EntityContext == EntityContext.Edit)
+        {
+            <div class="d-flex flex-column gap-3">
+                <MudFab
+                    @onclick="GoBack"
+                    StartIcon="@Icons.Material.Rounded.ChevronLeft"
+                    Style="@($"color:{Colors.Indigo.Lighten5}; background:{Colors.Indigo.Default};")">
+                </MudFab>
+
+                <button type="submit" disabled="@User.IsProtectedSystemUser">
+                    <MudFab Color="Color.Success" StartIcon="@Icons.Material.Rounded.Save" />
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public required User User { get; set; }
+
+    [Parameter]
+    public List<RoleDisplayDTO>? Roles { get; set; }
+
+    [Parameter]
+    public required EntityContext EntityContext { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (EntityContext == EntityContext.Unset_do_not_use)
+        {
+            throw new InvalidOperationException("The value for the required parameter EntityContext is invalid or not set. The parameter must be set with either the value View, Edit or Delete.");
+        }
+    }
+
+    void EditUser()
+    {
+        Nav.NavigateTo($"/admin/users/edit/{User!.Id}");
+    }
+
+    void GoBack()
+    {
+        Nav.NavigateTo($"/admin/users/{User.Id}");
+    }
+}
