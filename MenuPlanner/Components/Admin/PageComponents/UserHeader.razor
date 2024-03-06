@@ -66,9 +66,9 @@
 
     protected override void OnInitialized()
     {
-        if (EntityContext == EntityContext.Unset_do_not_use)
+        if (EntityContext == EntityContext.Unset)
         {
-            throw new InvalidOperationException("The value for the required parameter EntityContext is invalid or not set. The parameter must be set with either the value View, Edit or Delete.");
+            throw new ArgumentException("The value for the required parameter EntityContext is invalid or not set. The parameter must be set with either the enum value EntityContext.View, EntityContext.Edit, EntityContext.Publish or EntityContext.Delete.");
         }
     }
 

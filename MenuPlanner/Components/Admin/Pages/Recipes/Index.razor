@@ -15,6 +15,7 @@
 <MudTable
     ServerData="@(new Func<TableState, Task<TableData<RecipeSummaryDisplayDTO>>>(ServerReload))"
     T="RecipeSummaryDisplayDTO"
+    @ref="table"
     OnRowClick="@GoToRecipe">
     <ToolBarContent>
         <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Søk etter oppskrifter"
@@ -59,7 +60,6 @@
     </NoRecordsContent>
     <LoadingContent>
         <Loader />
-        @* <MudText>Laster data...</MudText> *@
     </LoadingContent>
     <PagerContent>
         <MudTablePager HideRowsPerPage=true PageSizeOptions="new int[]{5}" />
@@ -106,7 +106,7 @@
             }
             if (element.Country != null)
             {
-                if ($"{element.Country.Name}".Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                if (element.Country.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
                     return true;
             }
             return false;

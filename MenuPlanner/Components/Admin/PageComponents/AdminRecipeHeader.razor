@@ -1,0 +1,127 @@
+﻿@inject IRecipeService RecipeService
+@inject NavigationManager Nav
+@rendermode InteractiveServer
+@inject IDialogService DialogService
+
+<div class="p-3" style="background-color: var(--info-badge-bg-color)">
+    <div class="d-flex justify-content-between align-items-center mb-0">
+        <div class="d-flex justify-content-start align-items-center">
+            <img class="user-header-profile-img" 
+                 src="@($"/images/recipes/{Recipe.Url}200x150.jpg")" />
+
+            <div class="user-header-profile-name">
+                <h1 class="mb-2">
+                    @Recipe.Name
+                </h1>
+                <div class="mb-2">
+                    @Recipe.Description
+                </div>
+                @if (Recipe.SubRecipes != null && Recipe.SubRecipes.Count > 0)
+                {
+                    <div>Oppskriften består av flere deloppskrifter.</div>
+                }
+            </div>
+
+        </div>
+        @if (EntityContext == EntityContext.View)
+        {
+            <div class="d-flex flex-column gap-3">
+                <MudFab Color="Color.Warning" 
+                        StartIcon="@Icons.Material.Filled.Edit" 
+                        OnClick="NavigateToEditPage"
+                        Disabled="!IsEditButtonEnabled" />
+
+                <MudFab Color="Color.Warning"
+                        StartIcon="@Icons.Material.Filled.CloudUpload"
+                        OnClick="NavigateToPublishPage"
+                        Disabled="!IsPublishButtonEnabled" />
+            </div>
+        }
+        @if (EntityContext == EntityContext.Edit)
+        {
+            <div class="d-flex flex-column gap-3">
+                <MudFab
+                    @onclick="GoBack"
+                    StartIcon="@Icons.Material.Rounded.ChevronLeft"
+                    Style="@($"color:{Colors.Indigo.Lighten5}; background:{Colors.Indigo.Default};")">
+                </MudFab>
+
+                <button type="submit">
+                    <MudFab Color="Color.Success" StartIcon="@Icons.Material.Rounded.Save" />
+                </button>
+            </div>
+        }
+        @if (EntityContext == EntityContext.Publish)
+        {
+            <div class="d-flex flex-column gap-3">
+                <MudFab @onclick="GoBack"
+                        StartIcon="@Icons.Material.Rounded.ChevronLeft"
+                        Style="@($"color:{Colors.Indigo.Lighten5}; background:{Colors.Indigo.Default};")">
+                </MudFab>
+
+                <MudFab @onclick="OpenConfirmPublishDialog" Color="Color.Success" StartIcon="@Icons.Material.Rounded.CloudUpload" />
+            </div>
+        }
+    </div>
+</div>
+
+<MudDialog @bind-IsVisible="visible" Options="dialogOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon="@Icons.Material.Filled.CloudUpload" Class="mr-3" /> Publisere oppskrift
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <p>Bekreft publisering av oppskriften.</p>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ConfirmPublish" Class="px-10">
+            Avbryt
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [Parameter] public required RecipeDetailsDisplayDTO Recipe { get; set; }
+    [Parameter] public required EntityContext EntityContext { get; set; }
+    [Parameter] public bool IsPublishButtonEnabled { get; set; }
+    [Parameter] public bool IsEditButtonEnabled { get; set; }
+
+    private bool visible = true;
+
+    private DialogOptions dialogOptions = new() { CloseOnEscapeKey = true, DisableBackdropClick = true };
+
+    protected override void OnInitialized()
+    {
+        if (EntityContext == EntityContext.Unset)
+        {
+            throw new ArgumentException("The value for the required parameter EntityContext is invalid or not set. The parameter must be set with either the enum value EntityContext.View, EntityContext.Edit, EntityContext.Publish or EntityContext.Delete.");
+        }
+    }
+
+    void NavigateToEditPage()
+    {
+        Nav.NavigateTo($"/admin/recipes/edit/{Recipe!.Url}");
+    }
+
+    void NavigateToPublishPage()
+    {
+        Nav.NavigateTo($"/admin/recipes/publish/{Recipe!.Url}");
+    }
+
+    void GoBack()
+    {
+        Nav.NavigateTo($"/admin/recipes/{Recipe.Url}");
+    }
+
+    private void OpenConfirmPublishDialog()
+    {
+        visible = true; 
+    }
+
+    void ConfirmPublish()
+    {
+        visible = false;
+        // await RecipeService.Publish(recipe);
+    }
+}

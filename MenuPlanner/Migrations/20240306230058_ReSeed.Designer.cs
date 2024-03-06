@@ -4,6 +4,7 @@ using MenuPlanner.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MenuPlanner.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240306230058_ReSeed")]
+    partial class ReSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +64,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Allergens", (string)null);
+                    b.ToTable("Allergens");
 
                     b.HasData(
                         new
@@ -246,7 +249,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("ISO3166_2");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
 
                     b.HasData(
                         new
@@ -376,7 +379,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients", (string)null);
+                    b.ToTable("Ingredients");
 
                     b.HasData(
                         new
@@ -2991,7 +2994,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("AllergenId");
 
-                    b.ToTable("IngredientAllergens", (string)null);
+                    b.ToTable("IngredientAllergens");
 
                     b.HasData(
                         new
@@ -3029,7 +3032,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("NutrientId");
 
-                    b.ToTable("IngredientNutrients", (string)null);
+                    b.ToTable("IngredientNutrients");
 
                     b.HasData(
                         new
@@ -3158,7 +3161,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Nutrients", (string)null);
+                    b.ToTable("Nutrients");
 
                     b.HasData(
                         new
@@ -3803,7 +3806,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("Recipes");
 
                     b.HasData(
                         new
@@ -3990,7 +3993,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("RecipeIngredients", (string)null);
+                    b.ToTable("RecipeIngredients");
 
                     b.HasData(
                         new
@@ -4352,7 +4355,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("RecipeNotes", (string)null);
+                    b.ToTable("RecipeNotes");
 
                     b.HasData(
                         new
@@ -4394,7 +4397,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("RecipeSteps", (string)null);
+                    b.ToTable("RecipeSteps");
 
                     b.HasData(
                         new
@@ -4489,7 +4492,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SearchIndex", (string)null);
+                    b.ToTable("SearchIndex");
 
                     b.HasData(
                         new

@@ -4,6 +4,7 @@ using MenuPlanner.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MenuPlanner.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240306225605_Recipe_IsDraft")]
+    partial class Recipe_IsDraft
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,175 +64,175 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Allergens", (string)null);
+                    b.ToTable("Allergens");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "crustacean.png",
                             IsPublished = true,
                             Name = "Krepsdyr",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "krepsdyr"
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "sesame.png",
                             IsPublished = true,
                             Name = "Sesamfrø",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sesamfro"
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "nuts.png",
                             IsPublished = true,
                             Name = "Nøtter",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "notter"
                         },
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "gluten.png",
                             IsPublished = true,
                             Name = "Gluten",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gluten"
                         },
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "egg.png",
                             IsPublished = true,
                             Name = "Egg",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "egg"
                         },
                         new
                         {
                             Id = 6,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "fish.png",
                             IsPublished = true,
                             Name = "Fisk",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "fisk"
                         },
                         new
                         {
                             Id = 7,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "shellfish.png",
                             IsPublished = true,
                             Name = "Skalldyr",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "skalldyr"
                         },
                         new
                         {
                             Id = 8,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "mustard.png",
                             IsPublished = true,
                             Name = "Sennep",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sennep"
                         },
                         new
                         {
                             Id = 9,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "celery.png",
                             IsPublished = true,
                             Name = "Selleri",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "selleri"
                         },
                         new
                         {
                             Id = 10,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "peanuts.png",
                             IsPublished = true,
                             Name = "Peanøtter",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "peanotter"
                         },
                         new
                         {
                             Id = 11,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "milk.png",
                             IsPublished = true,
                             Name = "Melk",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "melk"
                         },
                         new
                         {
                             Id = 12,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "sulphite.png",
                             IsPublished = true,
                             Name = "Sulfitt",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sulfitt"
                         },
                         new
                         {
                             Id = 13,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "",
                             IsPublished = true,
                             Name = "Soya",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "soya"
                         },
                         new
                         {
                             Id = 14,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             Icon = "",
                             Image = "",
                             IsPublished = true,
                             Name = "Lupin",
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "lupin"
                         });
                 });
@@ -246,7 +249,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("ISO3166_2");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
 
                     b.HasData(
                         new
@@ -376,14 +379,14 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients", (string)null);
+                    b.ToTable("Ingredients");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -391,14 +394,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Vann",
                             Type = 17,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "vann"
                         },
                         new
                         {
                             Id = 2,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -406,14 +409,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvetemel",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvetemel"
                         },
                         new
                         {
                             Id = 3,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -421,14 +424,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Pizzamel, tipo-00",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "pizzamel-tipo-00"
                         },
                         new
                         {
                             Id = 4,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -436,14 +439,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Brødmel, tipo-0",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "brodmel-tipo-0"
                         },
                         new
                         {
                             Id = 5,
                             Alias = "Semolina",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -451,14 +454,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Semulegryn",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "semulegryn"
                         },
                         new
                         {
                             Id = 6,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -466,14 +469,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sammalt hvete, grovmalt",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sammalt-hvete-grovmalt"
                         },
                         new
                         {
                             Id = 7,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -481,14 +484,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sammalt hvete, finmalt",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sammalt-hvete-finmalt"
                         },
                         new
                         {
                             Id = 8,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -496,14 +499,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvete helkorn",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvete-helkorn"
                         },
                         new
                         {
                             Id = 9,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -511,14 +514,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Havregryn, lettkokt",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "havregryn-lettkokt"
                         },
                         new
                         {
                             Id = 10,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -526,14 +529,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Havregryn, store",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "havregryn-store"
                         },
                         new
                         {
                             Id = 11,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -541,14 +544,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Havregryn, glutenfri",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "havregryn-glutenfri"
                         },
                         new
                         {
                             Id = 12,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -556,14 +559,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Havremel",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "havremel"
                         },
                         new
                         {
                             Id = 13,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -571,14 +574,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rug, helkorn",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rug-helkorn"
                         },
                         new
                         {
                             Id = 14,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -586,14 +589,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rugmel",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rugmel"
                         },
                         new
                         {
                             Id = 15,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -601,14 +604,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Bygg, helkorn",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "bygg-helkorn"
                         },
                         new
                         {
                             Id = 16,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -616,14 +619,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Byggmel",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "byggmel"
                         },
                         new
                         {
                             Id = 17,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -631,14 +634,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gresskarkjerner",
                             Type = 4,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gresskarkjerner"
                         },
                         new
                         {
                             Id = 18,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -646,14 +649,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Skummet melk",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "skummet-melk"
                         },
                         new
                         {
                             Id = 19,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 41.0,
                             HasImage = false,
@@ -661,14 +664,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Lettmelk",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "lettmelk"
                         },
                         new
                         {
                             Id = 20,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -676,14 +679,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Helmelk",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "helmelk"
                         },
                         new
                         {
                             Id = 21,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -691,14 +694,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kremfløte",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kremflote"
                         },
                         new
                         {
                             Id = 22,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -706,14 +709,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Matfløte",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "matflote"
                         },
                         new
                         {
                             Id = 23,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -721,14 +724,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Lettrømme",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "lettromme"
                         },
                         new
                         {
                             Id = 24,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -736,14 +739,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Seterrømme",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "seterromme"
                         },
                         new
                         {
                             Id = 25,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -751,14 +754,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rømmekolle",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rommekolle"
                         },
                         new
                         {
                             Id = 26,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -766,14 +769,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kvarg",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kvarg"
                         },
                         new
                         {
                             Id = 27,
                             Alias = "Hvitost",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -781,14 +784,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gulost",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gulost"
                         },
                         new
                         {
                             Id = 28,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -796,14 +799,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Edamer",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "edamer"
                         },
                         new
                         {
                             Id = 29,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -811,14 +814,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gouda",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gouda"
                         },
                         new
                         {
                             Id = 30,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -826,14 +829,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Brie",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "brie"
                         },
                         new
                         {
                             Id = 31,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -841,14 +844,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kremost",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kremost"
                         },
                         new
                         {
                             Id = 32,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -856,14 +859,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Cottage cheese",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "cottage-cheese"
                         },
                         new
                         {
                             Id = 33,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -871,14 +874,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Ricotta",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "ricotta"
                         },
                         new
                         {
                             Id = 34,
                             Alias = "Grillost",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -886,14 +889,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Halloumi",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "halloumi"
                         },
                         new
                         {
                             Id = 35,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -901,14 +904,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Mozzarella",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "mozzarella"
                         },
                         new
                         {
                             Id = 36,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -916,14 +919,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Cheddar",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "cheddar"
                         },
                         new
                         {
                             Id = 37,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -931,14 +934,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Geitost",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "geitost"
                         },
                         new
                         {
                             Id = 38,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -946,14 +949,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Fløtemysost",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "flotemysost"
                         },
                         new
                         {
                             Id = 39,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Egg fra høne. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -961,14 +964,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Egg",
                             Type = 8,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "egg"
                         },
                         new
                         {
                             Id = 40,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Eggeplomme fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggeplommer i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -976,14 +979,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Eggeplomme",
                             Type = 8,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "eggeplomme"
                         },
                         new
                         {
                             Id = 41,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Eggehvite fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggehviter i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -991,14 +994,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Eggehvite",
                             Type = 8,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "eggehvite"
                         },
                         new
                         {
                             Id = 42,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Egg fra vaktel.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1006,14 +1009,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Vaktelegg",
                             Type = 8,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "vaktelegg"
                         },
                         new
                         {
                             Id = 43,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Egg fra måke (måse).",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1021,14 +1024,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Måsegg",
                             Type = 8,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "masegg"
                         },
                         new
                         {
                             Id = 44,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1036,14 +1039,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Tortillachips",
                             Type = 17,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "tortillachips"
                         },
                         new
                         {
                             Id = 45,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1051,14 +1054,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Nachochips",
                             Type = 17,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "nachochips"
                         },
                         new
                         {
                             Id = 46,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1066,14 +1069,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Salt",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "salt"
                         },
                         new
                         {
                             Id = 47,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1081,14 +1084,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Tomatketsjup",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "tomatketsjup"
                         },
                         new
                         {
                             Id = 48,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1096,14 +1099,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Søt sennep",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sot-sennep"
                         },
                         new
                         {
                             Id = 49,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1111,14 +1114,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sterk sennep",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sterk-sennep"
                         },
                         new
                         {
                             Id = 50,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1126,14 +1129,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Dijonsennep",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "dijonsennep"
                         },
                         new
                         {
                             Id = 51,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1141,14 +1144,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Grov sennep",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "grov-sennep"
                         },
                         new
                         {
                             Id = 52,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1156,14 +1159,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Soyasaus",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "soyasaus"
                         },
                         new
                         {
                             Id = 53,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1171,14 +1174,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Saltredusert soyasaus",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "saltredusert-soyasaus"
                         },
                         new
                         {
                             Id = 54,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "35%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1186,14 +1189,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Eddikessens",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "eddikessens"
                         },
                         new
                         {
                             Id = 55,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "7%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1201,14 +1204,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Klar eddik",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "klar-eddik"
                         },
                         new
                         {
                             Id = 56,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "7%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1216,14 +1219,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Brun eddik",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "brun-eddik"
                         },
                         new
                         {
                             Id = 57,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1231,14 +1234,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Eplecidereddik",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "eplecidereddik"
                         },
                         new
                         {
                             Id = 58,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1246,14 +1249,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvitvinseddik",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvitvinseddik"
                         },
                         new
                         {
                             Id = 59,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1261,14 +1264,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rødvinseddik",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rodvinseddik"
                         },
                         new
                         {
                             Id = 60,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1276,14 +1279,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sitrondråper",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sitrondråper"
                         },
                         new
                         {
                             Id = 61,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1291,14 +1294,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Smør",
                             Type = 2,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "smor"
                         },
                         new
                         {
                             Id = 62,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1306,14 +1309,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Margarin",
                             Type = 3,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "margarin"
                         },
                         new
                         {
                             Id = 63,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1321,14 +1324,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rapsolje",
                             Type = 15,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rapsolje"
                         },
                         new
                         {
                             Id = 64,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1336,14 +1339,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Maisolje",
                             Type = 15,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "maisolje"
                         },
                         new
                         {
                             Id = 65,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1351,14 +1354,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Olivenolje",
                             Type = 15,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "Olivenolje"
                         },
                         new
                         {
                             Id = 66,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1366,14 +1369,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sesamolje",
                             Type = 15,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sesamolje"
                         },
                         new
                         {
                             Id = 67,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1381,14 +1384,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kokosolje",
                             Type = 15,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kokosolje"
                         },
                         new
                         {
                             Id = 68,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1396,14 +1399,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Frityrolje",
                             Type = 15,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "frityrolje"
                         },
                         new
                         {
                             Id = 69,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1411,14 +1414,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sukker",
                             Type = 13,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sukker"
                         },
                         new
                         {
                             Id = 70,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1426,14 +1429,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Blåbær",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "blabar"
                         },
                         new
                         {
                             Id = 71,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1441,14 +1444,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Jordbær",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "jordbar"
                         },
                         new
                         {
                             Id = 72,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1456,14 +1459,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Bringebær",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "bringebar"
                         },
                         new
                         {
                             Id = 73,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1471,14 +1474,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Grønne epler",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gronne-epler"
                         },
                         new
                         {
                             Id = 74,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1486,14 +1489,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Røde epler",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rode-epler"
                         },
                         new
                         {
                             Id = 75,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1501,14 +1504,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gule epler",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gule-epler"
                         },
                         new
                         {
                             Id = 76,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1516,14 +1519,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Appelsin",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "appelsin"
                         },
                         new
                         {
                             Id = 77,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1531,14 +1534,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sitron",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sitron"
                         },
                         new
                         {
                             Id = 78,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1546,14 +1549,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Økologisk sitron",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "okologisk-sitron"
                         },
                         new
                         {
                             Id = 79,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1561,14 +1564,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Lime",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "lime"
                         },
                         new
                         {
                             Id = 80,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1576,14 +1579,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hermetiske mandarinbåter",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hermetiske-mandarinbater"
                         },
                         new
                         {
                             Id = 81,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1591,14 +1594,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hermetiske pærer",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hermetiske-parer"
                         },
                         new
                         {
                             Id = 82,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1606,14 +1609,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hermetiske fersken",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hermetiske-fersken"
                         },
                         new
                         {
                             Id = 83,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1621,14 +1624,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Banan",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "banan"
                         },
                         new
                         {
                             Id = 84,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1636,14 +1639,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Klementin",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "klementin"
                         },
                         new
                         {
                             Id = 85,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1651,14 +1654,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Blå druer",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "bla-druer"
                         },
                         new
                         {
                             Id = 86,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1666,14 +1669,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Grønne druer",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gronne-druer"
                         },
                         new
                         {
                             Id = 87,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1681,14 +1684,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rosiner",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rosiner"
                         },
                         new
                         {
                             Id = 88,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1696,14 +1699,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Korinter",
                             Type = 1,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "korinter"
                         },
                         new
                         {
                             Id = 89,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1711,14 +1714,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Fiskesaus",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "fiskesaus"
                         },
                         new
                         {
                             Id = 90,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1726,14 +1729,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kokosmelk",
                             Type = 16,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kokosmelk"
                         },
                         new
                         {
                             Id = 91,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1741,14 +1744,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kokosmelk, lett",
                             Type = 16,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kokosmelk-lett"
                         },
                         new
                         {
                             Id = 92,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1756,14 +1759,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kokoskrem",
                             Type = 16,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kokoskrem"
                         },
                         new
                         {
                             Id = 93,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1771,14 +1774,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kokosmasse",
                             Type = 16,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kokosmasse"
                         },
                         new
                         {
                             Id = 94,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1786,14 +1789,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sitrongress",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sitrongress"
                         },
                         new
                         {
                             Id = 95,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1801,14 +1804,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rød currypasta",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rod-currypasta"
                         },
                         new
                         {
                             Id = 96,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1816,14 +1819,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Grønn currypasta",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gronn-currypasta"
                         },
                         new
                         {
                             Id = 97,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1831,14 +1834,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gul currypasta",
                             Type = 14,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gul-currypasta"
                         },
                         new
                         {
                             Id = 98,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1846,14 +1849,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Galangal",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "galangal"
                         },
                         new
                         {
                             Id = 99,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1861,14 +1864,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rød paprika",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rod-paprika"
                         },
                         new
                         {
                             Id = 100,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1876,14 +1879,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gul paprika",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gul-paprika"
                         },
                         new
                         {
                             Id = 101,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1891,14 +1894,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Grønn paprika",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gronn-paprika"
                         },
                         new
                         {
                             Id = 102,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1906,14 +1909,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Isbergsalat",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "isbergsalat"
                         },
                         new
                         {
                             Id = 103,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1921,14 +1924,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hjertesalat",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hjertesalat"
                         },
                         new
                         {
                             Id = 104,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1936,14 +1939,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Lollosalat",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "lollosalat"
                         },
                         new
                         {
                             Id = 105,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1951,14 +1954,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Maiskolbe, fersk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "maiskolbe-fersk"
                         },
                         new
                         {
                             Id = 106,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1966,14 +1969,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hermetisk maiskolbe",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hermetisk-maiskolbe"
                         },
                         new
                         {
                             Id = 107,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1981,14 +1984,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hermetiske maiskorn",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hermetiske-maiskorn"
                         },
                         new
                         {
                             Id = 108,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -1996,14 +1999,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Plommetomat",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "plommetomat"
                         },
                         new
                         {
                             Id = 109,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2011,14 +2014,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kirsebærtomat",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kirsebartomat"
                         },
                         new
                         {
                             Id = 110,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2026,14 +2029,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Tomat",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "tomat"
                         },
                         new
                         {
                             Id = 111,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2041,14 +2044,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Slangeagurk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "slangeagurk"
                         },
                         new
                         {
                             Id = 112,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2056,14 +2059,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gul løk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gul-lok"
                         },
                         new
                         {
                             Id = 113,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2071,14 +2074,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rødløk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rodlok"
                         },
                         new
                         {
                             Id = 114,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2086,14 +2089,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Chalottløk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "chalottlok"
                         },
                         new
                         {
                             Id = 115,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2101,14 +2104,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvitløk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvitlok"
                         },
                         new
                         {
                             Id = 116,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2116,14 +2119,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Salatløk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "salatlok"
                         },
                         new
                         {
                             Id = 117,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2131,14 +2134,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Vårløk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "varlok"
                         },
                         new
                         {
                             Id = 118,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2146,14 +2149,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Purre",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "purre"
                         },
                         new
                         {
                             Id = 119,
                             Alias = "Kyllingbuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2161,14 +2164,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllingkraft",
                             Type = 17,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllingkraft"
                         },
                         new
                         {
                             Id = 120,
                             Alias = "Storfebuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2176,14 +2179,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Storfekraft",
                             Type = 17,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "storfekraft"
                         },
                         new
                         {
                             Id = 121,
                             Alias = "Fiskebuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2191,14 +2194,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Fiskekraft",
                             Type = 17,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "fiskekraft"
                         },
                         new
                         {
                             Id = 122,
                             Alias = "Grønnsaksbuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2206,14 +2209,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Grønnsakskraft",
                             Type = 17,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gronnsakskraft"
                         },
                         new
                         {
                             Id = 123,
                             Alias = "Rød chili",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Den vanlige, røde chilien du kjenner fra dagligvarebutikken.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2221,14 +2224,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Chili, serrano",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "chili-serrano"
                         },
                         new
                         {
                             Id = 124,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "En sterkere chili.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2236,14 +2239,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Chili, habanero",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "chili-habanero"
                         },
                         new
                         {
                             Id = 125,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Også kalt thai-chili. Sterkere enn serrano.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2251,14 +2254,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Chili, birds eye",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "chili-birds-eye"
                         },
                         new
                         {
                             Id = 126,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2266,14 +2269,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Champignon, fersk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "champignon-fersk"
                         },
                         new
                         {
                             Id = 127,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2281,14 +2284,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Champignon, hermetisk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "champignon-hermetisk"
                         },
                         new
                         {
                             Id = 128,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2296,14 +2299,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Aromasopp, fersk",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "aromasopp-fersk"
                         },
                         new
                         {
                             Id = 129,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2311,14 +2314,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Aromasopp, tørket",
                             Type = 0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "aromasopp-torket"
                         },
                         new
                         {
                             Id = 130,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2326,14 +2329,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Margarin",
                             Type = 3,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "margarin"
                         },
                         new
                         {
                             Id = 131,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2341,14 +2344,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kylling, hel grillet",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kylling-hel-grillet"
                         },
                         new
                         {
                             Id = 132,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2356,14 +2359,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kylling, hel fersk",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kylling-hel-fersk"
                         },
                         new
                         {
                             Id = 133,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2371,14 +2374,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllinglår, grillet",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllinglar-grillet"
                         },
                         new
                         {
                             Id = 134,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2386,14 +2389,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllinglår, fersk",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllinglar-fersk"
                         },
                         new
                         {
                             Id = 135,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2401,14 +2404,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllinglår, frossen",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllinglar-frossen"
                         },
                         new
                         {
                             Id = 136,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2416,14 +2419,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllingvinger, grillet",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllingvinger-grillet"
                         },
                         new
                         {
                             Id = 137,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2431,14 +2434,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllingvinger, fersk",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllingvinger-fersk"
                         },
                         new
                         {
                             Id = 138,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2446,14 +2449,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllingvinger, frossen",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllingvinger-frossen"
                         },
                         new
                         {
                             Id = 139,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2461,14 +2464,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kylling lårfilet",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kylling-larfilet"
                         },
                         new
                         {
                             Id = 140,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2476,14 +2479,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kylling brystfilet",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kylling-brystfilet"
                         },
                         new
                         {
                             Id = 141,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2491,14 +2494,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kyllingkjøttdeig",
                             Type = 7,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kyllingkjottdeig"
                         },
                         new
                         {
                             Id = 142,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2506,14 +2509,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kjøttdeig",
                             Type = 5,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kjottdeig"
                         },
                         new
                         {
                             Id = 143,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2521,14 +2524,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Karbonadedeig",
                             Type = 5,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "karbonadedeig"
                         },
                         new
                         {
                             Id = 144,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2536,14 +2539,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Medisterdeig",
                             Type = 5,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "medisterdeig"
                         },
                         new
                         {
                             Id = 145,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2551,14 +2554,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Medisterfarse",
                             Type = 5,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "medisterfarse"
                         },
                         new
                         {
                             Id = 146,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2566,14 +2569,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Koriander, fersk",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "koriander-fersk"
                         },
                         new
                         {
                             Id = 147,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2581,14 +2584,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Dill, fersk",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "dill-fersk"
                         },
                         new
                         {
                             Id = 148,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2596,14 +2599,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Gressløk, fersk",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "gresslok-fersk"
                         },
                         new
                         {
                             Id = 149,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2611,14 +2614,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Basilikum, fersk",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "basilikum-fersk"
                         },
                         new
                         {
                             Id = 150,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2626,14 +2629,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Thaibasilikum, fersk",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "thaibasilikum-fersk"
                         },
                         new
                         {
                             Id = 151,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2641,14 +2644,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sort pepper, hel",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sort-pepper-hel"
                         },
                         new
                         {
                             Id = 152,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2656,14 +2659,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sort pepper, grovmalt",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sort-pepper-grovmalt"
                         },
                         new
                         {
                             Id = 153,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2671,14 +2674,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Sort pepper, malt",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "sort-pepper-malt"
                         },
                         new
                         {
                             Id = 154,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2686,14 +2689,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvit pepper, hel",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvit-pepper-hel"
                         },
                         new
                         {
                             Id = 155,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2701,14 +2704,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvit pepper, grovmalt",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvit-pepper-grovmalt"
                         },
                         new
                         {
                             Id = 156,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2716,14 +2719,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvit pepper, malt",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvit-pepper-malt"
                         },
                         new
                         {
                             Id = 157,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2731,14 +2734,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Karri",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "karri"
                         },
                         new
                         {
                             Id = 158,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2746,14 +2749,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvitløkspulver",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvitlokspulver"
                         },
                         new
                         {
                             Id = 159,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2761,14 +2764,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Løkpulver",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "lokpulver"
                         },
                         new
                         {
                             Id = 160,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2776,14 +2779,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kanel, hel",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kanel-hel"
                         },
                         new
                         {
                             Id = 161,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2791,14 +2794,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kanel, malt",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kanel-malt"
                         },
                         new
                         {
                             Id = 162,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2806,14 +2809,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Kardemomme",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kardemomme"
                         },
                         new
                         {
                             Id = 163,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2821,14 +2824,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Hvitløkspulver",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvitlokspulver"
                         },
                         new
                         {
                             Id = 164,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2836,14 +2839,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Chilipulver",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "chilipulver"
                         },
                         new
                         {
                             Id = 165,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2851,14 +2854,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Chiliflak",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "chiliflak"
                         },
                         new
                         {
                             Id = 166,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2866,14 +2869,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Paprikapulver",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "paprikapulver"
                         },
                         new
                         {
                             Id = 167,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2881,14 +2884,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Paprikapulver, røkt",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "paprikapulver-rokt"
                         },
                         new
                         {
                             Id = 168,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2896,14 +2899,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Rosmarin, tørket",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "rosmarin-torket"
                         },
                         new
                         {
                             Id = 169,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2911,14 +2914,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Dill, tørket",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "dill-torket"
                         },
                         new
                         {
                             Id = 170,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2926,14 +2929,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Oregano, tørket",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "oregano-torket"
                         },
                         new
                         {
                             Id = 171,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2941,14 +2944,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Basilikum, tørket",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "basilikum-torket"
                         },
                         new
                         {
                             Id = 172,
                             Alias = "Spisskummen, spisskarve, cumin, Roman caraway",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Latin: Cuminum cyminum. Engelsk: Cumin eller Roman caraway. Spisskum kan også kalles spisskummen eller spisskarve, og er ikke det samme som karve.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2956,14 +2959,14 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Spisskum",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "spisskum"
                         },
                         new
                         {
                             Id = 173,
                             Alias = "Caraway",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Latin: Carum carvi. Engelsk: Caraway. Karve er ikke det samme som spisskum/spisskummen/spisskarve/Roman caraway.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
@@ -2971,7 +2974,7 @@ namespace MenuPlanner.Migrations
                             IsPublished = true,
                             Name = "Karve",
                             Type = 12,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "karve"
                         });
                 });
@@ -2991,7 +2994,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("AllergenId");
 
-                    b.ToTable("IngredientAllergens", (string)null);
+                    b.ToTable("IngredientAllergens");
 
                     b.HasData(
                         new
@@ -3029,7 +3032,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("NutrientId");
 
-                    b.ToTable("IngredientNutrients", (string)null);
+                    b.ToTable("IngredientNutrients");
 
                     b.HasData(
                         new
@@ -3158,7 +3161,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Nutrients", (string)null);
+                    b.ToTable("Nutrients");
 
                     b.HasData(
                         new
@@ -3803,14 +3806,14 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("Recipes");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CountryCode = "NO",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy eller sukker og sitrondråper.",
                             DifficultyLevel = 0,
                             IsDraft = false,
@@ -3818,14 +3821,14 @@ namespace MenuPlanner.Migrations
                             Name = "Pannekaker",
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 7.4000000000000004,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "pannekaker"
                         },
                         new
                         {
                             Id = 2,
                             CountryCode = "TH",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "En fantastisk smakfull kyllingsuppe.",
                             DifficultyLevel = 1,
                             IsDraft = false,
@@ -3833,14 +3836,14 @@ namespace MenuPlanner.Migrations
                             Name = "Tom Kha Gai",
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 8.0999999999999996,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "tom-kha-gai"
                         },
                         new
                         {
                             Id = 3,
                             CountryCode = "IT",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "En enkel men utrolig god, klassisk pastarett.",
                             DifficultyLevel = 1,
                             IsDraft = false,
@@ -3848,14 +3851,14 @@ namespace MenuPlanner.Migrations
                             Name = "Cacio e Pepe",
                             PrepTime = new TimeSpan(0, 0, 20, 0, 0),
                             RatingAverage = 8.0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "cacio-e-pepe"
                         },
                         new
                         {
                             Id = 4,
                             CountryCode = "NO",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Den kjente og kjære norske klassikeren, akkurat som mamma lagde den.",
                             DifficultyLevel = 0,
                             IsDraft = false,
@@ -3863,14 +3866,14 @@ namespace MenuPlanner.Migrations
                             Name = "Kjøttkaker med kålstuing",
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 7.2999999999999998,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "kjottkaker-med-kalstuing"
                         },
                         new
                         {
                             Id = 5,
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Taco fra grunnen av! Hjemmelagde hvetetortillas, tacokrydder, guacamole og salsa. Denne oppskriften legger grunnlaget for en god helg!",
                             DifficultyLevel = 1,
                             IsDraft = false,
@@ -3878,14 +3881,14 @@ namespace MenuPlanner.Migrations
                             Name = "Taco",
                             PrepTime = new TimeSpan(0, 1, 30, 0, 0),
                             RatingAverage = 9.5,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "taco"
                         },
                         new
                         {
                             Id = 6,
                             CountryCode = "NO",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Saftig og smaksrik.",
                             DifficultyLevel = 1,
                             IsDraft = false,
@@ -3893,7 +3896,7 @@ namespace MenuPlanner.Migrations
                             Name = "Ovnsbakt hel ørret",
                             PrepTime = new TimeSpan(0, 1, 30, 0, 0),
                             RatingAverage = 8.0,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "ovnsbakt-hel-orret"
                         },
                         new
@@ -3901,7 +3904,7 @@ namespace MenuPlanner.Migrations
                             Id = 7,
                             ChildRecipeSortOrder = 1,
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Smakfullt tex-mex-krydder.",
                             DifficultyLevel = 0,
                             IsDraft = false,
@@ -3910,7 +3913,7 @@ namespace MenuPlanner.Migrations
                             ParentRecipeId = 5,
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 8.6999999999999993,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "tacokrydder"
                         },
                         new
@@ -3918,7 +3921,7 @@ namespace MenuPlanner.Migrations
                             Id = 8,
                             ChildRecipeSortOrder = 2,
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Myke og deilige hvetetortillas! Perfekte til fredagstaco, laksewrap eller kyllingburrito!",
                             DifficultyLevel = 1,
                             IsDraft = false,
@@ -3927,7 +3930,7 @@ namespace MenuPlanner.Migrations
                             ParentRecipeId = 5,
                             PrepTime = new TimeSpan(0, 0, 30, 0, 0),
                             RatingAverage = 8.9000000000000004,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "hvetetortillas"
                         },
                         new
@@ -3935,7 +3938,7 @@ namespace MenuPlanner.Migrations
                             Id = 9,
                             ChildRecipeSortOrder = 3,
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Frisk og smakfull guacamole som er perfekt tilbehør til fredagstacoen!",
                             DifficultyLevel = 0,
                             IsDraft = false,
@@ -3944,7 +3947,7 @@ namespace MenuPlanner.Migrations
                             ParentRecipeId = 5,
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 9.6999999999999993,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "guacamole"
                         },
                         new
@@ -3952,7 +3955,7 @@ namespace MenuPlanner.Migrations
                             Id = 10,
                             ChildRecipeSortOrder = 4,
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Description = "Nydelig tomatsalsa som er perfekt tilbehør til fredagstacoen! Ha i chili etter smak, eller dropp chili for en mild salsa.",
                             DifficultyLevel = 0,
                             IsDraft = false,
@@ -3961,7 +3964,7 @@ namespace MenuPlanner.Migrations
                             ParentRecipeId = 5,
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 9.5999999999999996,
-                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Updated = new DateTime(2024, 3, 6, 23, 56, 3, 377, DateTimeKind.Local).AddTicks(1645),
                             Url = "tomat-salsa"
                         });
                 });
@@ -3990,7 +3993,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("RecipeIngredients", (string)null);
+                    b.ToTable("RecipeIngredients");
 
                     b.HasData(
                         new
@@ -4352,7 +4355,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("RecipeNotes", (string)null);
+                    b.ToTable("RecipeNotes");
 
                     b.HasData(
                         new
@@ -4394,7 +4397,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("RecipeSteps", (string)null);
+                    b.ToTable("RecipeSteps");
 
                     b.HasData(
                         new
@@ -4489,7 +4492,7 @@ namespace MenuPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SearchIndex", (string)null);
+                    b.ToTable("SearchIndex");
 
                     b.HasData(
                         new

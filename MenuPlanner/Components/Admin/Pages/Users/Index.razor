@@ -12,56 +12,114 @@
     <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.Add" OnClick="AddUser" />
 </h1>
 
-@if (usersEntity == null)
-{
-    <Loader />
-}
-else
-{
-    <MudDataGrid 
-        Items="usersWithRoles" 
-        Filterable=true 
-        FilterCaseSensitivity=DataGridFilterCaseSensitivity.CaseInsensitive
-        T="UserWithRoles" 
-        RowClick="(item) => GoToUser(item)">
-
-        <Columns>
-            <PropertyColumn Property="x => x.User" Title="" CellClass="pointer" Sortable=false Filterable=false>
-                <CellTemplate>
-                    <img src="/images/users/profile/@(context.Item.User.HasProfileImage ? context.Item.User.Id : "_noimg").jpg"
-                         class="user-index-profile-img" />
-                </CellTemplate>
-            </PropertyColumn>
-            <PropertyColumn Property="x => x.User.LastName" Title="Etternavn" CellClass="pointer" />
-            <PropertyColumn Property="x => x.User.FirstName" Title="Fornavn" CellClass="pointer" />
-            <PropertyColumn Property="x => x.User.UserName" Title="Brukernavn" Sortable=false CellClass="pointer" />
-            <TemplateColumn Title="Rolle(r)" Sortable=false CellClass="pointer">
-                <CellTemplate>
-                    @if (context.Item.Roles != null && context.Item.Roles.Count > 0)
+<MudTable ServerData="@(new Func<TableState, Task<TableData<UserWithRoles>>>(ServerReload))"
+          T="UserWithRoles"
+          @ref="table"
+          OnRowClick="@GoToUser">
+    <ToolBarContent>
+        <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Søk etter brukere"
+                      Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                      IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh></MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<UserWithRoles, object>(x => x.User.LastName)">
+                Etternavn
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<UserWithRoles, object>(x => x.User.FirstName)">
+                Fornavn
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<UserWithRoles, object>(x => x.User.UserName)">
+                Brukernavn
+            </MudTableSortLabel>
+        </MudTh>
+        <MudTh>Roller</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd Class="pointer">
+            <img src="/images/users/profile/@(context.User.HasProfileImage ? context.User.Id : "_noimg").jpg"
+                 class="user-index-img" />
+        </MudTd>
+        <MudTd DataLabel="Etternavn" Class="pointer">
+            @context.User.LastName
+        </MudTd>
+        <MudTd DataLabel="Fornavn" Class="pointer">
+            @context.User.FirstName
+        </MudTd>
+        <MudTd DataLabel="Brukernavn" Class="pointer">
+            @context.User.UserName
+        </MudTd>
+        <MudTh DataLabel="Roller" Class="pointer">
+            @if (context.Roles != null && context.Roles.Count > 0)
+            {
+                if (context.Roles.Count > 2)
+                {
+                    for (int i = 0; i < 2; i++)
                     {
-                        foreach (var role in context.Item.Roles)
-                        {
-                            <span class="badge info-badge me-2 mb-2">
-                                @role
-                            </span>
-                        }
+                        <span class="badge info-badge me-2 mb-2">
+                            @context.Roles[i]
+                        </span>
                     }
-                </CellTemplate>
-            </TemplateColumn>
-        </Columns>
+                    <span class="me-2 mb-2">
+                        + @(context.Roles.Count - 2) rolle@(context.Roles.Count > 3 ? "r" : "") til
+                    </span>
+                }
+                else
+                {
+                    foreach (var role in context.Roles)
+                    {
+                        <span class="badge info-badge me-2 mb-2">
+                            @role
+                        </span>
+                    }                    
+                }
+            }
+        </MudTh>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>Fant ingen brukere</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <Loader />
+    </LoadingContent>
+    <PagerContent>
+        <MudTablePager HideRowsPerPage=true PageSizeOptions="new int[]{5}" />
+    </PagerContent>
+</MudTable>
 
-    </MudDataGrid>
-}
+@* } *@
 
 @code {
+    private IEnumerable<UserWithRoles> pagedData;
+    private MudTable<UserWithRoles> table = new();
+
+    private string searchString = string.Empty;
+    private int totalItems;
+
     List<User>? usersEntity;
     List<UserDisplayDTO>? usersDTO;
-    List<UserWithRoles> usersWithRoles = new();
+    List<UserWithRoles> data = new();
 
-    protected override async Task OnInitializedAsync()
+    private void GoToUser(TableRowClickEventArgs<UserWithRoles> e)
+    {
+        string id = e.Item.User.Id;
+        Nav.NavigateTo($"/admin/users/{id}");
+    }
+
+    private void AddUser()
+    {
+        Nav.NavigateTo("/admin/recipes/new");
+    }
+
+    private async Task<TableData<UserWithRoles>> ServerReload(TableState state)
     {
         usersEntity = await UserManager.Users.ToListAsync();
-        usersWithRoles = new List<UserWithRoles>();
+        data = new List<UserWithRoles>();
         List<Role> allRoles = await RoleManager.Roles.ToListAsync();
 
         foreach (var user in usersEntity)
@@ -75,24 +133,39 @@ else
                     .Select(d => d.DisplayName).FirstOrDefault();
                 if (role != null) roleDisplayNames.Add(role);
             }
-            usersWithRoles.Add(new UserWithRoles
+            data.Add(new UserWithRoles
             {
                 User = user,
                 Roles = roleDisplayNames
             });
         }
-        // users = UserManager.Users.AsQueryable();
+
+        data = data.Where(element =>
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+                return true;
+            if ($"{element.User.FirstName} {element.User.LastName}".Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (element.Roles != null)
+            {
+                if (element.Roles
+                    .Any(s => s.Equals(searchString, StringComparison.OrdinalIgnoreCase)))
+                    return true;
+            }
+            return false;
+
+        }).ToList();
+        totalItems = data.Count();
+        data = data.OrderByDirection(state.SortDirection, o => o.User.LastName).ToList();
+
+        pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+        return new TableData<UserWithRoles>() { TotalItems = totalItems, Items = pagedData };
     }
 
-    private void GoToUser(DataGridRowClickEventArgs<UserWithRoles> args)
+    private void OnSearch(string text)
     {
-        string id = args.Item.User.Id;
-        Nav.NavigateTo($"/admin/users/{id}");
-    }
-
-    private void AddUser()
-    {
-        Nav.NavigateTo("/admin/users/new");
+        searchString = text;
+        table.ReloadServerData();
     }
 
     private class UserWithRoles

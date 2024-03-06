@@ -17,13 +17,16 @@ namespace MenuPlanner.Services.RecipeService
         {
             List<Recipe>? recipes = await _context.Recipes
                 .Include(c => c.Country)
+                .Include(u => u.User)
+                .Include(s => s.SubRecipes)
+                .Where(p => p.ParentRecipeId == null)
                 .ToListAsync();
             return new ServiceResponse<List<RecipeSummaryDisplayDTO>>
             {
                 Data = _mapper.Map<List<RecipeSummaryDisplayDTO>>(recipes),
                 Success = recipes != null,
                 Message = recipes != null
-                    ? "A list of all recipes was successfully retrieved."
+                    ? "A list of all parent recipes was successfully retrieved."
                     : "No recipes were found."
             };
         }
@@ -32,6 +35,9 @@ namespace MenuPlanner.Services.RecipeService
         {
             List<Recipe>? recipes = await _context.Recipes
                 .Include(c => c.Country)
+                .Include(u => u.User)
+                .Include(s => s.SubRecipes)
+                .Where(p => p.ParentRecipeId == null)
                 .OrderBy(r => r.RatingAverage)
                 .Take(numberOfRecipes)
                 .ToListAsync();
@@ -68,40 +74,11 @@ namespace MenuPlanner.Services.RecipeService
                 .SingleOrDefaultAsync(r => r.Url == url);
 
             // Hack: Fjerne parent-oppskriften fra sub-oppskriftene.
-            if (recipe != null && recipe.SubRecipes != null)
-            { 
-                recipe.SubRecipes = recipe.SubRecipes.Where(r => r.Url != recipe.Url).ToList();
-            }
-
-            // JEG TROR DETTE TRYGT KAN FJERNES. LA DET STÅ LITT TIL FOR SIKKERHETS SKYLD:
-            // Sortering av ingredienser og fremgangsmåte-steg
-            // for hovedoppskrift og eventuelle underoppskrifter
-            //if (recipe != null)
-            //{
-            //    if (recipe.RecipeIngredients != null)
-            //        recipe.RecipeIngredients = recipe.RecipeIngredients
-            //            .OrderBy(o => o.SortOrder).ToList();
-
-            //    if (recipe.Steps != null)
-            //        recipe.Steps = recipe.Steps
-            //            .OrderBy(s => s.SortOrder).ToList();
-
-            //    if (recipe.SubRecipes != null)
-            //    { 
-            //        recipe.SubRecipes = recipe.SubRecipes
-            //            .OrderBy(o => o.ChildRecipeSortOrder).ToList();
-            //        foreach (Recipe subRecipe in recipe.SubRecipes)
-            //        {
-            //            if (subRecipe.RecipeIngredients != null)
-            //                subRecipe.RecipeIngredients = subRecipe.RecipeIngredients
-            //                    .OrderBy(o => o.SortOrder).ToList();
-
-            //            if (subRecipe.Steps != null)
-            //                subRecipe.Steps = subRecipe.Steps
-            //                    .OrderBy(s => s.SortOrder).ToList();
-            //        }
-            //    }
+            //if (recipe != null && recipe.SubRecipes != null)
+            //{ 
+            //    recipe.SubRecipes = recipe.SubRecipes.Where(r => r.Url != recipe.Url).ToList();
             //}
+
             return new ServiceResponse<RecipeDetailsDisplayDTO>
             {
                 Data = _mapper.Map<RecipeDetailsDisplayDTO>(recipe),
@@ -181,6 +158,20 @@ namespace MenuPlanner.Services.RecipeService
             _mapper.Map(source: recipe, destination: dbRecipe);
             await _context.SaveChangesAsync();
             return dbRecipe;
+        }
+
+        public async Task<ServiceResponse<int>> Publish(string url)
+        {
+            Recipe? recipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Url == url);
+            if (recipe == null)
+            {
+
+            }
+            return new ServiceResponse<int>() { 
+                Data = 0,
+                Success = false,
+                Message = "Method not implemented."
+            };
         }
     }
 }

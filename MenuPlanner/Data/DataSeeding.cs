@@ -2,7 +2,8 @@
 {
     public static class DataSeeding
     {
-        private static DateTime _now = DateTime.Now;
+        private static DateTime _dateTime = new(2024, 3, 6, 10, 30, 0);
+        private static DateTime _dateTime2 = new(2024, 3, 7, 0, 9, 0);
         public static async Task SeedRolesAndInitialAdminUser(IServiceProvider services)
         { 
             var roleManager = services.GetRequiredService<RoleManager<Role>>();
@@ -14,6 +15,10 @@
             //
             // 1: En "Editor" oppretter og melder innholdet klart for publisering.
             // 2: En "Publisher" godkjenner og publiserer innholdet.
+            // 3: Eventuelle endringer etter publisering gjøres på en kopi (State=LifecycleState.Draft).
+            //    Når endringene er godkjent for publisering, så settes kopien som publisert
+            //    (IsPublished=true og State=LifecycleState.Current), og den opprinnelige versjonen
+            //    arkiveres (IsPublished=false og State=LifecycleState.Archived).
 
             var roles = new List<Role> {
                 // Administrators:
@@ -144,7 +149,7 @@
                     EmailConfirmed = true,
                     PhoneNumber = phone,
                     LockoutEnabled = canBeLockedOut,
-                    DateRegistered = _now
+                    DateRegistered = _dateTime
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, password).Result;
@@ -404,72 +409,72 @@
         public static List<Allergen> Allergens = new() { 
             new Allergen() {
                 Id = NextInt(true), Name = "Krepsdyr", Url = "krepsdyr", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "crustacean.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Sesamfrø", Url = "sesamfro", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "sesame.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Nøtter", Url = "notter", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "nuts.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Gluten", Url = "gluten", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "gluten.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Egg", Url = "egg", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "egg.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Fisk", Url = "fisk", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "fish.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Skalldyr", Url = "skalldyr", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "shellfish.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Sennep", Url = "sennep", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "mustard.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Selleri", Url = "selleri", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "celery.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Peanøtter", Url = "peanotter", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "peanuts.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Melk", Url = "melk", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "milk.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Sulfitt", Url = "sulfitt", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "sulphite.png", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Soya", Url = "soya", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "", IsPublished = true
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Lupin", Url = "lupin", Description = "Informasjon",
-                Created = _now, Updated = _now,
+                Created = _dateTime, Updated = _dateTime,
                 Icon = "", Image = "", IsPublished = true
             }
         };
@@ -479,868 +484,868 @@
 
         public static List<Ingredient> Ingredients = new(){
             new Ingredient(){
-                Id = NextInt(true), Created = _now, Updated = _now,
+                Id = NextInt(true), Created = _dateTime, Updated = _dateTime,
                 Name = "Vann", Url = "vann", IsPublished = true, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
 
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvetemel", Url = "hvetemel", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Pizzamel, tipo-00", Url = "pizzamel-tipo-00", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Brødmel, tipo-0", Url = "brodmel-tipo-0", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now, IsPublished = true,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime, IsPublished = true,
                 Name = "Semulegryn", Alias = "Semolina", Url = "semulegryn", Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sammalt hvete, grovmalt", Url = "sammalt-hvete-grovmalt", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sammalt hvete, finmalt", Url = "sammalt-hvete-finmalt", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvete helkorn", Url = "hvete-helkorn", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Havregryn, lettkokt", Url = "havregryn-lettkokt", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Havregryn, store", Url = "havregryn-store", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Havregryn, glutenfri", Url = "havregryn-glutenfri", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Havremel", Url = "havremel", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rug, helkorn", Url = "rug-helkorn", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rugmel", Url = "rugmel", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Bygg, helkorn", Url = "bygg-helkorn", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Byggmel", Url = "byggmel", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Gresskarkjerner", Url = "gresskarkjerner", IsPublished = true, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Skummet melk", Url = "skummet-melk", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Lettmelk", Url = "lettmelk", IsPublished = true, Type = FoodGroup.Dairy,
                 EnergyKcalPer100g = 41, Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Helmelk", Url = "helmelk", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kremfløte", Url = "kremflote", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Matfløte", Url = "matflote", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Lettrømme", Url = "lettromme", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Seterrømme", Url = "seterromme", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rømmekolle", Url = "rommekolle", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kvarg", Url = "kvarg", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,IsPublished = true,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,IsPublished = true,
                 Name = "Gulost", Alias = "Hvitost", Url = "gulost", Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Edamer", Url = "edamer", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Gouda", Url = "gouda", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Brie", Url = "brie", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kremost", Url = "kremost", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Cottage cheese", Url = "cottage-cheese", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Ricotta", Url = "ricotta", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Halloumi", Alias = "Grillost", Url = "halloumi", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Mozzarella", Url = "mozzarella", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Cheddar", Url = "cheddar", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Geitost", Url = "geitost", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Fløtemysost", Url = "flotemysost", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Egg", Url = "egg", IsPublished = true, Type = FoodGroup.Eggs,
                 Description = "Egg fra høne. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom eggene du har er spesielt små eller store kan du måtte justere antallet."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Eggeplomme", Url = "eggeplomme", IsPublished = true, Type = FoodGroup.Eggs,
                 Description = "Eggeplomme fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggeplommer i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Eggehvite", Url = "eggehvite", IsPublished = true, Type = FoodGroup.Eggs,
                 Description = "Eggehvite fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggehviter i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Vaktelegg", Url = "vaktelegg", IsPublished = true, Type = FoodGroup.Eggs,
                 Description = "Egg fra vaktel."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Måsegg", Url = "masegg", IsPublished = true, Type = FoodGroup.Eggs,
                 Description = "Egg fra måke (måse)."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Tortillachips", Url = "tortillachips", IsPublished = true, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Nachochips", Url = "nachochips", IsPublished = true, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Salt", Url = "salt", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Tomatketsjup", Url = "tomatketsjup", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Søt sennep", Url = "sot-sennep", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sterk sennep", Url = "sterk-sennep", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Dijonsennep", Url = "dijonsennep", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Grov sennep", Url = "grov-sennep", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Soyasaus", Url = "soyasaus", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Saltredusert soyasaus", Url = "saltredusert-soyasaus", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Eddikessens", Url = "eddikessens", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "35%"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Klar eddik", Url = "klar-eddik", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "7%"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Brun eddik", Url = "brun-eddik", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "7%"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Eplecidereddik", Url = "eplecidereddik", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvitvinseddik", Url = "hvitvinseddik", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rødvinseddik", Url = "rodvinseddik", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sitrondråper", Url = "sitrondråper", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Smør", Url = "smor", IsPublished = true, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Margarin", Url = "margarin", IsPublished = true, Type = FoodGroup.DairySubstitutes,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rapsolje", Url = "rapsolje", IsPublished = true, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Maisolje", Url = "maisolje", IsPublished = true, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Olivenolje", Url = "Olivenolje", IsPublished = true, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sesamolje", Url = "sesamolje", IsPublished = true, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kokosolje", Url = "kokosolje", IsPublished = true, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Frityrolje", Url = "frityrolje", IsPublished = true, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sukker", Url = "sukker", IsPublished = true, Type = FoodGroup.Sweeteners,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Blåbær", Url = "blabar", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Jordbær", Url = "jordbar", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Bringebær", Url = "bringebar", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Grønne epler", Url = "gronne-epler", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Røde epler", Url = "rode-epler", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Gule epler", Url = "gule-epler", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Appelsin", Url = "appelsin", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sitron", Url = "sitron", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Økologisk sitron", Url = "okologisk-sitron", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Lime", Url = "lime", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hermetiske mandarinbåter", Url = "hermetiske-mandarinbater", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hermetiske pærer", Url = "hermetiske-parer", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hermetiske fersken", Url = "hermetiske-fersken", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Banan", Url = "banan", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Klementin", Url = "klementin", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Blå druer", Url = "bla-druer", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Grønne druer", Url = "gronne-druer", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rosiner", Url = "rosiner", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Korinter", Url = "korinter", IsPublished = true, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Fiskesaus", Url = "fiskesaus", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kokosmelk", Url = "kokosmelk", IsPublished = true, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kokosmelk, lett", Url = "kokosmelk-lett", IsPublished = true, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kokoskrem", Url = "kokoskrem", IsPublished = true, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kokosmasse", Url = "kokosmasse", IsPublished = true, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sitrongress", Url = "sitrongress", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rød currypasta", Url = "rod-currypasta", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Grønn currypasta", Url = "gronn-currypasta", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Gul currypasta", Url = "gul-currypasta", IsPublished = true, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Galangal", Url = "galangal", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rød paprika", Url = "rod-paprika", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Gul paprika", Url = "gul-paprika", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Grønn paprika", Url = "gronn-paprika", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Isbergsalat", Url = "isbergsalat", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hjertesalat", Url = "hjertesalat", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Lollosalat", Url = "lollosalat", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Maiskolbe, fersk", Url = "maiskolbe-fersk", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hermetisk maiskolbe", Url = "hermetisk-maiskolbe", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hermetiske maiskorn", Url = "hermetiske-maiskorn", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Plommetomat", Url = "plommetomat", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kirsebærtomat", Url = "kirsebartomat", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Tomat", Url = "tomat", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Slangeagurk", Url = "slangeagurk", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Gul løk", Url = "gul-lok", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rødløk", Url = "rodlok", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Chalottløk", Url = "chalottlok", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvitløk", Url = "hvitlok", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Salatløk", Url = "salatlok", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Vårløk", Url = "varlok", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Purre", Url = "purre", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllingkraft", Alias = "Kyllingbuljong", Url = "kyllingkraft", IsPublished = true, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Storfekraft", Alias = "Storfebuljong", Url = "storfekraft", IsPublished = true, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Fiskekraft", Alias = "Fiskebuljong", Url = "fiskekraft", IsPublished = true, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Grønnsakskraft", Alias = "Grønnsaksbuljong", Url = "gronnsakskraft", IsPublished = true, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Chili, serrano", Alias = "Rød chili", Url = "chili-serrano", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Den vanlige, røde chilien du kjenner fra dagligvarebutikken."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Chili, habanero", Url = "chili-habanero", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "En sterkere chili."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Chili, birds eye", Url = "chili-birds-eye", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Også kalt thai-chili. Sterkere enn serrano."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Champignon, fersk", Url = "champignon-fersk", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Champignon, hermetisk", Url = "champignon-hermetisk", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Aromasopp, fersk", Url = "aromasopp-fersk", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Aromasopp, tørket", Url = "aromasopp-torket", IsPublished = true, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Margarin", Url = "margarin", IsPublished = true, Type = FoodGroup.DairySubstitutes,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kylling, hel grillet", Url = "kylling-hel-grillet", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kylling, hel fersk", Url = "kylling-hel-fersk", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllinglår, grillet", Url = "kyllinglar-grillet", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllinglår, fersk", Url = "kyllinglar-fersk", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllinglår, frossen", Url = "kyllinglar-frossen", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllingvinger, grillet", Url = "kyllingvinger-grillet", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllingvinger, fersk", Url = "kyllingvinger-fersk", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllingvinger, frossen", Url = "kyllingvinger-frossen", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kylling lårfilet", Url = "kylling-larfilet", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kylling brystfilet", Url = "kylling-brystfilet", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kyllingkjøttdeig", Url = "kyllingkjottdeig", IsPublished = true, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kjøttdeig", Url = "kjottdeig", IsPublished = true, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Karbonadedeig", Url = "karbonadedeig", IsPublished = true, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Medisterdeig", Url = "medisterdeig", IsPublished = true, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Medisterfarse", Url = "medisterfarse", IsPublished = true, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Koriander, fersk", Url = "koriander-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Dill, fersk", Url = "dill-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Gressløk, fersk", Url = "gresslok-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Basilikum, fersk", Url = "basilikum-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Thaibasilikum, fersk", Url = "thaibasilikum-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sort pepper, hel", Url = "sort-pepper-hel", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sort pepper, grovmalt", Url = "sort-pepper-grovmalt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Sort pepper, malt", Url = "sort-pepper-malt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvit pepper, hel", Url = "hvit-pepper-hel", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvit pepper, grovmalt", Url = "hvit-pepper-grovmalt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvit pepper, malt", Url = "hvit-pepper-malt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Karri", Url = "karri", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvitløkspulver", Url = "hvitlokspulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Løkpulver", Url = "lokpulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kanel, hel", Url = "kanel-hel", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kanel, malt", Url = "kanel-malt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Kardemomme", Url = "kardemomme", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Hvitløkspulver", Url = "hvitlokspulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Chilipulver", Url = "chilipulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Chiliflak", Url = "chiliflak", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Paprikapulver", Url = "paprikapulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Paprikapulver, røkt", Url = "paprikapulver-rokt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Rosmarin, tørket", Url = "rosmarin-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Dill, tørket", Url = "dill-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Oregano, tørket", Url = "oregano-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Basilikum, tørket", Url = "basilikum-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Spisskum", Alias = "Spisskummen, spisskarve, cumin, Roman caraway", Url = "spisskum", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Latin: Cuminum cyminum. Engelsk: Cumin eller Roman caraway. Spisskum kan også kalles spisskummen eller spisskarve, og er ikke det samme som karve."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _now, Updated = _now,
+                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
                 Name = "Karve", Alias = "Caraway", Url = "karve", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
                 Description = "Latin: Carum carvi. Engelsk: Caraway. Karve er ikke det samme som spisskum/spisskummen/spisskarve/Roman caraway."
             },
@@ -1354,45 +1359,52 @@
         // som følger rett etter ParentRecipes, fortsettes tallrekken ved NextInt(false),
         // slik at det blir en ubrutt tallrekke i databasen.
         static int id_pannek = NextInt(true);
+        static int id_pannekDraft = NextInt(false);
         static int id_tomkha = NextInt(false);
         static int id_cacio = NextInt(false);
         static int id_kjottk = NextInt(false);
         static int id_taco = NextInt(false);
         static int id_ovnorr = NextInt(false);
         public static List<Recipe> ParentRecipes = [
-            new Recipe(){ 
-                Id = id_pannek, ParentRecipeId = id_pannek, CountryCode = "NO", Name = "Pannekaker",
-                IsPublished = true, RatingAverage = 7.4, Url = "pannekaker", Created = _now, Updated = _now,
+            new Recipe(){
+                Id = id_pannek, CountryCode = "NO", Name = "Pannekaker",
+                IsPublished = true, RatingAverage = 7.4, Url = "pannekaker", Created = _dateTime, Updated = _dateTime,
                 DifficultyLevel = DifficultyLevel.Easy, PrepTime = new TimeSpan(1,0,0),
                 Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy eller sukker og sitrondråper."
             },
+            new Recipe(){
+                Id = id_pannekDraft, CountryCode = "NO", Name = "Pannekaker",
+                IsPublished = false, RatingAverage = 7.4, Url = "pannekaker", Created = _dateTime2, Updated = _dateTime2,
+                DifficultyLevel = DifficultyLevel.Easy, PrepTime = new TimeSpan(1,0,0),
+                Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy, bananskiver og kondensert melk, eller sukker og sitrondråper."
+            },
             new Recipe() { 
-                Id = id_tomkha, ParentRecipeId = id_tomkha, CountryCode = "TH", Name = "Tom Kha Gai",
-                IsPublished = true, RatingAverage = 8.1, Url = "tom-kha-gai", Created = _now, Updated = _now,
+                Id = id_tomkha, CountryCode = "TH", Name = "Tom Kha Gai",
+                IsPublished = true, RatingAverage = 8.1, Url = "tom-kha-gai", Created = _dateTime, Updated = _dateTime,
                 DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(1, 0, 0),
                 Description = "En fantastisk smakfull kyllingsuppe."
             },
             new Recipe() { 
-                Id = id_cacio, ParentRecipeId = id_cacio, CountryCode = "IT", Name = "Cacio e Pepe",
-                IsPublished = true, RatingAverage = 8.0, Url = "cacio-e-pepe", Created = _now, Updated = _now,
+                Id = id_cacio, CountryCode = "IT", Name = "Cacio e Pepe",
+                IsPublished = true, RatingAverage = 8.0, Url = "cacio-e-pepe", Created = _dateTime, Updated = _dateTime,
                 DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(0, 20, 0),
                 Description = "En enkel men utrolig god, klassisk pastarett."
             },
             new Recipe(){ 
-                Id = id_kjottk, ParentRecipeId = id_kjottk, CountryCode = "NO", Name = "Kjøttkaker med kålstuing",
-                IsPublished = true, RatingAverage = 7.3, Url = "kjottkaker-med-kalstuing", Created = _now, Updated = _now,
+                Id = id_kjottk, CountryCode = "NO", Name = "Kjøttkaker med kålstuing",
+                IsPublished = true, RatingAverage = 7.3, Url = "kjottkaker-med-kalstuing", Created = _dateTime, Updated = _dateTime,
                 DifficultyLevel = DifficultyLevel.Easy, PrepTime = new TimeSpan(1, 0, 0),
                 Description = "Den kjente og kjære norske klassikeren, akkurat som mamma lagde den."
             },
             new Recipe() { 
-                Id = id_taco, ParentRecipeId = id_taco, CountryCode = "MX", Name = "Taco",
-                IsPublished = true, RatingAverage = 9.5, Url = "taco", Created = _now, Updated = _now,
+                Id = id_taco, CountryCode = "MX", Name = "Taco",
+                IsPublished = true, RatingAverage = 9.5, Url = "taco", Created = _dateTime, Updated = _dateTime,
                 DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(1, 30, 0),
                 Description = "Taco fra grunnen av! Hjemmelagde hvetetortillas, tacokrydder, guacamole og salsa. Denne oppskriften legger grunnlaget for en god helg!"
             },
             new Recipe() { 
-                Id = id_ovnorr, ParentRecipeId = id_ovnorr, CountryCode = "NO", Name = "Ovnsbakt hel ørret",
-                IsPublished = true, Url = "ovnsbakt-hel-orret", Created = _now, Updated = _now,
+                Id = id_ovnorr, CountryCode = "NO", Name = "Ovnsbakt hel ørret",
+                IsPublished = true, Url = "ovnsbakt-hel-orret", Created = _dateTime, Updated = _dateTime,
                 RatingAverage = 8.0, DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(1, 30, 0),
                 Description = "Saftig og smaksrik."
             },
@@ -1411,8 +1423,8 @@
                 Description = "Smakfullt tex-mex-krydder.",
                 ChildRecipeSortOrder = 1,
                 IsPublished = true, 
-                Created = _now, 
-                Updated = _now,
+                Created = _dateTime, 
+                Updated = _dateTime,
             },
             new Recipe() {
                 Id = NextInt(false), 
@@ -1426,8 +1438,8 @@
                 Description = "Myke og deilige hvetetortillas! Perfekte til fredagstaco, laksewrap eller kyllingburrito!",
                 ChildRecipeSortOrder = 2,
                 IsPublished = true, 
-                Created = _now, 
-                Updated = _now
+                Created = _dateTime, 
+                Updated = _dateTime
             },
             new Recipe() {
                 Id = NextInt(false), 
@@ -1441,8 +1453,8 @@
                 Description = "Frisk og smakfull guacamole som er perfekt tilbehør til fredagstacoen!",
                 ChildRecipeSortOrder = 3,
                 IsPublished = true, 
-                Created = _now, 
-                Updated = _now
+                Created = _dateTime, 
+                Updated = _dateTime
             },
             new Recipe() {
                 Id = NextInt(false), 
@@ -1456,8 +1468,8 @@
                 Description = "Nydelig tomatsalsa som er perfekt tilbehør til fredagstacoen! Ha i chili etter smak, eller dropp chili for en mild salsa.",
                 ChildRecipeSortOrder = 4,
                 IsPublished = true,
-                Created = _now, 
-                Updated = _now
+                Created = _dateTime, 
+                Updated = _dateTime
             },
         ];
 

@@ -1,11 +1,13 @@
 ﻿@inherits LayoutComponentBase
 <MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
 <div class="page">
     <main>
         <header class="topbar">
             <TopBar />
         </header>
-        <AuthorizeView Roles="SysAdmin,UserAdmin,NutrientAdmin,AllergenAdmin">
+        <AuthorizeView Roles="SysAdmin,UserAdmin,AllergenEditor,NutrientEditor,IngredientEditor,RecipeEditor,ArticleEditor,AllergenPublisher,NutrientPublisher,IngredientPublisher,RecipePublisher,ArticlePublisher">
             <Authorized>
                 <div class="container-fluid admin-nav-menu-wrapper">
                     <div class="container admin-nav-menu">

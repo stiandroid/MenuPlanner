@@ -8,6 +8,7 @@
         Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetTop(int numberOfRecipes);
         Task<ServiceResponse<RecipeDetailsDisplayDTO>> GetByUrl(string url); // Url er autogenerert: "Svenske kjøttboller" => "svenske-kjottboller"
         Task<ServiceResponse<RecipeEditDTO>> Edit(RecipeEditDTO recipe);
+        Task<ServiceResponse<int>> Publish(string url);
         Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> Delete(int id);
     }
 }

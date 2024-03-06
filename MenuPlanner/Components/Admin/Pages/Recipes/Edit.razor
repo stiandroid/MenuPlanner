@@ -1,0 +1,57 @@
+﻿@page "/admin/recipes/edit/{Url}"
+@inject IRecipeService RecipeService
+@inject NavigationManager Nav
+@inject IMapper Mapper
+@attribute [Authorize(Roles = "SysAdmin,RecipeEditor")]
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Oppskrift</PageTitle>
+@if (recipe == null)
+{
+    <Loader />
+}
+else
+{
+    <AdminRecipeHeader 
+        Recipe="recipe" 
+        EntityContext="EntityContext.Edit"
+        IsEditButtonEnabled=false
+        IsPublishButtonEnabled=false />
+
+    <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+        <MudTextField T="string" @bind-Value="recipe.Name" Label="Navn" Required="true" RequiredError="Navn er påkrevet" />
+        <MudTextField T="string" @bind-Value="recipe.Description" Label="Beskrivelse" Required="true" RequiredError="Beskrivelse er påkrevet" />
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" Class="ml-auto">
+            Lagre
+        </MudButton>
+    </MudForm>
+}
+
+@code {
+    [Parameter]
+    public string Url { get; set; }
+
+    private string name = string.Empty;
+
+    bool success;
+    string[] errors = { };
+    MudForm form;
+
+    RecipeDetailsDisplayDTO? recipe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await RecipeService.GetByUrl(Url);
+        if (result.Success)
+        {
+            recipe = Mapper.Map<RecipeDetailsDisplayDTO>(result.Data);
+            name = recipe.Name;
+        }
+    }
+
+    void GoBack()
+    {
+        Nav.NavigateTo($"/admin/recipes/{recipe!.Url}");
+    }
+}
