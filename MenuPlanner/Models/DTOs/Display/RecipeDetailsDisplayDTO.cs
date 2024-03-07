@@ -2,6 +2,7 @@
 {
     public class RecipeDetailsDisplayDTO
     {
+        public LifecycleState State { get; set; } // Kanskje nyttig for å vise status i admin
         public string Name { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty; // Autogenerert: "Svenske kjøttboller" => "svenske-kjottboller"
         public string Description { get; set; } = string.Empty;

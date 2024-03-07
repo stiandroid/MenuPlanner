@@ -21,7 +21,11 @@
         public async Task GetAll_ShouldReturnListOfRecipeSummaries()
         {
             // Arrange
-            int expectedCount = await _dataContext!.Recipes.CountAsync();
+            int expectedCount = await _dataContext!.Recipes
+                .Where(r => 
+                    r.ParentRecipeId == null &&
+                    r.State == LifecycleState.Current)
+                .CountAsync();
 
             // Act
             var result = await _recipeService.GetAll();
@@ -44,7 +48,7 @@
             {
                 Name = name,
                 Url = name,
-                IsPublished = false
+                State = LifecycleState.Draft
             };
             _dataContext!.Recipes.Add(newRecipe);
             await _dataContext.SaveChangesAsync();
@@ -73,7 +77,7 @@
         {
             // Arrange
             string name = $"CREATED {DateTime.Now}";
-            RecipeEditDTO newRecipe = new() { Name = name, IsPublished = false };
+            RecipeEditDTO newRecipe = new() { Name = name, State = LifecycleState.Draft };
 
             // Act
             var result = await _recipeService.Edit(newRecipe); // Id = null => Create new
@@ -103,7 +107,7 @@
             Recipe newRecipe = new()
             {
                 Name = originalName,
-                IsPublished = false,
+                State = LifecycleState.Draft,
                 Description = "This recipe was created by the test project for the purpose of testing the UPDATE-method of the RecipeService."
             };
             _dataContext!.Add(newRecipe);
@@ -118,7 +122,7 @@
             {
                 Id = newRecipe.Id,
                 Name = newRecipe.Name,
-                IsPublished = false,
+                State = LifecycleState.Draft
             };
             var result = await _recipeService.Edit(recipeDto); // Id != null => Update
 

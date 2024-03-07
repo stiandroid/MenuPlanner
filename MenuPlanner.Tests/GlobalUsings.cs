@@ -7,6 +7,7 @@ global using MenuPlanner.Data;
 global using MenuPlanner.Models.Entities;
 global using MenuPlanner.Models.DTOs.Manage;
 global using MenuPlanner.Models.DTOs.Display;
+global using MenuPlanner.Enums;
 global using MenuPlanner.Services;
 global using MenuPlanner.Services.RecipeService;
 global using MenuPlanner.Services.IngredientService;

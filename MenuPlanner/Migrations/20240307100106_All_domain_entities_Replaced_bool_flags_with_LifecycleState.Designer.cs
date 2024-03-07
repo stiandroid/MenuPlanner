@@ -4,6 +4,7 @@ using MenuPlanner.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MenuPlanner.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240307100106_All_domain_entities_Replaced_bool_flags_with_LifecycleState")]
+    partial class All_domain_entities_Replaced_bool_flags_with_LifecycleState
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +55,7 @@ namespace MenuPlanner.Migrations
                     b.Property<int>("State")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Updated")
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Url")
@@ -73,6 +76,7 @@ namespace MenuPlanner.Migrations
                             Image = "crustacean.png",
                             Name = "Krepsdyr",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "krepsdyr"
                         },
                         new
@@ -84,6 +88,7 @@ namespace MenuPlanner.Migrations
                             Image = "sesame.png",
                             Name = "Sesamfrø",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sesamfro"
                         },
                         new
@@ -95,6 +100,7 @@ namespace MenuPlanner.Migrations
                             Image = "nuts.png",
                             Name = "Nøtter",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "notter"
                         },
                         new
@@ -106,6 +112,7 @@ namespace MenuPlanner.Migrations
                             Image = "gluten.png",
                             Name = "Gluten",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gluten"
                         },
                         new
@@ -117,6 +124,7 @@ namespace MenuPlanner.Migrations
                             Image = "egg.png",
                             Name = "Egg",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "egg"
                         },
                         new
@@ -128,6 +136,7 @@ namespace MenuPlanner.Migrations
                             Image = "fish.png",
                             Name = "Fisk",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "fisk"
                         },
                         new
@@ -139,6 +148,7 @@ namespace MenuPlanner.Migrations
                             Image = "shellfish.png",
                             Name = "Skalldyr",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "skalldyr"
                         },
                         new
@@ -150,6 +160,7 @@ namespace MenuPlanner.Migrations
                             Image = "mustard.png",
                             Name = "Sennep",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sennep"
                         },
                         new
@@ -161,6 +172,7 @@ namespace MenuPlanner.Migrations
                             Image = "celery.png",
                             Name = "Selleri",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "selleri"
                         },
                         new
@@ -172,6 +184,7 @@ namespace MenuPlanner.Migrations
                             Image = "peanuts.png",
                             Name = "Peanøtter",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "peanotter"
                         },
                         new
@@ -183,6 +196,7 @@ namespace MenuPlanner.Migrations
                             Image = "milk.png",
                             Name = "Melk",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "melk"
                         },
                         new
@@ -194,6 +208,7 @@ namespace MenuPlanner.Migrations
                             Image = "sulphite.png",
                             Name = "Sulfitt",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sulfitt"
                         },
                         new
@@ -205,6 +220,7 @@ namespace MenuPlanner.Migrations
                             Image = "",
                             Name = "Soya",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "soya"
                         },
                         new
@@ -216,6 +232,7 @@ namespace MenuPlanner.Migrations
                             Image = "",
                             Name = "Lupin",
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "lupin"
                         });
                 });
@@ -347,7 +364,7 @@ namespace MenuPlanner.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Updated")
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Url")
@@ -377,6 +394,7 @@ namespace MenuPlanner.Migrations
                             Name = "Vann",
                             State = 2,
                             Type = 17,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "vann"
                         },
                         new
@@ -391,6 +409,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvetemel",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvetemel"
                         },
                         new
@@ -405,6 +424,7 @@ namespace MenuPlanner.Migrations
                             Name = "Pizzamel, tipo-00",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "pizzamel-tipo-00"
                         },
                         new
@@ -419,6 +439,7 @@ namespace MenuPlanner.Migrations
                             Name = "Brødmel, tipo-0",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "brodmel-tipo-0"
                         },
                         new
@@ -433,6 +454,7 @@ namespace MenuPlanner.Migrations
                             Name = "Semulegryn",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "semulegryn"
                         },
                         new
@@ -447,6 +469,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sammalt hvete, grovmalt",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sammalt-hvete-grovmalt"
                         },
                         new
@@ -461,6 +484,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sammalt hvete, finmalt",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sammalt-hvete-finmalt"
                         },
                         new
@@ -475,6 +499,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvete helkorn",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvete-helkorn"
                         },
                         new
@@ -489,6 +514,7 @@ namespace MenuPlanner.Migrations
                             Name = "Havregryn, lettkokt",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "havregryn-lettkokt"
                         },
                         new
@@ -503,6 +529,7 @@ namespace MenuPlanner.Migrations
                             Name = "Havregryn, store",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "havregryn-store"
                         },
                         new
@@ -517,6 +544,7 @@ namespace MenuPlanner.Migrations
                             Name = "Havregryn, glutenfri",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "havregryn-glutenfri"
                         },
                         new
@@ -531,6 +559,7 @@ namespace MenuPlanner.Migrations
                             Name = "Havremel",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "havremel"
                         },
                         new
@@ -545,6 +574,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rug, helkorn",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rug-helkorn"
                         },
                         new
@@ -559,6 +589,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rugmel",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rugmel"
                         },
                         new
@@ -573,6 +604,7 @@ namespace MenuPlanner.Migrations
                             Name = "Bygg, helkorn",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "bygg-helkorn"
                         },
                         new
@@ -587,6 +619,7 @@ namespace MenuPlanner.Migrations
                             Name = "Byggmel",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "byggmel"
                         },
                         new
@@ -601,6 +634,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gresskarkjerner",
                             State = 2,
                             Type = 4,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gresskarkjerner"
                         },
                         new
@@ -615,6 +649,7 @@ namespace MenuPlanner.Migrations
                             Name = "Skummet melk",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "skummet-melk"
                         },
                         new
@@ -629,6 +664,7 @@ namespace MenuPlanner.Migrations
                             Name = "Lettmelk",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "lettmelk"
                         },
                         new
@@ -643,6 +679,7 @@ namespace MenuPlanner.Migrations
                             Name = "Helmelk",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "helmelk"
                         },
                         new
@@ -657,6 +694,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kremfløte",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kremflote"
                         },
                         new
@@ -671,6 +709,7 @@ namespace MenuPlanner.Migrations
                             Name = "Matfløte",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "matflote"
                         },
                         new
@@ -685,6 +724,7 @@ namespace MenuPlanner.Migrations
                             Name = "Lettrømme",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "lettromme"
                         },
                         new
@@ -699,6 +739,7 @@ namespace MenuPlanner.Migrations
                             Name = "Seterrømme",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "seterromme"
                         },
                         new
@@ -713,6 +754,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rømmekolle",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rommekolle"
                         },
                         new
@@ -727,6 +769,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kvarg",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kvarg"
                         },
                         new
@@ -741,6 +784,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gulost",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gulost"
                         },
                         new
@@ -755,6 +799,7 @@ namespace MenuPlanner.Migrations
                             Name = "Edamer",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "edamer"
                         },
                         new
@@ -769,6 +814,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gouda",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gouda"
                         },
                         new
@@ -783,6 +829,7 @@ namespace MenuPlanner.Migrations
                             Name = "Brie",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "brie"
                         },
                         new
@@ -797,6 +844,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kremost",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kremost"
                         },
                         new
@@ -811,6 +859,7 @@ namespace MenuPlanner.Migrations
                             Name = "Cottage cheese",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "cottage-cheese"
                         },
                         new
@@ -825,6 +874,7 @@ namespace MenuPlanner.Migrations
                             Name = "Ricotta",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "ricotta"
                         },
                         new
@@ -839,6 +889,7 @@ namespace MenuPlanner.Migrations
                             Name = "Halloumi",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "halloumi"
                         },
                         new
@@ -853,6 +904,7 @@ namespace MenuPlanner.Migrations
                             Name = "Mozzarella",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "mozzarella"
                         },
                         new
@@ -867,6 +919,7 @@ namespace MenuPlanner.Migrations
                             Name = "Cheddar",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "cheddar"
                         },
                         new
@@ -881,6 +934,7 @@ namespace MenuPlanner.Migrations
                             Name = "Geitost",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "geitost"
                         },
                         new
@@ -895,6 +949,7 @@ namespace MenuPlanner.Migrations
                             Name = "Fløtemysost",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "flotemysost"
                         },
                         new
@@ -909,6 +964,7 @@ namespace MenuPlanner.Migrations
                             Name = "Egg",
                             State = 2,
                             Type = 8,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "egg"
                         },
                         new
@@ -923,6 +979,7 @@ namespace MenuPlanner.Migrations
                             Name = "Eggeplomme",
                             State = 2,
                             Type = 8,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "eggeplomme"
                         },
                         new
@@ -937,6 +994,7 @@ namespace MenuPlanner.Migrations
                             Name = "Eggehvite",
                             State = 2,
                             Type = 8,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "eggehvite"
                         },
                         new
@@ -951,6 +1009,7 @@ namespace MenuPlanner.Migrations
                             Name = "Vaktelegg",
                             State = 2,
                             Type = 8,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "vaktelegg"
                         },
                         new
@@ -965,6 +1024,7 @@ namespace MenuPlanner.Migrations
                             Name = "Måsegg",
                             State = 2,
                             Type = 8,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "masegg"
                         },
                         new
@@ -979,6 +1039,7 @@ namespace MenuPlanner.Migrations
                             Name = "Tortillachips",
                             State = 2,
                             Type = 17,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "tortillachips"
                         },
                         new
@@ -993,6 +1054,7 @@ namespace MenuPlanner.Migrations
                             Name = "Nachochips",
                             State = 2,
                             Type = 17,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "nachochips"
                         },
                         new
@@ -1007,6 +1069,7 @@ namespace MenuPlanner.Migrations
                             Name = "Salt",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "salt"
                         },
                         new
@@ -1021,6 +1084,7 @@ namespace MenuPlanner.Migrations
                             Name = "Tomatketsjup",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "tomatketsjup"
                         },
                         new
@@ -1035,6 +1099,7 @@ namespace MenuPlanner.Migrations
                             Name = "Søt sennep",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sot-sennep"
                         },
                         new
@@ -1049,6 +1114,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sterk sennep",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sterk-sennep"
                         },
                         new
@@ -1063,6 +1129,7 @@ namespace MenuPlanner.Migrations
                             Name = "Dijonsennep",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "dijonsennep"
                         },
                         new
@@ -1077,6 +1144,7 @@ namespace MenuPlanner.Migrations
                             Name = "Grov sennep",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "grov-sennep"
                         },
                         new
@@ -1091,6 +1159,7 @@ namespace MenuPlanner.Migrations
                             Name = "Soyasaus",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "soyasaus"
                         },
                         new
@@ -1105,6 +1174,7 @@ namespace MenuPlanner.Migrations
                             Name = "Saltredusert soyasaus",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "saltredusert-soyasaus"
                         },
                         new
@@ -1119,6 +1189,7 @@ namespace MenuPlanner.Migrations
                             Name = "Eddikessens",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "eddikessens"
                         },
                         new
@@ -1133,6 +1204,7 @@ namespace MenuPlanner.Migrations
                             Name = "Klar eddik",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "klar-eddik"
                         },
                         new
@@ -1147,6 +1219,7 @@ namespace MenuPlanner.Migrations
                             Name = "Brun eddik",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "brun-eddik"
                         },
                         new
@@ -1161,6 +1234,7 @@ namespace MenuPlanner.Migrations
                             Name = "Eplecidereddik",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "eplecidereddik"
                         },
                         new
@@ -1175,6 +1249,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvitvinseddik",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvitvinseddik"
                         },
                         new
@@ -1189,6 +1264,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rødvinseddik",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rodvinseddik"
                         },
                         new
@@ -1203,6 +1279,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sitrondråper",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sitrondråper"
                         },
                         new
@@ -1217,6 +1294,7 @@ namespace MenuPlanner.Migrations
                             Name = "Smør",
                             State = 2,
                             Type = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "smor"
                         },
                         new
@@ -1231,6 +1309,7 @@ namespace MenuPlanner.Migrations
                             Name = "Margarin",
                             State = 2,
                             Type = 3,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "margarin"
                         },
                         new
@@ -1245,6 +1324,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rapsolje",
                             State = 2,
                             Type = 15,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rapsolje"
                         },
                         new
@@ -1259,6 +1339,7 @@ namespace MenuPlanner.Migrations
                             Name = "Maisolje",
                             State = 2,
                             Type = 15,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "maisolje"
                         },
                         new
@@ -1273,6 +1354,7 @@ namespace MenuPlanner.Migrations
                             Name = "Olivenolje",
                             State = 2,
                             Type = 15,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "Olivenolje"
                         },
                         new
@@ -1287,6 +1369,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sesamolje",
                             State = 2,
                             Type = 15,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sesamolje"
                         },
                         new
@@ -1301,6 +1384,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kokosolje",
                             State = 2,
                             Type = 15,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kokosolje"
                         },
                         new
@@ -1315,6 +1399,7 @@ namespace MenuPlanner.Migrations
                             Name = "Frityrolje",
                             State = 2,
                             Type = 15,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "frityrolje"
                         },
                         new
@@ -1329,6 +1414,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sukker",
                             State = 2,
                             Type = 13,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sukker"
                         },
                         new
@@ -1343,6 +1429,7 @@ namespace MenuPlanner.Migrations
                             Name = "Blåbær",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "blabar"
                         },
                         new
@@ -1357,6 +1444,7 @@ namespace MenuPlanner.Migrations
                             Name = "Jordbær",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "jordbar"
                         },
                         new
@@ -1371,6 +1459,7 @@ namespace MenuPlanner.Migrations
                             Name = "Bringebær",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "bringebar"
                         },
                         new
@@ -1385,6 +1474,7 @@ namespace MenuPlanner.Migrations
                             Name = "Grønne epler",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gronne-epler"
                         },
                         new
@@ -1399,6 +1489,7 @@ namespace MenuPlanner.Migrations
                             Name = "Røde epler",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rode-epler"
                         },
                         new
@@ -1413,6 +1504,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gule epler",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gule-epler"
                         },
                         new
@@ -1427,6 +1519,7 @@ namespace MenuPlanner.Migrations
                             Name = "Appelsin",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "appelsin"
                         },
                         new
@@ -1441,6 +1534,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sitron",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sitron"
                         },
                         new
@@ -1455,6 +1549,7 @@ namespace MenuPlanner.Migrations
                             Name = "Økologisk sitron",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "okologisk-sitron"
                         },
                         new
@@ -1469,6 +1564,7 @@ namespace MenuPlanner.Migrations
                             Name = "Lime",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "lime"
                         },
                         new
@@ -1483,6 +1579,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hermetiske mandarinbåter",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hermetiske-mandarinbater"
                         },
                         new
@@ -1497,6 +1594,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hermetiske pærer",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hermetiske-parer"
                         },
                         new
@@ -1511,6 +1609,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hermetiske fersken",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hermetiske-fersken"
                         },
                         new
@@ -1525,6 +1624,7 @@ namespace MenuPlanner.Migrations
                             Name = "Banan",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "banan"
                         },
                         new
@@ -1539,6 +1639,7 @@ namespace MenuPlanner.Migrations
                             Name = "Klementin",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "klementin"
                         },
                         new
@@ -1553,6 +1654,7 @@ namespace MenuPlanner.Migrations
                             Name = "Blå druer",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "bla-druer"
                         },
                         new
@@ -1567,6 +1669,7 @@ namespace MenuPlanner.Migrations
                             Name = "Grønne druer",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gronne-druer"
                         },
                         new
@@ -1581,6 +1684,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rosiner",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rosiner"
                         },
                         new
@@ -1595,6 +1699,7 @@ namespace MenuPlanner.Migrations
                             Name = "Korinter",
                             State = 2,
                             Type = 1,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "korinter"
                         },
                         new
@@ -1609,6 +1714,7 @@ namespace MenuPlanner.Migrations
                             Name = "Fiskesaus",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "fiskesaus"
                         },
                         new
@@ -1623,6 +1729,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kokosmelk",
                             State = 2,
                             Type = 16,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kokosmelk"
                         },
                         new
@@ -1637,6 +1744,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kokosmelk, lett",
                             State = 2,
                             Type = 16,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kokosmelk-lett"
                         },
                         new
@@ -1651,6 +1759,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kokoskrem",
                             State = 2,
                             Type = 16,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kokoskrem"
                         },
                         new
@@ -1665,6 +1774,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kokosmasse",
                             State = 2,
                             Type = 16,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kokosmasse"
                         },
                         new
@@ -1679,6 +1789,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sitrongress",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sitrongress"
                         },
                         new
@@ -1693,6 +1804,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rød currypasta",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rod-currypasta"
                         },
                         new
@@ -1707,6 +1819,7 @@ namespace MenuPlanner.Migrations
                             Name = "Grønn currypasta",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gronn-currypasta"
                         },
                         new
@@ -1721,6 +1834,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gul currypasta",
                             State = 2,
                             Type = 14,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gul-currypasta"
                         },
                         new
@@ -1735,6 +1849,7 @@ namespace MenuPlanner.Migrations
                             Name = "Galangal",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "galangal"
                         },
                         new
@@ -1749,6 +1864,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rød paprika",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rod-paprika"
                         },
                         new
@@ -1763,6 +1879,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gul paprika",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gul-paprika"
                         },
                         new
@@ -1777,6 +1894,7 @@ namespace MenuPlanner.Migrations
                             Name = "Grønn paprika",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gronn-paprika"
                         },
                         new
@@ -1791,6 +1909,7 @@ namespace MenuPlanner.Migrations
                             Name = "Isbergsalat",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "isbergsalat"
                         },
                         new
@@ -1805,6 +1924,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hjertesalat",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hjertesalat"
                         },
                         new
@@ -1819,6 +1939,7 @@ namespace MenuPlanner.Migrations
                             Name = "Lollosalat",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "lollosalat"
                         },
                         new
@@ -1833,6 +1954,7 @@ namespace MenuPlanner.Migrations
                             Name = "Maiskolbe, fersk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "maiskolbe-fersk"
                         },
                         new
@@ -1847,6 +1969,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hermetisk maiskolbe",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hermetisk-maiskolbe"
                         },
                         new
@@ -1861,6 +1984,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hermetiske maiskorn",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hermetiske-maiskorn"
                         },
                         new
@@ -1875,6 +1999,7 @@ namespace MenuPlanner.Migrations
                             Name = "Plommetomat",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "plommetomat"
                         },
                         new
@@ -1889,6 +2014,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kirsebærtomat",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kirsebartomat"
                         },
                         new
@@ -1903,6 +2029,7 @@ namespace MenuPlanner.Migrations
                             Name = "Tomat",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "tomat"
                         },
                         new
@@ -1917,6 +2044,7 @@ namespace MenuPlanner.Migrations
                             Name = "Slangeagurk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "slangeagurk"
                         },
                         new
@@ -1931,6 +2059,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gul løk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gul-lok"
                         },
                         new
@@ -1945,6 +2074,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rødløk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rodlok"
                         },
                         new
@@ -1959,6 +2089,7 @@ namespace MenuPlanner.Migrations
                             Name = "Chalottløk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "chalottlok"
                         },
                         new
@@ -1973,6 +2104,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvitløk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvitlok"
                         },
                         new
@@ -1987,6 +2119,7 @@ namespace MenuPlanner.Migrations
                             Name = "Salatløk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "salatlok"
                         },
                         new
@@ -2001,6 +2134,7 @@ namespace MenuPlanner.Migrations
                             Name = "Vårløk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "varlok"
                         },
                         new
@@ -2015,6 +2149,7 @@ namespace MenuPlanner.Migrations
                             Name = "Purre",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "purre"
                         },
                         new
@@ -2029,6 +2164,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllingkraft",
                             State = 2,
                             Type = 17,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllingkraft"
                         },
                         new
@@ -2043,6 +2179,7 @@ namespace MenuPlanner.Migrations
                             Name = "Storfekraft",
                             State = 2,
                             Type = 17,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "storfekraft"
                         },
                         new
@@ -2057,6 +2194,7 @@ namespace MenuPlanner.Migrations
                             Name = "Fiskekraft",
                             State = 2,
                             Type = 17,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "fiskekraft"
                         },
                         new
@@ -2071,6 +2209,7 @@ namespace MenuPlanner.Migrations
                             Name = "Grønnsakskraft",
                             State = 2,
                             Type = 17,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gronnsakskraft"
                         },
                         new
@@ -2085,6 +2224,7 @@ namespace MenuPlanner.Migrations
                             Name = "Chili, serrano",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "chili-serrano"
                         },
                         new
@@ -2099,6 +2239,7 @@ namespace MenuPlanner.Migrations
                             Name = "Chili, habanero",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "chili-habanero"
                         },
                         new
@@ -2113,6 +2254,7 @@ namespace MenuPlanner.Migrations
                             Name = "Chili, birds eye",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "chili-birds-eye"
                         },
                         new
@@ -2127,6 +2269,7 @@ namespace MenuPlanner.Migrations
                             Name = "Champignon, fersk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "champignon-fersk"
                         },
                         new
@@ -2141,6 +2284,7 @@ namespace MenuPlanner.Migrations
                             Name = "Champignon, hermetisk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "champignon-hermetisk"
                         },
                         new
@@ -2155,6 +2299,7 @@ namespace MenuPlanner.Migrations
                             Name = "Aromasopp, fersk",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "aromasopp-fersk"
                         },
                         new
@@ -2169,6 +2314,7 @@ namespace MenuPlanner.Migrations
                             Name = "Aromasopp, tørket",
                             State = 2,
                             Type = 0,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "aromasopp-torket"
                         },
                         new
@@ -2183,6 +2329,7 @@ namespace MenuPlanner.Migrations
                             Name = "Margarin",
                             State = 2,
                             Type = 3,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "margarin"
                         },
                         new
@@ -2197,6 +2344,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kylling, hel grillet",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kylling-hel-grillet"
                         },
                         new
@@ -2211,6 +2359,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kylling, hel fersk",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kylling-hel-fersk"
                         },
                         new
@@ -2225,6 +2374,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllinglår, grillet",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllinglar-grillet"
                         },
                         new
@@ -2239,6 +2389,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllinglår, fersk",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllinglar-fersk"
                         },
                         new
@@ -2253,6 +2404,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllinglår, frossen",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllinglar-frossen"
                         },
                         new
@@ -2267,6 +2419,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllingvinger, grillet",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllingvinger-grillet"
                         },
                         new
@@ -2281,6 +2434,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllingvinger, fersk",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllingvinger-fersk"
                         },
                         new
@@ -2295,6 +2449,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllingvinger, frossen",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllingvinger-frossen"
                         },
                         new
@@ -2309,6 +2464,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kylling lårfilet",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kylling-larfilet"
                         },
                         new
@@ -2323,6 +2479,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kylling brystfilet",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kylling-brystfilet"
                         },
                         new
@@ -2337,6 +2494,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kyllingkjøttdeig",
                             State = 2,
                             Type = 7,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kyllingkjottdeig"
                         },
                         new
@@ -2351,6 +2509,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kjøttdeig",
                             State = 2,
                             Type = 5,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kjottdeig"
                         },
                         new
@@ -2365,6 +2524,7 @@ namespace MenuPlanner.Migrations
                             Name = "Karbonadedeig",
                             State = 2,
                             Type = 5,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "karbonadedeig"
                         },
                         new
@@ -2379,6 +2539,7 @@ namespace MenuPlanner.Migrations
                             Name = "Medisterdeig",
                             State = 2,
                             Type = 5,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "medisterdeig"
                         },
                         new
@@ -2393,6 +2554,7 @@ namespace MenuPlanner.Migrations
                             Name = "Medisterfarse",
                             State = 2,
                             Type = 5,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "medisterfarse"
                         },
                         new
@@ -2407,6 +2569,7 @@ namespace MenuPlanner.Migrations
                             Name = "Koriander, fersk",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "koriander-fersk"
                         },
                         new
@@ -2421,6 +2584,7 @@ namespace MenuPlanner.Migrations
                             Name = "Dill, fersk",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "dill-fersk"
                         },
                         new
@@ -2435,6 +2599,7 @@ namespace MenuPlanner.Migrations
                             Name = "Gressløk, fersk",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "gresslok-fersk"
                         },
                         new
@@ -2449,6 +2614,7 @@ namespace MenuPlanner.Migrations
                             Name = "Basilikum, fersk",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "basilikum-fersk"
                         },
                         new
@@ -2463,6 +2629,7 @@ namespace MenuPlanner.Migrations
                             Name = "Thaibasilikum, fersk",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "thaibasilikum-fersk"
                         },
                         new
@@ -2477,6 +2644,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sort pepper, hel",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sort-pepper-hel"
                         },
                         new
@@ -2491,6 +2659,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sort pepper, grovmalt",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sort-pepper-grovmalt"
                         },
                         new
@@ -2505,6 +2674,7 @@ namespace MenuPlanner.Migrations
                             Name = "Sort pepper, malt",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "sort-pepper-malt"
                         },
                         new
@@ -2519,6 +2689,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvit pepper, hel",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvit-pepper-hel"
                         },
                         new
@@ -2533,6 +2704,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvit pepper, grovmalt",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvit-pepper-grovmalt"
                         },
                         new
@@ -2547,6 +2719,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvit pepper, malt",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvit-pepper-malt"
                         },
                         new
@@ -2561,6 +2734,7 @@ namespace MenuPlanner.Migrations
                             Name = "Karri",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "karri"
                         },
                         new
@@ -2575,6 +2749,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvitløkspulver",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvitlokspulver"
                         },
                         new
@@ -2589,6 +2764,7 @@ namespace MenuPlanner.Migrations
                             Name = "Løkpulver",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "lokpulver"
                         },
                         new
@@ -2603,6 +2779,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kanel, hel",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kanel-hel"
                         },
                         new
@@ -2617,6 +2794,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kanel, malt",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kanel-malt"
                         },
                         new
@@ -2631,6 +2809,7 @@ namespace MenuPlanner.Migrations
                             Name = "Kardemomme",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kardemomme"
                         },
                         new
@@ -2645,6 +2824,7 @@ namespace MenuPlanner.Migrations
                             Name = "Hvitløkspulver",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvitlokspulver"
                         },
                         new
@@ -2659,6 +2839,7 @@ namespace MenuPlanner.Migrations
                             Name = "Chilipulver",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "chilipulver"
                         },
                         new
@@ -2673,6 +2854,7 @@ namespace MenuPlanner.Migrations
                             Name = "Chiliflak",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "chiliflak"
                         },
                         new
@@ -2687,6 +2869,7 @@ namespace MenuPlanner.Migrations
                             Name = "Paprikapulver",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "paprikapulver"
                         },
                         new
@@ -2701,6 +2884,7 @@ namespace MenuPlanner.Migrations
                             Name = "Paprikapulver, røkt",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "paprikapulver-rokt"
                         },
                         new
@@ -2715,6 +2899,7 @@ namespace MenuPlanner.Migrations
                             Name = "Rosmarin, tørket",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "rosmarin-torket"
                         },
                         new
@@ -2729,6 +2914,7 @@ namespace MenuPlanner.Migrations
                             Name = "Dill, tørket",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "dill-torket"
                         },
                         new
@@ -2743,6 +2929,7 @@ namespace MenuPlanner.Migrations
                             Name = "Oregano, tørket",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "oregano-torket"
                         },
                         new
@@ -2757,6 +2944,7 @@ namespace MenuPlanner.Migrations
                             Name = "Basilikum, tørket",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "basilikum-torket"
                         },
                         new
@@ -2771,6 +2959,7 @@ namespace MenuPlanner.Migrations
                             Name = "Spisskum",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "spisskum"
                         },
                         new
@@ -2785,6 +2974,7 @@ namespace MenuPlanner.Migrations
                             Name = "Karve",
                             State = 2,
                             Type = 12,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "karve"
                         });
                 });
@@ -2978,12 +3168,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 1,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Protein",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 10,
                             Url = "protein"
                         },
@@ -2991,12 +3181,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 2,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Total mengde karbohydrater, inkludert sukkerarter, polyoler og stivelse.",
                             Emphasized = false,
                             Name = "Karbohydrater",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 5,
                             Url = "karbohydrater"
                         },
@@ -3004,12 +3194,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 3,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Sukkerarter",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             SubTypeOf = 5,
                             Type = 6,
                             Url = "sukkerarter"
@@ -3018,12 +3208,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 4,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Polyoler",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             SubTypeOf = 5,
                             Type = 7,
                             Url = "polyoler"
@@ -3032,12 +3222,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 5,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Stivelse",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             SubTypeOf = 5,
                             Type = 8,
                             Url = "stivelse"
@@ -3046,12 +3236,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 6,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Angir total mengde fett i en ingrediens, inkludert mettet, enumettet og flerumettet fett.",
                             Emphasized = false,
                             Name = "Fett",
                             SortOrder = 1,
-                            State = 2,
+                            State = 0,
                             Type = 0,
                             Url = "fett"
                         },
@@ -3059,12 +3249,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 7,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Mettet fett",
                             SortOrder = 1,
-                            State = 2,
+                            State = 0,
                             SubTypeOf = 0,
                             Type = 1,
                             Url = "mettet-fett"
@@ -3073,12 +3263,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 8,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Enumettet fett",
                             SortOrder = 2,
-                            State = 2,
+                            State = 0,
                             SubTypeOf = 0,
                             Type = 2,
                             Url = "enumettet-fett"
@@ -3087,12 +3277,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 9,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Flerumettet fett",
                             SortOrder = 3,
-                            State = 2,
+                            State = 0,
                             SubTypeOf = 0,
                             Type = 3,
                             Url = "flerumettet-fett"
@@ -3101,12 +3291,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 10,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Transfett",
                             SortOrder = 4,
-                            State = 2,
+                            State = 0,
                             SubTypeOf = 0,
                             Type = 4,
                             Url = "transfett"
@@ -3115,12 +3305,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 11,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin A, retinol",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-a-retinol"
                         },
@@ -3128,12 +3318,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 12,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B1, tiamin",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-b1-tiamin"
                         },
@@ -3141,12 +3331,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 13,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B2, riboflavin",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-b2-riboflavin"
                         },
@@ -3154,12 +3344,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 14,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B3, niacin",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-b3-niacin"
                         },
@@ -3167,12 +3357,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 15,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B5, pantotensyre",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-b5-pantotensyre"
                         },
@@ -3180,12 +3370,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 16,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B7, biotin",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-b7-biotin"
                         },
@@ -3193,12 +3383,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 17,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B9, folat",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-b9-folat"
                         },
@@ -3206,12 +3396,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 18,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B12, kobalamin",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-b12-kobalamin"
                         },
@@ -3219,12 +3409,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 19,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin C, askorbinsyre",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-c-askorbinsyre"
                         },
@@ -3232,12 +3422,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 20,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin D2, ergokalsiferol",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-d2-ergokalsiferol"
                         },
@@ -3245,12 +3435,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 21,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin D3, kolikalsiferol",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-d3-kolikalsiferol"
                         },
@@ -3258,12 +3448,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 22,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tokoferol (E306) betegner en blanding av de rene stoffene alfa-tokoferol (E307), gamma-tokoferol (E308) og delta-tokoferol (E309).",
                             Emphasized = false,
                             Name = "Vitamin E, tokoferol (E306)",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-e-tokoferol-e306"
                         },
@@ -3271,12 +3461,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 23,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin K1, fyllokinon",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-k1-fyllokinon"
                         },
@@ -3284,12 +3474,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 24,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin K2, menakinon",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 12,
                             Url = "vitamin-k2-menakinon"
                         },
@@ -3297,12 +3487,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 25,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Potassium",
                             Emphasized = false,
                             Name = "Kalium",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "kalium"
                         },
@@ -3310,12 +3500,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 26,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Chlorine. Komponent i vanlig bordsalt (natriumklorid).",
                             Emphasized = false,
                             Name = "Klorin",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "klorin"
                         },
@@ -3323,12 +3513,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 27,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Sodium. Komponent i vanlig bordsalt (natriumklorid).",
                             Emphasized = false,
                             Name = "Natrium",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "natrium"
                         },
@@ -3336,12 +3526,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 28,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Calcium. Viktig for skjelettet og tennene.",
                             Emphasized = false,
                             Name = "Kalsium",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "kalsium"
                         },
@@ -3349,12 +3539,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 29,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Phosphorus.",
                             Emphasized = false,
                             Name = "Fosfor",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "fosfor"
                         },
@@ -3362,12 +3552,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 30,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Magnesium.",
                             Emphasized = false,
                             Name = "Magnesium",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "magnesium"
                         },
@@ -3375,12 +3565,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 31,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Iron.",
                             Emphasized = false,
                             Name = "Jern",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "jern"
                         },
@@ -3388,12 +3578,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 32,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Zinc.",
                             Emphasized = false,
                             Name = "Sink",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "sink"
                         },
@@ -3401,12 +3591,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 33,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Manganese.",
                             Emphasized = false,
                             Name = "Mangan",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "mangan"
                         },
@@ -3414,12 +3604,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 34,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Copper.",
                             Emphasized = false,
                             Name = "Kobber",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "kobber"
                         },
@@ -3427,12 +3617,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 35,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Iodine.",
                             Emphasized = false,
                             Name = "Jod",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "jod"
                         },
@@ -3440,12 +3630,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 36,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Molybdenum.",
                             Emphasized = false,
                             Name = "Molybden",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "molybden"
                         },
@@ -3453,12 +3643,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 37,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Selenium.",
                             Emphasized = false,
                             Name = "Selen",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "selen"
                         },
@@ -3466,12 +3656,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 38,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Fluoride.",
                             Emphasized = false,
                             Name = "Fluor",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "fluor"
                         },
@@ -3479,12 +3669,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 39,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Chromium.",
                             Emphasized = false,
                             Name = "Krom",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "krom"
                         },
@@ -3492,12 +3682,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 40,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Nickel.",
                             Emphasized = false,
                             Name = "Nikkel",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "nikkel"
                         },
@@ -3505,12 +3695,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 41,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Boron.",
                             Emphasized = false,
                             Name = "Bor",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "bor"
                         },
@@ -3518,12 +3708,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 42,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Silicon.",
                             Emphasized = false,
                             Name = "Silisium",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "silisium"
                         },
@@ -3531,12 +3721,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 43,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Engelsk navn: Vanadium.",
                             Emphasized = false,
                             Name = "Vanadium",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "vanadium"
                         },
@@ -3544,12 +3734,12 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 44,
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Natriumklorid (NaCl). Engelsk navn: Salt, sodium chloride.",
                             Emphasized = false,
                             Name = "Salt",
                             SortOrder = 0,
-                            State = 2,
+                            State = 0,
                             Type = 13,
                             Url = "salt"
                         });
@@ -3627,6 +3817,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 7.4000000000000004,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "pannekaker",
                             UserId = "c4fe3a8b-2a0e-46b1-9a3c-fc04f04c8a2d"
                         },
@@ -3656,6 +3847,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 8.0999999999999996,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "tom-kha-gai",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
@@ -3670,6 +3862,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 0, 20, 0, 0),
                             RatingAverage = 8.0,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "cacio-e-pepe",
                             UserId = "9a441995-86e5-4da5-8fb3-7549187247ea"
                         },
@@ -3684,6 +3877,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 7.2999999999999998,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "kjottkaker-med-kalstuing",
                             UserId = "9a441995-86e5-4da5-8fb3-7549187247ea"
                         },
@@ -3698,6 +3892,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 1, 30, 0, 0),
                             RatingAverage = 9.5,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "taco",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
@@ -3712,6 +3907,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 1, 30, 0, 0),
                             RatingAverage = 8.0,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "ovnsbakt-hel-orret",
                             UserId = "1e4f5d6e-ad16-47b0-a412-107b48663239"
                         },
@@ -3728,6 +3924,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 8.6999999999999993,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "tacokrydder",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
@@ -3744,6 +3941,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 0, 30, 0, 0),
                             RatingAverage = 8.9000000000000004,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "hvetetortillas",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
@@ -3760,6 +3958,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 9.6999999999999993,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "guacamole",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
@@ -3776,6 +3975,7 @@ namespace MenuPlanner.Migrations
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 9.5999999999999996,
                             State = 2,
+                            Updated = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Url = "tomat-salsa",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         });

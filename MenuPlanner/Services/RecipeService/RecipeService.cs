@@ -1,25 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace MenuPlanner.Services.RecipeService
+﻿namespace MenuPlanner.Services.RecipeService
 {
     public class RecipeService(DataContext context, IMapper mapper) : IRecipeService
     {
         private readonly DataContext _context = context;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<int> CountTotal()
-            => await _context.Recipes.CountAsync();
+        public async Task<int> Count(LifecycleState state)
+            => await _context.Recipes.Where(r => r.State == state).CountAsync();
 
-        public async Task<int> CountPublished()
-            => await _context.Recipes.Where(r => r.IsPublished).CountAsync();
-
-        public async Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetAll()
+        public async Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetAll() // published/current
         {
             List<Recipe>? recipes = await _context.Recipes
                 .Include(c => c.Country)
                 .Include(u => u.User)
                 .Include(s => s.SubRecipes)
-                .Where(p => p.ParentRecipeId == null)
+                .Where(p => 
+                    p.ParentRecipeId == null &&
+                    p.State == LifecycleState.Current)
                 .ToListAsync();
             return new ServiceResponse<List<RecipeSummaryDisplayDTO>>
             {

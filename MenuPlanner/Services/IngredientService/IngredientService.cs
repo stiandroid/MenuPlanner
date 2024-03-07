@@ -5,11 +5,8 @@
         private readonly DataContext _context = context;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<int> CountTotal()
-            => await _context.Ingredients.CountAsync();
-
-        public async Task<int> CountPublished()
-            => await _context.Ingredients.Where(i => i.IsPublished).CountAsync();
+        public async Task<int> Count(LifecycleState state)
+            => await _context.Ingredients.Where(i => i.State == state).CountAsync();
 
         public async Task<ServiceResponse<List<IngredientDisplayDTO>>> GetAll()
         {

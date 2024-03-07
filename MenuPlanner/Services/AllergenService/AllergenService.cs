@@ -6,11 +6,8 @@ namespace MenuPlanner.Services.AllergenService
         private readonly DataContext _context = context;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<int> CountPublished()
-            => await _context.Allergens.CountAsync();
-
-        public async Task<int> CountTotal()
-            => await _context.Allergens.Where(a => a.IsPublished).CountAsync();
+        public async Task<int> Count(LifecycleState state)
+            => await _context.Allergens.Where(a => a.State == state).CountAsync();
 
         public async Task<ServiceResponse<List<AllergenDisplayDTO>>> GetAll()
         {

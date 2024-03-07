@@ -2,8 +2,8 @@
 {
     public static class DataSeeding
     {
-        private static DateTime _dateTime = new(2024, 3, 6, 10, 30, 0);
-        private static DateTime _dateTime2 = new(2024, 3, 7, 0, 9, 0);
+        private static DateTime _create = new(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc);
+        private static DateTime _edit   = new(2024, 3, 7,  0,  9, 0, 0, DateTimeKind.Utc);
         public static async Task SeedRolesAndInitialAdminUser(IServiceProvider services)
         { 
             var roleManager = services.GetRequiredService<RoleManager<Role>>();
@@ -149,7 +149,7 @@
                     EmailConfirmed = true,
                     PhoneNumber = phone,
                     LockoutEnabled = canBeLockedOut,
-                    DateRegistered = _dateTime
+                    DateRegistered = _create
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, password).Result;
@@ -197,209 +197,210 @@
             // - Protein
             new Nutrient() {
                 Id = NextInt(false), Name = "Protein", Url = "protein", Type = NutrientType.Protein,
-                Description = "Informasjon."
+                State = LifecycleState.Current, Created = _create, Description = "Informasjon."
             },
 
             // Karbohydrater
             new Nutrient() {
                 Id = NextInt(false), Name = "Karbohydrater", Url = "karbohydrater", Type = NutrientType.Carbohydrates,
+                State = LifecycleState.Current, Created = _create,
                 Description = "Total mengde karbohydrater, inkludert sukkerarter, polyoler og stivelse."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Sukkerarter", Url = "sukkerarter",
-                Type = NutrientType.Sugars, SubTypeOf = NutrientType.Carbohydrates,
-                Description = "Informasjon."
+                Type = NutrientType.Sugars, SubTypeOf = NutrientType.Carbohydrates, Created = _create,
+                State = LifecycleState.Current, Description = "Informasjon."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Polyoler", Url = "polyoler",
-                Type = NutrientType.Polyols, SubTypeOf = NutrientType.Carbohydrates,
-                Description = "Informasjon."
+                Type = NutrientType.Polyols, SubTypeOf = NutrientType.Carbohydrates, Created = _create,
+                State = LifecycleState.Current, Description = "Informasjon."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Stivelse", Url = "stivelse",
-                Type = NutrientType.Starch, SubTypeOf = NutrientType.Carbohydrates,
-                Description = "Informasjon."
+                Type = NutrientType.Starch, SubTypeOf = NutrientType.Carbohydrates, Created = _create,
+                State = LifecycleState.Current, Description = "Informasjon."
             },
 
             // Fett
             new Nutrient() {
                 Id = NextInt(false), Name = "Fett", Url = "fett",
-                Type = NutrientType.Fats,
+                Type = NutrientType.Fats, State = LifecycleState.Current, Created = _create,
                 Description = "Angir total mengde fett i en ingrediens, inkludert mettet, enumettet og flerumettet fett.", SortOrder = 1
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Mettet fett", Url = "mettet-fett",
                 Type = NutrientType.SaturatedFats, SubTypeOf = NutrientType.Fats,
-                Description = "Informasjon", SortOrder = 1
+                State = LifecycleState.Current, Created = _create, Description = "Informasjon", SortOrder = 1
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Enumettet fett", Url = "enumettet-fett",
                 Type = NutrientType.MonoUnsaturatedFats, SubTypeOf = NutrientType.Fats,
-                Description = "Informasjon", SortOrder = 2
+                State = LifecycleState.Current, Created = _create, Description = "Informasjon", SortOrder = 2
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Flerumettet fett", Url = "flerumettet-fett",
                 Type = NutrientType.PolyUnsaturatedFats, SubTypeOf = NutrientType.Fats,
-                Description = "Informasjon", SortOrder = 3
+                State = LifecycleState.Current, Created = _create, Description = "Informasjon", SortOrder = 3
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Transfett", Url = "transfett",
                 Type = NutrientType.TransFat, SubTypeOf = NutrientType.Fats,
-                Description = "Informasjon", SortOrder = 4
+                State = LifecycleState.Current, Created = _create, Description = "Informasjon", SortOrder = 4
             },
 
             // Vitaminer
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin A, retinol", Url = "vitamin-a-retinol",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin B1, tiamin", Url = "vitamin-b1-tiamin",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin B2, riboflavin", Url = "vitamin-b2-riboflavin",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin B3, niacin", Url = "vitamin-b3-niacin",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin B5, pantotensyre", Url = "vitamin-b5-pantotensyre",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin B7, biotin", Url = "vitamin-b7-biotin",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin B9, folat", Url = "vitamin-b9-folat",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin B12, kobalamin", Url = "vitamin-b12-kobalamin",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin C, askorbinsyre", Url = "vitamin-c-askorbinsyre",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin D2, ergokalsiferol", Url = "vitamin-d2-ergokalsiferol",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin D3, kolikalsiferol", Url = "vitamin-d3-kolikalsiferol",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin E, tokoferol (E306)", Url = "vitamin-e-tokoferol-e306",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Tokoferol (E306) betegner en blanding av de rene stoffene alfa-tokoferol (E307), gamma-tokoferol (E308) og delta-tokoferol (E309)."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin K1, fyllokinon", Url = "vitamin-k1-fyllokinon",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vitamin K2, menakinon", Url = "vitamin-k2-menakinon",
-                Type = NutrientType.Vitamin,
+                Type = NutrientType.Vitamin, State = LifecycleState.Current, Created = _create,
                 Description = "Informasjon"
             },
 
             // Mineraler
             new Nutrient() {
                 Id = NextInt(false), Name = "Kalium", Url = "kalium", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Potassium"
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Potassium"
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Klorin", Url = "klorin", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Chlorine. Komponent i vanlig bordsalt (natriumklorid)."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Chlorine. Komponent i vanlig bordsalt (natriumklorid)."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Natrium", Url = "natrium", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Sodium. Komponent i vanlig bordsalt (natriumklorid)."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Sodium. Komponent i vanlig bordsalt (natriumklorid)."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Kalsium", Url = "kalsium", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Calcium. Viktig for skjelettet og tennene."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Calcium. Viktig for skjelettet og tennene."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Fosfor", Url = "fosfor", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Phosphorus."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Phosphorus."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Magnesium", Url = "magnesium", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Magnesium."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Magnesium."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Jern", Url = "jern", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Iron."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Iron."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Sink", Url = "sink", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Zinc."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Zinc."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Mangan", Url = "mangan", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Manganese."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Manganese."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Kobber", Url = "kobber", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Copper."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Copper."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Jod", Url = "jod", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Iodine."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Iodine."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Molybden", Url = "molybden", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Molybdenum."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Molybdenum."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Selen", Url = "selen", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Selenium."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Selenium."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Fluor", Url = "fluor", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Fluoride."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Fluoride."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Krom", Url = "krom", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Chromium."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Chromium."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Nikkel", Url = "nikkel", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Nickel."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Nickel."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Bor", Url = "bor", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Boron."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Boron."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Silisium", Url = "silisium", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Silicon."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Silicon."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Vanadium", Url = "vanadium", Type = NutrientType.Mineral,
-                Description = "Engelsk navn: Vanadium."
+                State = LifecycleState.Current, Created = _create, Description = "Engelsk navn: Vanadium."
             },
             new Nutrient() {
                 Id = NextInt(false), Name = "Salt", Url = "salt", Type = NutrientType.Mineral,
-                Description = "Natriumklorid (NaCl). Engelsk navn: Salt, sodium chloride."
+                State = LifecycleState.Current, Created = _create, Description = "Natriumklorid (NaCl). Engelsk navn: Salt, sodium chloride."
             }
         };
 
@@ -409,73 +410,73 @@
         public static List<Allergen> Allergens = new() { 
             new Allergen() {
                 Id = NextInt(true), Name = "Krepsdyr", Url = "krepsdyr", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "crustacean.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "crustacean.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Sesamfrø", Url = "sesamfro", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "sesame.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "sesame.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Nøtter", Url = "notter", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "nuts.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "nuts.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Gluten", Url = "gluten", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "gluten.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "gluten.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Egg", Url = "egg", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "egg.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "egg.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Fisk", Url = "fisk", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "fish.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "fish.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Skalldyr", Url = "skalldyr", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "shellfish.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "shellfish.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Sennep", Url = "sennep", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "mustard.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "mustard.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Selleri", Url = "selleri", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "celery.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "celery.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Peanøtter", Url = "peanotter", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "peanuts.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "peanuts.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Melk", Url = "melk", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "milk.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "milk.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Sulfitt", Url = "sulfitt", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "sulphite.png", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "sulphite.png", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Soya", Url = "soya", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "", State = LifecycleState.Current
             },
             new Allergen() {
                 Id = NextInt(false), Name = "Lupin", Url = "lupin", Description = "Informasjon",
-                Created = _dateTime, Updated = _dateTime,
-                Icon = "", Image = "", IsPublished = true
+                Created = _create,
+                Icon = "", Image = "", State = LifecycleState.Current
             }
         };
 
@@ -484,869 +485,869 @@
 
         public static List<Ingredient> Ingredients = new(){
             new Ingredient(){
-                Id = NextInt(true), Created = _dateTime, Updated = _dateTime,
-                Name = "Vann", Url = "vann", IsPublished = true, Type = FoodGroup.Other,
+                Id = NextInt(true), Created = _create,
+                Name = "Vann", Url = "vann", State = LifecycleState.Current, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
 
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvetemel", Url = "hvetemel", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvetemel", Url = "hvetemel", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Pizzamel, tipo-00", Url = "pizzamel-tipo-00", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Pizzamel, tipo-00", Url = "pizzamel-tipo-00", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Brødmel, tipo-0", Url = "brodmel-tipo-0", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Brødmel, tipo-0", Url = "brodmel-tipo-0", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime, IsPublished = true,
+                Id = NextInt(false), Created = _create, State = LifecycleState.Current,
                 Name = "Semulegryn", Alias = "Semolina", Url = "semulegryn", Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sammalt hvete, grovmalt", Url = "sammalt-hvete-grovmalt", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Sammalt hvete, grovmalt", Url = "sammalt-hvete-grovmalt", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sammalt hvete, finmalt", Url = "sammalt-hvete-finmalt", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Sammalt hvete, finmalt", Url = "sammalt-hvete-finmalt", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvete helkorn", Url = "hvete-helkorn", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvete helkorn", Url = "hvete-helkorn", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Havregryn, lettkokt", Url = "havregryn-lettkokt", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Havregryn, lettkokt", Url = "havregryn-lettkokt", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Havregryn, store", Url = "havregryn-store", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Havregryn, store", Url = "havregryn-store", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Havregryn, glutenfri", Url = "havregryn-glutenfri", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Havregryn, glutenfri", Url = "havregryn-glutenfri", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Havremel", Url = "havremel", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Havremel", Url = "havremel", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rug, helkorn", Url = "rug-helkorn", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Rug, helkorn", Url = "rug-helkorn", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rugmel", Url = "rugmel", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Rugmel", Url = "rugmel", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Bygg, helkorn", Url = "bygg-helkorn", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Bygg, helkorn", Url = "bygg-helkorn", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Byggmel", Url = "byggmel", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Byggmel", Url = "byggmel", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Gresskarkjerner", Url = "gresskarkjerner", IsPublished = true, Type = FoodGroup.Grains,
+                Id = NextInt(false), Created = _create,
+                Name = "Gresskarkjerner", Url = "gresskarkjerner", State = LifecycleState.Current, Type = FoodGroup.Grains,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Skummet melk", Url = "skummet-melk", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Skummet melk", Url = "skummet-melk", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Lettmelk", Url = "lettmelk", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Lettmelk", Url = "lettmelk", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 EnergyKcalPer100g = 41, Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Helmelk", Url = "helmelk", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Helmelk", Url = "helmelk", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kremfløte", Url = "kremflote", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Kremfløte", Url = "kremflote", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Matfløte", Url = "matflote", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Matfløte", Url = "matflote", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Lettrømme", Url = "lettromme", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Lettrømme", Url = "lettromme", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Seterrømme", Url = "seterromme", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Seterrømme", Url = "seterromme", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rømmekolle", Url = "rommekolle", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Rømmekolle", Url = "rommekolle", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kvarg", Url = "kvarg", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Kvarg", Url = "kvarg", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,IsPublished = true,
+                Id = NextInt(false), Created = _create,State = LifecycleState.Current,
                 Name = "Gulost", Alias = "Hvitost", Url = "gulost", Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Edamer", Url = "edamer", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Edamer", Url = "edamer", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Gouda", Url = "gouda", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Gouda", Url = "gouda", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Brie", Url = "brie", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Brie", Url = "brie", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kremost", Url = "kremost", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Kremost", Url = "kremost", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Cottage cheese", Url = "cottage-cheese", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Cottage cheese", Url = "cottage-cheese", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Ricotta", Url = "ricotta", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Ricotta", Url = "ricotta", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Halloumi", Alias = "Grillost", Url = "halloumi", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Halloumi", Alias = "Grillost", Url = "halloumi", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Mozzarella", Url = "mozzarella", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Mozzarella", Url = "mozzarella", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Cheddar", Url = "cheddar", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Cheddar", Url = "cheddar", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Geitost", Url = "geitost", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Geitost", Url = "geitost", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Fløtemysost", Url = "flotemysost", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Fløtemysost", Url = "flotemysost", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Egg", Url = "egg", IsPublished = true, Type = FoodGroup.Eggs,
+                Id = NextInt(false), Created = _create,
+                Name = "Egg", Url = "egg", State = LifecycleState.Current, Type = FoodGroup.Eggs,
                 Description = "Egg fra høne. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom eggene du har er spesielt små eller store kan du måtte justere antallet."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Eggeplomme", Url = "eggeplomme", IsPublished = true, Type = FoodGroup.Eggs,
+                Id = NextInt(false), Created = _create,
+                Name = "Eggeplomme", Url = "eggeplomme", State = LifecycleState.Current, Type = FoodGroup.Eggs,
                 Description = "Eggeplomme fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggeplommer i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Eggehvite", Url = "eggehvite", IsPublished = true, Type = FoodGroup.Eggs,
+                Id = NextInt(false), Created = _create,
+                Name = "Eggehvite", Url = "eggehvite", State = LifecycleState.Current, Type = FoodGroup.Eggs,
                 Description = "Eggehvite fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggehviter i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Vaktelegg", Url = "vaktelegg", IsPublished = true, Type = FoodGroup.Eggs,
+                Id = NextInt(false), Created = _create,
+                Name = "Vaktelegg", Url = "vaktelegg", State = LifecycleState.Current, Type = FoodGroup.Eggs,
                 Description = "Egg fra vaktel."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Måsegg", Url = "masegg", IsPublished = true, Type = FoodGroup.Eggs,
+                Id = NextInt(false), Created = _create,
+                Name = "Måsegg", Url = "masegg", State = LifecycleState.Current, Type = FoodGroup.Eggs,
                 Description = "Egg fra måke (måse)."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Tortillachips", Url = "tortillachips", IsPublished = true, Type = FoodGroup.Other,
+                Id = NextInt(false), Created = _create,
+                Name = "Tortillachips", Url = "tortillachips", State = LifecycleState.Current, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Nachochips", Url = "nachochips", IsPublished = true, Type = FoodGroup.Other,
+                Id = NextInt(false), Created = _create,
+                Name = "Nachochips", Url = "nachochips", State = LifecycleState.Current, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Salt", Url = "salt", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Salt", Url = "salt", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Tomatketsjup", Url = "tomatketsjup", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Tomatketsjup", Url = "tomatketsjup", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Søt sennep", Url = "sot-sennep", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Søt sennep", Url = "sot-sennep", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sterk sennep", Url = "sterk-sennep", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Sterk sennep", Url = "sterk-sennep", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Dijonsennep", Url = "dijonsennep", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Dijonsennep", Url = "dijonsennep", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Grov sennep", Url = "grov-sennep", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Grov sennep", Url = "grov-sennep", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Soyasaus", Url = "soyasaus", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Soyasaus", Url = "soyasaus", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Saltredusert soyasaus", Url = "saltredusert-soyasaus", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Saltredusert soyasaus", Url = "saltredusert-soyasaus", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Eddikessens", Url = "eddikessens", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Eddikessens", Url = "eddikessens", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "35%"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Klar eddik", Url = "klar-eddik", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Klar eddik", Url = "klar-eddik", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "7%"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Brun eddik", Url = "brun-eddik", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Brun eddik", Url = "brun-eddik", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "7%"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Eplecidereddik", Url = "eplecidereddik", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Eplecidereddik", Url = "eplecidereddik", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvitvinseddik", Url = "hvitvinseddik", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvitvinseddik", Url = "hvitvinseddik", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rødvinseddik", Url = "rodvinseddik", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Rødvinseddik", Url = "rodvinseddik", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sitrondråper", Url = "sitrondråper", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Sitrondråper", Url = "sitrondråper", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Smør", Url = "smor", IsPublished = true, Type = FoodGroup.Dairy,
+                Id = NextInt(false), Created = _create,
+                Name = "Smør", Url = "smor", State = LifecycleState.Current, Type = FoodGroup.Dairy,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Margarin", Url = "margarin", IsPublished = true, Type = FoodGroup.DairySubstitutes,
+                Id = NextInt(false), Created = _create,
+                Name = "Margarin", Url = "margarin", State = LifecycleState.Current, Type = FoodGroup.DairySubstitutes,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rapsolje", Url = "rapsolje", IsPublished = true, Type = FoodGroup.Oils,
+                Id = NextInt(false), Created = _create,
+                Name = "Rapsolje", Url = "rapsolje", State = LifecycleState.Current, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Maisolje", Url = "maisolje", IsPublished = true, Type = FoodGroup.Oils,
+                Id = NextInt(false), Created = _create,
+                Name = "Maisolje", Url = "maisolje", State = LifecycleState.Current, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Olivenolje", Url = "Olivenolje", IsPublished = true, Type = FoodGroup.Oils,
+                Id = NextInt(false), Created = _create,
+                Name = "Olivenolje", Url = "Olivenolje", State = LifecycleState.Current, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sesamolje", Url = "sesamolje", IsPublished = true, Type = FoodGroup.Oils,
+                Id = NextInt(false), Created = _create,
+                Name = "Sesamolje", Url = "sesamolje", State = LifecycleState.Current, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kokosolje", Url = "kokosolje", IsPublished = true, Type = FoodGroup.Oils,
+                Id = NextInt(false), Created = _create,
+                Name = "Kokosolje", Url = "kokosolje", State = LifecycleState.Current, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Frityrolje", Url = "frityrolje", IsPublished = true, Type = FoodGroup.Oils,
+                Id = NextInt(false), Created = _create,
+                Name = "Frityrolje", Url = "frityrolje", State = LifecycleState.Current, Type = FoodGroup.Oils,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sukker", Url = "sukker", IsPublished = true, Type = FoodGroup.Sweeteners,
+                Id = NextInt(false), Created = _create,
+                Name = "Sukker", Url = "sukker", State = LifecycleState.Current, Type = FoodGroup.Sweeteners,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Blåbær", Url = "blabar", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Blåbær", Url = "blabar", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Jordbær", Url = "jordbar", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Jordbær", Url = "jordbar", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Bringebær", Url = "bringebar", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Bringebær", Url = "bringebar", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Grønne epler", Url = "gronne-epler", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Grønne epler", Url = "gronne-epler", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Røde epler", Url = "rode-epler", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Røde epler", Url = "rode-epler", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Gule epler", Url = "gule-epler", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Gule epler", Url = "gule-epler", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Appelsin", Url = "appelsin", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Appelsin", Url = "appelsin", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sitron", Url = "sitron", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Sitron", Url = "sitron", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Økologisk sitron", Url = "okologisk-sitron", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Økologisk sitron", Url = "okologisk-sitron", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Lime", Url = "lime", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Lime", Url = "lime", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hermetiske mandarinbåter", Url = "hermetiske-mandarinbater", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Hermetiske mandarinbåter", Url = "hermetiske-mandarinbater", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hermetiske pærer", Url = "hermetiske-parer", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Hermetiske pærer", Url = "hermetiske-parer", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hermetiske fersken", Url = "hermetiske-fersken", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Hermetiske fersken", Url = "hermetiske-fersken", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Banan", Url = "banan", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Banan", Url = "banan", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Klementin", Url = "klementin", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Klementin", Url = "klementin", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Blå druer", Url = "bla-druer", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Blå druer", Url = "bla-druer", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Grønne druer", Url = "gronne-druer", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Grønne druer", Url = "gronne-druer", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rosiner", Url = "rosiner", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Rosiner", Url = "rosiner", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Korinter", Url = "korinter", IsPublished = true, Type = FoodGroup.Fruits,
+                Id = NextInt(false), Created = _create,
+                Name = "Korinter", Url = "korinter", State = LifecycleState.Current, Type = FoodGroup.Fruits,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Fiskesaus", Url = "fiskesaus", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Fiskesaus", Url = "fiskesaus", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kokosmelk", Url = "kokosmelk", IsPublished = true, Type = FoodGroup.CoconutProducts,
+                Id = NextInt(false), Created = _create,
+                Name = "Kokosmelk", Url = "kokosmelk", State = LifecycleState.Current, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kokosmelk, lett", Url = "kokosmelk-lett", IsPublished = true, Type = FoodGroup.CoconutProducts,
+                Id = NextInt(false), Created = _create,
+                Name = "Kokosmelk, lett", Url = "kokosmelk-lett", State = LifecycleState.Current, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kokoskrem", Url = "kokoskrem", IsPublished = true, Type = FoodGroup.CoconutProducts,
+                Id = NextInt(false), Created = _create,
+                Name = "Kokoskrem", Url = "kokoskrem", State = LifecycleState.Current, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kokosmasse", Url = "kokosmasse", IsPublished = true, Type = FoodGroup.CoconutProducts,
+                Id = NextInt(false), Created = _create,
+                Name = "Kokosmasse", Url = "kokosmasse", State = LifecycleState.Current, Type = FoodGroup.CoconutProducts,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sitrongress", Url = "sitrongress", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Sitrongress", Url = "sitrongress", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rød currypasta", Url = "rod-currypasta", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Rød currypasta", Url = "rod-currypasta", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Grønn currypasta", Url = "gronn-currypasta", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Grønn currypasta", Url = "gronn-currypasta", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Gul currypasta", Url = "gul-currypasta", IsPublished = true, Type = FoodGroup.Condiments,
+                Id = NextInt(false), Created = _create,
+                Name = "Gul currypasta", Url = "gul-currypasta", State = LifecycleState.Current, Type = FoodGroup.Condiments,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Galangal", Url = "galangal", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Galangal", Url = "galangal", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rød paprika", Url = "rod-paprika", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Rød paprika", Url = "rod-paprika", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Gul paprika", Url = "gul-paprika", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Gul paprika", Url = "gul-paprika", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Grønn paprika", Url = "gronn-paprika", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Grønn paprika", Url = "gronn-paprika", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Isbergsalat", Url = "isbergsalat", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Isbergsalat", Url = "isbergsalat", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hjertesalat", Url = "hjertesalat", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Hjertesalat", Url = "hjertesalat", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Lollosalat", Url = "lollosalat", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Lollosalat", Url = "lollosalat", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Maiskolbe, fersk", Url = "maiskolbe-fersk", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Maiskolbe, fersk", Url = "maiskolbe-fersk", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hermetisk maiskolbe", Url = "hermetisk-maiskolbe", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Hermetisk maiskolbe", Url = "hermetisk-maiskolbe", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hermetiske maiskorn", Url = "hermetiske-maiskorn", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Hermetiske maiskorn", Url = "hermetiske-maiskorn", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Plommetomat", Url = "plommetomat", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Plommetomat", Url = "plommetomat", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kirsebærtomat", Url = "kirsebartomat", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Kirsebærtomat", Url = "kirsebartomat", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Tomat", Url = "tomat", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Tomat", Url = "tomat", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Slangeagurk", Url = "slangeagurk", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Slangeagurk", Url = "slangeagurk", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Gul løk", Url = "gul-lok", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Gul løk", Url = "gul-lok", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rødløk", Url = "rodlok", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Rødløk", Url = "rodlok", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Chalottløk", Url = "chalottlok", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Chalottløk", Url = "chalottlok", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvitløk", Url = "hvitlok", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvitløk", Url = "hvitlok", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Salatløk", Url = "salatlok", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Salatløk", Url = "salatlok", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Vårløk", Url = "varlok", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Vårløk", Url = "varlok", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Purre", Url = "purre", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Purre", Url = "purre", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllingkraft", Alias = "Kyllingbuljong", Url = "kyllingkraft", IsPublished = true, Type = FoodGroup.Other,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllingkraft", Alias = "Kyllingbuljong", Url = "kyllingkraft", State = LifecycleState.Current, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Storfekraft", Alias = "Storfebuljong", Url = "storfekraft", IsPublished = true, Type = FoodGroup.Other,
+                Id = NextInt(false), Created = _create,
+                Name = "Storfekraft", Alias = "Storfebuljong", Url = "storfekraft", State = LifecycleState.Current, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Fiskekraft", Alias = "Fiskebuljong", Url = "fiskekraft", IsPublished = true, Type = FoodGroup.Other,
+                Id = NextInt(false), Created = _create,
+                Name = "Fiskekraft", Alias = "Fiskebuljong", Url = "fiskekraft", State = LifecycleState.Current, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Grønnsakskraft", Alias = "Grønnsaksbuljong", Url = "gronnsakskraft", IsPublished = true, Type = FoodGroup.Other,
+                Id = NextInt(false), Created = _create,
+                Name = "Grønnsakskraft", Alias = "Grønnsaksbuljong", Url = "gronnsakskraft", State = LifecycleState.Current, Type = FoodGroup.Other,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Chili, serrano", Alias = "Rød chili", Url = "chili-serrano", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Chili, serrano", Alias = "Rød chili", Url = "chili-serrano", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Den vanlige, røde chilien du kjenner fra dagligvarebutikken."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Chili, habanero", Url = "chili-habanero", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Chili, habanero", Url = "chili-habanero", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "En sterkere chili."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Chili, birds eye", Url = "chili-birds-eye", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Chili, birds eye", Url = "chili-birds-eye", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Også kalt thai-chili. Sterkere enn serrano."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Champignon, fersk", Url = "champignon-fersk", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Champignon, fersk", Url = "champignon-fersk", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Champignon, hermetisk", Url = "champignon-hermetisk", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Champignon, hermetisk", Url = "champignon-hermetisk", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Aromasopp, fersk", Url = "aromasopp-fersk", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Aromasopp, fersk", Url = "aromasopp-fersk", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Aromasopp, tørket", Url = "aromasopp-torket", IsPublished = true, Type = FoodGroup.Vegetables,
+                Id = NextInt(false), Created = _create,
+                Name = "Aromasopp, tørket", Url = "aromasopp-torket", State = LifecycleState.Current, Type = FoodGroup.Vegetables,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Margarin", Url = "margarin", IsPublished = true, Type = FoodGroup.DairySubstitutes,
+                Id = NextInt(false), Created = _create,
+                Name = "Margarin", Url = "margarin", State = LifecycleState.Current, Type = FoodGroup.DairySubstitutes,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kylling, hel grillet", Url = "kylling-hel-grillet", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kylling, hel grillet", Url = "kylling-hel-grillet", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kylling, hel fersk", Url = "kylling-hel-fersk", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kylling, hel fersk", Url = "kylling-hel-fersk", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllinglår, grillet", Url = "kyllinglar-grillet", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllinglår, grillet", Url = "kyllinglar-grillet", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllinglår, fersk", Url = "kyllinglar-fersk", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllinglår, fersk", Url = "kyllinglar-fersk", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllinglår, frossen", Url = "kyllinglar-frossen", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllinglår, frossen", Url = "kyllinglar-frossen", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllingvinger, grillet", Url = "kyllingvinger-grillet", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllingvinger, grillet", Url = "kyllingvinger-grillet", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllingvinger, fersk", Url = "kyllingvinger-fersk", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllingvinger, fersk", Url = "kyllingvinger-fersk", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllingvinger, frossen", Url = "kyllingvinger-frossen", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllingvinger, frossen", Url = "kyllingvinger-frossen", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kylling lårfilet", Url = "kylling-larfilet", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kylling lårfilet", Url = "kylling-larfilet", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kylling brystfilet", Url = "kylling-brystfilet", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kylling brystfilet", Url = "kylling-brystfilet", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kyllingkjøttdeig", Url = "kyllingkjottdeig", IsPublished = true, Type = FoodGroup.Poultry,
+                Id = NextInt(false), Created = _create,
+                Name = "Kyllingkjøttdeig", Url = "kyllingkjottdeig", State = LifecycleState.Current, Type = FoodGroup.Poultry,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kjøttdeig", Url = "kjottdeig", IsPublished = true, Type = FoodGroup.Meats,
+                Id = NextInt(false), Created = _create,
+                Name = "Kjøttdeig", Url = "kjottdeig", State = LifecycleState.Current, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Karbonadedeig", Url = "karbonadedeig", IsPublished = true, Type = FoodGroup.Meats,
+                Id = NextInt(false), Created = _create,
+                Name = "Karbonadedeig", Url = "karbonadedeig", State = LifecycleState.Current, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Medisterdeig", Url = "medisterdeig", IsPublished = true, Type = FoodGroup.Meats,
+                Id = NextInt(false), Created = _create,
+                Name = "Medisterdeig", Url = "medisterdeig", State = LifecycleState.Current, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Medisterfarse", Url = "medisterfarse", IsPublished = true, Type = FoodGroup.Meats,
+                Id = NextInt(false), Created = _create,
+                Name = "Medisterfarse", Url = "medisterfarse", State = LifecycleState.Current, Type = FoodGroup.Meats,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Koriander, fersk", Url = "koriander-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Koriander, fersk", Url = "koriander-fersk", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Dill, fersk", Url = "dill-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Dill, fersk", Url = "dill-fersk", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Gressløk, fersk", Url = "gresslok-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Gressløk, fersk", Url = "gresslok-fersk", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Basilikum, fersk", Url = "basilikum-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Basilikum, fersk", Url = "basilikum-fersk", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Thaibasilikum, fersk", Url = "thaibasilikum-fersk", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Thaibasilikum, fersk", Url = "thaibasilikum-fersk", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sort pepper, hel", Url = "sort-pepper-hel", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Sort pepper, hel", Url = "sort-pepper-hel", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sort pepper, grovmalt", Url = "sort-pepper-grovmalt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Sort pepper, grovmalt", Url = "sort-pepper-grovmalt", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Sort pepper, malt", Url = "sort-pepper-malt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Sort pepper, malt", Url = "sort-pepper-malt", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvit pepper, hel", Url = "hvit-pepper-hel", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvit pepper, hel", Url = "hvit-pepper-hel", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvit pepper, grovmalt", Url = "hvit-pepper-grovmalt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvit pepper, grovmalt", Url = "hvit-pepper-grovmalt", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvit pepper, malt", Url = "hvit-pepper-malt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvit pepper, malt", Url = "hvit-pepper-malt", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Karri", Url = "karri", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Karri", Url = "karri", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvitløkspulver", Url = "hvitlokspulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvitløkspulver", Url = "hvitlokspulver", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Løkpulver", Url = "lokpulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Løkpulver", Url = "lokpulver", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kanel, hel", Url = "kanel-hel", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Kanel, hel", Url = "kanel-hel", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kanel, malt", Url = "kanel-malt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Kanel, malt", Url = "kanel-malt", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Kardemomme", Url = "kardemomme", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Kardemomme", Url = "kardemomme", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Hvitløkspulver", Url = "hvitlokspulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Hvitløkspulver", Url = "hvitlokspulver", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Chilipulver", Url = "chilipulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Chilipulver", Url = "chilipulver", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Chiliflak", Url = "chiliflak", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Chiliflak", Url = "chiliflak", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Paprikapulver", Url = "paprikapulver", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Paprikapulver", Url = "paprikapulver", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Paprikapulver, røkt", Url = "paprikapulver-rokt", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Paprikapulver, røkt", Url = "paprikapulver-rokt", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Rosmarin, tørket", Url = "rosmarin-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Rosmarin, tørket", Url = "rosmarin-torket", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Dill, tørket", Url = "dill-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Dill, tørket", Url = "dill-torket", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Oregano, tørket", Url = "oregano-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Oregano, tørket", Url = "oregano-torket", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Basilikum, tørket", Url = "basilikum-torket", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Basilikum, tørket", Url = "basilikum-torket", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Informasjon"
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Spisskum", Alias = "Spisskummen, spisskarve, cumin, Roman caraway", Url = "spisskum", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Spisskum", Alias = "Spisskummen, spisskarve, cumin, Roman caraway", Url = "spisskum", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Latin: Cuminum cyminum. Engelsk: Cumin eller Roman caraway. Spisskum kan også kalles spisskummen eller spisskarve, og er ikke det samme som karve."
             },
             new Ingredient(){
-                Id = NextInt(false), Created = _dateTime, Updated = _dateTime,
-                Name = "Karve", Alias = "Caraway", Url = "karve", IsPublished = true, Type = FoodGroup.HerbsAndSpices,
+                Id = NextInt(false), Created = _create,
+                Name = "Karve", Alias = "Caraway", Url = "karve", State = LifecycleState.Current, Type = FoodGroup.HerbsAndSpices,
                 Description = "Latin: Carum carvi. Engelsk: Caraway. Karve er ikke det samme som spisskum/spisskummen/spisskarve/Roman caraway."
             },
         };
@@ -1367,52 +1368,60 @@
         static int id_ovnorr = NextInt(false);
         public static List<Recipe> ParentRecipes = [
             new Recipe(){
-                Id = id_pannek, CountryCode = "NO", Name = "Pannekaker",
-                IsPublished = true, RatingAverage = 7.4, Url = "pannekaker", Created = _dateTime, Updated = _dateTime,
+                Id = id_pannek, CountryCode = "NO", Name = "Pannekaker", State = LifecycleState.Current,
+                RatingAverage = 7.4, Url = "pannekaker", Created = _create,
                 DifficultyLevel = DifficultyLevel.Easy, PrepTime = new TimeSpan(1,0,0),
+                UserId = "c4fe3a8b-2a0e-46b1-9a3c-fc04f04c8a2d",
                 Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy eller sukker og sitrondråper."
             },
             new Recipe(){
-                Id = id_pannekDraft, CountryCode = "NO", Name = "Pannekaker",
-                IsPublished = false, RatingAverage = 7.4, Url = "pannekaker", Created = _dateTime2, Updated = _dateTime2,
+                Id = id_pannekDraft, CountryCode = "NO", Name = "Pannekaker", State = LifecycleState.Draft,
+                RatingAverage = 7.4, Url = "pannekaker", Created = _edit,
                 DifficultyLevel = DifficultyLevel.Easy, PrepTime = new TimeSpan(1,0,0),
+                UserId = "c4fe3a8b-2a0e-46b1-9a3c-fc04f04c8a2d",
                 Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy, bananskiver og kondensert melk, eller sukker og sitrondråper."
             },
             new Recipe() { 
-                Id = id_tomkha, CountryCode = "TH", Name = "Tom Kha Gai",
-                IsPublished = true, RatingAverage = 8.1, Url = "tom-kha-gai", Created = _dateTime, Updated = _dateTime,
+                Id = id_tomkha, CountryCode = "TH", Name = "Tom Kha Gai", State = LifecycleState.Current,
+                RatingAverage = 8.1, Url = "tom-kha-gai", Created = _create,
                 DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(1, 0, 0),
+                UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58",
                 Description = "En fantastisk smakfull kyllingsuppe."
             },
             new Recipe() { 
-                Id = id_cacio, CountryCode = "IT", Name = "Cacio e Pepe",
-                IsPublished = true, RatingAverage = 8.0, Url = "cacio-e-pepe", Created = _dateTime, Updated = _dateTime,
+                Id = id_cacio, CountryCode = "IT", Name = "Cacio e Pepe", State = LifecycleState.Current,
+                RatingAverage = 8.0, Url = "cacio-e-pepe", Created = _create,
                 DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(0, 20, 0),
+                UserId = "9a441995-86e5-4da5-8fb3-7549187247ea",
                 Description = "En enkel men utrolig god, klassisk pastarett."
             },
             new Recipe(){ 
-                Id = id_kjottk, CountryCode = "NO", Name = "Kjøttkaker med kålstuing",
-                IsPublished = true, RatingAverage = 7.3, Url = "kjottkaker-med-kalstuing", Created = _dateTime, Updated = _dateTime,
+                Id = id_kjottk, CountryCode = "NO", Name = "Kjøttkaker med kålstuing", State = LifecycleState.Current,
+                RatingAverage = 7.3, Url = "kjottkaker-med-kalstuing", Created = _create,
                 DifficultyLevel = DifficultyLevel.Easy, PrepTime = new TimeSpan(1, 0, 0),
+                UserId = "9a441995-86e5-4da5-8fb3-7549187247ea",
                 Description = "Den kjente og kjære norske klassikeren, akkurat som mamma lagde den."
             },
             new Recipe() { 
-                Id = id_taco, CountryCode = "MX", Name = "Taco",
-                IsPublished = true, RatingAverage = 9.5, Url = "taco", Created = _dateTime, Updated = _dateTime,
+                Id = id_taco, CountryCode = "MX", Name = "Taco", State = LifecycleState.Current,
+                RatingAverage = 9.5, Url = "taco", Created = _create,
                 DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(1, 30, 0),
+                UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58",
                 Description = "Taco fra grunnen av! Hjemmelagde hvetetortillas, tacokrydder, guacamole og salsa. Denne oppskriften legger grunnlaget for en god helg!"
             },
             new Recipe() { 
-                Id = id_ovnorr, CountryCode = "NO", Name = "Ovnsbakt hel ørret",
-                IsPublished = true, Url = "ovnsbakt-hel-orret", Created = _dateTime, Updated = _dateTime,
+                Id = id_ovnorr, CountryCode = "NO", Name = "Ovnsbakt hel ørret", State = LifecycleState.Current,
+                Url = "ovnsbakt-hel-orret", Created = _create,
                 RatingAverage = 8.0, DifficultyLevel = DifficultyLevel.Intermediate, PrepTime = new TimeSpan(1, 30, 0),
-                Description = "Saftig og smaksrik."
+                UserId = "1e4f5d6e-ad16-47b0-a412-107b48663239",
+                Description = "Saftig og smaksrik søndagsmiddag."
             },
         ];
 
         public static List<Recipe> ChildRecipes = [
             new Recipe() {
-                Id = NextInt(false), 
+                Id = NextInt(false),
+                UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58",
                 ParentRecipeId = GetRecipeId("parent", "taco"), 
                 Name = "Tacokrydder",
                 Url = "tacokrydder", 
@@ -1422,12 +1431,12 @@
                 PrepTime = new TimeSpan(0, 0, 10),
                 Description = "Smakfullt tex-mex-krydder.",
                 ChildRecipeSortOrder = 1,
-                IsPublished = true, 
-                Created = _dateTime, 
-                Updated = _dateTime,
+                State = LifecycleState.Current,
+                Created = _create
             },
             new Recipe() {
-                Id = NextInt(false), 
+                Id = NextInt(false),
+                UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58",
                 ParentRecipeId = GetRecipeId("parent", "taco"), 
                 Name = "Hvetetortillas",
                 Url = "hvetetortillas", 
@@ -1437,12 +1446,12 @@
                 PrepTime = new TimeSpan(0, 30, 0),
                 Description = "Myke og deilige hvetetortillas! Perfekte til fredagstaco, laksewrap eller kyllingburrito!",
                 ChildRecipeSortOrder = 2,
-                IsPublished = true, 
-                Created = _dateTime, 
-                Updated = _dateTime
+                State = LifecycleState.Current,
+                Created = _create
             },
             new Recipe() {
-                Id = NextInt(false), 
+                Id = NextInt(false),
+                UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58",
                 ParentRecipeId = GetRecipeId("parent", "taco"), 
                 Name = "Guacamole",
                 Url = "guacamole", 
@@ -1452,12 +1461,12 @@
                 PrepTime = new TimeSpan(0, 0, 10),
                 Description = "Frisk og smakfull guacamole som er perfekt tilbehør til fredagstacoen!",
                 ChildRecipeSortOrder = 3,
-                IsPublished = true, 
-                Created = _dateTime, 
-                Updated = _dateTime
+                State = LifecycleState.Current,
+                Created = _create
             },
             new Recipe() {
-                Id = NextInt(false), 
+                Id = NextInt(false),
+                UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58",
                 ParentRecipeId = GetRecipeId("parent", "taco"), 
                 Name = "Tomatsalsa",
                 Url = "tomat-salsa", 
@@ -1467,9 +1476,8 @@
                 PrepTime = new TimeSpan(0, 0, 10),
                 Description = "Nydelig tomatsalsa som er perfekt tilbehør til fredagstacoen! Ha i chili etter smak, eller dropp chili for en mild salsa.",
                 ChildRecipeSortOrder = 4,
-                IsPublished = true,
-                Created = _dateTime, 
-                Updated = _dateTime
+                State = LifecycleState.Current,
+                Created = _create
             },
         ];
 

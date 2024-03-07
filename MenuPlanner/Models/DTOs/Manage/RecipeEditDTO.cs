@@ -3,8 +3,7 @@
     public class RecipeEditDTO
     {
         public int? Id { get; set; } // == null ? create : update
-        public bool IsPublished { get; set; }
-        public bool IsDraft { get; set; } // true for upublisert kopi av oppskriften
+        public LifecycleState State { get; set; }
         public int? ParentRecipeId { get; set; } // En oppskrift kan være hoved- eller underoppskrift.
         public int? ChildRecipeSortOrder { get; set; }
 

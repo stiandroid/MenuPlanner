@@ -1,0 +1,70 @@
+﻿<h4>@title</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Status</td>
+            <td>Antall</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Utkast</td>
+            <td><a href="/admin/@subUrl">@Drafts</a></td>
+        </tr>
+        <tr>
+            <td>Venter på godkjenning</td>
+            <td><a href="/admin/@subUrl">@Pending</a></td>
+        </tr>
+        <tr>
+            <td>Publiserte</td>
+            <td><a href="/admin/@subUrl">@Current</a></td>
+        </tr>
+        <tr>
+            <td>Avpubliserte</td>
+            <td><a href="/admin/@subUrl">@Withdrawn</a></td>
+        </tr>
+        <tr>
+            <td>Arkiverte</td>
+            <td><a href="/admin/@subUrl">@Archived</a></td>
+        </tr>
+        <tr>
+            <td>Totalt</td>
+            <td>@Total</td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    [Parameter] public string Entity { get; set; } = string.Empty;
+
+    [Parameter] public int Drafts { get; set; }
+    [Parameter] public int Pending { get; set; }
+    [Parameter] public int Current { get; set; }
+    [Parameter] public int Archived { get; set; }
+    [Parameter] public int Withdrawn { get; set; }
+    [Parameter] public int Total { get; set; }
+
+    string? subUrl;
+    string? title;
+
+    protected override void OnInitialized()
+    {
+        subUrl = Entity switch
+        {
+            "Recipe" => "recipes",
+            "Ingredient" => "ingredients",
+            "Nutrient" => "nutrients",
+            "Allergen" => "allergens",
+            _ => ""
+        };
+
+        title = Entity switch
+        {
+            "Recipe" => "Oppskrifter",
+            "Allergen" => "Allergener",
+            "Nutrient" => "Næringsstoffer",
+            "Ingredient" => "Ingredienser",
+            _ => ""
+        };
+    }
+}

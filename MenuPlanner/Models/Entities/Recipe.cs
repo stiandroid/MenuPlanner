@@ -6,7 +6,6 @@
         public string Url { get; set; } = string.Empty; // Autogenerert: "Svenske kjøttboller" => "svenske-kjottboller"
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
-        public bool IsPublished { get; set; } // kan ikke redigeres direkte, men en kopi kan opprettes for ny versjon
         public LifecycleState State { get; set; }
         public int? ParentRecipeId { get; set; }
         public string? UserId { get; set; } // Id fra IdentityUser er string

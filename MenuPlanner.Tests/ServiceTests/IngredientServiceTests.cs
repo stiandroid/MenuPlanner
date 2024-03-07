@@ -45,7 +45,7 @@
             { 
                 Name = name,
                 Url = name,
-                IsPublished = false
+                State = LifecycleState.Draft
             };
             _dataContext.Ingredients.Add(newIngredient);
             await _dataContext.SaveChangesAsync();
@@ -76,7 +76,7 @@
         {
             // Arrange
             string name = $"CREATED {DateTime.Now}";
-            IngredientEditDTO newIngredient = new() { Name = name, IsPublished = false };
+            IngredientEditDTO newIngredient = new() { Name = name, State = LifecycleState.Draft };
 
             // Act
             var result = await _ingredientService.Edit(newIngredient); // Id = null => Create new
@@ -105,7 +105,7 @@
             string originalName = $"TO UPDATE {DateTime.Now}";
             Ingredient newIngredient = new() { 
                 Name = originalName, 
-                IsPublished = false, 
+                State = LifecycleState.Draft,
                 Description = "This ingredient was created by the test project for the purpose of testing the UPDATE-method of the IngredientService."
             };
             _dataContext.Add(newIngredient);
@@ -119,7 +119,7 @@
             IngredientEditDTO ingredientDto = new() { 
                 Id = newIngredient.Id,
                 Name = newIngredient.Name,
-                IsPublished = false,
+                State = LifecycleState.Draft
             };
             var result = await _ingredientService.Edit(ingredientDto); // Id != null => Update
 

@@ -14,16 +14,40 @@
         <UsersOverview Total="@totalUsers" />
     </div>
     <div class="alert alert-primary p-2 rounded">
-        <RecipesOverview Total="@totalRecipes" Published="@publishedRecipes" />
+        <EntityOverview 
+            Entity="Recipe"
+            Total="@recipesTotal" 
+            Current="@recipesCurrent"
+            Drafts="@recipesDrafts"
+            Archived="@recipesArchived"
+            Withdrawn="@recipesWithdrawn" />
     </div>
     <div class="alert alert-primary p-2 rounded">
-        <IngredientsOverview Total="@totalIngredients" Published="@publishedIngredients" />
+        <EntityOverview 
+            Entity="Ingredient"
+            Total="@ingredientsTotal" 
+            Current="@ingredientsCurrent"
+            Drafts="@ingredientsDrafts"
+            Archived="@ingredientsArchived"
+            Withdrawn="@ingredientsWithdrawn" />
     </div>
     <div class="alert alert-primary p-2 rounded">
-        <NutrientsOverview Total="@totalNutrients" Published="@publishedNutrients" />
+        <EntityOverview 
+            Entity="Nutrient"
+            Total="@nutrientsTotal" 
+            Current="@nutrientsCurrent"
+            Drafts="@nutrientsDrafts"
+            Archived="@nutrientsArchived"
+            Withdrawn="@nutrientsWithdrawn" />
     </div>
     <div class="alert alert-primary p-2 rounded">
-        <AllergensOverview Total="@totalAllergens" Published="@publishedAllergens" />
+        <EntityOverview 
+            Entity="Allergen"
+            Total="@allergensTotal" 
+            Current="@allergensCurrent"
+            Drafts="@allergensDrafts"
+            Archived="@allergensArchived"
+            Withdrawn="@allergensWithdrawn" />
     </div>
 </div>
 
@@ -32,31 +56,59 @@
     int totalUsers;
 
     // RECIPES
-    int totalRecipes;
-    int publishedRecipes;
+    int recipesTotal;
+    int recipesCurrent;
+    int recipesDrafts;
+    int recipesArchived;
+    int recipesWithdrawn;
 
     // INGREDIENTS
-    int totalIngredients;
-    int publishedIngredients;
+    int ingredientsTotal;
+    int ingredientsCurrent;
+    int ingredientsDrafts;
+    int ingredientsArchived;
+    int ingredientsWithdrawn;
 
     // NUTRIENTS
-    int totalNutrients;
-    int publishedNutrients;
+    int nutrientsTotal;
+    int nutrientsCurrent;
+    int nutrientsDrafts;
+    int nutrientsArchived;
+    int nutrientsWithdrawn;
 
     // ALLERGENS
-    int totalAllergens;
-    int publishedAllergens;
+    int allergensTotal;
+    int allergensCurrent;
+    int allergensDrafts;
+    int allergensArchived;
+    int allergensWithdrawn;
 
     protected override async Task OnInitializedAsync()
     {
         totalUsers = await UserService.CountTotal();
-        totalRecipes = await RecipeService.CountTotal();
-        publishedRecipes = await RecipeService.CountPublished();
-        totalIngredients = await IngredientService.CountTotal();
-        publishedIngredients = await IngredientService.CountPublished();
-        totalNutrients = await NutrientService.CountTotal();
-        publishedNutrients = await NutrientService.CountPublished();
-        totalAllergens = await AllergenService.CountTotal();
-        publishedAllergens = await AllergenService.CountPublished();
+
+        recipesCurrent = await RecipeService.Count(LifecycleState.Current);
+        recipesDrafts = await RecipeService.Count(LifecycleState.Draft);
+        recipesWithdrawn = await RecipeService.Count(LifecycleState.Withdrawn);
+        recipesArchived = await RecipeService.Count(LifecycleState.Archived);
+        recipesTotal = recipesCurrent + recipesDrafts + recipesWithdrawn + recipesArchived;
+
+        nutrientsCurrent = await NutrientService.Count(LifecycleState.Current);
+        nutrientsDrafts = await NutrientService.Count(LifecycleState.Draft);
+        nutrientsWithdrawn = await NutrientService.Count(LifecycleState.Withdrawn);
+        nutrientsArchived = await NutrientService.Count(LifecycleState.Archived);
+        nutrientsTotal = nutrientsCurrent + nutrientsDrafts + nutrientsWithdrawn + nutrientsArchived;
+
+        ingredientsCurrent = await IngredientService.Count(LifecycleState.Current);
+        ingredientsDrafts = await IngredientService.Count(LifecycleState.Draft);
+        ingredientsWithdrawn = await IngredientService.Count(LifecycleState.Withdrawn);
+        ingredientsArchived = await IngredientService.Count(LifecycleState.Archived);
+        ingredientsTotal = ingredientsCurrent + ingredientsDrafts + ingredientsWithdrawn + ingredientsArchived;
+
+        allergensCurrent = await AllergenService.Count(LifecycleState.Current);
+        allergensDrafts = await AllergenService.Count(LifecycleState.Draft);
+        allergensWithdrawn = await AllergenService.Count(LifecycleState.Withdrawn);
+        allergensArchived = await AllergenService.Count(LifecycleState.Archived);
+        allergensTotal = allergensCurrent + allergensDrafts + allergensWithdrawn + allergensArchived;
     }
 }
