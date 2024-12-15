@@ -121,7 +121,7 @@ namespace MenuPlanner.Data
                     EntityType = "Recipe",
                     Name = recipe.Name,
                     NormalizedName = recipe.Name.SearchIndexNormalize(),
-                    Url = recipe.Url
+                    Slug = recipe.Slug
                 });
             }
             foreach (var ingredient in DataSeeding.Ingredients)
@@ -132,7 +132,7 @@ namespace MenuPlanner.Data
                     EntityType = "Ingredient",
                     Name = ingredient.Name,
                     NormalizedName = ingredient.Name.SearchIndexNormalize(),
-                    Url = ingredient.Url
+                    Slug = ingredient.Slug
                 });
             }
             foreach (var nutrient in DataSeeding.Nutrients)
@@ -143,7 +143,7 @@ namespace MenuPlanner.Data
                     EntityType = "Nutrient",
                     Name = nutrient.Name,
                     NormalizedName = nutrient.Name.SearchIndexNormalize(),
-                    Url = nutrient.Url
+                    Slug = nutrient.Slug
                 });
             }
             foreach (var allergen in DataSeeding.Allergens)
@@ -154,7 +154,7 @@ namespace MenuPlanner.Data
                     EntityType = "Allergen",
                     Name = allergen.Name,
                     NormalizedName = allergen.Name.SearchIndexNormalize(),
-                    Url = allergen.Url
+                    Slug = allergen.Slug
                 });
             }
             modelBuilder.Entity<SearchIndex>()

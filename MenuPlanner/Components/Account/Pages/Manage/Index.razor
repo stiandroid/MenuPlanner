@@ -19,7 +19,7 @@
             <DataAnnotationsValidator />
 
             <div class="form-floating mb-3">
-                <input type="text" value="@username" class="form-control" placeholder="Velg brukernavn" disabled />
+                <input type="text" value="@_username" class="form-control" placeholder="Velg brukernavn" disabled />
                 <label for="username" class="form-label"><i class="bi bi-envelope-check"></i> Brukernavn</label>
             </div>
             <div class="d-flex flex-row row row-cols-2">
@@ -85,59 +85,55 @@
 </div>
 
 @code {
-    private User user = default!;
-    private string? username;
-    private string? phoneNumber;
+    private User _user = default!;
+    private string? _username;
+    private string? _phoneNumber;
 
     [CascadingParameter]
     private HttpContext HttpContext { get; set; } = default!;
 
     [SupplyParameterFromForm]
-    private InputModel Input { get; set; } = new();
+    private InputModel Input { get; set; } = default!; /* new(); */
 
     protected override async Task OnInitializedAsync()
     {
-        user = await UserAccessor.GetRequiredUserAsync(HttpContext);
+        Input ??= new();
 
-        username = await UserManager.GetUserNameAsync(user);
-        phoneNumber = await UserManager.GetPhoneNumberAsync(user);
+        _user = await UserAccessor.GetRequiredUserAsync(HttpContext);
 
-        Input.PhoneNumber ??= phoneNumber;
-        Input.FirstName = user.FirstName;
-        Input.LastName = user.LastName;
-        Input.Introduction = user.Introduction;
-        Input.Website = user.Website;
-        Input.Instagram = user.Instagram;
-        Input.TwitterX = user.TwitterX;
-        Input.Facebook = user.Facebook;
+        _phoneNumber = await UserManager.GetPhoneNumberAsync(_user);
+        Input.PhoneNumber ??= _phoneNumber;
+
+        Input.FirstName ??= _user.FirstName;
+        Input.LastName ??= _user.LastName;
+        Input.Introduction ??= _user.Introduction;
+        Input.Website ??= _user.Website;
+        Input.Instagram ??= _user.Instagram;
+        Input.TwitterX ??= _user.TwitterX;
+        Input.Facebook ??= _user.Facebook;
+
+        _username = await UserManager.GetUserNameAsync(_user);
     }
 
     private async Task OnValidSubmitAsync()
     {
-        if (Input.PhoneNumber != phoneNumber)
-        {
-            var setPhoneResult = await UserManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-            if (!setPhoneResult.Succeeded)
-            {
-                RedirectManager.RedirectToCurrentPageWithStatus("Kunne ikke angi telefonnummer.", HttpContext, MessageType.Danger);
-            }
-        }
+        _user.PhoneNumber = Input.PhoneNumber;
+        _user.FirstName = Input.FirstName;
+        _user.LastName = Input.LastName;
+        _user.Introduction = Input.Introduction;
+        _user.Website = Input.Website;
+        _user.Instagram = Input.Instagram;
+        _user.TwitterX = Input.TwitterX;
+        _user.Facebook = Input.Facebook;
 
-        user.FirstName = Input.FirstName;
-        user.LastName = Input.LastName;
-        user.Introduction = Input.Introduction;
-        user.Website = Input.Website;
-        user.Instagram = Input.Instagram;
-        user.TwitterX = Input.TwitterX;
-        user.Facebook = Input.Facebook;
-
-        var result = await UserManager.UpdateAsync(user);
+        var result = await UserManager.UpdateAsync(_user);
         if (!result.Succeeded)
         {
-            RedirectManager.RedirectToCurrentPageWithStatus($"Noe gikk galt under oppdatering av personopplysninger.", HttpContext, MessageType.Danger);
+            RedirectManager.RedirectToCurrentPageWithStatus
+                ($"Noe gikk galt under oppdatering av personopplysninger.", HttpContext, MessageType.Danger);
         }
 
-        await SignInManager.RefreshSignInAsync(user);
+        await SignInManager.RefreshSignInAsync(_user);
         RedirectManager.RedirectToCurrentPageWithStatus($"Profilen din ble oppdatert", HttpContext, MessageType.Success);
     }
 

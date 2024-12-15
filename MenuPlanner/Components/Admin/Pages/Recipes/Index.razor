@@ -1,5 +1,6 @@
 ﻿@page "/admin/recipes"
-@attribute [Authorize(Roles="SysAdmin,RecipeEditor,RecipePublisher")]
+@page "/admin/recipes/{State}"
+@attribute [Authorize(Roles = "SysAdmin,RecipeEditor,RecipePublisher")]
 @inject IRecipeService RecipeService
 @inject IMapper Mapper
 @inject NavigationManager Nav
@@ -12,11 +13,12 @@
     <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.Add" OnClick="AddRecipe" />
 </h1>
 
-<MudTable
-    ServerData="@(new Func<TableState, Task<TableData<RecipeSummaryDisplayDTO>>>(ServerReload))"
-    T="RecipeSummaryDisplayDTO"
-    @ref="table"
-    OnRowClick="@GoToRecipe">
+<EntityStateTabs SelectedState="enumState" Numbers="numbers" />
+
+<MudTable ServerData="@(new Func<TableState, Task<TableData<RecipeSummaryDisplayDTO>>>(ServerReload))"
+          T="RecipeSummaryDisplayDTO"
+          @ref="table"
+          OnRowClick="@GoToRecipe">
     <ToolBarContent>
         <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Søk etter oppskrifter"
             Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
@@ -38,7 +40,7 @@
     </HeaderContent>
     <RowTemplate>
         <MudTd Class="pointer">
-            <img src="/images/recipes/@(context.Url)200x150.jpg"
+            <img src="/images/recipes/@(context.Slug)200x150.jpg"
                  class="recipe-index-img" />
         </MudTd>
         <MudTd DataLabel="Navn og beskrivlse" Class="pointer">
@@ -56,7 +58,32 @@
         </MudTd>
     </RowTemplate>
     <NoRecordsContent>
-        <MudText>Fant ingen oppskrifter</MudText>
+        <MudText Align="Align.Left">
+            @{
+                string? som = "som ";
+                if (string.IsNullOrWhiteSpace(searchString))
+                {
+                    som = "";
+                }
+                string text = State switch
+                {
+                    "Draft" => "Ingen oppskriftsutkast",
+                    "PendingApproval" => $"Ingen oppskrifter {som}venter på godkjenning",
+                    "Current" => "Ingen publiserte oppskrifter",
+                    "Withdrawn" => "Ingen tilbaketrukne oppskrifter",
+                    "Archived" => "Ingen arkiverte oppskrifter",
+                    _ => ""
+                };
+                if (!string.IsNullOrWhiteSpace(searchString))
+                {
+                    <span>@text matcher søkefrasen @(searchString).</span>
+                }
+                else
+                {
+                    <span>@(text).</span>
+                }
+            }
+        </MudText>
     </NoRecordsContent>
     <LoadingContent>
         <Loader />
@@ -68,60 +95,102 @@
 
 
 @code {
-    private IEnumerable<RecipeSummaryDisplayDTO> pagedData;
-    private MudTable<RecipeSummaryDisplayDTO> table = new();
+    [Parameter]
+    public string State { get; set; } = "Current";
+    LifecycleState enumState;
+    (int Drafts, int PendingApproval, int Current, int Withdrawn, int Archived) numbers;
 
-    private string searchString = string.Empty;
-    private int totalItems;
+    MudTable<RecipeSummaryDisplayDTO> table = new();
+    string searchString = string.Empty;
 
-    private void GoToRecipe(TableRowClickEventArgs<RecipeSummaryDisplayDTO> e)
-    {
-        string url = e.Item.Url;
-        Nav.NavigateTo($"/admin/recipes/{url}");
-    }
+    //IEnumerable<RecipeSummaryDisplayDTO> pagedData;
+    //int totalItems;
 
-    private void AddRecipe()
-    {
-        Nav.NavigateTo("/admin/recipes/new");
-    }
-
-    private async Task<TableData<RecipeSummaryDisplayDTO>> ServerReload(TableState state)
-    {
-        var result = await RecipeService.GetAll();
-        IEnumerable<RecipeSummaryDisplayDTO> data = Mapper.Map<List<RecipeSummaryDisplayDTO>>(result.Data);
-
-        data = data.Where(element =>
-        {
-            if (string.IsNullOrWhiteSpace(searchString))
-                return true;
-            if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                return true;
-            if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                return true;
-            if (element.User != null)
-            {
-                if ($"{element.User.FirstName} {element.User.LastName}"
-                    .Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-            }
-            if (element.Country != null)
-            {
-                if (element.Country.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
-                    return true;
-            }
-            return false;
-
-        }).ToArray();
-        totalItems = data.Count();
-        data = data.OrderByDirection(state.SortDirection, o => o.RatingAverage);
-
-        pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
-        return new TableData<RecipeSummaryDisplayDTO>() { TotalItems = totalItems, Items = pagedData };
-    }
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     if (Enum.TryParse(State, out LifecycleState parsedState))
+    //     {
+    //         enumState = parsedState;
+    //     }
+    //     else
+    //     {
+    //         enumState = LifecycleState.Current;
+    //     }
+    // }
 
     private void OnSearch(string text)
     {
         searchString = text;
         table.ReloadServerData();
+    }
+
+    private void GoToRecipe(TableRowClickEventArgs<RecipeSummaryDisplayDTO> e)
+    {
+        string slug = e.Item.Slug;
+        Nav.NavigateTo($"/admin/recipe/{slug}/{State}");
+    }
+
+    private void AddRecipe()
+    {
+        Nav.NavigateTo("/admin/recipe/new");
+    }
+
+    private async Task<TableData<RecipeSummaryDisplayDTO>> ServerReload(TableState state)
+    {
+        if (numbers.Sum() == 0) // Kan spare 5 turer til databasen hvis tallene er her allerede.
+        {            
+            numbers = (
+                await RecipeService.Count(LifecycleState.Draft),
+                await RecipeService.Count(LifecycleState.PendingApproval),
+                await RecipeService.Count(LifecycleState.Current),
+                await RecipeService.Count(LifecycleState.Withdrawn),
+                await RecipeService.Count(LifecycleState.Archived)
+            );
+        }
+        if (Enum.TryParse(State, out LifecycleState parsedState))
+        {
+            enumState = parsedState;
+        }
+        else
+        {
+            enumState = LifecycleState.Current;
+        }
+        return await RecipeService.GetPagedWithState(
+            enumState, 
+            searchString, 
+            state.Page, 
+            state.PageSize, 
+            state.SortDirection);
+
+        // var result = await RecipeService.GetAllWithState(enumState);
+        // IEnumerable<RecipeSummaryDisplayDTO> data = Mapper.Map<List<RecipeSummaryDisplayDTO>>(result.Data);
+
+        // data = data.Where(element =>
+        // {
+        //     if (string.IsNullOrWhiteSpace(searchString))
+        //         return true;
+        //     if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //         return true;
+        //     if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //         return true;
+        //     if (element.User != null)
+        //     {
+        //         if ($"{element.User.FirstName} {element.User.LastName}"
+        //             .Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //             return true;
+        //     }
+        //     if (element.Country != null)
+        //     {
+        //         if (element.Country.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+        //             return true;
+        //     }
+        //     return false;
+
+        // }).ToArray();
+        // totalItems = data.Count();
+        //data = data.OrderByDirection(state.SortDirection, o => o.RatingAverage);
+
+        // pagedData = data.Skip(state.Page * state.PageSize).Take(state.PageSize).ToArray();
+        // return new TableData<RecipeSummaryDisplayDTO>() { TotalItems = totalItems, Items = pagedData };
     }
 }

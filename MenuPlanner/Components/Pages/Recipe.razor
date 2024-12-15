@@ -1,4 +1,4 @@
-﻿@page "/r/{Url}"
+﻿@page "/recipe/{Slug}"
 @inject IRecipeService RecipeService
 @inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
@@ -26,7 +26,7 @@ else
         </div>
         <RecipeSubRecipesList SubRecipes="subRecipes" />
         <div class="recipe-steps-wrapper">
-            <RecipeSteps StepList="recipe.Steps" RecipeUrl="recipe.Url" />
+            <RecipeSteps StepList="recipe.Steps" RecipeUrl="recipe.Slug" />
         </div>
     </div>
 
@@ -34,7 +34,7 @@ else
     {
         <div class="d-flex flex-column w-100">
             <h2>Deloppskrifter</h2>
-            @foreach (var subRecipe in recipe.SubRecipes.Where(sr => sr.Url != recipe.Url).ToList())
+            @foreach (var subRecipe in recipe.SubRecipes.Where(sr => sr.Slug != recipe.Slug).ToList())
             {
                 <div class="d-block">
                     <RecipeHeader Recipe="subRecipe" DisplayAsSubRecipe=true />
@@ -49,7 +49,7 @@ else
                             <RecipeIngredients IngredientList="subRecipe.RecipeIngredients" />
                         </div>
                         <div class="recipe-steps-wrapper">
-                            <RecipeSteps StepList="subRecipe.Steps" RecipeUrl="subRecipe.Url" />
+                            <RecipeSteps StepList="subRecipe.Steps" RecipeUrl="subRecipe.Slug" />
                         </div>
                     </div>
                 </div>
@@ -60,27 +60,39 @@ else
 
 @code {
     [Parameter]
-    public string Url { get; set; } = "";
+    public string Slug { get; set; } = string.Empty;
 
     private RecipeDetailsDisplayDTO? recipe;
 
-    List<(string Url, string Name)>? subRecipes = new List<(string Url, string Name)>();
+    List<(string Slug, string Name)>? subRecipes = new List<(string Slug, string Name)>();
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await RecipeService.GetByUrl(Url);
+        var result = await RecipeService.GetBySlug(Slug, LifecycleState.Current);
         if (result.Success)
         {
             recipe = result.Data;
-            if (recipe.SubRecipes != null)
+            if (recipe!.SubRecipes != null)
             {
                 foreach (var subRecipe in recipe.SubRecipes)
                 {
-                    subRecipes.Add(($"/r/{recipe.Url}#{subRecipe.Url}", subRecipe.Name));
+                    subRecipes!.Add(($"/recipe/{recipe.Slug}#{subRecipe.Slug}", subRecipe.Name));
                 }
             }
+        }
+        else
+        {
+            // redirect til feilmelding: oppskriften finnes ikke
+            
+        }
+    }
 
-            JSRuntime.InvokeVoidAsync("setTitle", recipe!.Name);
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (recipe != null)
+        { 
+            await JSRuntime.InvokeVoidAsync("setTitle", recipe.Name);
         }
     }
 }

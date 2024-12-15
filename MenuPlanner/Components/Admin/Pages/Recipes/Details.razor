@@ -1,4 +1,4 @@
-﻿@page "/admin/recipes/{Url}"
+﻿@page "/admin/recipe/{Slug}/{State}"
 @attribute [Authorize(Roles = "SysAdmin,RecipeEditor,RecipePublisher")]
 @inject UserManager<User> UserManager
 @inject AuthenticationStateProvider AuthStateProvider
@@ -24,12 +24,17 @@ else
 
 @code {
     [Parameter]
-    public string Url { get; set; }
+    public string Slug { get; set; } = string.Empty;
+
+    [Parameter]
+    public string State { get; set; } = "Current";
+
 
     RecipeDetailsDisplayDTO? recipe;
 
-    private bool userIsEditor;
-    private bool userIsPublisher;
+    bool userIsEditor;
+    bool userIsPublisher;
+    LifecycleState enumState;
 
     protected override async Task OnInitializedAsync()
     {
@@ -48,7 +53,16 @@ else
                 userIsPublisher = true;
             }
         }
-        var result = await RecipeService.GetByUrl(Url);
+        if (Enum.TryParse(State, out LifecycleState parsedState))
+        {
+            enumState = parsedState;
+        }
+        else
+        {
+            enumState = LifecycleState.Current;
+        }
+
+        var result = await RecipeService.GetBySlug(Slug, enumState);
         if (result.Success)
         {
             recipe = Mapper.Map<RecipeDetailsDisplayDTO>(result.Data);
@@ -57,6 +71,6 @@ else
 
     void EditRecipe()
     {
-        Nav.NavigateTo($"/admin/recipes/edit/{recipe!.Url}");
+        Nav.NavigateTo($"/admin/recipes/edit/{recipe!.Slug}");
     }
 }

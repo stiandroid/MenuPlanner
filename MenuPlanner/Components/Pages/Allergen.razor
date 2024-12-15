@@ -1,4 +1,4 @@
-﻿@page "/allergen/{Url}"
+﻿@page "/allergen/{Slug}"
 @inject IAllergenService AllergenService
 @inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
@@ -16,17 +16,17 @@ else
     <div class="text-box">
         <p>@allergen.Description</p>
     </div>
-    <img class="image" src="images/allergens/@(allergen.Url).png" />
+    <img class="image" src="images/allergens/@(allergen.Slug).png" />
 }
 
 @code {
     [Parameter]
-    public string Url { get; set; } = "";
+    public string Slug { get; set; } = string.Empty;
     private AllergenDisplayDTO? allergen;
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await AllergenService.GetByUrl(Url);
+        var result = await AllergenService.GetBySlug(Slug);
         if (result.Success)
         {
             allergen = result.Data;

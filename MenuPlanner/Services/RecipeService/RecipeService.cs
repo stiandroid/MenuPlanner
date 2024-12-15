@@ -1,4 +1,7 @@
-﻿namespace MenuPlanner.Services.RecipeService
+﻿using MudBlazor;
+using System.Collections.Generic;
+
+namespace MenuPlanner.Services.RecipeService
 {
     public class RecipeService(DataContext context, IMapper mapper) : IRecipeService
     {
@@ -8,22 +11,102 @@
         public async Task<int> Count(LifecycleState state)
             => await _context.Recipes.Where(r => r.State == state).CountAsync();
 
-        public async Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetAll() // published/current
+        public async Task<TableData<RecipeSummaryDisplayDTO>> GetPagedWithState(
+            LifecycleState state, string searchString, int page, int pageSize, SortDirection sorting)
+        {
+            IEnumerable<Recipe> data = await _context.Recipes
+                .Include(c => c.Country)
+                .Include(u => u.User)
+                .Include(s => s.SubRecipes)
+                .Where(p => p.State == state)
+                .ToListAsync();
+
+            data = data.Where(element =>
+            {
+                if (string.IsNullOrWhiteSpace(searchString))
+                    return true;
+
+                if (element.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+
+                if (element.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                    return true;
+
+                if (element.User != null)
+                {
+                    if ($"{element.User.FirstName} {element.User.LastName}"
+                        .Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                }
+
+                if (element.Country != null)
+                {
+                    if (element.Country.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                }
+
+                return false;
+
+            }).ToArray();
+
+            data = data
+                .Skip(page * pageSize).Take(pageSize).ToArray()
+                .OrderByDirection(sorting, o => o.RatingAverage);
+
+            int totalItems = data.Count();
+
+            IEnumerable<RecipeSummaryDisplayDTO> pagedData =
+                _mapper.Map<List<RecipeSummaryDisplayDTO>>
+                    (data);
+
+            return new TableData<RecipeSummaryDisplayDTO>()
+            {
+                TotalItems = totalItems, Items = pagedData
+            };
+        }
+
+        //public async Task<IQueryable<Recipe>> GetQueryableWithState(LifecycleState state)
+        //    => await Task.FromResult(
+        //        _context.Recipes
+        //            .Include(c => c.Country)
+        //            .Include(u => u.User)
+        //            .Include(s => s.SubRecipes)
+        //            .Where(p => p.State == state));
+
+        public async Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetAllWithState(LifecycleState state)
         {
             List<Recipe>? recipes = await _context.Recipes
                 .Include(c => c.Country)
                 .Include(u => u.User)
                 .Include(s => s.SubRecipes)
-                .Where(p => 
-                    p.ParentRecipeId == null &&
-                    p.State == LifecycleState.Current)
+                .Where(p => p.State == state)
                 .ToListAsync();
             return new ServiceResponse<List<RecipeSummaryDisplayDTO>>
             {
                 Data = _mapper.Map<List<RecipeSummaryDisplayDTO>>(recipes),
                 Success = recipes != null,
                 Message = recipes != null
-                    ? "A list of all parent recipes was successfully retrieved."
+                    ? $"A list of all parent recipes with state {state} was successfully retrieved."
+                    : "No recipes were found."
+            };
+        }
+
+        public async Task<ServiceResponse<List<RecipeSummaryDisplayDTO>>> GetParentsWithState(LifecycleState state)
+        {
+            List<Recipe>? recipes = await _context.Recipes
+                .Include(c => c.Country)
+                .Include(u => u.User)
+                .Include(s => s.SubRecipes)
+                .Where(p =>
+                    p.ParentRecipeId == null &&
+                    p.State == state)
+                .ToListAsync();
+            return new ServiceResponse<List<RecipeSummaryDisplayDTO>>
+            {
+                Data = _mapper.Map<List<RecipeSummaryDisplayDTO>>(recipes),
+                Success = recipes != null,
+                Message = recipes != null
+                    ? $"A list of all parent recipes with state {state} was successfully retrieved."
                     : "No recipes were found."
             };
         }
@@ -34,8 +117,10 @@
                 .Include(c => c.Country)
                 .Include(u => u.User)
                 .Include(s => s.SubRecipes)
-                .Where(p => p.ParentRecipeId == null)
-                .OrderBy(r => r.RatingAverage)
+                .Where(p => 
+                    p.State == LifecycleState.Current &&
+                    p.ParentRecipeId == null)
+                .OrderByDescending(r => r.RatingAverage)
                 .Take(numberOfRecipes)
                 .ToListAsync();
             return new ServiceResponse<List<RecipeSummaryDisplayDTO>>
@@ -48,33 +133,30 @@
             };
         }
 
-        public async Task<ServiceResponse<RecipeDetailsDisplayDTO>> GetByUrl(string url)
+        public async Task<ServiceResponse<RecipeDetailsDisplayDTO>> GetBySlug(string slug, LifecycleState state)
         {
             Recipe? recipe = await _context.Recipes
+                .Where(r => r.State == LifecycleState.Current)
                 .Include(r => r.User)
                 .Include(r => r.Country)
                 .Include(r => r.RecipeIngredients.OrderBy(o => o.SortOrder))
                     .ThenInclude(ri => ri.Ingredient)
                 .Include(r => r.Steps.OrderBy(o => o.SortOrder))
                 .Include(r => r.Notes.OrderBy(o => o.SortOrder))
-                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                .Include(r => r.SubRecipes.OrderBy(o => o.SortOrder))
                     .ThenInclude(sub => sub.User)
-                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                .Include(r => r.SubRecipes.OrderBy(o => o.SortOrder))
                     .ThenInclude(sub => sub.Country)
-                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                .Include(r => r.SubRecipes.OrderBy(o => o.SortOrder))
                     .ThenInclude(sub => sub.RecipeIngredients.OrderBy(o => o.SortOrder))
                         .ThenInclude(ri => ri.Ingredient)
-                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                .Include(r => r.SubRecipes.OrderBy(o => o.SortOrder))
                     .ThenInclude(sub => sub.Steps.OrderBy(o => o.SortOrder))
-                .Include(r => r.SubRecipes.OrderBy(o => o.ChildRecipeSortOrder))
+                .Include(r => r.SubRecipes.OrderBy(o => o.SortOrder))
                     .ThenInclude(sub => sub.Notes.OrderBy(o => o.SortOrder))
-                .SingleOrDefaultAsync(r => r.Url == url);
-
-            // Hack: Fjerne parent-oppskriften fra sub-oppskriftene.
-            //if (recipe != null && recipe.SubRecipes != null)
-            //{ 
-            //    recipe.SubRecipes = recipe.SubRecipes.Where(r => r.Url != recipe.Url).ToList();
-            //}
+                .FirstOrDefaultAsync(r => 
+                    r.Slug == slug &&
+                    r.State == state);
 
             return new ServiceResponse<RecipeDetailsDisplayDTO>
             {
@@ -159,7 +241,7 @@
 
         public async Task<ServiceResponse<int>> Publish(string url)
         {
-            Recipe? recipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Url == url);
+            Recipe? recipe = await _context.Recipes.FirstOrDefaultAsync(r => r.Slug == url);
             if (recipe == null)
             {
 

@@ -21,14 +21,14 @@
             };
         }
 
-        public async Task<ServiceResponse<IngredientDisplayDTO>> GetByUrl(string url)
+        public async Task<ServiceResponse<IngredientDisplayDTO>> GetBySlug(string url)
         {
             Ingredient? ingredient = await _context.Ingredients
                 .Include(i => i.IngredientNutrients)
                     .ThenInclude(n => n.Nutrient)
                 .Include(i => i.IngredientAllergens)
                     .ThenInclude(a => a.Allergen)
-                .FirstOrDefaultAsync(r => r.Url == url);
+                .FirstOrDefaultAsync(r => r.Slug == url);
             if (ingredient != null && ingredient.IngredientNutrients != null)
             {
                 ingredient.IngredientNutrients = ingredient.IngredientNutrients

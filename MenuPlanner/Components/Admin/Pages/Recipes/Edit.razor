@@ -1,4 +1,4 @@
-﻿@page "/admin/recipes/edit/{Url}"
+﻿@page "/admin/recipes/edit/{Slug}"
 @inject IRecipeService RecipeService
 @inject NavigationManager Nav
 @inject IMapper Mapper
@@ -30,19 +30,19 @@ else
 
 @code {
     [Parameter]
-    public string Url { get; set; }
+    public string Slug { get; set; }
 
-    private string name = string.Empty;
+    string name = string.Empty;
 
     bool success;
     string[] errors = { };
     MudForm form;
-
+    
     RecipeDetailsDisplayDTO? recipe;
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await RecipeService.GetByUrl(Url);
+        var result = await RecipeService.GetBySlug(Slug, LifecycleState.Draft);
         if (result.Success)
         {
             recipe = Mapper.Map<RecipeDetailsDisplayDTO>(result.Data);
@@ -52,6 +52,6 @@ else
 
     void GoBack()
     {
-        Nav.NavigateTo($"/admin/recipes/{recipe!.Url}");
+        Nav.NavigateTo($"/admin/recipes/{recipe!.Slug}");
     }
 }

@@ -30,6 +30,10 @@ namespace MenuPlanner.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Alias")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -37,11 +41,10 @@ namespace MenuPlanner.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Icon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("HasImage")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -49,14 +52,20 @@ namespace MenuPlanner.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
                     b.Property<int>("State")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Url")
-                        .IsRequired()
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -67,156 +76,184 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "crustacean.png",
+                            HasImage = false,
+                            Icon = "crustacean.png",
                             Name = "Krepsdyr",
-                            State = 2,
-                            Url = "krepsdyr"
+                            Slug = "krepsdyr",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 2,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "sesame.png",
+                            HasImage = false,
+                            Icon = "sesame.png",
                             Name = "Sesamfrø",
-                            State = 2,
-                            Url = "sesamfro"
+                            Slug = "sesamfro",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 3,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "nuts.png",
+                            HasImage = false,
+                            Icon = "nuts.png",
                             Name = "Nøtter",
-                            State = 2,
-                            Url = "notter"
+                            Slug = "notter",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 4,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "gluten.png",
+                            HasImage = false,
+                            Icon = "gluten.png",
                             Name = "Gluten",
-                            State = 2,
-                            Url = "gluten"
+                            Slug = "gluten",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 5,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "egg.png",
+                            HasImage = false,
+                            Icon = "egg.png",
                             Name = "Egg",
-                            State = 2,
-                            Url = "egg"
+                            Slug = "egg",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 6,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "fish.png",
+                            HasImage = false,
+                            Icon = "fish.png",
                             Name = "Fisk",
-                            State = 2,
-                            Url = "fisk"
+                            Slug = "fisk",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 7,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "shellfish.png",
+                            HasImage = false,
+                            Icon = "shellfish.png",
                             Name = "Skalldyr",
-                            State = 2,
-                            Url = "skalldyr"
+                            Slug = "skalldyr",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 8,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "mustard.png",
+                            HasImage = false,
+                            Icon = "mustard.png",
                             Name = "Sennep",
-                            State = 2,
-                            Url = "sennep"
+                            Slug = "sennep",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 9,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "celery.png",
+                            HasImage = false,
+                            Icon = "celery.png",
                             Name = "Selleri",
-                            State = 2,
-                            Url = "selleri"
+                            Slug = "selleri",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 10,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "peanuts.png",
+                            HasImage = false,
+                            Icon = "peanuts.png",
                             Name = "Peanøtter",
-                            State = 2,
-                            Url = "peanotter"
+                            Slug = "peanotter",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 11,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "milk.png",
+                            HasImage = false,
+                            Icon = "milk.png",
                             Name = "Melk",
-                            State = 2,
-                            Url = "melk"
+                            Slug = "melk",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 12,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
-                            Icon = "",
-                            Image = "sulphite.png",
+                            HasImage = false,
+                            Icon = "sulphite.png",
                             Name = "Sulfitt",
-                            State = 2,
-                            Url = "sulfitt"
+                            Slug = "sulfitt",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 13,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
+                            HasImage = false,
                             Icon = "",
-                            Image = "",
                             Name = "Soya",
-                            State = 2,
-                            Url = "soya"
+                            Slug = "soya",
+                            SortOrder = 0,
+                            State = 2
                         },
                         new
                         {
                             Id = 14,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Alias = "",
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
+                            HasImage = false,
                             Icon = "",
-                            Image = "",
                             Name = "Lupin",
-                            State = 2,
-                            Url = "lupin"
+                            Slug = "lupin",
+                            SortOrder = 0,
+                            State = 2
                         });
                 });
 
@@ -316,6 +353,7 @@ namespace MenuPlanner.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Alias")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
@@ -341,6 +379,13 @@ namespace MenuPlanner.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
                     b.Property<int>("State")
                         .HasColumnType("int");
 
@@ -350,8 +395,7 @@ namespace MenuPlanner.Migrations
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Url")
-                        .IsRequired()
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VerificationAuthority")
@@ -369,2423 +413,2596 @@ namespace MenuPlanner.Migrations
                         {
                             Id = 1,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Vann",
+                            Slug = "vann",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 17,
-                            Url = "vann"
+                            Type = 17
                         },
                         new
                         {
                             Id = 2,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvetemel",
+                            Slug = "hvetemel",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "hvetemel"
+                            Type = 4
                         },
                         new
                         {
                             Id = 3,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Pizzamel, tipo-00",
+                            Slug = "pizzamel-tipo-00",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "pizzamel-tipo-00"
+                            Type = 4
                         },
                         new
                         {
                             Id = 4,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Brødmel, tipo-0",
+                            Slug = "brodmel-tipo-0",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "brodmel-tipo-0"
+                            Type = 4
                         },
                         new
                         {
                             Id = 5,
                             Alias = "Semolina",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Semulegryn",
+                            Slug = "semulegryn",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "semulegryn"
+                            Type = 4
                         },
                         new
                         {
                             Id = 6,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sammalt hvete, grovmalt",
+                            Slug = "sammalt-hvete-grovmalt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "sammalt-hvete-grovmalt"
+                            Type = 4
                         },
                         new
                         {
                             Id = 7,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sammalt hvete, finmalt",
+                            Slug = "sammalt-hvete-finmalt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "sammalt-hvete-finmalt"
+                            Type = 4
                         },
                         new
                         {
                             Id = 8,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvete helkorn",
+                            Slug = "hvete-helkorn",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "hvete-helkorn"
+                            Type = 4
                         },
                         new
                         {
                             Id = 9,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Havregryn, lettkokt",
+                            Slug = "havregryn-lettkokt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "havregryn-lettkokt"
+                            Type = 4
                         },
                         new
                         {
                             Id = 10,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Havregryn, store",
+                            Slug = "havregryn-store",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "havregryn-store"
+                            Type = 4
                         },
                         new
                         {
                             Id = 11,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Havregryn, glutenfri",
+                            Slug = "havregryn-glutenfri",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "havregryn-glutenfri"
+                            Type = 4
                         },
                         new
                         {
                             Id = 12,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Havremel",
+                            Slug = "havremel",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "havremel"
+                            Type = 4
                         },
                         new
                         {
                             Id = 13,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rug, helkorn",
+                            Slug = "rug-helkorn",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "rug-helkorn"
+                            Type = 4
                         },
                         new
                         {
                             Id = 14,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rugmel",
+                            Slug = "rugmel",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "rugmel"
+                            Type = 4
                         },
                         new
                         {
                             Id = 15,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Bygg, helkorn",
+                            Slug = "bygg-helkorn",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "bygg-helkorn"
+                            Type = 4
                         },
                         new
                         {
                             Id = 16,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Byggmel",
+                            Slug = "byggmel",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "byggmel"
+                            Type = 4
                         },
                         new
                         {
                             Id = 17,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gresskarkjerner",
+                            Slug = "gresskarkjerner",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 4,
-                            Url = "gresskarkjerner"
+                            Type = 4
                         },
                         new
                         {
                             Id = 18,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Skummet melk",
+                            Slug = "skummet-melk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "skummet-melk"
+                            Type = 2
                         },
                         new
                         {
                             Id = 19,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 41.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Lettmelk",
+                            Slug = "lettmelk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "lettmelk"
+                            Type = 2
                         },
                         new
                         {
                             Id = 20,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Helmelk",
+                            Slug = "helmelk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "helmelk"
+                            Type = 2
                         },
                         new
                         {
                             Id = 21,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kremfløte",
+                            Slug = "kremflote",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "kremflote"
+                            Type = 2
                         },
                         new
                         {
                             Id = 22,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Matfløte",
+                            Slug = "matflote",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "matflote"
+                            Type = 2
                         },
                         new
                         {
                             Id = 23,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Lettrømme",
+                            Slug = "lettromme",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "lettromme"
+                            Type = 2
                         },
                         new
                         {
                             Id = 24,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Seterrømme",
+                            Slug = "seterromme",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "seterromme"
+                            Type = 2
                         },
                         new
                         {
                             Id = 25,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rømmekolle",
+                            Slug = "rommekolle",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "rommekolle"
+                            Type = 2
                         },
                         new
                         {
                             Id = 26,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kvarg",
+                            Slug = "kvarg",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "kvarg"
+                            Type = 2
                         },
                         new
                         {
                             Id = 27,
                             Alias = "Hvitost",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gulost",
+                            Slug = "gulost",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "gulost"
+                            Type = 2
                         },
                         new
                         {
                             Id = 28,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Edamer",
+                            Slug = "edamer",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "edamer"
+                            Type = 2
                         },
                         new
                         {
                             Id = 29,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gouda",
+                            Slug = "gouda",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "gouda"
+                            Type = 2
                         },
                         new
                         {
                             Id = 30,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Brie",
+                            Slug = "brie",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "brie"
+                            Type = 2
                         },
                         new
                         {
                             Id = 31,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kremost",
+                            Slug = "kremost",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "kremost"
+                            Type = 2
                         },
                         new
                         {
                             Id = 32,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Cottage cheese",
+                            Slug = "cottage-cheese",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "cottage-cheese"
+                            Type = 2
                         },
                         new
                         {
                             Id = 33,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Ricotta",
+                            Slug = "ricotta",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "ricotta"
+                            Type = 2
                         },
                         new
                         {
                             Id = 34,
                             Alias = "Grillost",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Halloumi",
+                            Slug = "halloumi",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "halloumi"
+                            Type = 2
                         },
                         new
                         {
                             Id = 35,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Mozzarella",
+                            Slug = "mozzarella",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "mozzarella"
+                            Type = 2
                         },
                         new
                         {
                             Id = 36,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Cheddar",
+                            Slug = "cheddar",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "cheddar"
+                            Type = 2
                         },
                         new
                         {
                             Id = 37,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Geitost",
+                            Slug = "geitost",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "geitost"
+                            Type = 2
                         },
                         new
                         {
                             Id = 38,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Fløtemysost",
+                            Slug = "flotemysost",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "flotemysost"
+                            Type = 2
                         },
                         new
                         {
                             Id = 39,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Egg fra høne. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Egg",
+                            Slug = "egg",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 8,
-                            Url = "egg"
+                            Type = 8
                         },
                         new
                         {
                             Id = 40,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Eggeplomme fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggeplommer i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Eggeplomme",
+                            Slug = "eggeplomme",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 8,
-                            Url = "eggeplomme"
+                            Type = 8
                         },
                         new
                         {
                             Id = 41,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Eggehvite fra hønseegg. Oppskrifter tar som regel utgangspunkt i middels store egg. Dersom oppskriften oppgir eggehviter i antall, og eggene du har er spesielt små eller store kan du måtte justere antallet.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Eggehvite",
+                            Slug = "eggehvite",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 8,
-                            Url = "eggehvite"
+                            Type = 8
                         },
                         new
                         {
                             Id = 42,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Egg fra vaktel.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Vaktelegg",
+                            Slug = "vaktelegg",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 8,
-                            Url = "vaktelegg"
+                            Type = 8
                         },
                         new
                         {
                             Id = 43,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Egg fra måke (måse).",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Måsegg",
+                            Slug = "masegg",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 8,
-                            Url = "masegg"
+                            Type = 8
                         },
                         new
                         {
                             Id = 44,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Tortillachips",
+                            Slug = "tortillachips",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 17,
-                            Url = "tortillachips"
+                            Type = 17
                         },
                         new
                         {
                             Id = 45,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Nachochips",
+                            Slug = "nachochips",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 17,
-                            Url = "nachochips"
+                            Type = 17
                         },
                         new
                         {
                             Id = 46,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Salt",
+                            Slug = "salt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "salt"
+                            Type = 14
                         },
                         new
                         {
                             Id = 47,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Tomatketsjup",
+                            Slug = "tomatketsjup",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "tomatketsjup"
+                            Type = 14
                         },
                         new
                         {
                             Id = 48,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Søt sennep",
+                            Slug = "sot-sennep",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "sot-sennep"
+                            Type = 14
                         },
                         new
                         {
                             Id = 49,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sterk sennep",
+                            Slug = "sterk-sennep",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "sterk-sennep"
+                            Type = 14
                         },
                         new
                         {
                             Id = 50,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Dijonsennep",
+                            Slug = "dijonsennep",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "dijonsennep"
+                            Type = 14
                         },
                         new
                         {
                             Id = 51,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Grov sennep",
+                            Slug = "grov-sennep",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "grov-sennep"
+                            Type = 14
                         },
                         new
                         {
                             Id = 52,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Soyasaus",
+                            Slug = "soyasaus",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "soyasaus"
+                            Type = 14
                         },
                         new
                         {
                             Id = 53,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Saltredusert soyasaus",
+                            Slug = "saltredusert-soyasaus",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "saltredusert-soyasaus"
+                            Type = 14
                         },
                         new
                         {
                             Id = 54,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "35%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Eddikessens",
+                            Slug = "eddikessens",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "eddikessens"
+                            Type = 14
                         },
                         new
                         {
                             Id = 55,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "7%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Klar eddik",
+                            Slug = "klar-eddik",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "klar-eddik"
+                            Type = 14
                         },
                         new
                         {
                             Id = 56,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "7%",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Brun eddik",
+                            Slug = "brun-eddik",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "brun-eddik"
+                            Type = 14
                         },
                         new
                         {
                             Id = 57,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Eplecidereddik",
+                            Slug = "eplecidereddik",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "eplecidereddik"
+                            Type = 14
                         },
                         new
                         {
                             Id = 58,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvitvinseddik",
+                            Slug = "hvitvinseddik",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "hvitvinseddik"
+                            Type = 14
                         },
                         new
                         {
                             Id = 59,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rødvinseddik",
+                            Slug = "rodvinseddik",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "rodvinseddik"
+                            Type = 14
                         },
                         new
                         {
                             Id = 60,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sitrondråper",
+                            Slug = "sitrondråper",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "sitrondråper"
+                            Type = 14
                         },
                         new
                         {
                             Id = 61,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Smør",
+                            Slug = "smor",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 2,
-                            Url = "smor"
+                            Type = 2
                         },
                         new
                         {
                             Id = 62,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Margarin",
+                            Slug = "margarin",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 3,
-                            Url = "margarin"
+                            Type = 3
                         },
                         new
                         {
                             Id = 63,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rapsolje",
+                            Slug = "rapsolje",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 15,
-                            Url = "rapsolje"
+                            Type = 15
                         },
                         new
                         {
                             Id = 64,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Maisolje",
+                            Slug = "maisolje",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 15,
-                            Url = "maisolje"
+                            Type = 15
                         },
                         new
                         {
                             Id = 65,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Olivenolje",
+                            Slug = "Olivenolje",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 15,
-                            Url = "Olivenolje"
+                            Type = 15
                         },
                         new
                         {
                             Id = 66,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sesamolje",
+                            Slug = "sesamolje",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 15,
-                            Url = "sesamolje"
+                            Type = 15
                         },
                         new
                         {
                             Id = 67,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kokosolje",
+                            Slug = "kokosolje",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 15,
-                            Url = "kokosolje"
+                            Type = 15
                         },
                         new
                         {
                             Id = 68,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Frityrolje",
+                            Slug = "frityrolje",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 15,
-                            Url = "frityrolje"
+                            Type = 15
                         },
                         new
                         {
                             Id = 69,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sukker",
+                            Slug = "sukker",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "sukker"
+                            Type = 13
                         },
                         new
                         {
                             Id = 70,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Blåbær",
+                            Slug = "blabar",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "blabar"
+                            Type = 1
                         },
                         new
                         {
                             Id = 71,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Jordbær",
+                            Slug = "jordbar",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "jordbar"
+                            Type = 1
                         },
                         new
                         {
                             Id = 72,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Bringebær",
+                            Slug = "bringebar",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "bringebar"
+                            Type = 1
                         },
                         new
                         {
                             Id = 73,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Grønne epler",
+                            Slug = "gronne-epler",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "gronne-epler"
+                            Type = 1
                         },
                         new
                         {
                             Id = 74,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Røde epler",
+                            Slug = "rode-epler",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "rode-epler"
+                            Type = 1
                         },
                         new
                         {
                             Id = 75,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gule epler",
+                            Slug = "gule-epler",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "gule-epler"
+                            Type = 1
                         },
                         new
                         {
                             Id = 76,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Appelsin",
+                            Slug = "appelsin",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "appelsin"
+                            Type = 1
                         },
                         new
                         {
                             Id = 77,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sitron",
+                            Slug = "sitron",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "sitron"
+                            Type = 1
                         },
                         new
                         {
                             Id = 78,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Økologisk sitron",
+                            Slug = "okologisk-sitron",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "okologisk-sitron"
+                            Type = 1
                         },
                         new
                         {
                             Id = 79,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Lime",
+                            Slug = "lime",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "lime"
+                            Type = 1
                         },
                         new
                         {
                             Id = 80,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hermetiske mandarinbåter",
+                            Slug = "hermetiske-mandarinbater",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "hermetiske-mandarinbater"
+                            Type = 1
                         },
                         new
                         {
                             Id = 81,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hermetiske pærer",
+                            Slug = "hermetiske-parer",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "hermetiske-parer"
+                            Type = 1
                         },
                         new
                         {
                             Id = 82,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hermetiske fersken",
+                            Slug = "hermetiske-fersken",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "hermetiske-fersken"
+                            Type = 1
                         },
                         new
                         {
                             Id = 83,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Banan",
+                            Slug = "banan",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "banan"
+                            Type = 1
                         },
                         new
                         {
                             Id = 84,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Klementin",
+                            Slug = "klementin",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "klementin"
+                            Type = 1
                         },
                         new
                         {
                             Id = 85,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Blå druer",
+                            Slug = "bla-druer",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "bla-druer"
+                            Type = 1
                         },
                         new
                         {
                             Id = 86,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Grønne druer",
+                            Slug = "gronne-druer",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "gronne-druer"
+                            Type = 1
                         },
                         new
                         {
                             Id = 87,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rosiner",
+                            Slug = "rosiner",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "rosiner"
+                            Type = 1
                         },
                         new
                         {
                             Id = 88,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Korinter",
+                            Slug = "korinter",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 1,
-                            Url = "korinter"
+                            Type = 1
                         },
                         new
                         {
                             Id = 89,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Fiskesaus",
+                            Slug = "fiskesaus",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "fiskesaus"
+                            Type = 14
                         },
                         new
                         {
                             Id = 90,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kokosmelk",
+                            Slug = "kokosmelk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 16,
-                            Url = "kokosmelk"
+                            Type = 16
                         },
                         new
                         {
                             Id = 91,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kokosmelk, lett",
+                            Slug = "kokosmelk-lett",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 16,
-                            Url = "kokosmelk-lett"
+                            Type = 16
                         },
                         new
                         {
                             Id = 92,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kokoskrem",
+                            Slug = "kokoskrem",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 16,
-                            Url = "kokoskrem"
+                            Type = 16
                         },
                         new
                         {
                             Id = 93,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kokosmasse",
+                            Slug = "kokosmasse",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 16,
-                            Url = "kokosmasse"
+                            Type = 16
                         },
                         new
                         {
                             Id = 94,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sitrongress",
+                            Slug = "sitrongress",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "sitrongress"
+                            Type = 12
                         },
                         new
                         {
                             Id = 95,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rød currypasta",
+                            Slug = "rod-currypasta",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "rod-currypasta"
+                            Type = 14
                         },
                         new
                         {
                             Id = 96,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Grønn currypasta",
+                            Slug = "gronn-currypasta",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "gronn-currypasta"
+                            Type = 14
                         },
                         new
                         {
                             Id = 97,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gul currypasta",
+                            Slug = "gul-currypasta",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 14,
-                            Url = "gul-currypasta"
+                            Type = 14
                         },
                         new
                         {
                             Id = 98,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Galangal",
+                            Slug = "galangal",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "galangal"
+                            Type = 12
                         },
                         new
                         {
                             Id = 99,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rød paprika",
+                            Slug = "rod-paprika",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "rod-paprika"
+                            Type = 0
                         },
                         new
                         {
                             Id = 100,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gul paprika",
+                            Slug = "gul-paprika",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "gul-paprika"
+                            Type = 0
                         },
                         new
                         {
                             Id = 101,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Grønn paprika",
+                            Slug = "gronn-paprika",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "gronn-paprika"
+                            Type = 0
                         },
                         new
                         {
                             Id = 102,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Isbergsalat",
+                            Slug = "isbergsalat",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "isbergsalat"
+                            Type = 0
                         },
                         new
                         {
                             Id = 103,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hjertesalat",
+                            Slug = "hjertesalat",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "hjertesalat"
+                            Type = 0
                         },
                         new
                         {
                             Id = 104,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Lollosalat",
+                            Slug = "lollosalat",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "lollosalat"
+                            Type = 0
                         },
                         new
                         {
                             Id = 105,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Maiskolbe, fersk",
+                            Slug = "maiskolbe-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "maiskolbe-fersk"
+                            Type = 0
                         },
                         new
                         {
                             Id = 106,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hermetisk maiskolbe",
+                            Slug = "hermetisk-maiskolbe",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "hermetisk-maiskolbe"
+                            Type = 0
                         },
                         new
                         {
                             Id = 107,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hermetiske maiskorn",
+                            Slug = "hermetiske-maiskorn",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "hermetiske-maiskorn"
+                            Type = 0
                         },
                         new
                         {
                             Id = 108,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Plommetomat",
+                            Slug = "plommetomat",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "plommetomat"
+                            Type = 0
                         },
                         new
                         {
                             Id = 109,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kirsebærtomat",
+                            Slug = "kirsebartomat",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "kirsebartomat"
+                            Type = 0
                         },
                         new
                         {
                             Id = 110,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Tomat",
+                            Slug = "tomat",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "tomat"
+                            Type = 0
                         },
                         new
                         {
                             Id = 111,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Slangeagurk",
+                            Slug = "slangeagurk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "slangeagurk"
+                            Type = 0
                         },
                         new
                         {
                             Id = 112,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gul løk",
+                            Slug = "gul-lok",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "gul-lok"
+                            Type = 0
                         },
                         new
                         {
                             Id = 113,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rødløk",
+                            Slug = "rodlok",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "rodlok"
+                            Type = 0
                         },
                         new
                         {
                             Id = 114,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Chalottløk",
+                            Slug = "chalottlok",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "chalottlok"
+                            Type = 0
                         },
                         new
                         {
                             Id = 115,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvitløk",
+                            Slug = "hvitlok",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "hvitlok"
+                            Type = 0
                         },
                         new
                         {
                             Id = 116,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Salatløk",
+                            Slug = "salatlok",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "salatlok"
+                            Type = 0
                         },
                         new
                         {
                             Id = 117,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Vårløk",
+                            Slug = "varlok",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "varlok"
+                            Type = 0
                         },
                         new
                         {
                             Id = 118,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Purre",
+                            Slug = "purre",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "purre"
+                            Type = 0
                         },
                         new
                         {
                             Id = 119,
                             Alias = "Kyllingbuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllingkraft",
+                            Slug = "kyllingkraft",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 17,
-                            Url = "kyllingkraft"
+                            Type = 17
                         },
                         new
                         {
                             Id = 120,
                             Alias = "Storfebuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Storfekraft",
+                            Slug = "storfekraft",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 17,
-                            Url = "storfekraft"
+                            Type = 17
                         },
                         new
                         {
                             Id = 121,
                             Alias = "Fiskebuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Fiskekraft",
+                            Slug = "fiskekraft",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 17,
-                            Url = "fiskekraft"
+                            Type = 17
                         },
                         new
                         {
                             Id = 122,
                             Alias = "Grønnsaksbuljong",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Grønnsakskraft",
+                            Slug = "gronnsakskraft",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 17,
-                            Url = "gronnsakskraft"
+                            Type = 17
                         },
                         new
                         {
                             Id = 123,
                             Alias = "Rød chili",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Den vanlige, røde chilien du kjenner fra dagligvarebutikken.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Chili, serrano",
+                            Slug = "chili-serrano",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "chili-serrano"
+                            Type = 0
                         },
                         new
                         {
                             Id = 124,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "En sterkere chili.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Chili, habanero",
+                            Slug = "chili-habanero",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "chili-habanero"
+                            Type = 0
                         },
                         new
                         {
                             Id = 125,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Også kalt thai-chili. Sterkere enn serrano.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Chili, birds eye",
+                            Slug = "chili-birds-eye",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "chili-birds-eye"
+                            Type = 0
                         },
                         new
                         {
                             Id = 126,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Champignon, fersk",
+                            Slug = "champignon-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "champignon-fersk"
+                            Type = 0
                         },
                         new
                         {
                             Id = 127,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Champignon, hermetisk",
+                            Slug = "champignon-hermetisk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "champignon-hermetisk"
+                            Type = 0
                         },
                         new
                         {
                             Id = 128,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Aromasopp, fersk",
+                            Slug = "aromasopp-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "aromasopp-fersk"
+                            Type = 0
                         },
                         new
                         {
                             Id = 129,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Aromasopp, tørket",
+                            Slug = "aromasopp-torket",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 0,
-                            Url = "aromasopp-torket"
+                            Type = 0
                         },
                         new
                         {
                             Id = 130,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Margarin",
+                            Slug = "margarin",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 3,
-                            Url = "margarin"
+                            Type = 3
                         },
                         new
                         {
                             Id = 131,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kylling, hel grillet",
+                            Slug = "kylling-hel-grillet",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kylling-hel-grillet"
+                            Type = 7
                         },
                         new
                         {
                             Id = 132,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kylling, hel fersk",
+                            Slug = "kylling-hel-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kylling-hel-fersk"
+                            Type = 7
                         },
                         new
                         {
                             Id = 133,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllinglår, grillet",
+                            Slug = "kyllinglar-grillet",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kyllinglar-grillet"
+                            Type = 7
                         },
                         new
                         {
                             Id = 134,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllinglår, fersk",
+                            Slug = "kyllinglar-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kyllinglar-fersk"
+                            Type = 7
                         },
                         new
                         {
                             Id = 135,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllinglår, frossen",
+                            Slug = "kyllinglar-frossen",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kyllinglar-frossen"
+                            Type = 7
                         },
                         new
                         {
                             Id = 136,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllingvinger, grillet",
+                            Slug = "kyllingvinger-grillet",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kyllingvinger-grillet"
+                            Type = 7
                         },
                         new
                         {
                             Id = 137,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllingvinger, fersk",
+                            Slug = "kyllingvinger-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kyllingvinger-fersk"
+                            Type = 7
                         },
                         new
                         {
                             Id = 138,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllingvinger, frossen",
+                            Slug = "kyllingvinger-frossen",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kyllingvinger-frossen"
+                            Type = 7
                         },
                         new
                         {
                             Id = 139,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kylling lårfilet",
+                            Slug = "kylling-larfilet",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kylling-larfilet"
+                            Type = 7
                         },
                         new
                         {
                             Id = 140,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kylling brystfilet",
+                            Slug = "kylling-brystfilet",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kylling-brystfilet"
+                            Type = 7
                         },
                         new
                         {
                             Id = 141,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kyllingkjøttdeig",
+                            Slug = "kyllingkjottdeig",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 7,
-                            Url = "kyllingkjottdeig"
+                            Type = 7
                         },
                         new
                         {
                             Id = 142,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kjøttdeig",
+                            Slug = "kjottdeig",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 5,
-                            Url = "kjottdeig"
+                            Type = 5
                         },
                         new
                         {
                             Id = 143,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Karbonadedeig",
+                            Slug = "karbonadedeig",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 5,
-                            Url = "karbonadedeig"
+                            Type = 5
                         },
                         new
                         {
                             Id = 144,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Medisterdeig",
+                            Slug = "medisterdeig",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 5,
-                            Url = "medisterdeig"
+                            Type = 5
                         },
                         new
                         {
                             Id = 145,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Medisterfarse",
+                            Slug = "medisterfarse",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 5,
-                            Url = "medisterfarse"
+                            Type = 5
                         },
                         new
                         {
                             Id = 146,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Koriander, fersk",
+                            Slug = "koriander-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "koriander-fersk"
+                            Type = 12
                         },
                         new
                         {
                             Id = 147,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Dill, fersk",
+                            Slug = "dill-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "dill-fersk"
+                            Type = 12
                         },
                         new
                         {
                             Id = 148,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Gressløk, fersk",
+                            Slug = "gresslok-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "gresslok-fersk"
+                            Type = 12
                         },
                         new
                         {
                             Id = 149,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Basilikum, fersk",
+                            Slug = "basilikum-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "basilikum-fersk"
+                            Type = 12
                         },
                         new
                         {
                             Id = 150,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Thaibasilikum, fersk",
+                            Slug = "thaibasilikum-fersk",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "thaibasilikum-fersk"
+                            Type = 12
                         },
                         new
                         {
                             Id = 151,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sort pepper, hel",
+                            Slug = "sort-pepper-hel",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "sort-pepper-hel"
+                            Type = 12
                         },
                         new
                         {
                             Id = 152,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sort pepper, grovmalt",
+                            Slug = "sort-pepper-grovmalt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "sort-pepper-grovmalt"
+                            Type = 12
                         },
                         new
                         {
                             Id = 153,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Sort pepper, malt",
+                            Slug = "sort-pepper-malt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "sort-pepper-malt"
+                            Type = 12
                         },
                         new
                         {
                             Id = 154,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvit pepper, hel",
+                            Slug = "hvit-pepper-hel",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "hvit-pepper-hel"
+                            Type = 12
                         },
                         new
                         {
                             Id = 155,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvit pepper, grovmalt",
+                            Slug = "hvit-pepper-grovmalt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "hvit-pepper-grovmalt"
+                            Type = 12
                         },
                         new
                         {
                             Id = 156,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvit pepper, malt",
+                            Slug = "hvit-pepper-malt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "hvit-pepper-malt"
+                            Type = 12
                         },
                         new
                         {
                             Id = 157,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Karri",
+                            Slug = "karri",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "karri"
+                            Type = 12
                         },
                         new
                         {
                             Id = 158,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvitløkspulver",
+                            Slug = "hvitlokspulver",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "hvitlokspulver"
+                            Type = 12
                         },
                         new
                         {
                             Id = 159,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Løkpulver",
+                            Slug = "lokpulver",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "lokpulver"
+                            Type = 12
                         },
                         new
                         {
                             Id = 160,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kanel, hel",
+                            Slug = "kanel-hel",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "kanel-hel"
+                            Type = 12
                         },
                         new
                         {
                             Id = 161,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kanel, malt",
+                            Slug = "kanel-malt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "kanel-malt"
+                            Type = 12
                         },
                         new
                         {
                             Id = 162,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Kardemomme",
+                            Slug = "kardemomme",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "kardemomme"
+                            Type = 12
                         },
                         new
                         {
                             Id = 163,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Hvitløkspulver",
+                            Slug = "hvitlokspulver",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "hvitlokspulver"
+                            Type = 12
                         },
                         new
                         {
                             Id = 164,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Chilipulver",
+                            Slug = "chilipulver",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "chilipulver"
+                            Type = 12
                         },
                         new
                         {
                             Id = 165,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Chiliflak",
+                            Slug = "chiliflak",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "chiliflak"
+                            Type = 12
                         },
                         new
                         {
                             Id = 166,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Paprikapulver",
+                            Slug = "paprikapulver",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "paprikapulver"
+                            Type = 12
                         },
                         new
                         {
                             Id = 167,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Paprikapulver, røkt",
+                            Slug = "paprikapulver-rokt",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "paprikapulver-rokt"
+                            Type = 12
                         },
                         new
                         {
                             Id = 168,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Rosmarin, tørket",
+                            Slug = "rosmarin-torket",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "rosmarin-torket"
+                            Type = 12
                         },
                         new
                         {
                             Id = 169,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Dill, tørket",
+                            Slug = "dill-torket",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "dill-torket"
+                            Type = 12
                         },
                         new
                         {
                             Id = 170,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Oregano, tørket",
+                            Slug = "oregano-torket",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "oregano-torket"
+                            Type = 12
                         },
                         new
                         {
                             Id = 171,
                             Alias = "",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Basilikum, tørket",
+                            Slug = "basilikum-torket",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "basilikum-torket"
+                            Type = 12
                         },
                         new
                         {
                             Id = 172,
                             Alias = "Spisskummen, spisskarve, cumin, Roman caraway",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Latin: Cuminum cyminum. Engelsk: Cumin eller Roman caraway. Spisskum kan også kalles spisskummen eller spisskarve, og er ikke det samme som karve.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Spisskum",
+                            Slug = "spisskum",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "spisskum"
+                            Type = 12
                         },
                         new
                         {
                             Id = 173,
                             Alias = "Caraway",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Latin: Carum carvi. Engelsk: Caraway. Karve er ikke det samme som spisskum/spisskummen/spisskarve/Roman caraway.",
                             EnergyKcalPer100g = 0.0,
                             HasImage = false,
                             IsNutritionallyVerified = false,
                             Name = "Karve",
+                            Slug = "karve",
+                            SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "karve"
+                            Type = 12
                         });
                 });
 
@@ -2933,6 +3150,10 @@ namespace MenuPlanner.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Alias")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("AlwaysDisplay")
                         .HasColumnType("bit");
 
@@ -2947,6 +3168,10 @@ namespace MenuPlanner.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -2965,8 +3190,7 @@ namespace MenuPlanner.Migrations
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Url")
-                        .IsRequired()
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -2977,581 +3201,625 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 1,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Protein",
+                            Slug = "protein",
                             SortOrder = 0,
                             State = 2,
-                            Type = 10,
-                            Url = "protein"
+                            Type = 10
                         },
                         new
                         {
                             Id = 2,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Total mengde karbohydrater, inkludert sukkerarter, polyoler og stivelse.",
                             Emphasized = false,
                             Name = "Karbohydrater",
+                            Slug = "karbohydrater",
                             SortOrder = 0,
                             State = 2,
-                            Type = 5,
-                            Url = "karbohydrater"
+                            Type = 5
                         },
                         new
                         {
                             Id = 3,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Sukkerarter",
+                            Slug = "sukkerarter",
                             SortOrder = 0,
                             State = 2,
                             SubTypeOf = 5,
-                            Type = 6,
-                            Url = "sukkerarter"
+                            Type = 6
                         },
                         new
                         {
                             Id = 4,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Polyoler",
+                            Slug = "polyoler",
                             SortOrder = 0,
                             State = 2,
                             SubTypeOf = 5,
-                            Type = 7,
-                            Url = "polyoler"
+                            Type = 7
                         },
                         new
                         {
                             Id = 5,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon.",
                             Emphasized = false,
                             Name = "Stivelse",
+                            Slug = "stivelse",
                             SortOrder = 0,
                             State = 2,
                             SubTypeOf = 5,
-                            Type = 8,
-                            Url = "stivelse"
+                            Type = 8
                         },
                         new
                         {
                             Id = 6,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Angir total mengde fett i en ingrediens, inkludert mettet, enumettet og flerumettet fett.",
                             Emphasized = false,
                             Name = "Fett",
+                            Slug = "fett",
                             SortOrder = 1,
                             State = 2,
-                            Type = 0,
-                            Url = "fett"
+                            Type = 0
                         },
                         new
                         {
                             Id = 7,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Mettet fett",
+                            Slug = "mettet-fett",
                             SortOrder = 1,
                             State = 2,
                             SubTypeOf = 0,
-                            Type = 1,
-                            Url = "mettet-fett"
+                            Type = 1
                         },
                         new
                         {
                             Id = 8,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Enumettet fett",
+                            Slug = "enumettet-fett",
                             SortOrder = 2,
                             State = 2,
                             SubTypeOf = 0,
-                            Type = 2,
-                            Url = "enumettet-fett"
+                            Type = 2
                         },
                         new
                         {
                             Id = 9,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Flerumettet fett",
+                            Slug = "flerumettet-fett",
                             SortOrder = 3,
                             State = 2,
                             SubTypeOf = 0,
-                            Type = 3,
-                            Url = "flerumettet-fett"
+                            Type = 3
                         },
                         new
                         {
                             Id = 10,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Transfett",
+                            Slug = "transfett",
                             SortOrder = 4,
                             State = 2,
                             SubTypeOf = 0,
-                            Type = 4,
-                            Url = "transfett"
+                            Type = 4
                         },
                         new
                         {
                             Id = 11,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin A, retinol",
+                            Slug = "vitamin-a-retinol",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-a-retinol"
+                            Type = 12
                         },
                         new
                         {
                             Id = 12,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B1, tiamin",
+                            Slug = "vitamin-b1-tiamin",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-b1-tiamin"
+                            Type = 12
                         },
                         new
                         {
                             Id = 13,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B2, riboflavin",
+                            Slug = "vitamin-b2-riboflavin",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-b2-riboflavin"
+                            Type = 12
                         },
                         new
                         {
                             Id = 14,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B3, niacin",
+                            Slug = "vitamin-b3-niacin",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-b3-niacin"
+                            Type = 12
                         },
                         new
                         {
                             Id = 15,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B5, pantotensyre",
+                            Slug = "vitamin-b5-pantotensyre",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-b5-pantotensyre"
+                            Type = 12
                         },
                         new
                         {
                             Id = 16,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B7, biotin",
+                            Slug = "vitamin-b7-biotin",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-b7-biotin"
+                            Type = 12
                         },
                         new
                         {
                             Id = 17,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B9, folat",
+                            Slug = "vitamin-b9-folat",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-b9-folat"
+                            Type = 12
                         },
                         new
                         {
                             Id = 18,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin B12, kobalamin",
+                            Slug = "vitamin-b12-kobalamin",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-b12-kobalamin"
+                            Type = 12
                         },
                         new
                         {
                             Id = 19,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin C, askorbinsyre",
+                            Slug = "vitamin-c-askorbinsyre",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-c-askorbinsyre"
+                            Type = 12
                         },
                         new
                         {
                             Id = 20,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin D2, ergokalsiferol",
+                            Slug = "vitamin-d2-ergokalsiferol",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-d2-ergokalsiferol"
+                            Type = 12
                         },
                         new
                         {
                             Id = 21,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin D3, kolikalsiferol",
+                            Slug = "vitamin-d3-kolikalsiferol",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-d3-kolikalsiferol"
+                            Type = 12
                         },
                         new
                         {
                             Id = 22,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Tokoferol (E306) betegner en blanding av de rene stoffene alfa-tokoferol (E307), gamma-tokoferol (E308) og delta-tokoferol (E309).",
                             Emphasized = false,
                             Name = "Vitamin E, tokoferol (E306)",
+                            Slug = "vitamin-e-tokoferol-e306",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-e-tokoferol-e306"
+                            Type = 12
                         },
                         new
                         {
                             Id = 23,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin K1, fyllokinon",
+                            Slug = "vitamin-k1-fyllokinon",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-k1-fyllokinon"
+                            Type = 12
                         },
                         new
                         {
                             Id = 24,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Informasjon",
                             Emphasized = false,
                             Name = "Vitamin K2, menakinon",
+                            Slug = "vitamin-k2-menakinon",
                             SortOrder = 0,
                             State = 2,
-                            Type = 12,
-                            Url = "vitamin-k2-menakinon"
+                            Type = 12
                         },
                         new
                         {
                             Id = 25,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Potassium",
                             Emphasized = false,
                             Name = "Kalium",
+                            Slug = "kalium",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "kalium"
+                            Type = 13
                         },
                         new
                         {
                             Id = 26,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Chlorine. Komponent i vanlig bordsalt (natriumklorid).",
                             Emphasized = false,
                             Name = "Klorin",
+                            Slug = "klorin",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "klorin"
+                            Type = 13
                         },
                         new
                         {
                             Id = 27,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Sodium. Komponent i vanlig bordsalt (natriumklorid).",
                             Emphasized = false,
                             Name = "Natrium",
+                            Slug = "natrium",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "natrium"
+                            Type = 13
                         },
                         new
                         {
                             Id = 28,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Calcium. Viktig for skjelettet og tennene.",
                             Emphasized = false,
                             Name = "Kalsium",
+                            Slug = "kalsium",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "kalsium"
+                            Type = 13
                         },
                         new
                         {
                             Id = 29,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Phosphorus.",
                             Emphasized = false,
                             Name = "Fosfor",
+                            Slug = "fosfor",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "fosfor"
+                            Type = 13
                         },
                         new
                         {
                             Id = 30,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Magnesium.",
                             Emphasized = false,
                             Name = "Magnesium",
+                            Slug = "magnesium",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "magnesium"
+                            Type = 13
                         },
                         new
                         {
                             Id = 31,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Iron.",
                             Emphasized = false,
                             Name = "Jern",
+                            Slug = "jern",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "jern"
+                            Type = 13
                         },
                         new
                         {
                             Id = 32,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Zinc.",
                             Emphasized = false,
                             Name = "Sink",
+                            Slug = "sink",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "sink"
+                            Type = 13
                         },
                         new
                         {
                             Id = 33,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Manganese.",
                             Emphasized = false,
                             Name = "Mangan",
+                            Slug = "mangan",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "mangan"
+                            Type = 13
                         },
                         new
                         {
                             Id = 34,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Copper.",
                             Emphasized = false,
                             Name = "Kobber",
+                            Slug = "kobber",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "kobber"
+                            Type = 13
                         },
                         new
                         {
                             Id = 35,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Iodine.",
                             Emphasized = false,
                             Name = "Jod",
+                            Slug = "jod",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "jod"
+                            Type = 13
                         },
                         new
                         {
                             Id = 36,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Molybdenum.",
                             Emphasized = false,
                             Name = "Molybden",
+                            Slug = "molybden",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "molybden"
+                            Type = 13
                         },
                         new
                         {
                             Id = 37,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Selenium.",
                             Emphasized = false,
                             Name = "Selen",
+                            Slug = "selen",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "selen"
+                            Type = 13
                         },
                         new
                         {
                             Id = 38,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Fluoride.",
                             Emphasized = false,
                             Name = "Fluor",
+                            Slug = "fluor",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "fluor"
+                            Type = 13
                         },
                         new
                         {
                             Id = 39,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Chromium.",
                             Emphasized = false,
                             Name = "Krom",
+                            Slug = "krom",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "krom"
+                            Type = 13
                         },
                         new
                         {
                             Id = 40,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Nickel.",
                             Emphasized = false,
                             Name = "Nikkel",
+                            Slug = "nikkel",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "nikkel"
+                            Type = 13
                         },
                         new
                         {
                             Id = 41,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Boron.",
                             Emphasized = false,
                             Name = "Bor",
+                            Slug = "bor",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "bor"
+                            Type = 13
                         },
                         new
                         {
                             Id = 42,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Silicon.",
                             Emphasized = false,
                             Name = "Silisium",
+                            Slug = "silisium",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "silisium"
+                            Type = 13
                         },
                         new
                         {
                             Id = 43,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Engelsk navn: Vanadium.",
                             Emphasized = false,
                             Name = "Vanadium",
+                            Slug = "vanadium",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "vanadium"
+                            Type = 13
                         },
                         new
                         {
                             Id = 44,
+                            Alias = "",
                             AlwaysDisplay = false,
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Natriumklorid (NaCl). Engelsk navn: Salt, sodium chloride.",
                             Emphasized = false,
                             Name = "Salt",
+                            Slug = "salt",
                             SortOrder = 0,
                             State = 2,
-                            Type = 13,
-                            Url = "salt"
+                            Type = 13
                         });
                 });
 
@@ -3563,8 +3831,9 @@ namespace MenuPlanner.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ChildRecipeSortOrder")
-                        .HasColumnType("int");
+                    b.Property<string>("Alias")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CountryCode")
                         .HasColumnType("nvarchar(2)");
@@ -3592,15 +3861,18 @@ namespace MenuPlanner.Migrations
                     b.Property<double?>("RatingAverage")
                         .HasColumnType("float");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
                     b.Property<int>("State")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -3619,164 +3891,181 @@ namespace MenuPlanner.Migrations
                         new
                         {
                             Id = 1,
+                            Alias = "",
                             CountryCode = "NO",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy eller sukker og sitrondråper.",
                             DifficultyLevel = 0,
                             Name = "Pannekaker",
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 7.4000000000000004,
+                            Slug = "pannekaker",
+                            SortOrder = 0,
                             State = 2,
-                            Url = "pannekaker",
                             UserId = "c4fe3a8b-2a0e-46b1-9a3c-fc04f04c8a2d"
                         },
                         new
                         {
                             Id = 2,
+                            Alias = "",
                             CountryCode = "NO",
-                            Created = new DateTime(2024, 3, 7, 0, 9, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 7, 0, 9, 0, 0, DateTimeKind.Utc),
                             Description = "Deilige, tynne pannekaker er hele familiens favoritt. Server gjerne med blåbærsyltetøy, bananskiver og kondensert melk, eller sukker og sitrondråper.",
                             DifficultyLevel = 0,
                             Name = "Pannekaker",
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 7.4000000000000004,
+                            Slug = "pannekaker",
+                            SortOrder = 0,
                             State = 0,
-                            Updated = new DateTime(2024, 3, 7, 0, 9, 0, 0, DateTimeKind.Unspecified),
-                            Url = "pannekaker",
                             UserId = "c4fe3a8b-2a0e-46b1-9a3c-fc04f04c8a2d"
                         },
                         new
                         {
                             Id = 3,
+                            Alias = "",
                             CountryCode = "TH",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "En fantastisk smakfull kyllingsuppe.",
                             DifficultyLevel = 1,
                             Name = "Tom Kha Gai",
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 8.0999999999999996,
+                            Slug = "tom-kha-gai",
+                            SortOrder = 0,
                             State = 2,
-                            Url = "tom-kha-gai",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
                         new
                         {
                             Id = 4,
+                            Alias = "",
                             CountryCode = "IT",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "En enkel men utrolig god, klassisk pastarett.",
                             DifficultyLevel = 1,
                             Name = "Cacio e Pepe",
                             PrepTime = new TimeSpan(0, 0, 20, 0, 0),
                             RatingAverage = 8.0,
+                            Slug = "cacio-e-pepe",
+                            SortOrder = 0,
                             State = 2,
-                            Url = "cacio-e-pepe",
                             UserId = "9a441995-86e5-4da5-8fb3-7549187247ea"
                         },
                         new
                         {
                             Id = 5,
+                            Alias = "",
                             CountryCode = "NO",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Den kjente og kjære norske klassikeren, akkurat som mamma lagde den.",
                             DifficultyLevel = 0,
                             Name = "Kjøttkaker med kålstuing",
                             PrepTime = new TimeSpan(0, 1, 0, 0, 0),
                             RatingAverage = 7.2999999999999998,
+                            Slug = "kjottkaker-med-kalstuing",
+                            SortOrder = 0,
                             State = 2,
-                            Url = "kjottkaker-med-kalstuing",
                             UserId = "9a441995-86e5-4da5-8fb3-7549187247ea"
                         },
                         new
                         {
                             Id = 6,
+                            Alias = "",
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Taco fra grunnen av! Hjemmelagde hvetetortillas, tacokrydder, guacamole og salsa. Denne oppskriften legger grunnlaget for en god helg!",
                             DifficultyLevel = 1,
                             Name = "Taco",
                             PrepTime = new TimeSpan(0, 1, 30, 0, 0),
                             RatingAverage = 9.5,
+                            Slug = "taco",
+                            SortOrder = 0,
                             State = 2,
-                            Url = "taco",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
                         new
                         {
                             Id = 7,
+                            Alias = "",
                             CountryCode = "NO",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Saftig og smaksrik søndagsmiddag.",
                             DifficultyLevel = 1,
                             Name = "Ovnsbakt hel ørret",
                             PrepTime = new TimeSpan(0, 1, 30, 0, 0),
                             RatingAverage = 8.0,
+                            Slug = "ovnsbakt-hel-orret",
+                            SortOrder = 0,
                             State = 2,
-                            Url = "ovnsbakt-hel-orret",
                             UserId = "1e4f5d6e-ad16-47b0-a412-107b48663239"
                         },
                         new
                         {
                             Id = 8,
-                            ChildRecipeSortOrder = 1,
+                            Alias = "",
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Smakfullt tex-mex-krydder.",
                             DifficultyLevel = 0,
                             Name = "Tacokrydder",
                             ParentRecipeId = 6,
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 8.6999999999999993,
+                            Slug = "tacokrydder",
+                            SortOrder = 1,
                             State = 2,
-                            Url = "tacokrydder",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
                         new
                         {
                             Id = 9,
-                            ChildRecipeSortOrder = 2,
+                            Alias = "",
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Myke og deilige hvetetortillas! Perfekte til fredagstaco, laksewrap eller kyllingburrito!",
                             DifficultyLevel = 1,
                             Name = "Hvetetortillas",
                             ParentRecipeId = 6,
                             PrepTime = new TimeSpan(0, 0, 30, 0, 0),
                             RatingAverage = 8.9000000000000004,
+                            Slug = "hvetetortillas",
+                            SortOrder = 2,
                             State = 2,
-                            Url = "hvetetortillas",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
                         new
                         {
                             Id = 10,
-                            ChildRecipeSortOrder = 3,
+                            Alias = "",
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Frisk og smakfull guacamole som er perfekt tilbehør til fredagstacoen!",
                             DifficultyLevel = 0,
                             Name = "Guacamole",
                             ParentRecipeId = 6,
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 9.6999999999999993,
+                            Slug = "guacamole",
+                            SortOrder = 3,
                             State = 2,
-                            Url = "guacamole",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         },
                         new
                         {
                             Id = 11,
-                            ChildRecipeSortOrder = 4,
+                            Alias = "",
                             CountryCode = "MX",
-                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            Created = new DateTime(2024, 3, 6, 10, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Nydelig tomatsalsa som er perfekt tilbehør til fredagstacoen! Ha i chili etter smak, eller dropp chili for en mild salsa.",
                             DifficultyLevel = 0,
                             Name = "Tomatsalsa",
                             ParentRecipeId = 6,
                             PrepTime = new TimeSpan(0, 0, 0, 10, 0),
                             RatingAverage = 9.5999999999999996,
+                            Slug = "tomat-salsa",
+                            SortOrder = 4,
                             State = 2,
-                            Url = "tomat-salsa",
                             UserId = "4370fb76-7b81-46f6-a95b-cd40be024f58"
                         });
                 });
@@ -4298,7 +4587,7 @@ namespace MenuPlanner.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Url")
+                    b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -4313,7 +4602,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Recipe",
                             Name = "Pannekaker",
                             NormalizedName = "pannekaker",
-                            Url = "pannekaker"
+                            Slug = "pannekaker"
                         },
                         new
                         {
@@ -4321,7 +4610,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Recipe",
                             Name = "Pannekaker",
                             NormalizedName = "pannekaker",
-                            Url = "pannekaker"
+                            Slug = "pannekaker"
                         },
                         new
                         {
@@ -4329,7 +4618,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Recipe",
                             Name = "Tom Kha Gai",
                             NormalizedName = "tom kha gai",
-                            Url = "tom-kha-gai"
+                            Slug = "tom-kha-gai"
                         },
                         new
                         {
@@ -4337,7 +4626,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Recipe",
                             Name = "Cacio e Pepe",
                             NormalizedName = "cacio e pepe",
-                            Url = "cacio-e-pepe"
+                            Slug = "cacio-e-pepe"
                         },
                         new
                         {
@@ -4345,7 +4634,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Recipe",
                             Name = "Kjøttkaker med kålstuing",
                             NormalizedName = "kjøttkaker med kålstuing",
-                            Url = "kjottkaker-med-kalstuing"
+                            Slug = "kjottkaker-med-kalstuing"
                         },
                         new
                         {
@@ -4353,7 +4642,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Recipe",
                             Name = "Taco",
                             NormalizedName = "taco",
-                            Url = "taco"
+                            Slug = "taco"
                         },
                         new
                         {
@@ -4361,7 +4650,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Recipe",
                             Name = "Ovnsbakt hel ørret",
                             NormalizedName = "ovnsbakt hel ørret",
-                            Url = "ovnsbakt-hel-orret"
+                            Slug = "ovnsbakt-hel-orret"
                         },
                         new
                         {
@@ -4369,7 +4658,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Vann",
                             NormalizedName = "vann",
-                            Url = "vann"
+                            Slug = "vann"
                         },
                         new
                         {
@@ -4377,7 +4666,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvetemel",
                             NormalizedName = "hvetemel",
-                            Url = "hvetemel"
+                            Slug = "hvetemel"
                         },
                         new
                         {
@@ -4385,7 +4674,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Pizzamel, tipo-00",
                             NormalizedName = "pizzamel tipo00",
-                            Url = "pizzamel-tipo-00"
+                            Slug = "pizzamel-tipo-00"
                         },
                         new
                         {
@@ -4393,7 +4682,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Brødmel, tipo-0",
                             NormalizedName = "brødmel tipo0",
-                            Url = "brodmel-tipo-0"
+                            Slug = "brodmel-tipo-0"
                         },
                         new
                         {
@@ -4401,7 +4690,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Semulegryn",
                             NormalizedName = "semulegryn",
-                            Url = "semulegryn"
+                            Slug = "semulegryn"
                         },
                         new
                         {
@@ -4409,7 +4698,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sammalt hvete, grovmalt",
                             NormalizedName = "sammalt hvete grovmalt",
-                            Url = "sammalt-hvete-grovmalt"
+                            Slug = "sammalt-hvete-grovmalt"
                         },
                         new
                         {
@@ -4417,7 +4706,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sammalt hvete, finmalt",
                             NormalizedName = "sammalt hvete finmalt",
-                            Url = "sammalt-hvete-finmalt"
+                            Slug = "sammalt-hvete-finmalt"
                         },
                         new
                         {
@@ -4425,7 +4714,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvete helkorn",
                             NormalizedName = "hvete helkorn",
-                            Url = "hvete-helkorn"
+                            Slug = "hvete-helkorn"
                         },
                         new
                         {
@@ -4433,7 +4722,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Havregryn, lettkokt",
                             NormalizedName = "havregryn lettkokt",
-                            Url = "havregryn-lettkokt"
+                            Slug = "havregryn-lettkokt"
                         },
                         new
                         {
@@ -4441,7 +4730,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Havregryn, store",
                             NormalizedName = "havregryn store",
-                            Url = "havregryn-store"
+                            Slug = "havregryn-store"
                         },
                         new
                         {
@@ -4449,7 +4738,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Havregryn, glutenfri",
                             NormalizedName = "havregryn glutenfri",
-                            Url = "havregryn-glutenfri"
+                            Slug = "havregryn-glutenfri"
                         },
                         new
                         {
@@ -4457,7 +4746,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Havremel",
                             NormalizedName = "havremel",
-                            Url = "havremel"
+                            Slug = "havremel"
                         },
                         new
                         {
@@ -4465,7 +4754,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rug, helkorn",
                             NormalizedName = "rug helkorn",
-                            Url = "rug-helkorn"
+                            Slug = "rug-helkorn"
                         },
                         new
                         {
@@ -4473,7 +4762,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rugmel",
                             NormalizedName = "rugmel",
-                            Url = "rugmel"
+                            Slug = "rugmel"
                         },
                         new
                         {
@@ -4481,7 +4770,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Bygg, helkorn",
                             NormalizedName = "bygg helkorn",
-                            Url = "bygg-helkorn"
+                            Slug = "bygg-helkorn"
                         },
                         new
                         {
@@ -4489,7 +4778,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Byggmel",
                             NormalizedName = "byggmel",
-                            Url = "byggmel"
+                            Slug = "byggmel"
                         },
                         new
                         {
@@ -4497,7 +4786,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gresskarkjerner",
                             NormalizedName = "gresskarkjerner",
-                            Url = "gresskarkjerner"
+                            Slug = "gresskarkjerner"
                         },
                         new
                         {
@@ -4505,7 +4794,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Skummet melk",
                             NormalizedName = "skummet melk",
-                            Url = "skummet-melk"
+                            Slug = "skummet-melk"
                         },
                         new
                         {
@@ -4513,7 +4802,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Lettmelk",
                             NormalizedName = "lettmelk",
-                            Url = "lettmelk"
+                            Slug = "lettmelk"
                         },
                         new
                         {
@@ -4521,7 +4810,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Helmelk",
                             NormalizedName = "helmelk",
-                            Url = "helmelk"
+                            Slug = "helmelk"
                         },
                         new
                         {
@@ -4529,7 +4818,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kremfløte",
                             NormalizedName = "kremfløte",
-                            Url = "kremflote"
+                            Slug = "kremflote"
                         },
                         new
                         {
@@ -4537,7 +4826,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Matfløte",
                             NormalizedName = "matfløte",
-                            Url = "matflote"
+                            Slug = "matflote"
                         },
                         new
                         {
@@ -4545,7 +4834,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Lettrømme",
                             NormalizedName = "lettrømme",
-                            Url = "lettromme"
+                            Slug = "lettromme"
                         },
                         new
                         {
@@ -4553,7 +4842,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Seterrømme",
                             NormalizedName = "seterrømme",
-                            Url = "seterromme"
+                            Slug = "seterromme"
                         },
                         new
                         {
@@ -4561,7 +4850,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rømmekolle",
                             NormalizedName = "rømmekolle",
-                            Url = "rommekolle"
+                            Slug = "rommekolle"
                         },
                         new
                         {
@@ -4569,7 +4858,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kvarg",
                             NormalizedName = "kvarg",
-                            Url = "kvarg"
+                            Slug = "kvarg"
                         },
                         new
                         {
@@ -4577,7 +4866,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gulost",
                             NormalizedName = "gulost",
-                            Url = "gulost"
+                            Slug = "gulost"
                         },
                         new
                         {
@@ -4585,7 +4874,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Edamer",
                             NormalizedName = "edamer",
-                            Url = "edamer"
+                            Slug = "edamer"
                         },
                         new
                         {
@@ -4593,7 +4882,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gouda",
                             NormalizedName = "gouda",
-                            Url = "gouda"
+                            Slug = "gouda"
                         },
                         new
                         {
@@ -4601,7 +4890,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Brie",
                             NormalizedName = "brie",
-                            Url = "brie"
+                            Slug = "brie"
                         },
                         new
                         {
@@ -4609,7 +4898,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kremost",
                             NormalizedName = "kremost",
-                            Url = "kremost"
+                            Slug = "kremost"
                         },
                         new
                         {
@@ -4617,7 +4906,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Cottage cheese",
                             NormalizedName = "cottage cheese",
-                            Url = "cottage-cheese"
+                            Slug = "cottage-cheese"
                         },
                         new
                         {
@@ -4625,7 +4914,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Ricotta",
                             NormalizedName = "ricotta",
-                            Url = "ricotta"
+                            Slug = "ricotta"
                         },
                         new
                         {
@@ -4633,7 +4922,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Halloumi",
                             NormalizedName = "halloumi",
-                            Url = "halloumi"
+                            Slug = "halloumi"
                         },
                         new
                         {
@@ -4641,7 +4930,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Mozzarella",
                             NormalizedName = "mozzarella",
-                            Url = "mozzarella"
+                            Slug = "mozzarella"
                         },
                         new
                         {
@@ -4649,7 +4938,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Cheddar",
                             NormalizedName = "cheddar",
-                            Url = "cheddar"
+                            Slug = "cheddar"
                         },
                         new
                         {
@@ -4657,7 +4946,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Geitost",
                             NormalizedName = "geitost",
-                            Url = "geitost"
+                            Slug = "geitost"
                         },
                         new
                         {
@@ -4665,7 +4954,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Fløtemysost",
                             NormalizedName = "fløtemysost",
-                            Url = "flotemysost"
+                            Slug = "flotemysost"
                         },
                         new
                         {
@@ -4673,7 +4962,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Egg",
                             NormalizedName = "egg",
-                            Url = "egg"
+                            Slug = "egg"
                         },
                         new
                         {
@@ -4681,7 +4970,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Eggeplomme",
                             NormalizedName = "eggeplomme",
-                            Url = "eggeplomme"
+                            Slug = "eggeplomme"
                         },
                         new
                         {
@@ -4689,7 +4978,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Eggehvite",
                             NormalizedName = "eggehvite",
-                            Url = "eggehvite"
+                            Slug = "eggehvite"
                         },
                         new
                         {
@@ -4697,7 +4986,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Vaktelegg",
                             NormalizedName = "vaktelegg",
-                            Url = "vaktelegg"
+                            Slug = "vaktelegg"
                         },
                         new
                         {
@@ -4705,7 +4994,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Måsegg",
                             NormalizedName = "måsegg",
-                            Url = "masegg"
+                            Slug = "masegg"
                         },
                         new
                         {
@@ -4713,7 +5002,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Tortillachips",
                             NormalizedName = "tortillachips",
-                            Url = "tortillachips"
+                            Slug = "tortillachips"
                         },
                         new
                         {
@@ -4721,7 +5010,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Nachochips",
                             NormalizedName = "nachochips",
-                            Url = "nachochips"
+                            Slug = "nachochips"
                         },
                         new
                         {
@@ -4729,7 +5018,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Salt",
                             NormalizedName = "salt",
-                            Url = "salt"
+                            Slug = "salt"
                         },
                         new
                         {
@@ -4737,7 +5026,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Tomatketsjup",
                             NormalizedName = "tomatketsjup",
-                            Url = "tomatketsjup"
+                            Slug = "tomatketsjup"
                         },
                         new
                         {
@@ -4745,7 +5034,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Søt sennep",
                             NormalizedName = "søt sennep",
-                            Url = "sot-sennep"
+                            Slug = "sot-sennep"
                         },
                         new
                         {
@@ -4753,7 +5042,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sterk sennep",
                             NormalizedName = "sterk sennep",
-                            Url = "sterk-sennep"
+                            Slug = "sterk-sennep"
                         },
                         new
                         {
@@ -4761,7 +5050,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Dijonsennep",
                             NormalizedName = "dijonsennep",
-                            Url = "dijonsennep"
+                            Slug = "dijonsennep"
                         },
                         new
                         {
@@ -4769,7 +5058,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Grov sennep",
                             NormalizedName = "grov sennep",
-                            Url = "grov-sennep"
+                            Slug = "grov-sennep"
                         },
                         new
                         {
@@ -4777,7 +5066,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Soyasaus",
                             NormalizedName = "soyasaus",
-                            Url = "soyasaus"
+                            Slug = "soyasaus"
                         },
                         new
                         {
@@ -4785,7 +5074,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Saltredusert soyasaus",
                             NormalizedName = "saltredusert soyasaus",
-                            Url = "saltredusert-soyasaus"
+                            Slug = "saltredusert-soyasaus"
                         },
                         new
                         {
@@ -4793,7 +5082,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Eddikessens",
                             NormalizedName = "eddikessens",
-                            Url = "eddikessens"
+                            Slug = "eddikessens"
                         },
                         new
                         {
@@ -4801,7 +5090,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Klar eddik",
                             NormalizedName = "klar eddik",
-                            Url = "klar-eddik"
+                            Slug = "klar-eddik"
                         },
                         new
                         {
@@ -4809,7 +5098,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Brun eddik",
                             NormalizedName = "brun eddik",
-                            Url = "brun-eddik"
+                            Slug = "brun-eddik"
                         },
                         new
                         {
@@ -4817,7 +5106,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Eplecidereddik",
                             NormalizedName = "eplecidereddik",
-                            Url = "eplecidereddik"
+                            Slug = "eplecidereddik"
                         },
                         new
                         {
@@ -4825,7 +5114,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvitvinseddik",
                             NormalizedName = "hvitvinseddik",
-                            Url = "hvitvinseddik"
+                            Slug = "hvitvinseddik"
                         },
                         new
                         {
@@ -4833,7 +5122,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rødvinseddik",
                             NormalizedName = "rødvinseddik",
-                            Url = "rodvinseddik"
+                            Slug = "rodvinseddik"
                         },
                         new
                         {
@@ -4841,7 +5130,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sitrondråper",
                             NormalizedName = "sitrondråper",
-                            Url = "sitrondråper"
+                            Slug = "sitrondråper"
                         },
                         new
                         {
@@ -4849,7 +5138,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Smør",
                             NormalizedName = "smør",
-                            Url = "smor"
+                            Slug = "smor"
                         },
                         new
                         {
@@ -4857,7 +5146,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Margarin",
                             NormalizedName = "margarin",
-                            Url = "margarin"
+                            Slug = "margarin"
                         },
                         new
                         {
@@ -4865,7 +5154,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rapsolje",
                             NormalizedName = "rapsolje",
-                            Url = "rapsolje"
+                            Slug = "rapsolje"
                         },
                         new
                         {
@@ -4873,7 +5162,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Maisolje",
                             NormalizedName = "maisolje",
-                            Url = "maisolje"
+                            Slug = "maisolje"
                         },
                         new
                         {
@@ -4881,7 +5170,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Olivenolje",
                             NormalizedName = "olivenolje",
-                            Url = "Olivenolje"
+                            Slug = "Olivenolje"
                         },
                         new
                         {
@@ -4889,7 +5178,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sesamolje",
                             NormalizedName = "sesamolje",
-                            Url = "sesamolje"
+                            Slug = "sesamolje"
                         },
                         new
                         {
@@ -4897,7 +5186,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kokosolje",
                             NormalizedName = "kokosolje",
-                            Url = "kokosolje"
+                            Slug = "kokosolje"
                         },
                         new
                         {
@@ -4905,7 +5194,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Frityrolje",
                             NormalizedName = "frityrolje",
-                            Url = "frityrolje"
+                            Slug = "frityrolje"
                         },
                         new
                         {
@@ -4913,7 +5202,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sukker",
                             NormalizedName = "sukker",
-                            Url = "sukker"
+                            Slug = "sukker"
                         },
                         new
                         {
@@ -4921,7 +5210,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Blåbær",
                             NormalizedName = "blåbær",
-                            Url = "blabar"
+                            Slug = "blabar"
                         },
                         new
                         {
@@ -4929,7 +5218,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Jordbær",
                             NormalizedName = "jordbær",
-                            Url = "jordbar"
+                            Slug = "jordbar"
                         },
                         new
                         {
@@ -4937,7 +5226,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Bringebær",
                             NormalizedName = "bringebær",
-                            Url = "bringebar"
+                            Slug = "bringebar"
                         },
                         new
                         {
@@ -4945,7 +5234,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Grønne epler",
                             NormalizedName = "grønne epler",
-                            Url = "gronne-epler"
+                            Slug = "gronne-epler"
                         },
                         new
                         {
@@ -4953,7 +5242,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Røde epler",
                             NormalizedName = "røde epler",
-                            Url = "rode-epler"
+                            Slug = "rode-epler"
                         },
                         new
                         {
@@ -4961,7 +5250,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gule epler",
                             NormalizedName = "gule epler",
-                            Url = "gule-epler"
+                            Slug = "gule-epler"
                         },
                         new
                         {
@@ -4969,7 +5258,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Appelsin",
                             NormalizedName = "appelsin",
-                            Url = "appelsin"
+                            Slug = "appelsin"
                         },
                         new
                         {
@@ -4977,7 +5266,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sitron",
                             NormalizedName = "sitron",
-                            Url = "sitron"
+                            Slug = "sitron"
                         },
                         new
                         {
@@ -4985,7 +5274,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Økologisk sitron",
                             NormalizedName = "økologisk sitron",
-                            Url = "okologisk-sitron"
+                            Slug = "okologisk-sitron"
                         },
                         new
                         {
@@ -4993,7 +5282,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Lime",
                             NormalizedName = "lime",
-                            Url = "lime"
+                            Slug = "lime"
                         },
                         new
                         {
@@ -5001,7 +5290,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hermetiske mandarinbåter",
                             NormalizedName = "hermetiske mandarinbåter",
-                            Url = "hermetiske-mandarinbater"
+                            Slug = "hermetiske-mandarinbater"
                         },
                         new
                         {
@@ -5009,7 +5298,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hermetiske pærer",
                             NormalizedName = "hermetiske pærer",
-                            Url = "hermetiske-parer"
+                            Slug = "hermetiske-parer"
                         },
                         new
                         {
@@ -5017,7 +5306,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hermetiske fersken",
                             NormalizedName = "hermetiske fersken",
-                            Url = "hermetiske-fersken"
+                            Slug = "hermetiske-fersken"
                         },
                         new
                         {
@@ -5025,7 +5314,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Banan",
                             NormalizedName = "banan",
-                            Url = "banan"
+                            Slug = "banan"
                         },
                         new
                         {
@@ -5033,7 +5322,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Klementin",
                             NormalizedName = "klementin",
-                            Url = "klementin"
+                            Slug = "klementin"
                         },
                         new
                         {
@@ -5041,7 +5330,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Blå druer",
                             NormalizedName = "blå druer",
-                            Url = "bla-druer"
+                            Slug = "bla-druer"
                         },
                         new
                         {
@@ -5049,7 +5338,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Grønne druer",
                             NormalizedName = "grønne druer",
-                            Url = "gronne-druer"
+                            Slug = "gronne-druer"
                         },
                         new
                         {
@@ -5057,7 +5346,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rosiner",
                             NormalizedName = "rosiner",
-                            Url = "rosiner"
+                            Slug = "rosiner"
                         },
                         new
                         {
@@ -5065,7 +5354,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Korinter",
                             NormalizedName = "korinter",
-                            Url = "korinter"
+                            Slug = "korinter"
                         },
                         new
                         {
@@ -5073,7 +5362,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Fiskesaus",
                             NormalizedName = "fiskesaus",
-                            Url = "fiskesaus"
+                            Slug = "fiskesaus"
                         },
                         new
                         {
@@ -5081,7 +5370,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kokosmelk",
                             NormalizedName = "kokosmelk",
-                            Url = "kokosmelk"
+                            Slug = "kokosmelk"
                         },
                         new
                         {
@@ -5089,7 +5378,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kokosmelk, lett",
                             NormalizedName = "kokosmelk lett",
-                            Url = "kokosmelk-lett"
+                            Slug = "kokosmelk-lett"
                         },
                         new
                         {
@@ -5097,7 +5386,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kokoskrem",
                             NormalizedName = "kokoskrem",
-                            Url = "kokoskrem"
+                            Slug = "kokoskrem"
                         },
                         new
                         {
@@ -5105,7 +5394,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kokosmasse",
                             NormalizedName = "kokosmasse",
-                            Url = "kokosmasse"
+                            Slug = "kokosmasse"
                         },
                         new
                         {
@@ -5113,7 +5402,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sitrongress",
                             NormalizedName = "sitrongress",
-                            Url = "sitrongress"
+                            Slug = "sitrongress"
                         },
                         new
                         {
@@ -5121,7 +5410,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rød currypasta",
                             NormalizedName = "rød currypasta",
-                            Url = "rod-currypasta"
+                            Slug = "rod-currypasta"
                         },
                         new
                         {
@@ -5129,7 +5418,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Grønn currypasta",
                             NormalizedName = "grønn currypasta",
-                            Url = "gronn-currypasta"
+                            Slug = "gronn-currypasta"
                         },
                         new
                         {
@@ -5137,7 +5426,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gul currypasta",
                             NormalizedName = "gul currypasta",
-                            Url = "gul-currypasta"
+                            Slug = "gul-currypasta"
                         },
                         new
                         {
@@ -5145,7 +5434,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Galangal",
                             NormalizedName = "galangal",
-                            Url = "galangal"
+                            Slug = "galangal"
                         },
                         new
                         {
@@ -5153,7 +5442,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rød paprika",
                             NormalizedName = "rød paprika",
-                            Url = "rod-paprika"
+                            Slug = "rod-paprika"
                         },
                         new
                         {
@@ -5161,7 +5450,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gul paprika",
                             NormalizedName = "gul paprika",
-                            Url = "gul-paprika"
+                            Slug = "gul-paprika"
                         },
                         new
                         {
@@ -5169,7 +5458,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Grønn paprika",
                             NormalizedName = "grønn paprika",
-                            Url = "gronn-paprika"
+                            Slug = "gronn-paprika"
                         },
                         new
                         {
@@ -5177,7 +5466,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Isbergsalat",
                             NormalizedName = "isbergsalat",
-                            Url = "isbergsalat"
+                            Slug = "isbergsalat"
                         },
                         new
                         {
@@ -5185,7 +5474,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hjertesalat",
                             NormalizedName = "hjertesalat",
-                            Url = "hjertesalat"
+                            Slug = "hjertesalat"
                         },
                         new
                         {
@@ -5193,7 +5482,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Lollosalat",
                             NormalizedName = "lollosalat",
-                            Url = "lollosalat"
+                            Slug = "lollosalat"
                         },
                         new
                         {
@@ -5201,7 +5490,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Maiskolbe, fersk",
                             NormalizedName = "maiskolbe fersk",
-                            Url = "maiskolbe-fersk"
+                            Slug = "maiskolbe-fersk"
                         },
                         new
                         {
@@ -5209,7 +5498,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hermetisk maiskolbe",
                             NormalizedName = "hermetisk maiskolbe",
-                            Url = "hermetisk-maiskolbe"
+                            Slug = "hermetisk-maiskolbe"
                         },
                         new
                         {
@@ -5217,7 +5506,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hermetiske maiskorn",
                             NormalizedName = "hermetiske maiskorn",
-                            Url = "hermetiske-maiskorn"
+                            Slug = "hermetiske-maiskorn"
                         },
                         new
                         {
@@ -5225,7 +5514,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Plommetomat",
                             NormalizedName = "plommetomat",
-                            Url = "plommetomat"
+                            Slug = "plommetomat"
                         },
                         new
                         {
@@ -5233,7 +5522,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kirsebærtomat",
                             NormalizedName = "kirsebærtomat",
-                            Url = "kirsebartomat"
+                            Slug = "kirsebartomat"
                         },
                         new
                         {
@@ -5241,7 +5530,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Tomat",
                             NormalizedName = "tomat",
-                            Url = "tomat"
+                            Slug = "tomat"
                         },
                         new
                         {
@@ -5249,7 +5538,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Slangeagurk",
                             NormalizedName = "slangeagurk",
-                            Url = "slangeagurk"
+                            Slug = "slangeagurk"
                         },
                         new
                         {
@@ -5257,7 +5546,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gul løk",
                             NormalizedName = "gul løk",
-                            Url = "gul-lok"
+                            Slug = "gul-lok"
                         },
                         new
                         {
@@ -5265,7 +5554,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rødløk",
                             NormalizedName = "rødløk",
-                            Url = "rodlok"
+                            Slug = "rodlok"
                         },
                         new
                         {
@@ -5273,7 +5562,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Chalottløk",
                             NormalizedName = "chalottløk",
-                            Url = "chalottlok"
+                            Slug = "chalottlok"
                         },
                         new
                         {
@@ -5281,7 +5570,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvitløk",
                             NormalizedName = "hvitløk",
-                            Url = "hvitlok"
+                            Slug = "hvitlok"
                         },
                         new
                         {
@@ -5289,7 +5578,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Salatløk",
                             NormalizedName = "salatløk",
-                            Url = "salatlok"
+                            Slug = "salatlok"
                         },
                         new
                         {
@@ -5297,7 +5586,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Vårløk",
                             NormalizedName = "vårløk",
-                            Url = "varlok"
+                            Slug = "varlok"
                         },
                         new
                         {
@@ -5305,7 +5594,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Purre",
                             NormalizedName = "purre",
-                            Url = "purre"
+                            Slug = "purre"
                         },
                         new
                         {
@@ -5313,7 +5602,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllingkraft",
                             NormalizedName = "kyllingkraft",
-                            Url = "kyllingkraft"
+                            Slug = "kyllingkraft"
                         },
                         new
                         {
@@ -5321,7 +5610,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Storfekraft",
                             NormalizedName = "storfekraft",
-                            Url = "storfekraft"
+                            Slug = "storfekraft"
                         },
                         new
                         {
@@ -5329,7 +5618,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Fiskekraft",
                             NormalizedName = "fiskekraft",
-                            Url = "fiskekraft"
+                            Slug = "fiskekraft"
                         },
                         new
                         {
@@ -5337,7 +5626,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Grønnsakskraft",
                             NormalizedName = "grønnsakskraft",
-                            Url = "gronnsakskraft"
+                            Slug = "gronnsakskraft"
                         },
                         new
                         {
@@ -5345,7 +5634,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Chili, serrano",
                             NormalizedName = "chili serrano",
-                            Url = "chili-serrano"
+                            Slug = "chili-serrano"
                         },
                         new
                         {
@@ -5353,7 +5642,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Chili, habanero",
                             NormalizedName = "chili habanero",
-                            Url = "chili-habanero"
+                            Slug = "chili-habanero"
                         },
                         new
                         {
@@ -5361,7 +5650,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Chili, birds eye",
                             NormalizedName = "chili birds eye",
-                            Url = "chili-birds-eye"
+                            Slug = "chili-birds-eye"
                         },
                         new
                         {
@@ -5369,7 +5658,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Champignon, fersk",
                             NormalizedName = "champignon fersk",
-                            Url = "champignon-fersk"
+                            Slug = "champignon-fersk"
                         },
                         new
                         {
@@ -5377,7 +5666,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Champignon, hermetisk",
                             NormalizedName = "champignon hermetisk",
-                            Url = "champignon-hermetisk"
+                            Slug = "champignon-hermetisk"
                         },
                         new
                         {
@@ -5385,7 +5674,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Aromasopp, fersk",
                             NormalizedName = "aromasopp fersk",
-                            Url = "aromasopp-fersk"
+                            Slug = "aromasopp-fersk"
                         },
                         new
                         {
@@ -5393,7 +5682,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Aromasopp, tørket",
                             NormalizedName = "aromasopp tørket",
-                            Url = "aromasopp-torket"
+                            Slug = "aromasopp-torket"
                         },
                         new
                         {
@@ -5401,7 +5690,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Margarin",
                             NormalizedName = "margarin",
-                            Url = "margarin"
+                            Slug = "margarin"
                         },
                         new
                         {
@@ -5409,7 +5698,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kylling, hel grillet",
                             NormalizedName = "kylling hel grillet",
-                            Url = "kylling-hel-grillet"
+                            Slug = "kylling-hel-grillet"
                         },
                         new
                         {
@@ -5417,7 +5706,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kylling, hel fersk",
                             NormalizedName = "kylling hel fersk",
-                            Url = "kylling-hel-fersk"
+                            Slug = "kylling-hel-fersk"
                         },
                         new
                         {
@@ -5425,7 +5714,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllinglår, grillet",
                             NormalizedName = "kyllinglår grillet",
-                            Url = "kyllinglar-grillet"
+                            Slug = "kyllinglar-grillet"
                         },
                         new
                         {
@@ -5433,7 +5722,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllinglår, fersk",
                             NormalizedName = "kyllinglår fersk",
-                            Url = "kyllinglar-fersk"
+                            Slug = "kyllinglar-fersk"
                         },
                         new
                         {
@@ -5441,7 +5730,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllinglår, frossen",
                             NormalizedName = "kyllinglår frossen",
-                            Url = "kyllinglar-frossen"
+                            Slug = "kyllinglar-frossen"
                         },
                         new
                         {
@@ -5449,7 +5738,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllingvinger, grillet",
                             NormalizedName = "kyllingvinger grillet",
-                            Url = "kyllingvinger-grillet"
+                            Slug = "kyllingvinger-grillet"
                         },
                         new
                         {
@@ -5457,7 +5746,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllingvinger, fersk",
                             NormalizedName = "kyllingvinger fersk",
-                            Url = "kyllingvinger-fersk"
+                            Slug = "kyllingvinger-fersk"
                         },
                         new
                         {
@@ -5465,7 +5754,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllingvinger, frossen",
                             NormalizedName = "kyllingvinger frossen",
-                            Url = "kyllingvinger-frossen"
+                            Slug = "kyllingvinger-frossen"
                         },
                         new
                         {
@@ -5473,7 +5762,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kylling lårfilet",
                             NormalizedName = "kylling lårfilet",
-                            Url = "kylling-larfilet"
+                            Slug = "kylling-larfilet"
                         },
                         new
                         {
@@ -5481,7 +5770,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kylling brystfilet",
                             NormalizedName = "kylling brystfilet",
-                            Url = "kylling-brystfilet"
+                            Slug = "kylling-brystfilet"
                         },
                         new
                         {
@@ -5489,7 +5778,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kyllingkjøttdeig",
                             NormalizedName = "kyllingkjøttdeig",
-                            Url = "kyllingkjottdeig"
+                            Slug = "kyllingkjottdeig"
                         },
                         new
                         {
@@ -5497,7 +5786,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kjøttdeig",
                             NormalizedName = "kjøttdeig",
-                            Url = "kjottdeig"
+                            Slug = "kjottdeig"
                         },
                         new
                         {
@@ -5505,7 +5794,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Karbonadedeig",
                             NormalizedName = "karbonadedeig",
-                            Url = "karbonadedeig"
+                            Slug = "karbonadedeig"
                         },
                         new
                         {
@@ -5513,7 +5802,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Medisterdeig",
                             NormalizedName = "medisterdeig",
-                            Url = "medisterdeig"
+                            Slug = "medisterdeig"
                         },
                         new
                         {
@@ -5521,7 +5810,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Medisterfarse",
                             NormalizedName = "medisterfarse",
-                            Url = "medisterfarse"
+                            Slug = "medisterfarse"
                         },
                         new
                         {
@@ -5529,7 +5818,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Koriander, fersk",
                             NormalizedName = "koriander fersk",
-                            Url = "koriander-fersk"
+                            Slug = "koriander-fersk"
                         },
                         new
                         {
@@ -5537,7 +5826,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Dill, fersk",
                             NormalizedName = "dill fersk",
-                            Url = "dill-fersk"
+                            Slug = "dill-fersk"
                         },
                         new
                         {
@@ -5545,7 +5834,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Gressløk, fersk",
                             NormalizedName = "gressløk fersk",
-                            Url = "gresslok-fersk"
+                            Slug = "gresslok-fersk"
                         },
                         new
                         {
@@ -5553,7 +5842,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Basilikum, fersk",
                             NormalizedName = "basilikum fersk",
-                            Url = "basilikum-fersk"
+                            Slug = "basilikum-fersk"
                         },
                         new
                         {
@@ -5561,7 +5850,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Thaibasilikum, fersk",
                             NormalizedName = "thaibasilikum fersk",
-                            Url = "thaibasilikum-fersk"
+                            Slug = "thaibasilikum-fersk"
                         },
                         new
                         {
@@ -5569,7 +5858,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sort pepper, hel",
                             NormalizedName = "sort pepper hel",
-                            Url = "sort-pepper-hel"
+                            Slug = "sort-pepper-hel"
                         },
                         new
                         {
@@ -5577,7 +5866,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sort pepper, grovmalt",
                             NormalizedName = "sort pepper grovmalt",
-                            Url = "sort-pepper-grovmalt"
+                            Slug = "sort-pepper-grovmalt"
                         },
                         new
                         {
@@ -5585,7 +5874,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Sort pepper, malt",
                             NormalizedName = "sort pepper malt",
-                            Url = "sort-pepper-malt"
+                            Slug = "sort-pepper-malt"
                         },
                         new
                         {
@@ -5593,7 +5882,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvit pepper, hel",
                             NormalizedName = "hvit pepper hel",
-                            Url = "hvit-pepper-hel"
+                            Slug = "hvit-pepper-hel"
                         },
                         new
                         {
@@ -5601,7 +5890,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvit pepper, grovmalt",
                             NormalizedName = "hvit pepper grovmalt",
-                            Url = "hvit-pepper-grovmalt"
+                            Slug = "hvit-pepper-grovmalt"
                         },
                         new
                         {
@@ -5609,7 +5898,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvit pepper, malt",
                             NormalizedName = "hvit pepper malt",
-                            Url = "hvit-pepper-malt"
+                            Slug = "hvit-pepper-malt"
                         },
                         new
                         {
@@ -5617,7 +5906,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Karri",
                             NormalizedName = "karri",
-                            Url = "karri"
+                            Slug = "karri"
                         },
                         new
                         {
@@ -5625,7 +5914,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvitløkspulver",
                             NormalizedName = "hvitløkspulver",
-                            Url = "hvitlokspulver"
+                            Slug = "hvitlokspulver"
                         },
                         new
                         {
@@ -5633,7 +5922,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Løkpulver",
                             NormalizedName = "løkpulver",
-                            Url = "lokpulver"
+                            Slug = "lokpulver"
                         },
                         new
                         {
@@ -5641,7 +5930,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kanel, hel",
                             NormalizedName = "kanel hel",
-                            Url = "kanel-hel"
+                            Slug = "kanel-hel"
                         },
                         new
                         {
@@ -5649,7 +5938,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kanel, malt",
                             NormalizedName = "kanel malt",
-                            Url = "kanel-malt"
+                            Slug = "kanel-malt"
                         },
                         new
                         {
@@ -5657,7 +5946,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Kardemomme",
                             NormalizedName = "kardemomme",
-                            Url = "kardemomme"
+                            Slug = "kardemomme"
                         },
                         new
                         {
@@ -5665,7 +5954,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Hvitløkspulver",
                             NormalizedName = "hvitløkspulver",
-                            Url = "hvitlokspulver"
+                            Slug = "hvitlokspulver"
                         },
                         new
                         {
@@ -5673,7 +5962,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Chilipulver",
                             NormalizedName = "chilipulver",
-                            Url = "chilipulver"
+                            Slug = "chilipulver"
                         },
                         new
                         {
@@ -5681,7 +5970,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Chiliflak",
                             NormalizedName = "chiliflak",
-                            Url = "chiliflak"
+                            Slug = "chiliflak"
                         },
                         new
                         {
@@ -5689,7 +5978,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Paprikapulver",
                             NormalizedName = "paprikapulver",
-                            Url = "paprikapulver"
+                            Slug = "paprikapulver"
                         },
                         new
                         {
@@ -5697,7 +5986,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Paprikapulver, røkt",
                             NormalizedName = "paprikapulver røkt",
-                            Url = "paprikapulver-rokt"
+                            Slug = "paprikapulver-rokt"
                         },
                         new
                         {
@@ -5705,7 +5994,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Rosmarin, tørket",
                             NormalizedName = "rosmarin tørket",
-                            Url = "rosmarin-torket"
+                            Slug = "rosmarin-torket"
                         },
                         new
                         {
@@ -5713,7 +6002,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Dill, tørket",
                             NormalizedName = "dill tørket",
-                            Url = "dill-torket"
+                            Slug = "dill-torket"
                         },
                         new
                         {
@@ -5721,7 +6010,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Oregano, tørket",
                             NormalizedName = "oregano tørket",
-                            Url = "oregano-torket"
+                            Slug = "oregano-torket"
                         },
                         new
                         {
@@ -5729,7 +6018,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Basilikum, tørket",
                             NormalizedName = "basilikum tørket",
-                            Url = "basilikum-torket"
+                            Slug = "basilikum-torket"
                         },
                         new
                         {
@@ -5737,7 +6026,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Spisskum",
                             NormalizedName = "spisskum",
-                            Url = "spisskum"
+                            Slug = "spisskum"
                         },
                         new
                         {
@@ -5745,7 +6034,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Ingredient",
                             Name = "Karve",
                             NormalizedName = "karve",
-                            Url = "karve"
+                            Slug = "karve"
                         },
                         new
                         {
@@ -5753,7 +6042,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Protein",
                             NormalizedName = "protein",
-                            Url = "protein"
+                            Slug = "protein"
                         },
                         new
                         {
@@ -5761,7 +6050,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Karbohydrater",
                             NormalizedName = "karbohydrater",
-                            Url = "karbohydrater"
+                            Slug = "karbohydrater"
                         },
                         new
                         {
@@ -5769,7 +6058,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Sukkerarter",
                             NormalizedName = "sukkerarter",
-                            Url = "sukkerarter"
+                            Slug = "sukkerarter"
                         },
                         new
                         {
@@ -5777,7 +6066,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Polyoler",
                             NormalizedName = "polyoler",
-                            Url = "polyoler"
+                            Slug = "polyoler"
                         },
                         new
                         {
@@ -5785,7 +6074,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Stivelse",
                             NormalizedName = "stivelse",
-                            Url = "stivelse"
+                            Slug = "stivelse"
                         },
                         new
                         {
@@ -5793,7 +6082,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Fett",
                             NormalizedName = "fett",
-                            Url = "fett"
+                            Slug = "fett"
                         },
                         new
                         {
@@ -5801,7 +6090,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Mettet fett",
                             NormalizedName = "mettet fett",
-                            Url = "mettet-fett"
+                            Slug = "mettet-fett"
                         },
                         new
                         {
@@ -5809,7 +6098,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Enumettet fett",
                             NormalizedName = "enumettet fett",
-                            Url = "enumettet-fett"
+                            Slug = "enumettet-fett"
                         },
                         new
                         {
@@ -5817,7 +6106,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Flerumettet fett",
                             NormalizedName = "flerumettet fett",
-                            Url = "flerumettet-fett"
+                            Slug = "flerumettet-fett"
                         },
                         new
                         {
@@ -5825,7 +6114,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Transfett",
                             NormalizedName = "transfett",
-                            Url = "transfett"
+                            Slug = "transfett"
                         },
                         new
                         {
@@ -5833,7 +6122,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin A, retinol",
                             NormalizedName = "vitamin a retinol",
-                            Url = "vitamin-a-retinol"
+                            Slug = "vitamin-a-retinol"
                         },
                         new
                         {
@@ -5841,7 +6130,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin B1, tiamin",
                             NormalizedName = "vitamin b1 tiamin",
-                            Url = "vitamin-b1-tiamin"
+                            Slug = "vitamin-b1-tiamin"
                         },
                         new
                         {
@@ -5849,7 +6138,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin B2, riboflavin",
                             NormalizedName = "vitamin b2 riboflavin",
-                            Url = "vitamin-b2-riboflavin"
+                            Slug = "vitamin-b2-riboflavin"
                         },
                         new
                         {
@@ -5857,7 +6146,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin B3, niacin",
                             NormalizedName = "vitamin b3 niacin",
-                            Url = "vitamin-b3-niacin"
+                            Slug = "vitamin-b3-niacin"
                         },
                         new
                         {
@@ -5865,7 +6154,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin B5, pantotensyre",
                             NormalizedName = "vitamin b5 pantotensyre",
-                            Url = "vitamin-b5-pantotensyre"
+                            Slug = "vitamin-b5-pantotensyre"
                         },
                         new
                         {
@@ -5873,7 +6162,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin B7, biotin",
                             NormalizedName = "vitamin b7 biotin",
-                            Url = "vitamin-b7-biotin"
+                            Slug = "vitamin-b7-biotin"
                         },
                         new
                         {
@@ -5881,7 +6170,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin B9, folat",
                             NormalizedName = "vitamin b9 folat",
-                            Url = "vitamin-b9-folat"
+                            Slug = "vitamin-b9-folat"
                         },
                         new
                         {
@@ -5889,7 +6178,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin B12, kobalamin",
                             NormalizedName = "vitamin b12 kobalamin",
-                            Url = "vitamin-b12-kobalamin"
+                            Slug = "vitamin-b12-kobalamin"
                         },
                         new
                         {
@@ -5897,7 +6186,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin C, askorbinsyre",
                             NormalizedName = "vitamin c askorbinsyre",
-                            Url = "vitamin-c-askorbinsyre"
+                            Slug = "vitamin-c-askorbinsyre"
                         },
                         new
                         {
@@ -5905,7 +6194,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin D2, ergokalsiferol",
                             NormalizedName = "vitamin d2 ergokalsiferol",
-                            Url = "vitamin-d2-ergokalsiferol"
+                            Slug = "vitamin-d2-ergokalsiferol"
                         },
                         new
                         {
@@ -5913,7 +6202,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin D3, kolikalsiferol",
                             NormalizedName = "vitamin d3 kolikalsiferol",
-                            Url = "vitamin-d3-kolikalsiferol"
+                            Slug = "vitamin-d3-kolikalsiferol"
                         },
                         new
                         {
@@ -5921,7 +6210,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin E, tokoferol (E306)",
                             NormalizedName = "vitamin e tokoferol e306",
-                            Url = "vitamin-e-tokoferol-e306"
+                            Slug = "vitamin-e-tokoferol-e306"
                         },
                         new
                         {
@@ -5929,7 +6218,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin K1, fyllokinon",
                             NormalizedName = "vitamin k1 fyllokinon",
-                            Url = "vitamin-k1-fyllokinon"
+                            Slug = "vitamin-k1-fyllokinon"
                         },
                         new
                         {
@@ -5937,7 +6226,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vitamin K2, menakinon",
                             NormalizedName = "vitamin k2 menakinon",
-                            Url = "vitamin-k2-menakinon"
+                            Slug = "vitamin-k2-menakinon"
                         },
                         new
                         {
@@ -5945,7 +6234,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Kalium",
                             NormalizedName = "kalium",
-                            Url = "kalium"
+                            Slug = "kalium"
                         },
                         new
                         {
@@ -5953,7 +6242,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Klorin",
                             NormalizedName = "klorin",
-                            Url = "klorin"
+                            Slug = "klorin"
                         },
                         new
                         {
@@ -5961,7 +6250,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Natrium",
                             NormalizedName = "natrium",
-                            Url = "natrium"
+                            Slug = "natrium"
                         },
                         new
                         {
@@ -5969,7 +6258,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Kalsium",
                             NormalizedName = "kalsium",
-                            Url = "kalsium"
+                            Slug = "kalsium"
                         },
                         new
                         {
@@ -5977,7 +6266,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Fosfor",
                             NormalizedName = "fosfor",
-                            Url = "fosfor"
+                            Slug = "fosfor"
                         },
                         new
                         {
@@ -5985,7 +6274,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Magnesium",
                             NormalizedName = "magnesium",
-                            Url = "magnesium"
+                            Slug = "magnesium"
                         },
                         new
                         {
@@ -5993,7 +6282,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Jern",
                             NormalizedName = "jern",
-                            Url = "jern"
+                            Slug = "jern"
                         },
                         new
                         {
@@ -6001,7 +6290,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Sink",
                             NormalizedName = "sink",
-                            Url = "sink"
+                            Slug = "sink"
                         },
                         new
                         {
@@ -6009,7 +6298,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Mangan",
                             NormalizedName = "mangan",
-                            Url = "mangan"
+                            Slug = "mangan"
                         },
                         new
                         {
@@ -6017,7 +6306,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Kobber",
                             NormalizedName = "kobber",
-                            Url = "kobber"
+                            Slug = "kobber"
                         },
                         new
                         {
@@ -6025,7 +6314,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Jod",
                             NormalizedName = "jod",
-                            Url = "jod"
+                            Slug = "jod"
                         },
                         new
                         {
@@ -6033,7 +6322,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Molybden",
                             NormalizedName = "molybden",
-                            Url = "molybden"
+                            Slug = "molybden"
                         },
                         new
                         {
@@ -6041,7 +6330,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Selen",
                             NormalizedName = "selen",
-                            Url = "selen"
+                            Slug = "selen"
                         },
                         new
                         {
@@ -6049,7 +6338,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Fluor",
                             NormalizedName = "fluor",
-                            Url = "fluor"
+                            Slug = "fluor"
                         },
                         new
                         {
@@ -6057,7 +6346,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Krom",
                             NormalizedName = "krom",
-                            Url = "krom"
+                            Slug = "krom"
                         },
                         new
                         {
@@ -6065,7 +6354,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Nikkel",
                             NormalizedName = "nikkel",
-                            Url = "nikkel"
+                            Slug = "nikkel"
                         },
                         new
                         {
@@ -6073,7 +6362,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Bor",
                             NormalizedName = "bor",
-                            Url = "bor"
+                            Slug = "bor"
                         },
                         new
                         {
@@ -6081,7 +6370,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Silisium",
                             NormalizedName = "silisium",
-                            Url = "silisium"
+                            Slug = "silisium"
                         },
                         new
                         {
@@ -6089,7 +6378,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Vanadium",
                             NormalizedName = "vanadium",
-                            Url = "vanadium"
+                            Slug = "vanadium"
                         },
                         new
                         {
@@ -6097,7 +6386,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Nutrient",
                             Name = "Salt",
                             NormalizedName = "salt",
-                            Url = "salt"
+                            Slug = "salt"
                         },
                         new
                         {
@@ -6105,7 +6394,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Krepsdyr",
                             NormalizedName = "krepsdyr",
-                            Url = "krepsdyr"
+                            Slug = "krepsdyr"
                         },
                         new
                         {
@@ -6113,7 +6402,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Sesamfrø",
                             NormalizedName = "sesamfrø",
-                            Url = "sesamfro"
+                            Slug = "sesamfro"
                         },
                         new
                         {
@@ -6121,7 +6410,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Nøtter",
                             NormalizedName = "nøtter",
-                            Url = "notter"
+                            Slug = "notter"
                         },
                         new
                         {
@@ -6129,7 +6418,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Gluten",
                             NormalizedName = "gluten",
-                            Url = "gluten"
+                            Slug = "gluten"
                         },
                         new
                         {
@@ -6137,7 +6426,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Egg",
                             NormalizedName = "egg",
-                            Url = "egg"
+                            Slug = "egg"
                         },
                         new
                         {
@@ -6145,7 +6434,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Fisk",
                             NormalizedName = "fisk",
-                            Url = "fisk"
+                            Slug = "fisk"
                         },
                         new
                         {
@@ -6153,7 +6442,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Skalldyr",
                             NormalizedName = "skalldyr",
-                            Url = "skalldyr"
+                            Slug = "skalldyr"
                         },
                         new
                         {
@@ -6161,7 +6450,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Sennep",
                             NormalizedName = "sennep",
-                            Url = "sennep"
+                            Slug = "sennep"
                         },
                         new
                         {
@@ -6169,7 +6458,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Selleri",
                             NormalizedName = "selleri",
-                            Url = "selleri"
+                            Slug = "selleri"
                         },
                         new
                         {
@@ -6177,7 +6466,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Peanøtter",
                             NormalizedName = "peanøtter",
-                            Url = "peanotter"
+                            Slug = "peanotter"
                         },
                         new
                         {
@@ -6185,7 +6474,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Melk",
                             NormalizedName = "melk",
-                            Url = "melk"
+                            Slug = "melk"
                         },
                         new
                         {
@@ -6193,7 +6482,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Sulfitt",
                             NormalizedName = "sulfitt",
-                            Url = "sulfitt"
+                            Slug = "sulfitt"
                         },
                         new
                         {
@@ -6201,7 +6490,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Soya",
                             NormalizedName = "soya",
-                            Url = "soya"
+                            Slug = "soya"
                         },
                         new
                         {
@@ -6209,7 +6498,7 @@ namespace MenuPlanner.Migrations
                             EntityType = "Allergen",
                             Name = "Lupin",
                             NormalizedName = "lupin",
-                            Url = "lupin"
+                            Slug = "lupin"
                         });
                 });
 

@@ -1,11 +1,11 @@
 ﻿namespace MenuPlanner.Models.Entities
 {
-    public class SearchIndex : ISearchableEntity
+    public class SearchIndex
     {
         public int Id { get; set; }
         public string EntityType { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
+        public string Slug { get; set; } = string.Empty;
         public string NormalizedName { get; set; } = string.Empty;
 
         // Normaliseringsregler:

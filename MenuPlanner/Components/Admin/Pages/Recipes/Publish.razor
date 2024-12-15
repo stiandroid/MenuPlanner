@@ -1,4 +1,4 @@
-﻿@page "/admin/recipes/publish/{Url}"
+﻿@page "/admin/recipes/publish/{Slug}"
 @attribute [Authorize(Roles = "SysAdmin,RecipePublisher")]
 @inject IRecipeService RecipeService
 @inject NavigationManager Nav
@@ -16,7 +16,7 @@
 else
 {
     <form action="Publish">
-        <input type="hidden" id="recipeUrl" name="recipeUrl" value="@recipe.Url" />
+        <input type="hidden" id="recipeUrl" name="recipeUrl" value="@recipe.Slug" />
         <AdminRecipeHeader 
             Recipe="recipe" 
             EntityContext="EntityContext.Publish"
@@ -46,7 +46,7 @@ else
     {
         <div class="d-flex flex-column w-100">
             <h2>Deloppskrifter</h2>
-            @foreach (var subRecipe in recipe.SubRecipes.Where(sr => sr.Url != recipe.Url).ToList())
+            @foreach (var subRecipe in recipe.SubRecipes.Where(sr => sr.Slug != recipe.Slug).ToList())
             {
                 <div class="d-block">
                     <RecipeHeader Recipe="subRecipe" DisplayAsSubRecipe=true />
@@ -61,7 +61,7 @@ else
                             <RecipeIngredients IngredientList="subRecipe.RecipeIngredients" />
                         </div>
                         <div class="recipe-steps-wrapper">
-                            <RecipeSteps StepList="subRecipe.Steps" RecipeUrl="subRecipe.Url" />
+                            <RecipeSteps StepList="subRecipe.Steps" RecipeUrl="subRecipe.Slug" />
                         </div>
                     </div>
                 </div>
@@ -72,15 +72,15 @@ else
 
 @code {
     [Parameter]
-    public string Url { get; set; }
+    public string Slug { get; set; }
 
     RecipeDetailsDisplayDTO? recipe;
 
-    List<(string Url, string Name)>? subRecipes = new List<(string Url, string Name)>();
+    List<(string Slug, string Name)>? subRecipes = new List<(string Slug, string Name)>();
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await RecipeService.GetByUrl(Url);
+        var result = await RecipeService.GetBySlug(Slug, LifecycleState.PendingApproval);
         if (result.Success)
         {
             recipe = result.Data;
@@ -88,7 +88,7 @@ else
             {
                 foreach (var subRecipe in recipe.SubRecipes)
                 {
-                    subRecipes.Add(($"/admin/recipes/{recipe.Url}#{subRecipe.Url}", subRecipe.Name));
+                    subRecipes.Add(($"/admin/recipes/{recipe.Slug}#{subRecipe.Slug}", subRecipe.Name));
                 }
             }
 
@@ -98,6 +98,6 @@ else
 
     void GoBack()
     {
-        Nav.NavigateTo($"/admin/recipes/{recipe!.Url}");
+        Nav.NavigateTo($"/admin/recipes/{recipe!.Slug}");
     }
 }
