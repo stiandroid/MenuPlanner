@@ -1,0 +1,63 @@
+﻿<h5>Velg status</h5>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <NavLink href="/admin/recipes/Draft" class="nav-link">
+            Utkast
+            @if (Numbers.Drafts > 0)
+            {
+                <span class="badge info-badge">
+                    @Numbers.Drafts
+                </span>
+            }
+        </NavLink>
+    </li>
+    <li class="nav-item">
+        <NavLink href="/admin/recipes/PendingApproval" class="nav-link">
+            Venter på godkjenning
+            @if (Numbers.PendingApproval > 0)
+            {
+                <span class="badge info-badge">
+                    @Numbers.PendingApproval
+                </span>
+            }
+        </NavLink>
+    </li>
+    <li class="nav-item">
+        <NavLink href="/admin/recipes/Current" class="nav-link">
+            Publiserte
+            @if (Numbers.Current > 0)
+            {
+                <span class="badge info-badge">
+                    @Numbers.Current
+                </span>
+            }
+        </NavLink>
+    </li>
+    <li class="nav-item">
+        <NavLink href="/admin/recipes/Withdrawn" class="nav-link">
+            Tilbaketrukne
+            @if (Numbers.Withdrawn > 0)
+            {
+                <span class="badge info-badge">
+                    @Numbers.Withdrawn
+                </span>
+            }
+        </NavLink>
+    </li>
+    <li class="nav-item">
+        <NavLink href="/admin/recipes/Archived" class="nav-link">
+            Arkiverte
+            @if (Numbers.Archived > 0)
+            {
+                <span class="badge info-badge">
+                    @Numbers.Archived
+                </span>
+            }
+        </NavLink>
+    </li>
+</ul>
+
+@code {
+    [Parameter] public LifecycleState SelectedState { get; set; }
+    [Parameter] public (int Drafts, int PendingApproval, int Current, int Withdrawn, int Archived) Numbers { get; set; }
+}

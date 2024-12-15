@@ -3,7 +3,7 @@
     @foreach (var subRecipe in SubRecipes)
     {
         <p>
-            <a href="@subRecipe.Url">
+            <a href="@subRecipe.Slug">
                 @subRecipe.Name
             </a>
         </p>
@@ -12,5 +12,5 @@
 
 @code {
     [Parameter]
-    public List<(string Url, string Name)>? SubRecipes { get; set; }
+    public List<(string Slug, string Name)>? SubRecipes { get; set; }
 }

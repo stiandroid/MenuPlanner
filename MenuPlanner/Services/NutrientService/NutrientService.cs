@@ -21,10 +21,10 @@
             };
         }
 
-        public async Task<ServiceResponse<NutrientDisplayDTO>> GetByUrl(string url)
+        public async Task<ServiceResponse<NutrientDisplayDTO>> GetBySlug(string slug)
         {
             Nutrient? nutrient = await _context.Nutrients
-                .FirstOrDefaultAsync(r => r.Url == url);
+                .FirstOrDefaultAsync(r => r.Slug == slug);
             return new ServiceResponse<NutrientDisplayDTO>
             {
                 Data = _mapper.Map<NutrientDisplayDTO>(nutrient),

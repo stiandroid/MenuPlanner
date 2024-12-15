@@ -7,18 +7,25 @@
     <div class="d-flex justify-content-between align-items-center mb-0">
         <div class="d-flex justify-content-start align-items-center">
             <img class="user-header-profile-img" 
-                 src="@($"/images/recipes/{Recipe.Url}200x150.jpg")" />
+                 src="@($"/images/recipes/{Recipe.Slug}200x150.jpg")" />
 
             <div class="user-header-profile-name">
                 <h1 class="mb-2">
                     @Recipe.Name
                 </h1>
-                <div class="mb-2">
-                    @Recipe.Description
-                </div>
                 @if (Recipe.SubRecipes != null && Recipe.SubRecipes.Count > 0)
                 {
-                    <div>Oppskriften består av flere deloppskrifter.</div>
+                    <p>
+                        <i class="fa fa-layer-group fa-fw"></i>
+                        Oppskriften består av flere deloppskrifter
+                    </p>
+                }
+                @if (!string.IsNullOrWhiteSpace(state.Title))
+                {
+                    <p>
+                        <i class="fa fa-@(state.Icon) fa-fw"></i>
+                        @state.Title
+                    </p>
                 }
             </div>
 
@@ -87,9 +94,11 @@
     [Parameter] public bool IsPublishButtonEnabled { get; set; }
     [Parameter] public bool IsEditButtonEnabled { get; set; }
 
-    private bool visible = true;
+    bool visible = true;
 
-    private DialogOptions dialogOptions = new() { CloseOnEscapeKey = true, DisableBackdropClick = true };
+    (string Title, string Icon) state = ("", "");
+
+    DialogOptions dialogOptions = new() { CloseOnEscapeKey = true, DisableBackdropClick = true };
 
     protected override void OnInitialized()
     {
@@ -97,21 +106,30 @@
         {
             throw new ArgumentException("The value for the required parameter EntityContext is invalid or not set. The parameter must be set with either the enum value EntityContext.View, EntityContext.Edit, EntityContext.Publish or EntityContext.Delete.");
         }
+        state = Recipe.State switch
+        {
+            LifecycleState.Draft => ("Utkast", "pen-ruler"),
+            LifecycleState.PendingApproval => ("Venter på godkjenning", "clock"),
+            LifecycleState.Current => ("Publisert", "tower-broadcast"),
+            LifecycleState.Withdrawn => ("Avpublisert", "ban"),
+            LifecycleState.Archived => ("Arkivert", "box-archive"),
+            _ => ("Uspesifisert", "question")
+        };
     }
 
     void NavigateToEditPage()
     {
-        Nav.NavigateTo($"/admin/recipes/edit/{Recipe!.Url}");
+        Nav.NavigateTo($"/admin/recipes/edit/{Recipe!.Slug}");
     }
 
     void NavigateToPublishPage()
     {
-        Nav.NavigateTo($"/admin/recipes/publish/{Recipe!.Url}");
+        Nav.NavigateTo($"/admin/recipes/publish/{Recipe!.Slug}");
     }
 
     void GoBack()
     {
-        Nav.NavigateTo($"/admin/recipes/{Recipe.Url}");
+        Nav.NavigateTo($"/admin/recipes/{Recipe.Slug}");
     }
 
     private void OpenConfirmPublishDialog()

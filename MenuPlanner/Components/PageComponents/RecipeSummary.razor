@@ -4,8 +4,8 @@
 
 @if (Recipe != null)
 {
-    <div class="card" @onclick="(() => GoToRecipe(Recipe.Url))">
-        <img class="card-img" src="images/recipes/@(Recipe.Url)200x150.jpg" />
+    <div class="card" @onclick="(() => GoToRecipe(Recipe.Slug))">
+        <img class="card-img" src="images/recipes/@(Recipe.Slug)200x150.jpg" />
         <div class="card-img-overlay">
             <div class="card-title">
                 <h5>
@@ -39,6 +39,6 @@
 
     private void GoToRecipe(string url)
     {
-        Nav.NavigateTo($"/r/{url}");
+        Nav.NavigateTo($"/recipe/{url}");
     }
 }

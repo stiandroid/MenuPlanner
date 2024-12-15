@@ -1,11 +1,13 @@
 ﻿namespace MenuPlanner.Models.DTOs.Display
 {
-    public class RecipeDetailsDisplayDTO
+    public class RecipeDetailsDisplayDTO : IDomainDisplayDTO
     {
-        public LifecycleState State { get; set; } // Kanskje nyttig for å vise status i admin
         public string Name { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty; // Autogenerert: "Svenske kjøttboller" => "svenske-kjottboller"
+        public string Alias { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public string Slug { get; set; } = string.Empty; // Autogenerert: "Svenske kjøttboller" => "svenske-kjottboller"
+
+        public LifecycleState State { get; set; } // Kanskje nyttig for å vise status i admin
         public DifficultyLevel DifficultyLevel { get; set; }
         public double? RatingAverage { get; set; }
         public TimeSpan PrepTime { get; set; }

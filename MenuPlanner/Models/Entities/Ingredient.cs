@@ -1,15 +1,18 @@
 ﻿namespace MenuPlanner.Models.Entities
 {
-    public class Ingredient : ISearchableEntity
+    public class Ingredient : IDomainEntity
     {
         public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Alias { get; set; } = string.Empty; // Eks.: Hvitost kalles ofte også gulost.
+        public string Description { get; set; } = string.Empty;
+        public string Slug { get; set; } = string.Empty; // Autogenerert: "Matfløte" => "matflote"
+        public int SortOrder { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
         public LifecycleState State { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string? Alias { get; set; } = string.Empty; // Eks.: Hvitost kalles ofte også gulost.
-        public string Url { get; set; } = string.Empty; // Autogenerert: "Matfløte" => "matflote"
-        public string Description { get; set; } = string.Empty;
+        public string? UserId { get; set; }
+
         public bool HasImage { get; set; } // <img src="@($"{Id}.jpg")"> vises hvis HasImage == true
         public FoodGroup Type { get; set; }
 

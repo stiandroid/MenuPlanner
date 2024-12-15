@@ -59,10 +59,10 @@
     {
         pageRoute = Nav.ToBaseRelativePath(Nav.Uri);
         userClasses = $"admin-nav-link text-black{(ActiveClass("admin/users"))}";
-        recipeClasses = $"admin-nav-link text-black{(ActiveClass("admin/recipes"))}";
-        ingredientClasses = $"admin-nav-link text-black{(ActiveClass("admin/ingredients"))}";
-        nutrientClasses = $"admin-nav-link text-black{(ActiveClass("admin/nutrients"))}";
-        allergenClasses = $"admin-nav-link text-black{(ActiveClass("admin/allergens"))}";
+        recipeClasses = $"admin-nav-link text-black{(ActiveClass("admin/recipe"))}";
+        ingredientClasses = $"admin-nav-link text-black{(ActiveClass("admin/ingredient"))}";
+        nutrientClasses = $"admin-nav-link text-black{(ActiveClass("admin/nutrient"))}";
+        allergenClasses = $"admin-nav-link text-black{(ActiveClass("admin/allergen"))}";
     }
 
     private string ActiveClass(string route)

@@ -1,4 +1,4 @@
-﻿@page "/ingredient/{Url}"
+﻿@page "/ingredient/{Slug}"
 @inject IIngredientService IngredientService
 @inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
@@ -14,7 +14,7 @@ else
     <BreadCrumbs PageTitle="@ingredient.Name" />
     <h1>@ingredient.Name</h1>
     <div class="main-image-wrapper">
-        <img class="main-image" src="images/ingredients/@(ingredient.Url)1000x350.jpg" />
+        <img class="main-image" src="images/ingredients/@(ingredient.Slug)1000x350.jpg" />
     </div>
     <p class="main-description">@ingredient.Description</p>
     <p>Kort-liste over oppskrifter som inneholder denne ingrediensen, f.eks. de 10 høyest rangerte oppskriftene, vist i kompakt format (cards).</p>
@@ -34,13 +34,13 @@ else
                                     @if (item.Nutrient!.SubTypeOf != null)
                                     {
                                         <span>&nbsp;&nbsp;hvorav </span>
-                                        <a href="/nutrient/@item.Nutrient!.Url">
+                                        <a href="/nutrient/@item.Nutrient!.Slug">
                                             @item.Nutrient!.Name.ToLower()
                                         </a>
                                     }
                                     else
                                     {
-                                        <a href="/nutrient/@item.Nutrient!.Url">
+                                        <a href="/nutrient/@item.Nutrient!.Slug">
                                             @item.Nutrient!.Name
                                         </a>
                                     }
@@ -79,9 +79,9 @@ else
                 {
                     foreach (var item in ingredient.IngredientAllergens)
                     {
-                        <a href="/allergen/@item.Allergen!.Url">
+                        <a href="/allergen/@item.Allergen!.Slug">
                             <span class="p-2 me-2 mb-2 text-center">
-                                <img src="/images/allergens/@(item.Allergen!.Url).png" height="64" class="mb-1" /><br />
+                                <img src="/images/allergens/@(item.Allergen!.Slug).png" height="64" class="mb-1" /><br />
                                 @item.Allergen!.Name
                             </span>
                         </a>
@@ -95,12 +95,12 @@ else
 
 @code {
     [Parameter]
-    public string Url { get; set; } = "";
+    public string Slug { get; set; } = string.Empty;
     private IngredientDisplayDTO? ingredient;
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await IngredientService.GetByUrl(Url);
+        var result = await IngredientService.GetBySlug(Slug);
         if (result.Success)
         {
             ingredient = result.Data;

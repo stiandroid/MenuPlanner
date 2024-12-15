@@ -21,7 +21,7 @@
                 }
                 @foreach (var nutrient in nutrients)
                 {
-                    <a href="/nutrient/@(nutrient.Url)">
+                    <a href="/nutrient/@(nutrient.Slug)">
                         <span class="badge rounded-pill text-bg-success p-2 me-2 mb-2">
                             @nutrient.Name
                         </span>
@@ -41,7 +41,7 @@
                 }
                 @foreach (var ingredient in ingredients)
                 {
-                    <a href="/ingredient/@(ingredient.Url)">
+                    <a href="/ingredient/@(ingredient.Slug)">
                         <span class="badge rounded-pill text-bg-primary p-2 me-2 mb-2">
                             @ingredient.Name
                         </span>
@@ -55,7 +55,7 @@
     {
         <div class="row mt-3"></div>
     }
-    @if (recipeCount > 0)
+    @if (recipes != null && recipeCount > 0)
     {
         <div class="row">
             <div class="col-12 mb-3">
@@ -75,7 +75,7 @@ else if (!string.IsNullOrWhiteSpace(SearchTerm))
 {
     @if (SearchTerm.Length > 1)
     {
-        <p>Fant ingen oppskrifter, ingredienser eller næringsstoffer på søk etter "@SearchTerm!.Replace("+", " ")".</p>
+        <p>Fant ingen oppskrifter, ingredienser, næringsstoffer eller allergener på søk etter "@SearchTerm!.Replace("+", " ")".</p>
     }
     @if (searchTermContainsOneLetterWord)
     {
@@ -87,21 +87,24 @@ else if (!string.IsNullOrWhiteSpace(SearchTerm))
     [Parameter]
     public string? SearchTerm { get; set; }
 
-    private (List<RecipeSummaryDisplayDTO> recipes, 
-             List<IngredientDisplayDTO> ingredients,
-             List<NutrientDisplayDTO> nutrients) searchResults;
+    (List<RecipeSummaryDisplayDTO> recipes, 
+    List<IngredientDisplayDTO> ingredients,
+    List<NutrientDisplayDTO> nutrients,
+    List<AllergenDisplayDTO> allergens) searchResults;
 
-    private List<RecipeSummaryDisplayDTO>? recipes;
-    private List<IngredientDisplayDTO>? ingredients;
-    private List<NutrientDisplayDTO>? nutrients;
+    List<RecipeSummaryDisplayDTO>? recipes;
+    List<IngredientDisplayDTO>? ingredients;
+    List<NutrientDisplayDTO>? nutrients;
+    List<AllergenDisplayDTO>? allergens;
 
-    private int recipeCount = 0;
-    private int ingredientCount = 0;
-    private int nutrientCount = 0;
+    int recipeCount = 0;
+    int ingredientCount = 0;
+    int nutrientCount = 0;
+    int allergenCount = 0;
 
-    private string oneLetterWordMessage = "Søkeord på kun én bokstav ble ignorert.";
+    string oneLetterWordMessage = "Søkeord på kun én bokstav ble ignorert.";
 
-    private bool searchTermContainsOneLetterWord = false;
+    bool searchTermContainsOneLetterWord = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -114,10 +117,15 @@ else if (!string.IsNullOrWhiteSpace(SearchTerm))
 
                 recipes = searchResults.recipes;
                 recipeCount = recipes?.Count ?? 0;
+
                 ingredients = searchResults.ingredients;
                 ingredientCount = ingredients?.Count ?? 0;
+
                 nutrients = searchResults.nutrients;
                 nutrientCount = nutrients?.Count ?? 0;
+
+                allergens = searchResults.allergens;
+                allergenCount = allergens?.Count ?? 0;
 
                 searchTermContainsOneLetterWord = SearchTerm
                     .Split('+', StringSplitOptions.RemoveEmptyEntries)

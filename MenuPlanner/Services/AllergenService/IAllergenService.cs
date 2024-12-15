@@ -4,6 +4,6 @@
     {
         Task<int> Count(LifecycleState state);
         Task<ServiceResponse<List<AllergenDisplayDTO>>> GetAll();
-        Task<ServiceResponse<AllergenDisplayDTO>> GetByUrl(string url);
+        Task<ServiceResponse<AllergenDisplayDTO>> GetBySlug(string url);
     }
 }

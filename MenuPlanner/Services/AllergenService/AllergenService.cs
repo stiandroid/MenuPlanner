@@ -22,10 +22,10 @@ namespace MenuPlanner.Services.AllergenService
             };
         }
 
-        public async Task<ServiceResponse<AllergenDisplayDTO>> GetByUrl(string url)
+        public async Task<ServiceResponse<AllergenDisplayDTO>> GetBySlug(string slug)
         {
             Allergen? allergen = await _context.Allergens
-                .FirstOrDefaultAsync(r => r.Url == url);
+                .FirstOrDefaultAsync(r => r.Slug == slug);
             return new ServiceResponse<AllergenDisplayDTO>
             {
                 Data = _mapper.Map<AllergenDisplayDTO>(allergen),

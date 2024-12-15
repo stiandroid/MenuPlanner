@@ -36,7 +36,7 @@
         }
 
         [Fact]
-        public async Task GetByUrl_ShouldReturnRequestedIngredient()
+        public async Task GetBySlug_ShouldReturnRequestedIngredient()
         {
             // Arrange
             // Create and add an ingredient to the test database
@@ -44,19 +44,19 @@
             var newIngredient = new Ingredient() 
             { 
                 Name = name,
-                Url = name,
+                Slug = name,
                 State = LifecycleState.Draft
             };
             _dataContext.Ingredients.Add(newIngredient);
             await _dataContext.SaveChangesAsync();
 
             // Act
-            var result = await _ingredientService.GetByUrl(name);
+            var result = await _ingredientService.GetBySlug(name);
 
             // Assert
             Assert.NotNull(result);
             Assert.True(result.Success);
-            Assert.Equal(newIngredient.Url, result.Data?.Url);
+            Assert.Equal(newIngredient.Slug, result.Data?.Slug);
 
             // Clean-up
             if (result.Success) // Ingrediensen ble opprettet, så da må vi slette den igjen

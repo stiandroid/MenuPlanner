@@ -2,7 +2,7 @@
 {   
     @* Underoppskrift *@
     <h4 class="d-flex flex-row mb-2 align-content-between"
-        id="@Recipe.Url"> @* id brukes for å kunne linke direkte til stedet på siden hvor underoppskriftens står *@
+        id="@Recipe.Slug"> @* id brukes for å kunne linke direkte til stedet på siden hvor underoppskriftens står *@
         <img class="mr-3"
              src="images/flags/standardized-rectangle-120px/@(Recipe.Country.ISO3166_2).png"
              height="20"
@@ -12,7 +12,7 @@
     </h4>
 
     <div class="d-flex flex-row w-100">
-        <img src="images/recipes/@(Recipe.Url)200x150.jpg"
+        <img src="images/recipes/@(Recipe.Slug)200x150.jpg"
              class="sub-image"/>
         <div class="d-flex flex-column w-100 ps-2">
             <div class="sub-description w-100">@Recipe.Description</div>
@@ -30,8 +30,8 @@
                     <div class="d-flex flex-row flex-wrap">
                         @foreach (var allergen in allergens)
                         {
-                            <a href="/allergen/@allergen.Url">
-                                <img src="/images/allergens/@(allergen.Url).png" 
+                            <a href="/allergen/@allergen.Slug">
+                                <img src="/images/allergens/@(allergen.Slug).png" 
                                      height="48"
                                      title="@Recipe.Name inneholder @(allergen.Name.ToLower())"
                                      alt="@Recipe.Name inneholder @(allergen.Name.ToLower())" />
@@ -69,8 +69,8 @@ else
                 <div class="d-flex flex-row flex-wrap w-100 gap-2">
                     @foreach (var allergen in allergens)
                     {
-                        <a href="/allergen/@allergen.Url">
-                            <img src="/images/allergens/@(allergen.Url).png" 
+                        <a href="/allergen/@allergen.Slug">
+                            <img src="/images/allergens/@(allergen.Slug).png" 
                                     height="48"
                                     title="@Recipe.Name inneholder @(allergen.Name.ToLower())"
                                     alt="@Recipe.Name inneholder @(allergen.Name.ToLower())" />
@@ -79,7 +79,7 @@ else
                 </div>
             }
         </div>
-        <img class="main-image" src="images/recipes/@(Recipe.Url)1000x350.jpg" />
+        <img class="main-image" src="images/recipes/@(Recipe.Slug)1000x350.jpg" />
     </div>
 }
 

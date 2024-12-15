@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public async Task GetAll_ShouldReturnListOfRecipeSummaries()
+        public async Task GetAllWithState_ShouldReturnListOfCurrentRecipeSummaries()
         {
             // Arrange
             int expectedCount = await _dataContext!.Recipes
@@ -28,7 +28,7 @@
                 .CountAsync();
 
             // Act
-            var result = await _recipeService.GetAll();
+            var result = await _recipeService.GetAllWithState(LifecycleState.Current);
 
             // Ensure result is a list of the correct type
             Assert.IsType<ServiceResponse<List<RecipeSummaryDisplayDTO>>>(result);
@@ -39,7 +39,7 @@
         }
 
         [Fact]
-        public async Task GetByUrl_ShouldReturnRequestedIngredient()
+        public async Task GetBySlug_ShouldReturnRequestedIngredient()
         {
             // Arrange
             // Add an ingredient to the test database
@@ -47,18 +47,18 @@
             var newRecipe = new Recipe()
             {
                 Name = name,
-                Url = name,
+                Slug = name,
                 State = LifecycleState.Draft
             };
             _dataContext!.Recipes.Add(newRecipe);
             await _dataContext.SaveChangesAsync();
 
             // Act
-            var result = await _recipeService.GetByUrl(name);
+            var result = await _recipeService.GetBySlug(name);
 
             // Assert
             Assert.True(result.Success);
-            Assert.Equal(newRecipe.Url, result.Data?.Url); // result.Data har ikke Id
+            Assert.Equal(newRecipe.Slug, result.Data?.Slug); // result.Data har ikke Id
 
             // Clean-up
             if (result.Success) // Ingrediensen ble opprettet, så da må vi slette den igjen

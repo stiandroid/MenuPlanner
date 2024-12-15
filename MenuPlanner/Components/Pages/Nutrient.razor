@@ -1,4 +1,4 @@
-﻿@page "/nutrient/{Url}"
+﻿@page "/nutrient/{Slug}"
 @inject INutrientService NutrientService
 @inject IJSRuntime JSRuntime
 @rendermode InteractiveServer
@@ -14,7 +14,7 @@ else
     <BreadCrumbs PageTitle="@nutrient.Name" />
     <h1>@nutrient.Name</h1>
     <div class="main-image-wrapper">
-        <img class="main-image" src="images/nutrients/@(nutrient.Url)1000x350.jpg" />
+        <img class="main-image" src="images/nutrients/@(nutrient.Slug)1000x350.jpg" />
     </div>
     <p class="main-description">@nutrient.Description</p>
     <p>Kort-liste over ingredienser som inneholder mye av dette næringsstoffet, vist i kompakt format (cards).</p>
@@ -22,13 +22,13 @@ else
 
 @code {
     [Parameter]
-    public string? Url { get; set; }
+    public string Slug { get; set; } = string.Empty;
 
     NutrientDisplayDTO? nutrient;
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await NutrientService.GetByUrl(Url);
+        var result = await NutrientService.GetBySlug(Slug);
         if (result.Success)
         {
             nutrient = result.Data;

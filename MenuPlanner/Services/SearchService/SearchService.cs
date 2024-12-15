@@ -10,7 +10,8 @@ namespace MenuPlanner.Services.SearchService
         public async Task<ServiceResponse<(
             List<RecipeSummaryDisplayDTO> recipes,
             List<IngredientDisplayDTO> ingredients,
-            List<NutrientDisplayDTO> nutrients)>>
+            List<NutrientDisplayDTO> nutrients,
+            List<AllergenDisplayDTO> allergens)>>
             Search(string searchTerm)
         {
             try
@@ -20,7 +21,8 @@ namespace MenuPlanner.Services.SearchService
                     return new ServiceResponse<(
                         List<RecipeSummaryDisplayDTO> recipes,
                         List<IngredientDisplayDTO> ingredients,
-                        List<NutrientDisplayDTO> nutrients)>()
+                        List<NutrientDisplayDTO> nutrients,
+                        List<AllergenDisplayDTO> allergens)>()
                     {
                         Success = false,
                         Message = "No search term provided"
@@ -30,16 +32,25 @@ namespace MenuPlanner.Services.SearchService
                 var recipesResults = await SearchEntity<Recipe>(searchTerm, entity => entity.Name);
                 var ingredientsResults = await SearchEntity<Ingredient>(searchTerm, entity => entity.Name);
                 var nutrientsResults = await SearchEntity<Nutrient>(searchTerm, entity => entity.Name);
+                var allergensResults = await SearchEntity<Allergen>(searchTerm, entity => entity.Name);
 
                 var mappedResults =
                 (_mapper.Map<List<RecipeSummaryDisplayDTO>>(recipesResults),
                  _mapper.Map<List<IngredientDisplayDTO>>(ingredientsResults),
-                 _mapper.Map<List<NutrientDisplayDTO>>(nutrientsResults));
+                 _mapper.Map<List<NutrientDisplayDTO>>(nutrientsResults),
+                 _mapper.Map<List<AllergenDisplayDTO>>(allergensResults));
 
-                bool success = (recipesResults != null) || (ingredientsResults != null) || (nutrientsResults != null);
+                bool success =
+                    (recipesResults != null) || 
+                    (ingredientsResults != null) ||
+                    (nutrientsResults != null) ||
+                    (allergensResults != null);
 
                 return new ServiceResponse<(
-                    List<RecipeSummaryDisplayDTO> recipes, List<IngredientDisplayDTO> ingredients, List<NutrientDisplayDTO> nutrients)>()
+                    List<RecipeSummaryDisplayDTO> recipes, 
+                    List<IngredientDisplayDTO> ingredients,
+                    List<NutrientDisplayDTO> nutrients,
+                    List<AllergenDisplayDTO> allergens)>()
                 {
                     Data = mappedResults,
                     Success = success,
@@ -53,7 +64,8 @@ namespace MenuPlanner.Services.SearchService
                 return new ServiceResponse<(
                     List<RecipeSummaryDisplayDTO> recipes,
                     List<IngredientDisplayDTO> ingredients,
-                    List<NutrientDisplayDTO> nutrients)>()
+                    List<NutrientDisplayDTO> nutrients,
+                    List<AllergenDisplayDTO> allergens)>()
                 {
                     Success = false,
                     Message = $"An error occurred: {ex.Message}"
